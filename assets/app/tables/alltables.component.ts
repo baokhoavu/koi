@@ -10,8 +10,6 @@ import {
 } from '@angular/common/http';
 
 import * as $ from 'jquery';
-import { User } from "./user.model";
-import { AuthService } from "./auth.service";
 
 @Component({
     selector: 'all-tables',
