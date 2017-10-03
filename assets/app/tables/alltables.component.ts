@@ -25,32 +25,32 @@ export class AllTablesComponent {
 //        var toRiders = document.getElementsByClassName('to-riders')[0].innerText;
 //        divTest.appendChild(toRiders);
         
-        const convioUrl = 'https://secure2.convio.net/cfrca/site/SRGroupAPI?';
-        const getGroupInfo = 'method=getGroupInfo&api_key=cfrca&login_name=apiadmin&login_password=welcome&v=1.0&response_format=json&group_id=225791';
-        this.getData(convioUrl + getGroupInfo, '.testing');
+//        const convioUrl = 'https://secure2.convio.net/cfrca/site/SRGroupAPI?';
+//        const getGroupInfo = 'method=getGroupInfo&api_key=cfrca&login_name=apiadmin&login_password=welcome&v=1.0&response_format=json&group_id=225791';
+//        this.getData(convioUrl + getGroupInfo, '.testing');
     }
     
-    getData(url, element) {
-        const req = new HttpRequest('GET', url, {
-          reportProgress: true
-        });
-
-        this.http.request(req).subscribe((event: HttpEvent<any>) => {
-          switch (event.type) {
-            case HttpEventType.Sent:
-//              console.log('Request sent!');
-              break;
-            case HttpEventType.ResponseHeader:
-//              console.log('Response header received!');
-              break;
-            case HttpEventType.DownloadProgress:
-              const kbLoaded = Math.round(event.loaded / 1024);
-//              console.log(`Download in progress! ${ kbLoaded }Kb loaded`);
-              break;
-            case HttpEventType.Response:
-//              console.log('😺 Done!', event.body.getGroupInfoResponse);
-              $(element).append(event.body.getGroupInfoResponse.groupInfo.numMembers);
-          }
-        });
-    }
+//    getData(url, element) {
+//        const req = new HttpRequest('GET', url, {
+//          reportProgress: true
+//        });
+//
+//        this.http.request(req).subscribe((event: HttpEvent<any>) => {
+//          switch (event.type) {
+//            case HttpEventType.Sent:
+////              console.log('Request sent!');
+//              break;
+//            case HttpEventType.ResponseHeader:
+////              console.log('Response header received!');
+//              break;
+//            case HttpEventType.DownloadProgress:
+//              const kbLoaded = Math.round(event.loaded / 1024);
+////              console.log(`Download in progress! ${ kbLoaded }Kb loaded`);
+//              break;
+//            case HttpEventType.Response:
+////              console.log('😺 Done!', event.body.getGroupInfoResponse);
+//              $(element).append(event.body.getGroupInfoResponse.groupInfo.numMembers);
+//          }
+//        });
+//    }
 }
