@@ -32,8 +32,8 @@ export class AllTablesComponent {
             $('.testing').append($('.to-riders'));
             $('.to-riders').css('display', 'block');
         });
-        if (window.location.href.indexOf('dataload')==-1) {
-             window.location.replace(window.location.href+'?dataload');
+        if (window.location.href.indexOf('reload')==-1) {
+             window.location.replace(window.location.href+'?reload');
         }
     }
     
