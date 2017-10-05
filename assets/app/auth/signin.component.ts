@@ -21,7 +21,7 @@ export class SigninComponent {
                 data => {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('userId', data.userId);
-                    this.router.navigateByUrl('/alltables');
+                    this.router.navigateByUrl('/');
                 },
                 error => console.error(error)
             );
