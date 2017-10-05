@@ -13,6 +13,7 @@ router.get('/alltables', function (req, res, next) {
     fixieRequest(apiURL, function(err, response, body) {
         if (!err && response.statusCode == 200) {
             var locals = JSON.parse(body);
+            console.log('Data here: ' + locals);
             res.render('data', {test: locals.getGroupInfoResponse.groupInfo.numMembers});
 //            return locals.getGroupInfoResponse.groupInfo.numMembers;
         }

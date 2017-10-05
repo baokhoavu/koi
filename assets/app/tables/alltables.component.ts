@@ -28,6 +28,10 @@ export class AllTablesComponent {
 //        const convioUrl = 'https://secure2.convio.net/cfrca/site/SRGroupAPI?';
 //        const getGroupInfo = 'method=getGroupInfo&api_key=cfrca&login_name=apiadmin&login_password=welcome&v=1.0&response_format=json&group_id=225791';
 //        this.getData(convioUrl + getGroupInfo, '.testing');
+        $(window).on('load', function(){
+            $('.testing').append($('.to-riders'));
+            $('.to-riders').css('display', 'block');
+        });
     }
     
 //    getData(url, element) {
