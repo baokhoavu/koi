@@ -27,6 +27,10 @@ export class SigninComponent {
             );
         this.myForm.reset();
     }
+    
+    isLoggedIn() {
+        return this.authService.isLoggedIn();
+    }
 
     ngOnInit() {
         this.myForm = new FormGroup({
