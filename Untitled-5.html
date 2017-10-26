@@ -1,0 +1,126 @@
+<script type="text/javascript"> 
+// Get Teams by Info API Call to Bring in the Full List in jSON Format
+
+jQuery.getJSON('https://secure2.convio.net/cfrca/site/CRTeamraiserAPI?method=getTeamsByInfo&api_key=cfrca&v=1.0&fr_id=1641&list_page_size=500&response_format=json', function(data){
+
+    var baseLineUrl = '../../../toronto/wp-content/themes/jupiter-child/team_standings/RCTO18_Team_Standings_BASELINE.json';
+    // Get Baseline List
+    jQuery.getJSON(baseLineUrl, function(baseData){
+        
+        // Lists
+        var liveDataList = data.getTeamSearchByInfoResponse.team;
+        var baseDataList = baseData.getTeamSearchByInfoResponse.team;
+
+//        liveDataList.sort(function(a, b){
+//            return a.numMembers - b.numMembers;
+//        }).reverse();
+//
+//        baseDataList.sort(function(c, d){
+//           return c.numMembers - d.numMembers; 
+//        }).reverse();
+
+       function groupByTypeID(arr) {
+            var groupBy = {};
+            jQuery.each(arr, function () {
+              var currentCount = groupBy[liveDataList.numMembers] || 0; 
+              groupBy[this.name] = currentCount + parseInt(this.numMembers);
+            });
+            return groupBy;
+        }
+
+        var userArrayGroups = groupByTypeID(liveDataList);
+        var origArrayGroups = groupByTypeID(baseDataList);
+
+        var diff = [{}];
+        for (var prop in userArrayGroups) {
+          diff[prop] = userArrayGroups[prop] - origArrayGroups[prop];
+        }
+        
+        jQuery(diff[prop]).each(function() {
+            if (this == NaN) {
+                console.log('NaN Found!');
+            }
+        });
+        
+        diff.sort();
+        console.log(diff);
+    });
+});
+
+    var generalList = {
+        "teams": [
+            {
+                name: 'Aldo',
+                newMembers: 17
+            },
+            {
+                name: 'Rogers',
+                newMembers: 11
+            },
+            {
+                name: 'Scotiabank',
+                newMembers: 7
+            },
+            {
+                name: 'Ememm',
+                newMembers: 7
+            },
+            {
+                name: 'Pharmascience',
+                newMembers: 5
+            },
+            {
+                name: 'Ciena',
+                newMembers: 2
+            },
+            {
+                name: 'K-Team',
+                newMembers: 1
+            }
+        ]
+    };
+    var communityList = {
+        "teams": [
+            {
+                name: 'Aldo',
+                newMembers: 17
+            },
+            {
+                name: 'Rogers',
+                newMembers: 11
+            },
+            {
+                name: 'Scotiabank',
+                newMembers: 7
+            },
+            {
+                name: 'Pharmascience',
+                newMembers: 5
+            },
+            {
+                name: 'Ciena',
+                newMembers: 2
+            }
+        ]
+    };
+    var corporateList = {
+    "teams": [
+        {
+            name: 'Ememm',
+            newMembers: 7
+        },
+        {
+            name: 'K-Team',
+            newMembers: 1
+        }
+    ]
+};
+    
+        console.log(topTeamsList);
+    
+    jQuery(generalList.teams).each(function(i, v){
+       jQuery('.general-cont .wpb_wrapper .member-container').append('<div class="tu-container"><span class="tu-name">'+ v.name +'</span> ' + '<span class="tu-members">'+v.newMembers+'</span> </div>'); 
+    });
+    
+
+</script>
