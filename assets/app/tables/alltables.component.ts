@@ -29,19 +29,16 @@ export class AllTablesComponent {
 //        const getGroupInfo = 'method=getGroupInfo&api_key=cfrca&login_name=apiadmin&login_password=welcome&v=1.0&response_format=json&group_id=225791';
 //        this.getData(convioUrl + getGroupInfo, '.testing');
         $(window).on('load', function(){
-            $('.testing').append($('.to-riders'));
+            $('.to18-donations').append($('.hbs-to18-don').css('display','block'));
+            $('.to18-regs').append($('.hbs-to18-reg').css('display','block'));
+            $('.to18-crews').append($('.hbs-to18-crews').css('display','block'));
+            $('.to18-riders').append($('.hbs-to18-riders').css('display','block'));
+            $('.to18-rfi').append($('.hbs-to18-rfi').css('display','block'));
             $('.to-riders').css('display', 'block');
             console.log('before ajax call');
-            $.ajax({
-                url: "//www.conquercancer.ca/site/PageServer?pagename=2018_api_testing&pgwrap=n",
-                type: "get",
-                dataType: 'jsonp',
-                success: function(data) {
-                    console.log('data is here: ');
-                    console.log(data);
-//                    $('#here').html(data);
-//                    $('#here').children('meta,link,title,style').remove();
-                },
+            
+            $.get('../../views/data.hbs', function(data){
+                console.log(data);
             });
         });
         if (window.location.href.indexOf('alltables') == -1) {

@@ -12,9 +12,14 @@ router.get('/alltables', function (req, res, next) {
 
     fixieRequest(apiURL, function(err, response, body) {
         if (!err && response.statusCode == 200) {
+            console.log(body);
             var locals = JSON.parse(body);
-            console.log('Data here: ' + locals);
-            res.render('data', {test: locals});
+            console.log(locals.getEventTotal.to18.totalDonation);
+            res.render('data', {to18Donations: locals.getEventTotal.to18.totalDonation,
+                               to18RegFee: locals.getEventTotal.to18.regFee,
+                               to18Crews: locals.getEventTotal.to18.crews,
+                               to18RFI: locals.getEventTotal.to18.rfi,
+                               to18Riders: locals.getEventTotal.to18.riders});
 //            return locals.getGroupInfoResponse.groupInfo.numMembers;
         }
     });
