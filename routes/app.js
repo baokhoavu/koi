@@ -8,17 +8,16 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/alltables', function (req, res, next) {
-    const apiURL = 'https://secure2.convio.net/cfrca/site/SRGroupAPI?method=getGroupInfo&api_key=cfrca&login_name=apiadmin&login_password=welcome&v=1.0&response_format=json&group_id=225791';
+    const apiURL = 'http://www.conquercancer.ca/site/PageServer?pagename=2018_api_testing&pgwrap=n';
 
     fixieRequest(apiURL, function(err, response, body) {
         if (!err && response.statusCode == 200) {
-            var locals = JSON.parse(body);
+            var locals = JSON.stringify(body);
             console.log('Data here: ' + locals);
-            res.render('data', {test: locals.getGroupInfoResponse.groupInfo.numMembers});
+            res.render('data', {test: locals});
 //            return locals.getGroupInfoResponse.groupInfo.numMembers;
         }
     });
-    
 });
 
 module.exports = router;

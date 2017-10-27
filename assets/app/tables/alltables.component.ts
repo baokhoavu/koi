@@ -31,6 +31,18 @@ export class AllTablesComponent {
         $(window).on('load', function(){
             $('.testing').append($('.to-riders'));
             $('.to-riders').css('display', 'block');
+            console.log('before ajax call');
+            $.ajax({
+                url: "http://www.conquercancer.ca/site/PageServer?pagename=2018_api_testing&pgwrap=n",
+                type: "get",
+                dataType: 'json',
+                success: function(data) {
+                    console.log('data is here: ');
+                    console.log(data);
+//                    $('#here').html(data);
+//                    $('#here').children('meta,link,title,style').remove();
+                },
+            });
         });
         if (window.location.href.indexOf('alltables') == -1) {
              location.reload(true);
