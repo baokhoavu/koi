@@ -33,7 +33,7 @@ export class AllTablesComponent {
             $('.to-riders').css('display', 'block');
             console.log('before ajax call');
             $.ajax({
-                url: "https://www.conquercancer.ca/site/PageServer?pagename=2018_api_testing&pgwrap=n",
+                url: "//www.conquercancer.ca/site/PageServer?pagename=2018_api_testing&pgwrap=n",
                 type: "get",
                 dataType: 'json',
                 success: function(data) {
