@@ -35,7 +35,7 @@ export class AllTablesComponent {
             $.ajax({
                 url: "//www.conquercancer.ca/site/PageServer?pagename=2018_api_testing&pgwrap=n",
                 type: "get",
-                dataType: 'json',
+                dataType: 'jsonp',
                 success: function(data) {
                     console.log('data is here: ');
                     console.log(data);
