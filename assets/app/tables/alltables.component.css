@@ -110,11 +110,19 @@ td{
 /* demo styles */
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
-.ab17-table,
-.to17-table{
+.ab-table,
+.to-table,
+.mo-table,
+.va-table{
   background: -webkit-linear-gradient(left, #25c481, #25b7c4);
   background: linear-gradient(to right, #25c481, #25b7c4);
   font-family: 'Roboto', sans-serif;
+}
+
+.va-table,
+.mo-table,
+.ab-table {
+    display: none;
 }
 section{
   margin: 50px;
