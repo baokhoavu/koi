@@ -21,13 +21,6 @@ export class AllTablesComponent {
 
     constructor(private router: Router, private http: HttpClient) {
         
-//        var divTest = document.getElementsByClassName('to-rider-td');
-//        var toRiders = document.getElementsByClassName('to-riders')[0].innerText;
-//        divTest.appendChild(toRiders);
-        
-//        const convioUrl = 'https://secure2.convio.net/cfrca/site/SRGroupAPI?';
-//        const getGroupInfo = 'method=getGroupInfo&api_key=cfrca&login_name=apiadmin&login_password=welcome&v=1.0&response_format=json&group_id=225791';
-//        this.getData(convioUrl + getGroupInfo, '.testing');
         $(window).on('load', function(){
             // Toronto
             $('.to18-donations').append($('.hbs-to18-don').css('display','block'));
@@ -74,6 +67,22 @@ export class AllTablesComponent {
             $('.va17-riders').append($('.hbs-va17-riders').css('display','block'));
             $('.va17-rfi').append($('.hbs-va17-rfi').css('display','block'));
 //            $('.to-riders').css('display', 'block');
+            
+            $('.btn.btn-primary').on('click', function(){
+               if ($(this).hasClass('alberta-btn')){
+                   $('.ab-table').siblings('.table-responsive').fadeOut();
+                   $('.ab-table').fadeIn();
+               } else if ($(this).hasClass('toronto-btn')){
+                   $('.to-table').siblings('.table-responsive').fadeOut();
+                   $('.to-table').fadeIn();
+               } else if ($(this).hasClass('vancouver-btn')){
+                   $('.va-table').siblings('.table-responsive').fadeOut();
+                   $('.va-table').fadeIn();
+               } else if ($(this).hasClass('montreal-btn')){
+                   $('.mo-table').siblings('.table-responsive').fadeOut();
+                   $('.mo-table').fadeIn();
+               }
+            });
             
         });
         if (window.location.href.indexOf('alltables') == -1) {
