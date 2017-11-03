@@ -169,6 +169,10 @@ section{
     display: none;
 }
 
+tr > td.koi-blue {
+    color: #0075c9;
+}
+
 @media screen and (max-width: 400px) {
     table {
         width: auto;

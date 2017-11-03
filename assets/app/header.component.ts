@@ -5,27 +5,27 @@ import { Router } from "@angular/router";
 @Component({
     selector: 'app-header',
     template: `
-        <header class="row">
-            <nav class="col-md-8 col-md-offset-2">
-                <ul class="nav nav-pills">
-                    <li routerLinkActive="active" *ngIf="!isLoggedIn()"><a [routerLink]="['/auth']">Sign Up / Sign In</a></li>
-                    <li routerLinkActive="active" *ngIf="isLoggedIn()"><a [routerLink]="['/alltables']">Home</a></li>
-                    <li *ngIf="isLoggedIn()"><a (click)="onLogout()">Logout</a></li>
-                </ul>
-            </nav>
-        </header>
-    `
-//    template: `
-//        <header class="row">
-//            <nav class="col-md-8 col-md-offset-2">
-//                <ul class="nav nav-pills">
-//                    <li routerLinkActive="active"><a [routerLink]="['/messages']">Messenger</a></li>
-//                    <li routerLinkActive="active"><a [routerLink]="['/auth']">Authentication</a></li>
-//                    <li routerLinkActive="active"><a [routerLink]="['/alltables']">Data</a></li>
-//                </ul>
-//            </nav>
-//        </header>
-//    `
+                    <header class="row">
+                        <nav class="col-md-8 col-md-offset-2">
+                            <ul class="nav nav-pills">
+                                <a class="navbar-brand" href="/alltables"><img src="/img/koi_logo_v2.svg" alt="Koi Logo"> version: alpha</a>
+                                <li routerLinkActive="active" *ngIf="!isLoggedIn()"><a [routerLink]="['/auth']">Sign Up / Sign In</a></li>
+                                <li routerLinkActive="active" *ngIf="isLoggedIn()"><a [routerLink]="['/alltables']">Home</a></li>
+                                <li *ngIf="isLoggedIn()"><a (click)="onLogout()">Logout</a></li>
+                            </ul>
+                        </nav>
+                    </header>
+              `,
+    styles: [`
+            .navbar-brand img { width: 80px; 
+                                margin: 0 auto; }
+            .navbar-brand { height: auto; 
+                            display: block; 
+                            width: 100%; 
+                            text-align: center; 
+                            font-size: 11px;
+                            color: #969696; }
+            `]
 })
 export class HeaderComponent {
     constructor(private authService: AuthService, private router: Router) {}
