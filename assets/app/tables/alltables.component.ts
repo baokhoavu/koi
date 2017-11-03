@@ -86,6 +86,14 @@ export class AllTablesComponent {
             $('.pr17-crews').append($('.hbs-pr17-crews').css('display','block'));
             $('.pr17-riders').append($('.hbs-pr17-riders').css('display','block'));
             $('.pr17-rfi').append($('.hbs-pr17-rfi').css('display','block'));
+            // OneDay Melbourne
+            $('.ml18-donations').append($('.hbs-ml18-don').css('display','block'));
+            $('.ml18-regs').append($('.hbs-ml18-reg').css('display','block'));
+            $('.ml18-riders').append($('.hbs-ml18-riders').css('display','block'));
+            $('.ml17-donations').append($('.hbs-ml17-don').css('display','block'));
+            $('.ml17-regs').append($('.hbs-ml17-reg').css('display','block'));
+            $('.ml17-riders').append($('.hbs-ml17-riders').css('display','block'));
+            $('.ml17-walkers').append($('.hbs-ml17-rfi').css('display','block'));
 //            $('.to-riders').css('display', 'block');
             
             $('.btn.btn-primary').on('click', function(){
@@ -107,6 +115,9 @@ export class AllTablesComponent {
                } else if ($(this).hasClass('perth-btn')){
                    $('.pr-table').siblings('.table-responsive').fadeOut();
                    $('.pr-table').fadeIn();
+               } else if ($(this).hasClass('melbourne-btn')){
+                   $('.ml-table').siblings('.table-responsive').fadeOut();
+                   $('.ml-table').fadeIn();
                }
             });
             
