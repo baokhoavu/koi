@@ -119,7 +119,8 @@ td{
 .va-table,
 .mo-table,
 .ab-table,
-.pr-table{
+.pr-table,
+.ow-to-table{
     display: none;
 }
 section{

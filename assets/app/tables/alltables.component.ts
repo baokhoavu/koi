@@ -66,6 +66,26 @@ export class AllTablesComponent {
             $('.va17-crews').append($('.hbs-va17-crews').css('display','block'));
             $('.va17-riders').append($('.hbs-va17-riders').css('display','block'));
             $('.va17-rfi').append($('.hbs-va17-rfi').css('display','block'));
+            // OneWalk Toronto
+            $('.owto18-donations').append($('.hbs-owto18-don').css('display','block'));
+            $('.owto18-regs').append($('.hbs-owto18-reg').css('display','block'));
+            $('.owto18-crews').append($('.hbs-owto18-crews').css('display','block'));
+            $('.owto18-rfi').append($('.hbs-owto18-rfi').css('display','block'));
+            $('.owto17-donations').append($('.hbs-owto17-don').css('display','block'));
+            $('.owto17-regs').append($('.hbs-owto17-reg').css('display','block'));
+            $('.owto17-crews').append($('.hbs-owto17-crews').css('display','block'));
+            $('.owto17-rfi').append($('.hbs-owto17-rfi').css('display','block'));
+            // Ride Perth
+            $('.pr18-donations').append($('.hbs-pr18-don').css('display','block'));
+            $('.pr18-regs').append($('.hbs-pr18-reg').css('display','block'));
+            $('.pr18-crews').append($('.hbs-pr18-crews').css('display','block'));
+            $('.pr18-riders').append($('.hbs-pr18-riders').css('display','block'));
+            $('.pr18-rfi').append($('.hbs-pr18-rfi').css('display','block'));
+            $('.pr17-donations').append($('.hbs-pr17-don').css('display','block'));
+            $('.pr17-regs').append($('.hbs-pr17-reg').css('display','block'));
+            $('.pr17-crews').append($('.hbs-pr17-crews').css('display','block'));
+            $('.pr17-riders').append($('.hbs-pr17-riders').css('display','block'));
+            $('.pr17-rfi').append($('.hbs-pr17-rfi').css('display','block'));
 //            $('.to-riders').css('display', 'block');
             
             $('.btn.btn-primary').on('click', function(){
@@ -81,6 +101,12 @@ export class AllTablesComponent {
                } else if ($(this).hasClass('montreal-btn')){
                    $('.mo-table').siblings('.table-responsive').fadeOut();
                    $('.mo-table').fadeIn();
+               } else if ($(this).hasClass('ow-toronto-btn')){
+                   $('.ow-to-table').siblings('.table-responsive').fadeOut();
+                   $('.ow-to-table').fadeIn();
+               } else if ($(this).hasClass('perth-btn')){
+                   $('.pr-table').siblings('.table-responsive').fadeOut();
+                   $('.pr-table').fadeIn();
                }
             });
             
