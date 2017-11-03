@@ -70,10 +70,12 @@ export class AllTablesComponent {
             $('.owto18-donations').append($('.hbs-owto18-don').css('display','block'));
             $('.owto18-regs').append($('.hbs-owto18-reg').css('display','block'));
             $('.owto18-crews').append($('.hbs-owto18-crews').css('display','block'));
+            $('.owto18-walkers').append($('.hbs-owto18-walkers').css('display','block'));
             $('.owto18-rfi').append($('.hbs-owto18-rfi').css('display','block'));
             $('.owto17-donations').append($('.hbs-owto17-don').css('display','block'));
             $('.owto17-regs').append($('.hbs-owto17-reg').css('display','block'));
             $('.owto17-crews').append($('.hbs-owto17-crews').css('display','block'));
+            $('.owto17-walkers').append($('.hbs-owto17-walkers').css('display','block'));
             $('.owto17-rfi').append($('.hbs-owto17-rfi').css('display','block'));
             // Ride Perth
             $('.pr18-donations').append($('.hbs-pr18-don').css('display','block'));
@@ -96,7 +98,7 @@ export class AllTablesComponent {
             $('.ml17-walkers').append($('.hbs-ml17-rfi').css('display','block'));
 //            $('.to-riders').css('display', 'block');
             
-            $('.btn.btn-primary').on('click', function(){
+            $('.btn').on('click', function(){
                if ($(this).hasClass('alberta-btn')){
                    $('.ab-table').siblings('.table-responsive').fadeOut();
                    $('.ab-table').fadeIn();
@@ -118,6 +120,9 @@ export class AllTablesComponent {
                } else if ($(this).hasClass('melbourne-btn')){
                    $('.ml-table').siblings('.table-responsive').fadeOut();
                    $('.ml-table').fadeIn();
+               } else if ($(this).hasClass('all-btn')){
+                   $('.all-table').siblings('.table-responsive').fadeOut();
+                   $('.all-table').fadeIn();
                }
             });
             

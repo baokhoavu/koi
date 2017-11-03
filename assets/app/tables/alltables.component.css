@@ -21,6 +21,7 @@ tr > th {
 
 .all-table > table > tbody> tr > th {
     background: #0075c9;
+    text-align: center;
 }
 
 /*
@@ -36,7 +37,7 @@ tr > td:first-child {
     text-align: left;
 }
 */
-.table-responsive.all-table th {
+.table-responsive-all.all-table th {
     text-align: center;
 }
 tr.data-json td {
@@ -60,11 +61,6 @@ button {
     display: block;
     height: 30px;
     font-size: 14px;
-}
-
-.all-table,
-.ab17-table{
-    display: none;
 }
 
 h1{
@@ -110,7 +106,7 @@ td{
 /* demo styles */
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
-.table-responsive {
+.table-responsive.gradient-tbl {
   background: -webkit-linear-gradient(left, #25c481, #25b7c4);
   background: linear-gradient(to right, #25c481, #25b7c4);
   font-family: 'Roboto', sans-serif;
@@ -121,6 +117,7 @@ td{
 .ab-table,
 .pr-table,
 .ml-table,
+.to-table,
 .ow-to-table{
     display: none;
 }
