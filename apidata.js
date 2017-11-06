@@ -25,10 +25,10 @@ router.post('/apidata', function (req, res, next) {
                                 if (!err && response.statusCode == 200) {
                                 var locals4 = JSON.parse(body);
                                     
-                                    locals.save();
-                                    locals2.save();
-                                    locals3.save();
-                                    locals4.save();
+                                    db.locals.save();
+                                    db.locals2.save();
+                                    db.locals3.save();
+                                    db.locals4.save();
                                     
                                 }
                             });
