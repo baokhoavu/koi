@@ -42,7 +42,7 @@ const apiURL = 'http://www.conquercancer.ca/site/PageServer?pagename=2018_api_te
                                     var Toronto = new ApiData({
                                         updated: new Date,
                                         to18Donations: locals.getEventTotal.toronto.to18.totalDonation,
-                                        mo18Donations: locals.getEventTotal.toronto.mo18.totalDonation
+                                        mo18Donations: locals.getEventTotal.montreal.mo18.totalDonation
                                     });
 
                                     Toronto.save(function(error) {
