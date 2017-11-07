@@ -8,7 +8,7 @@ var Schema = mongoose.Schema;
 
 var dataSchema = new Schema({
     toronto: String,
-    alberta: String,
+    updated: { type: Date, default: Date.now },
     montreal: String
 });
 
@@ -17,7 +17,7 @@ var ApiData = mongoose.model("ApiData", dataSchema);
 
 var Toronto = new ApiData({
      toronto: "Scruffy",
-     alberta: "Orange",
+     updated: new Date,
      montreal: "Bombus"
 });
 
