@@ -114,9 +114,11 @@ export class AllTablesComponent {
             $('.va18-rfi-daily').append($('.hbs-va18-rfi-daily').css('display','block'));
             // OneWalk Toronto Daily Data
             $('.owto18-donations-daily').append($('.hbs-owto18-don-daily').css('display','block'));
+            $('.owto18-regs-daily').append($('.hbs-owto18-regs-daily').css('display','block'));
             $('.owto18-rfi-daily').append($('.hbs-owto18-rfi-daily').css('display','block'));
             // OneDay Melbourne Daily Data
             $('.ml18-donations-daily').append($('.hbs-ml18-don-daily').css('display','block'));
+            $('.ml18-regs-daily').append($('.hbs-ml18-regs-daily').css('display','block'));
             
             
 //            $('.to-riders').css('display', 'block');
