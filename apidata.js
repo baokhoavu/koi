@@ -1,25 +1,29 @@
-const MongoClient = require('mongodb').MongoClient;
+var mongoose = require('mongoose');
 
-const MONGO_URL = 'mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw/node-angular';
+mongoose.connect('mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw/node-angular');
 
-MongoClient.connect(MONGO_URL, (err, db) => {  
-  if (err) {
-    return console.log(err);
-  }
+var db = mongoose.connection;
 
-  // Do something with db here, like inserting a record
-  db.collection('test').insertOne(
-    {
-      title: 'Hello MongoDB',
-      text: 'Hopefully this works!'
-    },
-    function (err, res) {
-      if (err) {
-        db.close();
-        return console.log(err);
-      }
-      // Success
-      db.close();
+var Schema = mongoose.Schema;
+
+var dataSchema = new Schema({
+    toronto: String,
+    alberta: String,
+    montreal: String
+});
+
+var ApiData = mongoose.model("ApiData", dataSchema);
+
+
+var Toronto = new ApiData({
+     toronto: "Scruffy",
+     alberta: "Orange",
+     montreal: "Bombus"
+});
+
+Toronto.save(function(error) {
+    console.log("Your test has been saved!");
+    if (error) {
+        console.error(error);
     }
-  )
 });
