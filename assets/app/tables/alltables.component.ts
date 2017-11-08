@@ -96,6 +96,11 @@ export class AllTablesComponent {
             $('.ml17-regs').append($('.hbs-ml17-reg').css('display','block'));
             $('.ml17-riders').append($('.hbs-ml17-riders').css('display','block'));
             $('.ml17-walkers').append($('.hbs-ml17-rfi').css('display','block'));
+            // Ride Perth
+            $('.pr18-donations-daily').append($('.hbs-pr18-don-daily').css('display','block'));
+            $('.pr17-donations-daily').append($('.hbs-pr17-don-daily').css('display','block'));
+            $('.pr18-regs-daily').append($('.hbs-pr18-regs-daily').css('display','block'));
+            $('.pr18-rfi-daily').append($('.hbs-pr18-rfi-daily').css('display','block'));
             // Toronto Daily Data
             $('.to18-donations-daily').append($('.hbs-to18-don-daily').css('display','block'));
             $('.to17-donations-daily').append($('.hbs-to17-don-daily').css('display','block'));
@@ -123,6 +128,7 @@ export class AllTablesComponent {
             $('.owto18-rfi-daily').append($('.hbs-owto18-rfi-daily').css('display','block'));
             // OneDay Melbourne Daily Data
             $('.ml18-donations-daily').append($('.hbs-ml18-don-daily').css('display','block'));
+            $('.ml17-donations-daily').append($('.hbs-ml17-don-daily').css('display','block'));
             $('.ml18-regs-daily').append($('.hbs-ml18-regs-daily').css('display','block'));
             
             
