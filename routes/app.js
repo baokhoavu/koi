@@ -45,33 +45,55 @@ router.get('/alltables', function (req, res, next) {
                                             }
                                             if (data) {  // Search could come back empty, so we should protect against sending nothing back
                                     //            res.status(200).send(data);
-                                            
-                                            // Set Variables for Real Time vs Static Event Data    
+                                            console.log(data);
+                                            // Set Variables for Real Time vs Static Event Data
+                                                
+                                            // =========================== Ride Toronto 2018 =========================== //
                                             var removeDollarTo18v1 = locals.getEventTotal.toronto.to18.totalDonation;
                                             var removeDollarTo18v2 = data.to18Donations;
                                             var removeRegTo18v1 = locals.getEventTotal.toronto.to18.regFee;
                                             var removeRegTo18v2 = data.to18RegFee;
-                                            
+                                            // =========================== Ride Toronto 2017 =========================== //
+                                            var removeDollarTo17v1 = locals.getEventTotal.toronto.to17.totalDonation;
+                                            var removeDollarTo17v2 = data.to17Donations;
+                                                
+                                            // =========================== Ride Montreal 2018 =========================== //
                                             var removeDollarMo18v1 = locals.getEventTotal.montreal.mo18.totalDonation;
                                             var removeDollarMo18v2 = data.mo18Donations;
                                             var removeRegMo18v1 = locals.getEventTotal.montreal.mo18.regFee;
                                             var removeRegMo18v2 = data.mo18RegFee;
+                                            // =========================== Ride Montreal 2018 =========================== //
+                                            var removeDollarMo17v1 = locals.getEventTotal.montreal.mo17.totalDonation;
+                                            var removeDollarMo17v2 = data.mo17Donations;
                                             
+                                            // =========================== Ride Alberta 2018 =========================== //
                                             var removeDollarAb18v1 = locals.getEventTotal.alberta.ab18.totalDonation;
                                             var removeDollarAb18v2 = data.ab18Donations;
                                             var removeRegAb18v1 = locals.getEventTotal.alberta.ab18.regFee;
                                             var removeRegAb18v2 = data.ab18RegFee;
-                                                
+                                            // =========================== Ride Alberta 2017 =========================== //
+                                            var removeDollarAb17v1 = locals.getEventTotal.alberta.ab17.totalDonation;
+                                            var removeDollarAb17v2 = data.ab17Donations;
+                                            
+                                            // =========================== Ride Vancouver 2018 =========================== //
                                             var removeDollarVa18v1 = locals.getEventTotal.vancouver.va18.totalDonation;
                                             var removeDollarVa18v2 = data.va18Donations;
                                             var removeRegVa18v1 = locals.getEventTotal.vancouver.va18.regFee;
                                             var removeRegVa18v2 = data.va18RegFee;
+                                            // =========================== Ride Vancouver 2017 =========================== //
+                                            var removeDollarVa17v1 = locals.getEventTotal.vancouver.va17.totalDonation;
+                                            var removeDollarVa17v2 = data.va17Donations;
                                                 
+                                            // =========================== OneWalk Toronto 2018 =========================== //
                                             var removeDollarOwTo18v1 = locals2.getEventTotal.toronto.to18.totalDonation;
                                             var removeDollarOwTo18v2 = data.owTo18Donations;
                                             var removeRegOwTo18v1 = locals2.getEventTotal.toronto.to18.regFee;
                                             var removeRegOwTo18v2 = data.owTo18RegFee;
-                                                
+                                            // =========================== OneWalk Toronto 2018 =========================== //
+                                            var removeDollarOwTo17v1 = locals2.getEventTotal.toronto.to17.totalDonation;
+                                            var removeDollarOwTo17v2 = data.owTo17Donations;
+                                            
+                                            // =========================== OneDay Melbourne 2018 =========================== //
                                             var removeDollarMl18v1 = locals4.getEventTotal.melbourne.ml18.totalDonation;
                                             var removeDollarMl18v2 = data.ml18Donations;
                                             var removeRegMl18v1 = locals4.getEventTotal.melbourne.ml18.regFee;
@@ -80,26 +102,36 @@ router.get('/alltables', function (req, res, next) {
                                             // Remove Dollar Sign from Data Brought In    
                                             var numberTo18v1 = Number(removeDollarTo18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberTo18v2 = Number(removeDollarTo18v2.replace(/[^0-9\.-]+/g,""));
+                                            var numberTo17v1 = Number(removeDollarTo17v1.replace(/[^0-9\.-]+/g,""));
+                                            var numberTo17v2 = Number(removeDollarTo17v2.replace(/[^0-9\.-]+/g,""));
                                             var numberRegTo18v1 = Number(removeRegTo18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberRegTo18v2 = Number(removeRegTo18v2.replace(/[^0-9\.-]+/g,""));
                                             
                                             var numberMo18v1 = Number(removeDollarMo18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberMo18v2 = Number(removeDollarMo18v2.replace(/[^0-9\.-]+/g,""));
+                                            var numberMo17v1 = Number(removeDollarMo17v1.replace(/[^0-9\.-]+/g,""));
+                                            var numberMo17v2 = Number(removeDollarMo17v2.replace(/[^0-9\.-]+/g,""));
                                             var numberRegMo18v1 = Number(removeRegMo18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberRegMo18v2 = Number(removeRegMo18v2.replace(/[^0-9\.-]+/g,""));
                                             
                                             var numberAb18v1 = Number(removeDollarAb18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberAb18v2 = Number(removeDollarAb18v2.replace(/[^0-9\.-]+/g,""));
+                                            var numberAb17v1 = Number(removeDollarAb17v1.replace(/[^0-9\.-]+/g,""));
+                                            var numberAb17v2 = Number(removeDollarAb17v2.replace(/[^0-9\.-]+/g,""));
                                             var numberRegAb18v1 = Number(removeRegAb18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberRegAb18v2 = Number(removeRegAb18v2.replace(/[^0-9\.-]+/g,""));
                                             
                                             var numberVa18v1 = Number(removeDollarVa18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberVa18v2 = Number(removeDollarVa18v2.replace(/[^0-9\.-]+/g,""));
+                                            var numberVa17v1 = Number(removeDollarVa17v1.replace(/[^0-9\.-]+/g,""));
+                                            var numberVa17v2 = Number(removeDollarVa17v2.replace(/[^0-9\.-]+/g,""));
                                             var numberRegVa18v1 = Number(removeRegVa18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberRegVa18v2 = Number(removeRegVa18v2.replace(/[^0-9\.-]+/g,""));
                                             
                                             var numberOwTo18v1 = Number(removeDollarOwTo18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberOwTo18v2 = Number(removeDollarOwTo18v2.replace(/[^0-9\.-]+/g,""));
+                                            var numberOwTo17v1 = Number(removeDollarOwTo17v1.replace(/[^0-9\.-]+/g,""));
+                                            var numberOwTo17v2 = Number(removeDollarOwTo17v2.replace(/[^0-9\.-]+/g,""));
                                             var numberRegOwTo18v1 = Number(removeRegOwTo18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberRegOwTo18v2 = Number(removeRegOwTo18v2.replace(/[^0-9\.-]+/g,""));
                                             
@@ -110,22 +142,27 @@ router.get('/alltables', function (req, res, next) {
                                             
                                             // Subtract Real Time Data vs Static Data        
                                             var to18DonationSub = numberTo18v1 - numberTo18v2;
+                                            var to17DonationSub = numberTo17v1 - numberTo17v2;
                                             var to18RfiSub = locals.getEventTotal.toronto.to18.rfi - data.to18RFI;
                                             var to18RegSub = numberRegTo18v1 - numberRegTo18v2;
                                             
                                             var mo18DonationSub = numberMo18v1 - numberMo18v2;
+                                            var mo17DonationSub = numberMo17v1 - numberMo17v2;
                                             var mo18RfiSub = locals.getEventTotal.montreal.mo18.rfi - data.mo18RFI;
                                             var mo18RegSub = numberRegMo18v1 - numberRegMo18v2;
                                             
                                             var ab18DonationSub = numberAb18v1 - numberAb18v2;
+                                            var ab17DonationSub = numberAb17v1 - numberAb17v2;
                                             var ab18RfiSub = locals.getEventTotal.alberta.ab18.rfi - data.ab18RFI;
                                             var ab18RegSub = numberRegAb18v1 - numberRegAb18v2;
                                                 
                                             var va18DonationSub = numberVa18v1 - numberVa18v2;
+                                            var va17DonationSub = numberVa17v1 - numberVa17v2;
                                             var va18RfiSub = locals.getEventTotal.vancouver.va18.rfi - data.va18RFI;
                                             var va18RegSub = numberRegVa18v1 - numberRegVa18v2;
                                             
                                             var owto18DonationSub = numberOwTo18v1 - numberOwTo18v2;
+                                            var owto17DonationSub = numberOwTo17v1 - numberOwTo17v2;
                                             var owto18RfiSub = locals2.getEventTotal.toronto.to18.rfi - data.owTo18RFI;
                                             var owto18RegSub = numberRegOwTo18v1 - numberRegOwTo18v2;
                                             
@@ -134,14 +171,19 @@ router.get('/alltables', function (req, res, next) {
                                             
                                             // Add Dollar Sign back into Data    
                                             var newToDonDaily = '$' + to18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                            var newTo17DonDaily = '$' + to17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newToRegDaily = '$' + to18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newMoDonDaily = '$' + mo18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                            var newMo17DonDaily = '$' + mo17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newMoRegDaily = '$' + mo18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newAbDonDaily = '$' + ab18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                            var newAb17DonDaily = '$' + ab17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newAbRegDaily = '$' + ab18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newVaDonDaily = '$' + va18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                            var newVa17DonDaily = '$' + va17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newVaRegDaily = '$' + va18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newOwToDonDaily = '$' + owto18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                            var newOwTo17DonDaily = '$' + owto17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newOwToRegDaily = '$' + owto18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newMlDonDaily = '$' + ml18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newMlRegDaily = '$' + ml18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -217,16 +259,21 @@ router.get('/alltables', function (req, res, next) {
                                                 to18DonDaily: newToDonDaily,
                                                 to18RegFeeDaily: newToRegDaily,
                                                 to18RFIDaily: to18RfiSub,
+                                                to17DonDaily: newTo17DonDaily,
                                                 mo18DonDaily: newMoDonDaily,
+                                                mo17DonDaily: newMo17DonDaily,
                                                 mo18RegFeeDaily: newMoRegDaily,
                                                 mo18RFIDaily: mo18RfiSub,
                                                 ab18DonDaily: newAbDonDaily,
+                                                ab17DonDaily: newAb17DonDaily,
                                                 ab18RegFeeDaily: newAbRegDaily,
                                                 ab18RFIDaily: ab18RfiSub,
                                                 va18DonDaily: newVaDonDaily,
+                                                va17DonDaily: newVa17DonDaily,
                                                 va18RegFeeDaily: newVaRegDaily,
                                                 va18RFIDaily: va18RfiSub,
                                                 owto18DonDaily: newOwToDonDaily,
+                                                owto17DonDaily: newOwTo17DonDaily,
                                                 owto18RegDaily: newOwToRegDaily,
                                                 owto18RFIDaily: owto18RfiSub,
                                                 ml18DonDaily: newMlDonDaily,
@@ -238,11 +285,7 @@ router.get('/alltables', function (req, res, next) {
                                             } else {  // In case no kitten was found with the given query
                                     //            res.status(200).send("No kitten found");
                                             }
-                                    });
-                                    
-                                    
-                                    
-                                    
+                                    }).sort({"_id": -1});
                                 }
                             });
 

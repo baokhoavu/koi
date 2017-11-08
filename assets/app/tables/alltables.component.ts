@@ -98,22 +98,27 @@ export class AllTablesComponent {
             $('.ml17-walkers').append($('.hbs-ml17-rfi').css('display','block'));
             // Toronto Daily Data
             $('.to18-donations-daily').append($('.hbs-to18-don-daily').css('display','block'));
+            $('.to17-donations-daily').append($('.hbs-to17-don-daily').css('display','block'));
             $('.to18-regs-daily').append($('.hbs-to18-regs-daily').css('display','block'));
             $('.to18-rfi-daily').append($('.hbs-to18-rfi-daily').css('display','block'));
             // Montreal Daily Data
             $('.mo18-donations-daily').append($('.hbs-mo18-don-daily').css('display','block'));
+            $('.mo17-donations-daily').append($('.hbs-mo17-don-daily').css('display','block'));
             $('.mo18-regs-daily').append($('.hbs-mo18-regs-daily').css('display','block'));
             $('.mo18-rfi-daily').append($('.hbs-mo18-rfi-daily').css('display','block'));
             // Alberta Daily Data
             $('.ab18-donations-daily').append($('.hbs-ab18-don-daily').css('display','block'));
+            $('.ab17-donations-daily').append($('.hbs-ab17-don-daily').css('display','block'));
             $('.ab18-regs-daily').append($('.hbs-ab18-regs-daily').css('display','block'));
             $('.ab18-rfi-daily').append($('.hbs-ab18-rfi-daily').css('display','block'));
             // Vancouver Daily Data
             $('.va18-donations-daily').append($('.hbs-va18-don-daily').css('display','block'));
+            $('.va17-donations-daily').append($('.hbs-va17-don-daily').css('display','block'));
             $('.va18-regs-daily').append($('.hbs-va18-regs-daily').css('display','block'));
             $('.va18-rfi-daily').append($('.hbs-va18-rfi-daily').css('display','block'));
             // OneWalk Toronto Daily Data
             $('.owto18-donations-daily').append($('.hbs-owto18-don-daily').css('display','block'));
+            $('.owto17-donations-daily').append($('.hbs-owto17-don-daily').css('display','block'));
             $('.owto18-regs-daily').append($('.hbs-owto18-regs-daily').css('display','block'));
             $('.owto18-rfi-daily').append($('.hbs-owto18-rfi-daily').css('display','block'));
             // OneDay Melbourne Daily Data
