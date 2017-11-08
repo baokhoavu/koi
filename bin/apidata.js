@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var mongoose = require('mongoose');
 const request = require('request');
 const fixieRequest = request.defaults({'proxy': process.env.FIXIE_URL});
