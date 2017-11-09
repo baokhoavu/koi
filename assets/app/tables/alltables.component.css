@@ -17,6 +17,7 @@ tr > a {
 tr > th {
 /*    background: #0075c9;*/
     color: #fff;
+    vertical-align: middle;
 }
 
 .all-table > table > tbody> tr > th {
