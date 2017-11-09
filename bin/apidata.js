@@ -191,3 +191,5 @@ fixieRequest(apiURL, function(err, response, body) {
         });
     }
 });
+
+process.exit();
