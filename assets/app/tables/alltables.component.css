@@ -174,15 +174,22 @@ tr > td.koi-blue {
     color: #0075c9;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 768px) {
+    th {
+        word-spacing: normal;
+    }
     table {
         width: auto;
         table-layout: inherit;
     }
+}
+
+@media screen and (max-width: 400px) {
     .tbl-header {
         display: none;
     }
     .tbl-hdr-mobile {
         display: table-header-group;
+        background-color: rgba(255,255,255,0.3);
     }
 }
