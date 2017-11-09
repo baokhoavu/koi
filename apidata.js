@@ -1,4 +1,4 @@
-#! /app/bin/node
+#! /app/.heroku/node/bin/node
 
 var mongoose = require('mongoose');
 const request = require('request');
@@ -178,6 +178,7 @@ fixieRequest(apiURL, function(err, response, body) {
 
                                 allData.save(function(error) {
                                     console.log("Data has been saved to MongoDB!");
+                                    process.exit();
                                     if (error) {
                                         console.error(error);
                                     }
@@ -191,4 +192,5 @@ fixieRequest(apiURL, function(err, response, body) {
         });
     }
 });
+
 
