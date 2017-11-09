@@ -44,7 +44,7 @@ router.get('/alltables', function (req, res, next) {
                                             if (data) {  // Search could come back empty, so we should protect against sending nothing back
                                     //            res.status(200).send(data);
                                             // Set Variables for Real Time vs Static Event Data
-                                                
+                                            
                                             // =========================== Ride Toronto 2018 =========================== //
                                             var removeDollarTo18v1 = locals.getEventTotal.toronto.to18.totalDonation;
                                             var removeDollarTo18v2 = data.to18Donations;
@@ -97,9 +97,15 @@ router.get('/alltables', function (req, res, next) {
                                             var removeDollarOwTo18v2 = data.owTo18Donations;
                                             var removeRegOwTo18v1 = locals2.getEventTotal.toronto.to18.regFee;
                                             var removeRegOwTo18v2 = data.owTo18RegFee;
+                                            var owTo18NightWalkers = locals2.getEventTotal.toronto.to18.nightWlk;
+                                            var owTo1815kmWalkers = locals2.getEventTotal.toronto.to18.Wlkr15km;
+                                            var owTo1825kmWalkers = locals2.getEventTotal.toronto.to18.Wlkr25km;
+                                            var owTo1840kmWalkers = locals2.getEventTotal.toronto.to18.Wlkr40km;
                                             // =========================== OneWalk Toronto 2018 =========================== //
                                             var removeDollarOwTo17v1 = locals2.getEventTotal.toronto.to17.totalDonation;
                                             var removeDollarOwTo17v2 = data.owTo17Donations;
+                                            var owTo1715kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr15km;
+                                            var owTo1740kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr40km;
                                             
                                             // =========================== OneDay Melbourne 2018 =========================== //
                                             var removeDollarMl18v1 = locals4.getEventTotal.melbourne.ml18.totalDonation;
@@ -192,6 +198,7 @@ router.get('/alltables', function (req, res, next) {
                                             var owto17DonationSub = numberOwTo17v1 - numberOwTo17v2;
                                             var owto18RfiSub = locals2.getEventTotal.toronto.to18.rfi - data.owTo18RFI;
                                             var owto18RegSub = numberRegOwTo18v1 - numberRegOwTo18v2;
+                                            var owto18TotalWalkers = parseFloat(owTo18NightWalkers) + parseFloat(owTo1815kmWalkers) + parseFloat(owTo1825kmWalkers) + parseFloat(owTo1840kmWalkers);
                                             
                                             var ml18DonationSub = numberMl18v1 - numberMl18v2;
                                             var ml17DonationSub = numberMl17v1 - numberMl17v2;
@@ -263,12 +270,18 @@ router.get('/alltables', function (req, res, next) {
                                                 owTo18Donations: locals2.getEventTotal.toronto.to18.totalDonation,
                                                 owTo18RegFee: locals2.getEventTotal.toronto.to18.regFee,
                                                 owTo18Crews: locals2.getEventTotal.toronto.to18.crews,
-                                                owTo18Walkers: locals2.getEventTotal.toronto.to18.walkers,
+                                                owTo18Walkers: owto18TotalWalkers,
+                                                owTo18NightWalkers: owTo18NightWalkers,
+                                                owTo1815kmWalkers: owTo1815kmWalkers,
+                                                owTo1825kmWalkers: owTo1825kmWalkers,
+                                                owTo1840kmWalkers: owTo1840kmWalkers,
                                                 owTo18RFI: locals2.getEventTotal.toronto.to18.rfi,
                                                 owTo17Donations: locals2.getEventTotal.toronto.to17.totalDonation,
                                                 owTo17RegFee: locals2.getEventTotal.toronto.to17.regFee,
                                                 owTo17Crews: locals2.getEventTotal.toronto.to17.crews,
                                                 owTo17Walkers: locals2.getEventTotal.toronto.to17.walkers,
+                                                owTo1715kmWalkers: owTo1715kmWalkers,
+                                                owTo1740kmWalkers: owTo1740kmWalkers,
                                                 owTo17RFI: locals2.getEventTotal.toronto.to17.rfi,
                                                 pr18Donations: locals3.getEventTotal.perth.pr18.totalDonation,
                                                 pr18RegFee: locals3.getEventTotal.perth.pr18.regFee,

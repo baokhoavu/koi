@@ -71,10 +71,16 @@ export class AllTablesComponent {
             $('.owto18-regs').html($('.hbs-owto18-reg').css('display','block').text());
             $('.owto18-crews').html($('.hbs-owto18-crews').css('display','block').text());
             $('.owto18-walkers').html($('.hbs-owto18-walkers').css('display','block').text());
+            $('.owto18-night').html($('.hbs-owto18-night').css('display','block').text());
+            $('.owto18-15km').html($('.hbs-owto18-15km').css('display','block').text());
+            $('.owto18-25km').html($('.hbs-owto18-25km').css('display','block').text());
+            $('.owto18-40km').html($('.hbs-owto18-40km').css('display','block').text());
             $('.owto18-rfi').html($('.hbs-owto18-rfi').css('display','block').text());
             $('.owto17-donations').html($('.hbs-owto17-don').css('display','block').text());
             $('.owto17-regs').html($('.hbs-owto17-reg').css('display','block').text());
             $('.owto17-crews').html($('.hbs-owto17-crews').css('display','block').text());
+            $('.owto17-15km').html($('.hbs-owto17-15km').css('display','block').text());
+            $('.owto17-40km').html($('.hbs-owto17-40km').css('display','block').text());
             $('.owto17-walkers').html($('.hbs-owto17-walkers').css('display','block').text());
             $('.owto17-rfi').html($('.hbs-owto17-rfi').css('display','block').text());
             // Ride Perth
