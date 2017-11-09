@@ -24,10 +24,10 @@ tr > th {
     text-align: center;
 }
 
-/*
 tr > td {
-    text-align: center;
+    vertical-align: middle;
 }
+/*
 
 tr:first-child {
     text-align: left;
@@ -172,6 +172,10 @@ section{
 
 tr > td.koi-blue {
     color: #0075c9;
+}
+
+p {
+    margin-bottom: 0px !important;
 }
 
 @media screen and (max-width: 768px) {

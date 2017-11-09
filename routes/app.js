@@ -164,6 +164,8 @@ router.get('/alltables', function (req, res, next) {
                                             var to18DonationSub = numberTo18v1 - numberTo18v2;
                                             var to17DonationSub = numberTo17v1 - numberTo17v2;
                                             var to18RfiSub = locals.getEventTotal.toronto.to18.rfi - data.to18RFI;
+                                            var to18CrewSub = locals.getEventTotal.toronto.to18.crews - data.to18Crews;
+                                            var to18RiderSub = locals.getEventTotal.toronto.to18.riders - data.to18Riders;
                                             var to18RegSub = numberRegTo18v1 - numberRegTo18v2;
                                             
                                             var pr18DonationSub = numberPr18v1 - numberPr18v2;
@@ -289,6 +291,8 @@ router.get('/alltables', function (req, res, next) {
                                                 to18DonDaily: newToDonDaily,
                                                 to18RegFeeDaily: newToRegDaily,
                                                 to18RFIDaily: to18RfiSub,
+                                                to18CrewDaily: to18CrewSub,
+                                                to18RiderDaily: to18RiderSub,
                                                 to17DonDaily: newTo17DonDaily,
                                                 pr18DonDaily: newPrDonDaily,
                                                 pr18RegFeeDaily: newPrRegDaily,

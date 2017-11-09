@@ -62,7 +62,9 @@ input.ng-invalid.ng-touched {
     fill: #fff;
 }
 */
-
+.hide-all-data {
+    display: none;
+}
 
 @-ms-keyframes spin {
     from { -ms-transform: rotate(0deg); }
