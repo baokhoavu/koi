@@ -98,6 +98,7 @@ router.get('/alltables', function (req, res, next) {
                                             var removeRegOwTo18v1 = locals2.getEventTotal.toronto.to18.regFee;
                                             var removeRegOwTo18v2 = data.owTo18RegFee;
                                             var owTo18NightWalkers = locals2.getEventTotal.toronto.to18.nightWlk;
+                                            var owTo182day = locals2.getEventTotal.toronto.to18.twoDayWlk;
                                             var owTo1815kmWalkers = locals2.getEventTotal.toronto.to18.Wlkr15km;
                                             var owTo1825kmWalkers = locals2.getEventTotal.toronto.to18.Wlkr25km;
                                             var owTo1840kmWalkers = locals2.getEventTotal.toronto.to18.Wlkr40km;
@@ -272,6 +273,7 @@ router.get('/alltables', function (req, res, next) {
                                                 owTo18Crews: locals2.getEventTotal.toronto.to18.crews,
                                                 owTo18Walkers: owto18TotalWalkers,
                                                 owTo18NightWalkers: owTo18NightWalkers,
+                                                owTo182day: owTo182day,
                                                 owTo1815kmWalkers: owTo1815kmWalkers,
                                                 owTo1825kmWalkers: owTo1825kmWalkers,
                                                 owTo1840kmWalkers: owTo1840kmWalkers,

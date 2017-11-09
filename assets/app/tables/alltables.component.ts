@@ -72,6 +72,7 @@ export class AllTablesComponent {
             $('.owto18-crews').html($('.hbs-owto18-crews').css('display','block').text());
             $('.owto18-walkers').html($('.hbs-owto18-walkers').css('display','block').text());
             $('.owto18-night').html($('.hbs-owto18-night').css('display','block').text());
+            $('.owto18-2day').html($('.hbs-owto18-2day').css('display','block').text());
             $('.owto18-15km').html($('.hbs-owto18-15km').css('display','block').text());
             $('.owto18-25km').html($('.hbs-owto18-25km').css('display','block').text());
             $('.owto18-40km').html($('.hbs-owto18-40km').css('display','block').text());

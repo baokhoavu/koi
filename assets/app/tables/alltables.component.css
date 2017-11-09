@@ -179,6 +179,14 @@ p {
     margin-bottom: 0px !important;
 }
 
+.ow-to-table {
+    margin-bottom: 20px;
+}
+
+.ow-to-table th {
+    word-spacing: normal;
+}
+
 @media screen and (max-width: 768px) {
     th {
         word-spacing: normal;
