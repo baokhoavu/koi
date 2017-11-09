@@ -35,17 +35,14 @@ router.get('/alltables', function (req, res, next) {
                                 if (!err && response.statusCode == 200) {
                                 var locals4 = JSON.parse(body);
                                     
-                                    console.log();
-                                    
-                                    
                                     ApiData.findOne(  
                                         (err, data) => {
                                             if (err) {
-                                    //            res.status(200).send(err);
+                                                console.log('There was an error getting data! Check below:')
+                                                console.log(err);
                                             }
                                             if (data) {  // Search could come back empty, so we should protect against sending nothing back
                                     //            res.status(200).send(data);
-                                            console.log(data);
                                             // Set Variables for Real Time vs Static Event Data
                                                 
                                             // =========================== Ride Toronto 2018 =========================== //
@@ -318,9 +315,8 @@ router.get('/alltables', function (req, res, next) {
                                                 ml18RegDaily: newMlRegDaily
                                                 
                                             });
-                                            console.log(owto18RfiSub);
                                                 
-                                            } else {  // In case no kitten was found with the given query
+                                            } else {  // In case no data was found with the given query
                                     //            res.status(200).send("No kitten found");
                                             }
                                     }).sort({"_id": -1});

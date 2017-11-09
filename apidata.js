@@ -1,6 +1,7 @@
 #! /app/.heroku/node/bin/node
 
 var mongoose = require('mongoose');
+const moment = require('moment')
 const request = require('request');
 const fixieRequest = request.defaults({'proxy': process.env.FIXIE_URL});
 
@@ -11,7 +12,7 @@ var db = mongoose.connection;
 var Schema = mongoose.Schema;
 
 var dataSchema = new Schema({
-    updated: { type: Date, default: Date.now },
+    updated: String,
     to18Donations: String,
     to18RegFee: String,
     to18Crews: String,
@@ -105,7 +106,7 @@ fixieRequest(apiURL, function(err, response, body) {
                             var locals4 = JSON.parse(body);
 
                                 var allData = new ApiData({
-                                    updated: new Date,
+                                    updated: moment().format('L'),
                                     to18Donations: locals.getEventTotal.toronto.to18.totalDonation,
                                     to18RegFee: locals.getEventTotal.toronto.to18.regFee,
                                     to18Crews: locals.getEventTotal.toronto.to18.crews,

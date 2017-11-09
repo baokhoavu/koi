@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
+const moment = require('moment')
 var Schema = mongoose.Schema;
 
 var dataSchema = new Schema({
-    updated: { type: Date, default: Date.now },
+    updated: Date,
     to18Donations: String,
     to18RegFee: String,
     to18Crews: String,

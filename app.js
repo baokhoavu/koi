@@ -14,7 +14,14 @@ var app = express();
 
 //mongoose.connect('localhost:27017/node-angular');
 
-mongoose.connect('mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw/node-angular');
+var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } }, 
+                replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } }; 
+
+var mongodbUri = 'mongodb://causeforce_koi:iheartcf323@ds157614.mlab.com:57614/heroku_q1rgmlhw';
+
+//mongoose.connect('mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw/node-angular');
+
+mongoose.connect(mongodbUri, options, {useMongoClient: true});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
