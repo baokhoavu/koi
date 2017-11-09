@@ -1,4 +1,4 @@
-#! /app/.heroku/node/bin/node
+#! /app/bin/node
 
 var mongoose = require('mongoose');
 const request = require('request');
@@ -192,4 +192,3 @@ fixieRequest(apiURL, function(err, response, body) {
     }
 });
 
-process.exit();
