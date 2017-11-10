@@ -106,6 +106,7 @@ router.get('/alltables', function (req, res, next) {
                                             var removeDollarOwTo17v1 = locals2.getEventTotal.toronto.to17.totalDonation;
                                             var removeDollarOwTo17v2 = data.owTo17Donations;
                                             var owTo1715kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr15km;
+                                            var owTo1725kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr25km;
                                             var owTo1740kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr40km;
                                             
                                             // =========================== OneDay Melbourne 2018 =========================== //
@@ -283,6 +284,7 @@ router.get('/alltables', function (req, res, next) {
                                                 owTo17Crews: locals2.getEventTotal.toronto.to17.crews,
                                                 owTo17Walkers: locals2.getEventTotal.toronto.to17.walkers,
                                                 owTo1715kmWalkers: owTo1715kmWalkers,
+                                                owTo1725kmWalkers: owTo1725kmWalkers,
                                                 owTo1740kmWalkers: owTo1740kmWalkers,
                                                 owTo17RFI: locals2.getEventTotal.toronto.to17.rfi,
                                                 pr18Donations: locals3.getEventTotal.perth.pr18.totalDonation,

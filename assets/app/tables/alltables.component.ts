@@ -81,6 +81,7 @@ export class AllTablesComponent {
             $('.owto17-regs').html($('.hbs-owto17-reg').css('display','block').text());
             $('.owto17-crews').html($('.hbs-owto17-crews').css('display','block').text());
             $('.owto17-15km').html($('.hbs-owto17-15km').css('display','block').text());
+            $('.owto17-25km').html($('.hbs-owto17-25km').css('display','block').text());
             $('.owto17-40km').html($('.hbs-owto17-40km').css('display','block').text());
             $('.owto17-walkers').html($('.hbs-owto17-walkers').css('display','block').text());
             $('.owto17-rfi').html($('.hbs-owto17-rfi').css('display','block').text());
