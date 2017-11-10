@@ -3,7 +3,7 @@ const moment = require('moment')
 var Schema = mongoose.Schema;
 
 var dataSchema = new Schema({
-    updated: Date,
+    updated: String,
     to18Donations: String,
     to18RegFee: String,
     to18Crews: String,
@@ -48,11 +48,18 @@ var dataSchema = new Schema({
     owTo18RegFee: String,
     owTo18Crews: String,
     owTo18Walkers: String,
+    owTo182day: String,
+    owTo1815kmWalkers: String,
+    owTo1825kmWalkers: String,
+    owTo1840kmWalkers: String,
     owTo18RFI: String,
     owTo17Donations: String,
     owTo17RegFee: String,
     owTo17Crews: String,
     owTo17Walkers: String,
+    owTo1715kmWalkers: String,
+    owTo1725kmWalkers: String,
+    owTo1740kmWalkers: String,
     owTo17RFI: String,
     pr18Donations: String,
     pr18RegFee: String,
