@@ -200,7 +200,7 @@ router.get('/alltables', function (req, res, next) {
                                             var owto17DonationSub = numberOwTo17v1 - numberOwTo17v2;
                                             var owto18RfiSub = locals2.getEventTotal.toronto.to18.rfi - data.owTo18RFI;
                                             var owto18RegSub = numberRegOwTo18v1 - numberRegOwTo18v2;
-                                            var owto18TotalWalkers = parseFloat(owTo18NightWalkers) + parseFloat(owTo1815kmWalkers) + parseFloat(owTo1825kmWalkers) + parseFloat(owTo1840kmWalkers);
+                                            var owto18TotalWalkers = parseFloat(owTo18NightWalkers) + parseFloat(owTo1815kmWalkers) + parseFloat(owTo1825kmWalkers) + parseFloat(owTo1840kmWalkers) + parseFloat(owTo182day);
                                             
                                             var ml18DonationSub = numberMl18v1 - numberMl18v2;
                                             var ml17DonationSub = numberMl17v1 - numberMl17v2;
