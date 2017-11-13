@@ -6,7 +6,7 @@
 <!--             <li routerLinkActive="active" *ngIf="!isLoggedIn()"><a [routerLink]="['/auth']">Sign Up / Sign In</a></li> -->
             <li routerLinkActive="active" *ngIf="!isLoggedIn()"><a [routerLink]="['/auth']">Sign In</a></li>
             <li routerLinkActive="active" *ngIf="isLoggedIn()"><a [routerLink]="['/alltables']">Home</a></li>
-            <li *ngIf="isLoggedIn()"><a (click)="onLogout()">Logout</a></li>
+            <li class="logout-btn" *ngIf="isLoggedIn()"><a (click)="onLogout()">Logout</a></li>
         </ul>
     </nav>
 </header>

@@ -1,0 +1,33 @@
+.navbar-brand img { 
+	width: 80px; 
+    margin: 0 auto; 
+}
+.navbar-brand { 
+	height: auto; 
+	display: block; 
+	width: 100%; 
+	text-align: center; 
+	font-size: 11px;
+	color: #969696; 
+}
+.nav-pills {
+	border-radius: 0px;
+}
+.logout-btn {
+	background: #e10000;
+	transition: all 0.2s ease-in-out;
+	float: right;
+}
+.logout-btn:hover {
+	background: #990000;
+}
+.logout-btn a {
+	color: #fff;
+}
+.logout-btn a:hover {
+	background: none;
+}
+
+.nav-pills>li.active>a {
+	border-radius: 0px;
+}

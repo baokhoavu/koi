@@ -5,16 +5,7 @@ import { Router } from "@angular/router";
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
-    styles: [`
-            .navbar-brand img { width: 80px; 
-                                margin: 0 auto; }
-            .navbar-brand { height: auto; 
-                            display: block; 
-                            width: 100%; 
-                            text-align: center; 
-                            font-size: 11px;
-                            color: #969696; }
-            `]
+    styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
     constructor(private authService: AuthService, private router: Router) {}
