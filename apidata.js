@@ -447,8 +447,6 @@ fixieRequest(apiURL, function(err, response, body) {
                                             }
                                         });
                                 }).sort({"_id": -1});;
-
-                               
                             }
                         });
 
