@@ -3,10 +3,10 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Http } from '@angular/http';
 import {
-  HttpClient,
-  HttpRequest,
-  HttpEvent,
-  HttpEventType
+    HttpClient,
+    HttpRequest,
+    HttpEvent,
+    HttpEventType
 } from '@angular/common/http';
 
 import * as $ from 'jquery';
@@ -20,8 +20,17 @@ export class AllTablesComponent {
     myForm: FormGroup;
 
     constructor(private router: Router, private http: HttpClient) {
-        
+
         $(window).on('load', function(){
+            $('.btn-view').on('click', function() {
+                $('.all-buttons-row').slideToggle();
+                $(this).toggleClass('view-hide');
+                if ($(this).hasClass('view-hide')) {
+                    $(this).text('Hide Table Menu');
+                } else {
+                    $(this).text('Show Table Menu');
+                }
+            });
             // Toronto
             $('.to18-donations').html($('.hbs-to18-don').css('display','block').text());
             $('.to18-regs').html($('.hbs-to18-reg').css('display','block').text());
@@ -140,10 +149,9 @@ export class AllTablesComponent {
             $('.ml18-donations-daily').html($('.hbs-ml18-don-daily').css('display','block').text());
             $('.ml17-donations-daily').html($('.hbs-ml17-don-daily').css('display','block').text());
             $('.ml18-regs-daily').html($('.hbs-ml18-regs-daily').css('display','block').text());
-            
-            
+
 //            $('.to-riders').css('display', 'block');
-            
+
             $('.btn').on('click', function(){
                if ($(this).hasClass('alberta-btn')){
                    $('.ab-table').siblings('.table-responsive').fadeOut();
