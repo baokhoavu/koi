@@ -1,9 +1,11 @@
+// Angular Core Modules
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
+// Global Components
 import { AppComponent } from "./app.component";
 import { MessageComponent } from "./messages/message.component";
 import { MessageListComponent } from "./messages/message-list.component";
@@ -12,17 +14,28 @@ import { MessagesComponent } from "./messages/messages.component";
 import { AuthenticationComponent } from "./auth/authentication.component";
 import { HeaderComponent } from "./header.component";
 
-import { routing } from "./app.routing";
+// Table Components
+import { AllTablesComponent } from "./tables/alltables.component";
+import { TorontoComponent } from "./toronto/toronto.component";
+import { AlbertaComponent } from "./alberta/alberta.component";
+import { MontrealComponent } from "./montreal/montreal.component";
+import { VancouverComponent } from "./vancouver/vancouver.component";
+import { PerthComponent } from "./perth/perth.component";
+import { OWTorontoComponent } from "./ow-toronto/ow-toronto.component";
+import { MelbourneComponent } from "./melbourne/melbourne.component";
 
+
+import { routing } from "./app.routing";
+// Extra custom component libraries
 import * as $ from 'jquery';
 
+// Login/Logout/Signup Components
 import { LogoutComponent } from "./auth/logout.component";
 import { SignupComponent } from "./auth/signup.component";
 import { SigninComponent } from "./auth/signin.component";
 
+// Authentication Service
 import { AuthService } from "./auth/auth.service";
-
-import { AllTablesComponent } from "./tables/alltables.component";
 
 @NgModule({
     declarations: [
@@ -36,7 +49,14 @@ import { AllTablesComponent } from "./tables/alltables.component";
         LogoutComponent,
         SignupComponent,
         SigninComponent,
-        AllTablesComponent
+        AllTablesComponent,
+        TorontoComponent,
+        AlbertaComponent,
+        MontrealComponent,
+        VancouverComponent,
+        PerthComponent,
+        OWTorontoComponent,
+        MelbourneComponent
     ],
     imports: [
         BrowserModule,
