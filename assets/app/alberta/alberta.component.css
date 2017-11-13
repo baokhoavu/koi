@@ -109,50 +109,14 @@ td{
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 .table-responsive.gradient-tbl {
-  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
-  background: linear-gradient(to right, #25c481, #25b7c4);
+  background: -webkit-linear-gradient(left, #256cc4, #25b7c4);
+  background: linear-gradient(to right, #256cc4, #25b7c4);
   font-family: 'Roboto', sans-serif;
 }
 
-.va-table,
-.mo-table,
-.ab-table,
-.pr-table,
-.ml-table,
-.to-table,
-.ow-to-table{
-    display: none;
-}
 section{
   margin: 50px;
 }
-
-
-/* follow me template */
-.made-with-love {
-  margin-top: 40px;
-  padding: 10px;
-  clear: left;
-  text-align: center;
-  font-size: 10px;
-  font-family: arial;
-  color: #fff;
-}
-.made-with-love i {
-  font-style: normal;
-  color: #F50057;
-  font-size: 14px;
-  position: relative;
-  top: 2px;
-}
-.made-with-love a {
-  color: #fff;
-  text-decoration: none;
-}
-.made-with-love a:hover {
-  text-decoration: underline;
-}
-
 
 /* for custom scrollbar for webkit browser*/
 
