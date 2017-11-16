@@ -3,7 +3,7 @@ const request = require('request');
 const fixieRequest = request.defaults({'proxy': process.env.FIXIE_URL});
 var express = require('express');
 var router = express.Router();
-var ApiData = require('../models/apidata');
+const ApiData = require('../models/apidata');
 
 mongoose.connect('mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw/node-angular');
 
@@ -114,6 +114,7 @@ router.get('/alltables', function (req, res, next) {
                                             var removeDollarMl18v2 = data.ml18Donations;
                                             var removeRegMl18v1 = locals4.getEventTotal.melbourne.ml18.regFee;
                                             var removeRegMl18v2 = data.ml18RegFee;
+
                                             // =========================== OneDay Melbourne 2017 =========================== //
                                             var removeDollarMl17v1 = locals4.getEventTotal.melbourne.ml17.totalDonation;
                                             var removeDollarMl17v2 = data.ml17Donations;
@@ -179,21 +180,29 @@ router.get('/alltables', function (req, res, next) {
                                             var pr18DonationSub = numberPr18v1 - numberPr18v2;
                                             var pr17DonationSub = numberPr17v1 - numberPr17v2;
                                             var pr18RfiSub = locals3.getEventTotal.perth.pr18.rfi - data.pr18RFI;
+                                            var pr18CrewSub = locals3.getEventTotal.perth.pr18.crews - data.pr18Crews;
+                                            var pr18RiderSub = locals3.getEventTotal.perth.pr18.riders - data.pr18Riders;
                                             var pr18RegSub = numberRegPr18v1 - numberRegPr18v2;
                                             
                                             var mo18DonationSub = numberMo18v1 - numberMo18v2;
                                             var mo17DonationSub = numberMo17v1 - numberMo17v2;
                                             var mo18RfiSub = locals.getEventTotal.montreal.mo18.rfi - data.mo18RFI;
+                                            var mo18CrewSub = locals.getEventTotal.montreal.mo18.crews - data.mo18Crews;
+                                            var mo18RiderSub = locals.getEventTotal.montreal.mo18.riders - data.mo18Riders;
                                             var mo18RegSub = numberRegMo18v1 - numberRegMo18v2;
                                             
                                             var ab18DonationSub = numberAb18v1 - numberAb18v2;
                                             var ab17DonationSub = numberAb17v1 - numberAb17v2;
                                             var ab18RfiSub = locals.getEventTotal.alberta.ab18.rfi - data.ab18RFI;
+                                            var ab18CrewSub = locals.getEventTotal.alberta.ab18.crews - data.ab18Crews;
+                                            var ab18RiderSub = locals.getEventTotal.alberta.ab18.riders - data.ab18Riders;
                                             var ab18RegSub = numberRegAb18v1 - numberRegAb18v2;
                                                 
                                             var va18DonationSub = numberVa18v1 - numberVa18v2;
                                             var va17DonationSub = numberVa17v1 - numberVa17v2;
                                             var va18RfiSub = locals.getEventTotal.vancouver.va18.rfi - data.va18RFI;
+                                            var va18CrewSub = locals.getEventTotal.vancouver.va18.crews - data.va18Crews;
+                                            var va18RiderSub = locals.getEventTotal.vancouver.va18.riders - data.va18Riders;
                                             var va18RegSub = numberRegVa18v1 - numberRegVa18v2;
                                             
                                             var owto18DonationSub = numberOwTo18v1 - numberOwTo18v2;
@@ -201,10 +210,13 @@ router.get('/alltables', function (req, res, next) {
                                             var owto18RfiSub = locals2.getEventTotal.toronto.to18.rfi - data.owTo18RFI;
                                             var owto18RegSub = numberRegOwTo18v1 - numberRegOwTo18v2;
                                             var owto18TotalWalkers = parseFloat(owTo18NightWalkers) + parseFloat(owTo1815kmWalkers) + parseFloat(owTo1825kmWalkers) + parseFloat(owTo1840kmWalkers) + parseFloat(owTo182day);
+                                            var owto18CrewsDailySub = locals2.getEventTotal.toronto.to18.crews - data.owTo18Crews;
+                                            // var owto18WalkersDailySub = owto18TotalWalkers - data.owTo18Walkers;
                                             
                                             var ml18DonationSub = numberMl18v1 - numberMl18v2;
                                             var ml17DonationSub = numberMl17v1 - numberMl17v2;
                                             var ml18RegSub = numberMl18v1 - numberMl18v2;
+                                            var ml18RiderSub = locals4.getEventTotal.melbourne.ml18.riders - data.ml18Riders;
                                             
                                             // Add Dollar Sign back into Data    
                                             var newToDonDaily = '$' + to18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -228,6 +240,8 @@ router.get('/alltables', function (req, res, next) {
                                             var newMlDonDaily = '$' + ml18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newMl17DonDaily = '$' + ml17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newMlRegDaily = '$' + ml18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+
+                                            console.log(owto18CrewsDailySub);
                                                 
                                             res.render('data', {to18Donations: locals.getEventTotal.toronto.to18.totalDonation,
                                                 to18RegFee: locals.getEventTotal.toronto.to18.regFee,
@@ -309,31 +323,41 @@ router.get('/alltables', function (req, res, next) {
                                                 to18RegFeeDaily: newToRegDaily,
                                                 to18RFIDaily: to18RfiSub,
                                                 to18CrewDaily: to18CrewSub,
-                                                to18RiderDaily: to18RiderSub,
+                                                to18RidersDaily: to18RiderSub,
                                                 to17DonDaily: newTo17DonDaily,
                                                 pr18DonDaily: newPrDonDaily,
                                                 pr18RegFeeDaily: newPrRegDaily,
                                                 pr18RFIDaily: pr18RfiSub,
+                                                pr18CrewDaily: pr18CrewSub,
+                                                pr18RidersDaily: pr18RiderSub,
                                                 pr17DonDaily: newPr17DonDaily,
                                                 mo18DonDaily: newMoDonDaily,
                                                 mo17DonDaily: newMo17DonDaily,
                                                 mo18RegFeeDaily: newMoRegDaily,
                                                 mo18RFIDaily: mo18RfiSub,
+                                                mo18CrewDaily: mo18CrewSub,
+                                                mo18RidersDaily: mo18RiderSub,
                                                 ab18DonDaily: newAbDonDaily,
                                                 ab17DonDaily: newAb17DonDaily,
                                                 ab18RegFeeDaily: newAbRegDaily,
                                                 ab18RFIDaily: ab18RfiSub,
+                                                ab18CrewDaily: ab18CrewSub,
+                                                ab18RidersDaily: ab18RiderSub,
                                                 va18DonDaily: newVaDonDaily,
                                                 va17DonDaily: newVa17DonDaily,
                                                 va18RegFeeDaily: newVaRegDaily,
                                                 va18RFIDaily: va18RfiSub,
+                                                va18CrewDaily: va18CrewSub,
+                                                va18RidersDaily: va18RiderSub,
                                                 owto18DonDaily: newOwToDonDaily,
                                                 owto17DonDaily: newOwTo17DonDaily,
                                                 owto18RegDaily: newOwToRegDaily,
                                                 owto18RFIDaily: owto18RfiSub,
+                                                owTo18CrewsDaily: owto18CrewsDailySub,
                                                 ml18DonDaily: newMlDonDaily,
                                                 ml17DonDaily: newMl17DonDaily,
-                                                ml18RegDaily: newMlRegDaily
+                                                ml18RegDaily: newMlRegDaily,
+                                                ml18RidersDaily: ml18RiderSub
                                                 
                                             });
                                                 

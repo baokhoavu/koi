@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { AuthService } from "../auth/auth.service";
 import { Http } from '@angular/http';
 import {
     HttpClient,
@@ -19,7 +20,7 @@ import * as $ from 'jquery';
 export class AllTablesComponent {
     myForm: FormGroup;
 
-    constructor(private router: Router, private http: HttpClient) {
+    constructor(private router: Router, private http: HttpClient, private authService: AuthService) {
 
         $(window).on('load', function(){
             $('.btn-view').on('click', function() {
@@ -118,6 +119,11 @@ export class AllTablesComponent {
             $('.pr17-donations-daily').html($('.hbs-pr17-don-daily').css('display','block').text());
             $('.pr18-regs-daily').html($('.hbs-pr18-regs-daily').css('display','block').text());
             $('.pr18-rfi-daily').html($('.hbs-pr18-rfi-daily').css('display','block').text());
+            $('.pr18-riders-daily').html($('.hbs-pr18-riders-daily').css('display','block').text());
+            $('.pr18-crews-daily').html($('.hbs-pr18-crews-daily').css('display','block').text());
+
+            // ====== BEGIN DAILY DATA ====== //
+
             // Toronto Daily Data
             $('.to18-donations-daily').html($('.hbs-to18-don-daily').css('display','block').text());
             $('.to17-donations-daily').html($('.hbs-to17-don-daily').css('display','block').text());
@@ -130,25 +136,34 @@ export class AllTablesComponent {
             $('.mo17-donations-daily').html($('.hbs-mo17-don-daily').css('display','block').text());
             $('.mo18-regs-daily').html($('.hbs-mo18-regs-daily').css('display','block').text());
             $('.mo18-rfi-daily').html($('.hbs-mo18-rfi-daily').css('display','block').text());
+            $('.mo18-riders-daily').html($('.hbs-mo18-riders-daily').css('display','block').text());
+            $('.mo18-crews-daily').html($('.hbs-mo18-crews-daily').css('display','block').text());
             // Alberta Daily Data
             $('.ab18-donations-daily').html($('.hbs-ab18-don-daily').css('display','block').text());
             $('.ab17-donations-daily').html($('.hbs-ab17-don-daily').css('display','block').text());
             $('.ab18-regs-daily').html($('.hbs-ab18-regs-daily').css('display','block').text());
             $('.ab18-rfi-daily').html($('.hbs-ab18-rfi-daily').css('display','block').text());
+            $('.ab18-riders-daily').html($('.hbs-ab18-riders-daily').css('display','block').text());
+            $('.ab18-crews-daily').html($('.hbs-ab18-crews-daily').css('display','block').text());
             // Vancouver Daily Data
             $('.va18-donations-daily').html($('.hbs-va18-don-daily').css('display','block').text());
             $('.va17-donations-daily').html($('.hbs-va17-don-daily').css('display','block').text());
             $('.va18-regs-daily').html($('.hbs-va18-regs-daily').css('display','block').text());
             $('.va18-rfi-daily').html($('.hbs-va18-rfi-daily').css('display','block').text());
+            $('.va18-riders-daily').html($('.hbs-va18-riders-daily').css('display','block').text());
+            $('.va18-crews-daily').html($('.hbs-va18-crews-daily').css('display','block').text());
             // OneWalk Toronto Daily Data
             $('.owto18-donations-daily').html($('.hbs-owto18-don-daily').css('display','block').text());
             $('.owto17-donations-daily').html($('.hbs-owto17-don-daily').css('display','block').text());
             $('.owto18-regs-daily').html($('.hbs-owto18-regs-daily').css('display','block').text());
             $('.owto18-rfi-daily').html($('.hbs-owto18-rfi-daily').css('display','block').text());
+            $('.owto18-walkers-daily').html($('.hbs-owto18-walkers-daily').css('display','block').text());
+            $('.owto18-crews-daily').html($('.hbs-owto18-crews-daily').css('display','block').text());
             // OneDay Melbourne Daily Data
             $('.ml18-donations-daily').html($('.hbs-ml18-don-daily').css('display','block').text());
             $('.ml17-donations-daily').html($('.hbs-ml17-don-daily').css('display','block').text());
             $('.ml18-regs-daily').html($('.hbs-ml18-regs-daily').css('display','block').text());
+            $('.ml18-riders-daily').html($('.hbs-ml18-riders-daily').css('display','block').text());
 
 //            $('.to-riders').css('display', 'block');
 
@@ -185,26 +200,29 @@ export class AllTablesComponent {
              location.reload(true);
         }
     }
+    isLoggedIn() {
+        return this.authService.isLoggedIn();
+    }
     
 //    getData(url, element) {
 //        const req = new HttpRequest('GET', url, {
 //          reportProgress: true
 //        });
-//
+
 //        this.http.request(req).subscribe((event: HttpEvent<any>) => {
 //          switch (event.type) {
 //            case HttpEventType.Sent:
-////              console.log('Request sent!');
+// //              console.log('Request sent!');
 //              break;
 //            case HttpEventType.ResponseHeader:
-////              console.log('Response header received!');
+// //              console.log('Response header received!');
 //              break;
 //            case HttpEventType.DownloadProgress:
 //              const kbLoaded = Math.round(event.loaded / 1024);
-////              console.log(`Download in progress! ${ kbLoaded }Kb loaded`);
+// //              console.log(`Download in progress! ${ kbLoaded }Kb loaded`);
 //              break;
 //            case HttpEventType.Response:
-////              console.log('😺 Done!', event.body.getGroupInfoResponse);
+// //              console.log('😺 Done!', event.body.getGroupInfoResponse);
 //              $(element).append(event.body.getGroupInfoResponse.groupInfo.numMembers);
 //          }
 //        });

@@ -1,12 +1,9 @@
-<div class="row">
-    
-</div>
-<div class="row">
+<div *ngIf="isLoggedIn()" class="row">
   <div class="col-xs-12">
     <button class="btn-view">View Table Menu</button>
   </div>
 </div>
-<div class="row all-buttons-row">
+<div *ngIf="isLoggedIn()" class="row all-buttons-row">
     <div class="col-xs-12">
         <h3 class="text-center">Choose location &amp; event:</h3>
     </div>
@@ -32,7 +29,268 @@
     </div>
 </div>
 <br/>
-<div class="table-responsive all-table">
+<div *ngIf="isLoggedIn()" class="table-responsive all-table">
+    <h3>Today</h3>
+    <table class="table table-bordered table-hover">
+        <tr class="text-center">
+            <th>RTCC</th>
+            <th class="text-center">RFI</th>
+            <th class="text-center">RIDERS</th>
+            <th class="text-center">CREWS</th>
+            <th class="text-center">WALKERS</th>
+            <th class="text-center">DON$</th>
+            <th class="text-center">REG$</th>
+        </tr>
+        <tr class="data-json"> 
+            <td class="koi-blue">
+               2018 Alberta RTCC
+            </td>
+            <td class="ab18-rfi-daily"></td>
+            <td class="ab18-riders-daily"></td>
+            <td class="ab18-crews-daily"></td>
+            <td>NOT APPLICABLE</td>
+            <td class="ab18-donations-daily"></td>
+            <td class="ab18-regs-daily"></td>
+        </tr>
+        <tr class="data-json">
+            <td class="koi-blue">
+                2018 Montreal RTCC
+            </td>
+            <td class="mo18-rfi-daily"></td>
+            <td class="mo18-riders-daily"></td>
+            <td class="mo18-crews-daily"></td>
+            <td>NOT APPLICABLE</td>
+            <td class="mo18-donations-daily"></td>
+            <td class="mo18-regs-daily"></td>
+        </tr>
+        <tr class="data-json">
+            <td class="koi-blue">
+                2018 Perth RTCC
+            </td>
+            <td class="pr18-rfi-daily"></td>
+            <td class="pr18-riders-daily"></td>
+            <td class="pr18-crews-daily"></td>
+            <td>NOT APPLICABLE</td>
+            <td class="pr18-donations-daily"></td>
+            <td class="pr18-regs-daily"></td>
+        </tr>
+        <tr class="data-json">
+            <td class="koi-blue">
+                2018 Toronto RTCC
+            </td>
+            <td class="to18-rfi-daily"></td>
+            <td class="to18-riders-daily"></td>
+            <td class="to18-crews-daily"></td>
+            <td>NOT APPLICABLE</td>
+            <td class="to18-donations-daily"></td>
+            <td class="to18-regs-daily"></td>
+        </tr>
+        <tr class="data-json">
+            <td class="koi-blue">
+                2018 Vancouver RTCC
+            </td>
+            <td class="va18-rfi-daily"></td>
+            <td class="va18-riders-daily"></td>
+            <td class="va18-crews-daily"></td>
+            <td>NOT APPLICABLE</td>
+            <td class="va18-donations-daily"></td>
+            <td class="va18-regs-daily"></td>
+        </tr> 
+        <tr class="data-json">
+            <td class="koi-blue">
+               2018 Melbourne OneDay
+            </td>
+            <td>NOT APPLICABLE</td>
+            <td class="ml18-riders-daily"></td>
+            <td>NOT APPLICABLE</td>
+            <td>NOT APPLICABLE</td>
+            <td class="ml18-donations-daily"></td>
+            <td class="ml18-regs-daily"></td>
+        </tr>
+        <tr class="data-json">
+            <td class="koi-blue">
+                2018 OneWalk Toronto
+            </td>
+            <td class="owto18-rfi-daily"></td>
+            <td>NOT APPLICABLE</td>
+            <td class="owto18-crews-daily"></td>
+            <td class="owto18-walkers-daily"></td>
+            <td class="owto18-donations-daily"></td>
+            <td class="owto18-regs-daily"></td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="isLoggedIn()" class="table-responsive all-table">
+    <h3>Year to Date</h3>
+    <table class="table table-bordered table-hover">
+        <tr class="text-center">
+            <th>RTCC</th>
+            <th class="text-center">RFI</th>
+            <th class="text-center">RIDERS</th>
+            <th class="text-center">CREWS</th>
+            <th class="text-center">WALKERS</th>
+            <th class="text-center">DON$</th>
+            <th class="text-center">REG$</th>
+        </tr>
+        <tr class="data-json"> 
+            <td class="koi-blue">
+               2018 Alberta RTCC
+            </td>
+            <td class="ab18-rfi"></td>
+            <td class="ab18-riders"></td>
+            <td class="ab18-crews"></td>
+            <td>NOT APPLICABLE</td>
+            <td class="ab18-donations"></td>
+            <td class="ab18-regs"></td>
+        </tr>
+        <tr class="data-json">
+            <td class="koi-blue">
+                2018 Montreal RTCC
+            </td>
+            <td class="mo18-rfi"></td>
+            <td class="mo18-riders"></td>
+            <td class="mo18-crews"></td>
+            <td>NOT APPLICABLE</td>
+            <td class="mo18-donations"></td>
+            <td class="mo18-regs"></td>
+        </tr>
+        <tr class="data-json">
+            <td class="koi-blue">
+                2018 Perth RTCC
+            </td>
+            <td class="pr18-rfi"></td>
+            <td class="pr18-riders"></td>
+            <td class="pr18-crews"></td>
+            <td>NOT APPLICABLE</td>
+            <td class="pr18-donations"></td>
+            <td class="pr18-regs"></td>
+        </tr>
+        <tr class="data-json">
+            <td class="koi-blue">
+                2018 Toronto RTCC
+            </td>
+            <td class="to18-rfi"></td>
+            <td class="to18-riders"></td>
+            <td class="to18-crews"></td>
+            <td>NOT APPLICABLE</td>
+            <td class="to18-donations"></td>
+            <td class="to18-regs"></td>
+        </tr>
+        <tr class="data-json">
+            <td class="koi-blue">
+                2018 Vancouver RTCC
+            </td>
+            <td class="va18-rfi"></td>
+            <td class="va18-riders"></td>
+            <td class="va18-crews"></td>
+            <td>NOT APPLICABLE</td>
+            <td class="va18-donations"></td>
+            <td class="va18-regs"></td>
+        </tr> 
+        <tr class="data-json">
+            <td class="koi-blue">
+               2018 Melbourne OneDay
+            </td>
+            <td>NOT APPLICABLE</td>
+            <td class="ml18-riders"></td>
+            <td>NOT APPLICABLE</td>
+            <td>NOT APPLICABLE</td>
+            <td class="ml18-donations"></td>
+            <td class="ml18-regs"></td>
+        </tr>
+        <tr class="data-json">
+            <td class="koi-blue">
+                2018 OneWalk Toronto
+            </td>
+            <td class="owto18-rfi"></td>
+            <td>NOT APPLICABLE</td>
+            <td class="owto18-crews"></td>
+            <td class="owto18-walkers"></td>
+            <td class="owto18-donations"></td>
+            <td class="owto18-regs"></td>
+        </tr>
+        <tr class="data-json"> 
+            <td class="koi-blue">
+                2017 Alberta RTCC
+            </td>
+            <td class="ab17-rfi"></td>
+            <td class="ab17-riders"></td>
+            <td class="ab17-crews"></td>
+            <td>NOT APPLICABLE</td>
+            <td class="ab17-donations"></td>
+            <td class="ab17-regs"></td>
+        </tr>
+        <tr class="data-json">
+            <td class="koi-blue">
+                2017 Montreal RTCC
+            </td>
+            <td class="mo17-rfi"></td>
+            <td class="mo17-riders"></td>
+            <td class="mo17-crews"></td>
+            <td>NOT APPLICABLE</td>
+            <td class="mo17-donations"></td>
+            <td class="mo17-regs"></td>
+        </tr>
+        <tr class="data-json">
+            <td class="koi-blue">
+                2017 Perth RTCC
+            </td>
+            <td class="pr17-rfi"></td>
+            <td class="pr17-riders"></td>
+            <td class="pr17-crews"></td>
+            <td>NOT APPLICABLE</td>
+            <td class="pr17-donations"></td>
+            <td class="pr17-regs"></td>
+        </tr>
+        <tr class="data-json">
+            <td class="koi-blue">
+                2017 Toronto RTCC
+            </td>
+            <td class="to17-rfi"></td>
+            <td class="to17-riders"></td>
+            <td class="to17-crews"></td>
+            <td>NOT APPLICABLE</td>
+            <td class="to17-donations"></td>
+            <td class="to17-regs"></td>
+        </tr>
+        <tr class="data-json">
+            <td class="koi-blue">
+                2017 Vancouver RTCC
+            </td>
+            <td class="va17-rfi"></td>
+            <td class="va17-riders"></td>
+            <td class="va17-crews"></td>
+            <td>NOT APPLICABLE</td>
+            <td class="va17-donations"></td>
+            <td class="va17-regs"></td>
+        </tr>
+        <tr class="data-json">
+            <td class="koi-blue">
+               2017 Melbourne OneDay
+            </td>
+            <td>NOT APPLICABLE</td>
+            <td class="ml17-riders"></td>
+            <td>NOT APPLICABLE</td>
+            <td>NOT APPLICABLE</td>
+            <td class="ml17-donations"></td>
+            <td class="ml17-regs"></td>
+        </tr>
+        <tr class="data-json">
+            <td class="koi-blue">
+                2017 OneWalk Toronto
+            </td>
+            <td class="owto17-rfi"></td>
+            <td>0</td>
+            <td class="owto17-crews"></td>
+            <td class="owto17-walkers"></td>
+            <td class="owto17-donations"></td>
+            <td class="owto17-regs"></td>
+        </tr>
+    </table>
+</div>
+
+<!-- <div *ngIf="isLoggedIn()" class="table-responsive all-table">
     <table class="table table-bordered table-hover">
         <tr class="text-center">
             <th>RTCC</th>
@@ -243,7 +501,8 @@
             <td class="owto17-regs-daily">0</td>
         </tr>
     </table>
-</div>
+</div> -->
+
 
 <!-- BEGIN Toronto Table -->
 

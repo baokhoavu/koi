@@ -115,6 +115,7 @@ var dataSchema = new Schema({
     owto17DonDaily: String,
     owto18RegDaily: String,
     owto18RFIDaily: String,
+    owto18WalkersDaily: String,
     ml18DonDaily: String,
     ml17DonDaily: String,
     ml18RegDaily: String
@@ -435,6 +436,7 @@ fixieRequest(apiURL, function(err, response, body) {
                                             owto17DonDaily: newOwTo17DonDaily,
                                             owto18RegDaily: newOwToRegDaily,
                                             owto18RFIDaily: owto18RfiSub,
+                                            owto18WalkersDaily: owto18TotalWalkers,
                                             ml18DonDaily: newMlDonDaily,
                                             ml17DonDaily: newMl17DonDaily,
                                             ml18RegDaily: newMlRegDaily
