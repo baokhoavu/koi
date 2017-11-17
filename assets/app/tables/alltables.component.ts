@@ -142,7 +142,7 @@ export class AllTablesComponent {
             $('.ab18-donations-daily').html($('.hbs-ab18-don-daily').css('display','block').text());
             $('.ab17-donations-daily').html($('.hbs-ab17-don-daily').css('display','block').text());
             $('.ab18-regs-daily').html($('.hbs-ab18-regs-daily').css('display','block').text());
-            $('.ab18-rfi-daily').html($('.hbs-ab18-rfi-daily').css('display','block').text());
+            // $('.ab18-rfi-daily').html($('.hbs-ab18-rfi-daily').css('display','block').text());
             $('.ab18-riders-daily').html($('.hbs-ab18-riders-daily').css('display','block').text());
             $('.ab18-crews-daily').html($('.hbs-ab18-crews-daily').css('display','block').text());
             // Vancouver Daily Data
@@ -169,29 +169,29 @@ export class AllTablesComponent {
 
             $('.btn').on('click', function(){
                if ($(this).hasClass('alberta-btn')){
-                   $('.ab-table').siblings('.table-responsive').fadeOut();
-                   $('.ab-table').fadeIn();
+                   $('.ab-table').siblings('.table-responsive').slideUp();
+                   $('.ab-table').slideDown();
                } else if ($(this).hasClass('toronto-btn')){
-                   $('.to-table').siblings('.table-responsive').fadeOut();
-                   $('.to-table').fadeIn();
+                   $('.to-table').siblings('.table-responsive').slideUp();
+                   $('.to-table').slideDown();
                } else if ($(this).hasClass('vancouver-btn')){
-                   $('.va-table').siblings('.table-responsive').fadeOut();
-                   $('.va-table').fadeIn();
+                   $('.va-table').siblings('.table-responsive').slideUp();
+                   $('.va-table').slideDown();
                } else if ($(this).hasClass('montreal-btn')){
-                   $('.mo-table').siblings('.table-responsive').fadeOut();
-                   $('.mo-table').fadeIn();
+                   $('.mo-table').siblings('.table-responsive').slideUp();
+                   $('.mo-table').slideDown();
                } else if ($(this).hasClass('ow-toronto-btn')){
-                   $('.ow-to-table').siblings('.table-responsive').fadeOut();
-                   $('.ow-to-table').fadeIn();
+                   $('.ow-to-table').siblings('.table-responsive').slideUp();
+                   $('.ow-to-table').slideDown();
                } else if ($(this).hasClass('perth-btn')){
-                   $('.pr-table').siblings('.table-responsive').fadeOut();
-                   $('.pr-table').fadeIn();
+                   $('.pr-table').siblings('.table-responsive').slideUp();
+                   $('.pr-table').slideDown();
                } else if ($(this).hasClass('melbourne-btn')){
-                   $('.ml-table').siblings('.table-responsive').fadeOut();
-                   $('.ml-table').fadeIn();
+                   $('.ml-table').siblings('.table-responsive').slideUp();
+                   $('.ml-table').slideDown();
                } else if ($(this).hasClass('all-btn')){
-                   $('.all-table').siblings('.table-responsive').fadeOut();
-                   $('.all-table').fadeIn();
+                   $('.all-table').siblings('.table-responsive').slideUp();
+                   $('.all-table').slideDown();
                }
             });
             
