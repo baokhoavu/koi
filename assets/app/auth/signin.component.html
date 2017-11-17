@@ -1,4 +1,4 @@
-<div class="col-md-8 col-md-offset-2">
+<div *ngIf="!isLoggedIn()" class="col-md-8 col-md-offset-2">
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="email">Email</label>
@@ -21,4 +21,10 @@
                 type="submit"
                 [disabled]="!myForm.valid">Submit</button>
     </form>
+</div>
+
+<div *ngIf="isLoggedIn()"  class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h3>You're logged in, please return to the <a href="/alltables">homepage.</a></h3>
+    </div>
 </div>

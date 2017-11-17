@@ -6,7 +6,7 @@ import { AuthenticationComponent } from "./auth/authentication.component";
 import { AUTH_ROUTES } from "./auth/auth.routes";
 
 const APP_ROUTES: Routes = [
-    { path: '', redirectTo: '/auth/signup', pathMatch: 'full' },
+    { path: '', redirectTo: '/auth/signin', pathMatch: 'full' },
     { path: 'messages', component: MessagesComponent },
     { path: 'alltables', component: AllTablesComponent },
     { path: 'auth', component: AuthenticationComponent, children: AUTH_ROUTES }
