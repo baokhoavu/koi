@@ -358,7 +358,6 @@ router.get('/alltables', function (req, res, next) {
                                                 ml17DonDaily: newMl17DonDaily,
                                                 ml18RegDaily: newMlRegDaily,
                                                 ml18RidersDaily: ml18RiderSub
-                                                
                                             });
                                                 
                                             } else {  // In case no data was found with the given query
