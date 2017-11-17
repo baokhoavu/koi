@@ -48,6 +48,7 @@ var dataSchema = new Schema({
     owTo18RegFee: String,
     owTo18Crews: String,
     owTo18Walkers: String,
+    owTo18NightWalkers: String,
     owTo182day: String,
     owTo1815kmWalkers: String,
     owTo1825kmWalkers: String,
@@ -69,7 +70,7 @@ var dataSchema = new Schema({
     pr17Donations: String,
     pr17RegFee: String,
     pr17Crews: String,
-    pr17RFI: String,
+    pr17RFI:String,
     pr17Riders: String,
     ml18Donations: String,
     ml18RegFee: String,
@@ -105,9 +106,11 @@ var dataSchema = new Schema({
     owto17DonDaily: String,
     owto18RegDaily: String,
     owto18RFIDaily: String,
+    owto18WalkersDaily: String,
     ml18DonDaily: String,
     ml17DonDaily: String,
-    ml18RegDaily: String
+    ml18RegDaily: String,
+    ml18RidersDaily: String
 }, {versionKey: false});
 
 module.exports = mongoose.model('ApiData', dataSchema);

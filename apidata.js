@@ -58,6 +58,7 @@ var dataSchema = new Schema({
     owTo18RegFee: String,
     owTo18Crews: String,
     owTo18Walkers: String,
+    owTo18NightWalkers: String,
     owTo182day: String,
     owTo1815kmWalkers: String,
     owTo1825kmWalkers: String,
@@ -79,7 +80,7 @@ var dataSchema = new Schema({
     pr17Donations: String,
     pr17RegFee: String,
     pr17Crews: String,
-    pr17RFI: String,
+    pr17RFI:String,
     pr17Riders: String,
     ml18Donations: String,
     ml18RegFee: String,
@@ -118,7 +119,8 @@ var dataSchema = new Schema({
     owto18WalkersDaily: String,
     ml18DonDaily: String,
     ml17DonDaily: String,
-    ml18RegDaily: String
+    ml18RegDaily: String,
+    ml18RidersDaily: String
 }, {versionKey: false});
 
 // var ApiData = mongoose.model("ApiData", dataSchema);
@@ -282,32 +284,46 @@ fixieRequest(apiURL, function(err, response, body) {
                                         var pr18DonationSub = numberPr18v1 - numberPr18v2;
                                         var pr17DonationSub = numberPr17v1 - numberPr17v2;
                                         var pr18RfiSub = locals3.getEventTotal.perth.pr18.rfi - data.pr18RFI;
+                                        var pr18CrewSub = locals3.getEventTotal.perth.pr18.crews - data.pr18Crews;
+                                        var pr18RiderSub = locals3.getEventTotal.perth.pr18.riders - data.pr18Riders;
                                         var pr18RegSub = numberRegPr18v1 - numberRegPr18v2;
                                         
                                         var mo18DonationSub = numberMo18v1 - numberMo18v2;
                                         var mo17DonationSub = numberMo17v1 - numberMo17v2;
                                         var mo18RfiSub = locals.getEventTotal.montreal.mo18.rfi - data.mo18RFI;
                                         var mo18RegSub = numberRegMo18v1 - numberRegMo18v2;
+                                        var mo18CrewSub = locals.getEventTotal.montreal.mo18.crews - data.mo18Crews;
+                                        var mo18RiderSub = locals.getEventTotal.montreal.mo18.riders - data.mo18Riders;
                                         
                                         var ab18DonationSub = numberAb18v1 - numberAb18v2;
                                         var ab17DonationSub = numberAb17v1 - numberAb17v2;
                                         var ab18RfiSub = locals.getEventTotal.alberta.ab18.rfi - data.ab18RFI;
+                                        var ab18CrewSub = locals.getEventTotal.alberta.ab18.crews - data.ab18Crews;
+                                        var ab18RiderSub = locals.getEventTotal.alberta.ab18.riders - data.ab18Riders;
                                         var ab18RegSub = numberRegAb18v1 - numberRegAb18v2;
                                             
                                         var va18DonationSub = numberVa18v1 - numberVa18v2;
                                         var va17DonationSub = numberVa17v1 - numberVa17v2;
                                         var va18RfiSub = locals.getEventTotal.vancouver.va18.rfi - data.va18RFI;
+                                        var va18CrewSub = locals.getEventTotal.vancouver.va18.crews - data.va18Crews;
+                                        var va18RiderSub = locals.getEventTotal.vancouver.va18.riders - data.va18Riders;
                                         var va18RegSub = numberRegVa18v1 - numberRegVa18v2;
-                                        
+
                                         var owto18DonationSub = numberOwTo18v1 - numberOwTo18v2;
                                         var owto17DonationSub = numberOwTo17v1 - numberOwTo17v2;
                                         var owto18RfiSub = locals2.getEventTotal.toronto.to18.rfi - data.owTo18RFI;
                                         var owto18RegSub = numberRegOwTo18v1 - numberRegOwTo18v2;
+                                        var owTo1815kmWalkersDaily = locals2.getEventTotal.toronto.to18.Wlkr15km - data.owTo1815kmWalkers;
+                                        var owTo1825kmWalkersDaily = locals2.getEventTotal.toronto.to18.Wlkr25km - data.owTo1825kmWalkers;
+                                        var owTo1840kmWalkersDaily = locals2.getEventTotal.toronto.to18.Wlkr40km - data.owTo1840kmWalkers;
+                                        var owTo18NightWalkersDaily = locals2.getEventTotal.toronto.to18.nightWlk - data.owTo1815kmWalkers;
                                         var owto18TotalWalkers = parseFloat(owTo18NightWalkers) + parseFloat(owTo1815kmWalkers) + parseFloat(owTo1825kmWalkers) + parseFloat(owTo1840kmWalkers) + parseFloat(owTo182day);
-                                        
+                                        var owto18CrewsDailySub = locals2.getEventTotal.toronto.to18.crews - data.owTo18Crews;
+
                                         var ml18DonationSub = numberMl18v1 - numberMl18v2;
                                         var ml17DonationSub = numberMl17v1 - numberMl17v2;
                                         var ml18RegSub = numberMl18v1 - numberMl18v2;
+                                        var ml18RiderSub = locals4.getEventTotal.melbourne.ml18.riders - data.ml18Riders;
 
                                         // Add Dollar Sign back into Data    
                                         var newToDonDaily = '$' + to18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -337,109 +353,119 @@ fixieRequest(apiURL, function(err, response, body) {
                                             updated: moment().format('L'),
                                             to18Donations: locals.getEventTotal.toronto.to18.totalDonation,
                                             to18RegFee: locals.getEventTotal.toronto.to18.regFee,
-                                            to18Crews: locals.getEventTotal.toronto.to18.crews,
-                                            to18RFI: locals.getEventTotal.toronto.to18.rfi,
-                                            to18Riders: locals.getEventTotal.toronto.to18.riders,
-                                            mo18Donations: locals.getEventTotal.montreal.mo18.totalDonation,
-                                            mo18RegFee: locals.getEventTotal.montreal.mo18.regFee,
-                                            mo18Crews: locals.getEventTotal.montreal.mo18.crews,
-                                            mo18RFI: locals.getEventTotal.montreal.mo18.rfi,
-                                            mo18Riders: locals.getEventTotal.montreal.mo18.riders,
-                                            ab18Donations: locals.getEventTotal.alberta.ab18.totalDonation,
-                                            ab18RegFee: locals.getEventTotal.alberta.ab18.regFee,
-                                            ab18Crews: locals.getEventTotal.alberta.ab18.crews,
-                                            ab18RFI: locals.getEventTotal.alberta.ab18.rfi,
-                                            ab18Riders: locals.getEventTotal.alberta.ab18.riders,
-                                            va18Donations: locals.getEventTotal.vancouver.va18.totalDonation,
-                                            va18RegFee: locals.getEventTotal.vancouver.va18.regFee,
-                                            va18Crews: locals.getEventTotal.vancouver.va18.crews,
-                                            va18RFI: locals.getEventTotal.vancouver.va18.rfi,
-                                            va18Riders: locals.getEventTotal.vancouver.va18.riders,
-                                            to17Donations: locals.getEventTotal.toronto.to17.totalDonation,
-                                            to17RegFee: locals.getEventTotal.toronto.to17.regFee,
-                                            to17Crews: locals.getEventTotal.toronto.to17.crews,
-                                            to17RFI: locals.getEventTotal.toronto.to17.rfi,
-                                            to17Riders: locals.getEventTotal.toronto.to17.riders,
-                                            mo17Donations: locals.getEventTotal.montreal.mo17.totalDonation,
-                                            mo17RegFee: locals.getEventTotal.montreal.mo17.regFee,
-                                            mo17Crews: locals.getEventTotal.montreal.mo17.crews,
-                                            mo17RFI: locals.getEventTotal.montreal.mo17.rfi,
-                                            mo17Riders: locals.getEventTotal.montreal.mo17.riders,
-                                            ab17Donations: locals.getEventTotal.alberta.ab17.totalDonation,
-                                            ab17RegFee: locals.getEventTotal.alberta.ab17.regFee,
-                                            ab17Crews: locals.getEventTotal.alberta.ab17.crews,
-                                            ab17RFI: locals.getEventTotal.alberta.ab17.rfi,
-                                            ab17Riders: locals.getEventTotal.alberta.ab17.riders,
-                                            va17Donations: locals.getEventTotal.vancouver.va17.totalDonation,
-                                            va17RegFee: locals.getEventTotal.vancouver.va17.regFee,
-                                            va17Crews: locals.getEventTotal.vancouver.va17.crews,
-                                            va17RFI: locals.getEventTotal.vancouver.va17.rfi,
-                                            va17Riders: locals.getEventTotal.vancouver.va17.riders,
-                                            owTo18Donations: locals2.getEventTotal.toronto.to18.totalDonation,
-                                            owTo18RegFee: locals2.getEventTotal.toronto.to18.regFee,
-                                            owTo18Crews: locals2.getEventTotal.toronto.to18.crews,
-                                            owTo18Walkers: locals2.getEventTotal.toronto.to18.walkers,
-                                            owTo182day: locals2.getEventTotal.toronto.to18.walkers,
-                                            owTo1815kmWalkers: locals2.getEventTotal.toronto.to18.Wlkr15km,
-                                            owTo1825kmWalkers: locals2.getEventTotal.toronto.to18.Wlkr25km,
-                                            owTo1840kmWalkers: locals2.getEventTotal.toronto.to18.Wlkr40km,
-                                            owTo18RFI: locals2.getEventTotal.toronto.to18.rfi,
-                                            owTo17Donations: locals2.getEventTotal.toronto.to17.totalDonation,
-                                            owTo17RegFee: locals2.getEventTotal.toronto.to17.regFee,
-                                            owTo17Crews: locals2.getEventTotal.toronto.to17.crews,
-                                            owTo17Walkers: locals2.getEventTotal.toronto.to17.walkers,
-                                            owTo1715kmWalkers: locals2.getEventTotal.toronto.to17.Wlkr15km,
-                                            owTo1725kmWalkers: locals2.getEventTotal.toronto.to17.Wlkr25km,
-                                            owTo1740kmWalkers: locals2.getEventTotal.toronto.to17.Wlkr40km,
-                                            owTo17RFI: locals2.getEventTotal.toronto.to17.rfi,
-                                            pr18Donations: locals3.getEventTotal.perth.pr18.totalDonation,
-                                            pr18RegFee: locals3.getEventTotal.perth.pr18.regFee,
-                                            pr18Crews: locals3.getEventTotal.perth.pr18.crews,
-                                            pr18RFI: locals3.getEventTotal.perth.pr18.rfi,
-                                            pr18Riders: locals3.getEventTotal.perth.pr18.riders,
-                                            pr17Donations: locals3.getEventTotal.perth.pr17.totalDonation,
-                                            pr17RegFee: locals3.getEventTotal.perth.pr17.regFee,
-                                            pr17Crews: locals3.getEventTotal.perth.pr17.crews,
-                                            pr17RFI: locals3.getEventTotal.perth.pr17.rfi,
-                                            pr17Riders: locals3.getEventTotal.perth.pr17.riders,
-                                            ml18Donations: locals4.getEventTotal.melbourne.ml18.totalDonation,
-                                            ml18RegFee: locals4.getEventTotal.melbourne.ml18.regFee,
-                                            ml18Walkers: locals4.getEventTotal.melbourne.ml18.walkers,
-                                            ml18Riders: locals4.getEventTotal.melbourne.ml18.riders,
-                                            ml17Donations: locals4.getEventTotal.melbourne.ml17.totalDonation,
-                                            ml17RegFee: locals4.getEventTotal.melbourne.ml17.regFee,
-                                            ml17Walkers: locals4.getEventTotal.melbourne.ml17.walkers,
-                                            ml17Riders: locals4.getEventTotal.melbourne.ml17.riders,
-                                            to18DonDaily: newToDonDaily,
-                                            to18RegFeeDaily: newToRegDaily,
-                                            to18RFIDaily: to18RfiSub,
-                                            to18CrewDaily: to18CrewSub,
-                                            to18RiderDaily: to18RiderSub,
-                                            to17DonDaily: newTo17DonDaily,
-                                            pr18DonDaily: newPrDonDaily,
-                                            pr18RegFeeDaily: newPrRegDaily,
-                                            pr18RFIDaily: pr18RfiSub,
-                                            pr17DonDaily: newPr17DonDaily,
-                                            mo18DonDaily: newMoDonDaily,
-                                            mo17DonDaily: newMo17DonDaily,
-                                            mo18RegFeeDaily: newMoRegDaily,
-                                            mo18RFIDaily: mo18RfiSub,
-                                            ab18DonDaily: newAbDonDaily,
-                                            ab17DonDaily: newAb17DonDaily,
-                                            ab18RegFeeDaily: newAbRegDaily,
-                                            ab18RFIDaily: ab18RfiSub,
-                                            va18DonDaily: newVaDonDaily,
-                                            va17DonDaily: newVa17DonDaily,
-                                            va18RegFeeDaily: newVaRegDaily,
-                                            va18RFIDaily: va18RfiSub,
-                                            owto18DonDaily: newOwToDonDaily,
-                                            owto17DonDaily: newOwTo17DonDaily,
-                                            owto18RegDaily: newOwToRegDaily,
-                                            owto18RFIDaily: owto18RfiSub,
-                                            owto18WalkersDaily: owto18TotalWalkers,
-                                            ml18DonDaily: newMlDonDaily,
-                                            ml17DonDaily: newMl17DonDaily,
-                                            ml18RegDaily: newMlRegDaily
+                                                to18Crews: locals.getEventTotal.toronto.to18.crews,
+                                                to18RFI: locals.getEventTotal.toronto.to18.rfi,
+                                                to18Riders: locals.getEventTotal.toronto.to18.riders,
+                                                to17Donations: locals.getEventTotal.toronto.to17.totalDonation,
+                                                to17RegFee: locals.getEventTotal.toronto.to17.regFee,
+                                                to17Crews: locals.getEventTotal.toronto.to17.crews,
+                                                to17RFI: locals.getEventTotal.toronto.to17.rfi,
+                                                to17Riders: locals.getEventTotal.toronto.to17.riders, 
+                                                mo18Donations: locals.getEventTotal.montreal.mo18.totalDonation,
+                                                mo18RegFee: locals.getEventTotal.montreal.mo18.regFee,
+                                                mo18Crews: locals.getEventTotal.montreal.mo18.crews,
+                                                mo18RFI: locals.getEventTotal.montreal.mo18.rfi,
+                                                mo18Riders: locals.getEventTotal.montreal.mo18.riders,
+                                                mo17Donations: locals.getEventTotal.montreal.mo17.totalDonation,
+                                                mo17RegFee: locals.getEventTotal.montreal.mo17.regFee,
+                                                mo17Crews: locals.getEventTotal.montreal.mo17.crews,
+                                                mo17RFI: locals.getEventTotal.montreal.mo17.rfi,
+                                                mo17Riders: locals.getEventTotal.montreal.mo17.riders,
+                                                ab18Donations: locals.getEventTotal.alberta.ab18.totalDonation,
+                                                ab18RegFee: locals.getEventTotal.alberta.ab18.regFee,
+                                                ab18Crews: locals.getEventTotal.alberta.ab18.crews,
+                                                ab18RFI: locals.getEventTotal.alberta.ab18.rfi,
+                                                ab18Riders: locals.getEventTotal.alberta.ab18.riders,
+                                                ab17Donations: locals.getEventTotal.alberta.ab17.totalDonation,
+                                                ab17RegFee: locals.getEventTotal.alberta.ab17.regFee,
+                                                ab17Crews: locals.getEventTotal.alberta.ab17.crews,
+                                                ab17RFI: locals.getEventTotal.alberta.ab17.rfi,
+                                                ab17Riders: locals.getEventTotal.alberta.ab17.riders,
+                                                va18Donations: locals.getEventTotal.vancouver.va18.totalDonation,
+                                                va18RegFee: locals.getEventTotal.vancouver.va18.regFee,
+                                                va18Crews: locals.getEventTotal.vancouver.va18.crews,
+                                                va18RFI: locals.getEventTotal.vancouver.va18.rfi,
+                                                va18Riders: locals.getEventTotal.vancouver.va18.riders,
+                                                va17Donations: locals.getEventTotal.vancouver.va17.totalDonation,
+                                                va17RegFee: locals.getEventTotal.vancouver.va17.regFee,
+                                                va17Crews: locals.getEventTotal.vancouver.va17.crews,
+                                                va17RFI: locals.getEventTotal.vancouver.va17.rfi,
+                                                va17Riders: locals.getEventTotal.vancouver.va17.riders,
+                                                owTo18Donations: locals2.getEventTotal.toronto.to18.totalDonation,
+                                                owTo18RegFee: locals2.getEventTotal.toronto.to18.regFee,
+                                                owTo18Crews: locals2.getEventTotal.toronto.to18.crews,
+                                                owTo18Walkers: owto18TotalWalkers,
+                                                owTo18NightWalkers: owTo18NightWalkers,
+                                                owTo182day: owTo182day,
+                                                owTo1815kmWalkers: owTo1815kmWalkers,
+                                                owTo1825kmWalkers: owTo1825kmWalkers,
+                                                owTo1840kmWalkers: owTo1840kmWalkers,
+                                                owTo18RFI: locals2.getEventTotal.toronto.to18.rfi,
+                                                owTo17Donations: locals2.getEventTotal.toronto.to17.totalDonation,
+                                                owTo17RegFee: locals2.getEventTotal.toronto.to17.regFee,
+                                                owTo17Crews: locals2.getEventTotal.toronto.to17.crews,
+                                                owTo17Walkers: locals2.getEventTotal.toronto.to17.walkers,
+                                                owTo1715kmWalkers: owTo1715kmWalkers,
+                                                owTo1725kmWalkers: owTo1725kmWalkers,
+                                                owTo1740kmWalkers: owTo1740kmWalkers,
+                                                owTo17RFI: locals2.getEventTotal.toronto.to17.rfi,
+                                                pr18Donations: locals3.getEventTotal.perth.pr18.totalDonation,
+                                                pr18RegFee: locals3.getEventTotal.perth.pr18.regFee,
+                                                pr18Crews: locals3.getEventTotal.perth.pr18.crews,
+                                                pr18RFI: locals3.getEventTotal.perth.pr18.rfi,
+                                                pr18Riders: locals3.getEventTotal.perth.pr18.riders,
+                                                pr17Donations: locals3.getEventTotal.perth.pr17.totalDonation,
+                                                pr17RegFee: locals3.getEventTotal.perth.pr17.regFee,
+                                                pr17Crews: locals3.getEventTotal.perth.pr17.crews,
+                                                pr17RFI: locals3.getEventTotal.perth.pr17.rfi,
+                                                pr17Riders: locals3.getEventTotal.perth.pr17.riders,
+                                                ml18Donations: locals4.getEventTotal.melbourne.ml18.totalDonation,
+                                                ml18RegFee: locals4.getEventTotal.melbourne.ml18.regFee,
+                                                ml18Walkers: locals4.getEventTotal.melbourne.ml18.walkers,
+                                                ml18Riders: locals4.getEventTotal.melbourne.ml18.riders,
+                                                ml17Donations: locals4.getEventTotal.melbourne.ml17.totalDonation,
+                                                ml17RegFee: locals4.getEventTotal.melbourne.ml17.regFee,
+                                                ml17Walkers: locals4.getEventTotal.melbourne.ml17.walkers,
+                                                ml17Riders: locals4.getEventTotal.melbourne.ml17.riders,
+                                                to18DonDaily: newToDonDaily,
+                                                to18RegFeeDaily: newToRegDaily,
+                                                to18RFIDaily: to18RfiSub,
+                                                to18CrewDaily: to18CrewSub,
+                                                to18RidersDaily: to18RiderSub,
+                                                to17DonDaily: newTo17DonDaily,
+                                                pr18DonDaily: newPrDonDaily,
+                                                pr18RegFeeDaily: newPrRegDaily,
+                                                pr18RFIDaily: pr18RfiSub,
+                                                pr18CrewDaily: pr18CrewSub,
+                                                pr18RidersDaily: pr18RiderSub,
+                                                pr17DonDaily: newPr17DonDaily,
+                                                mo18DonDaily: newMoDonDaily,
+                                                mo17DonDaily: newMo17DonDaily,
+                                                mo18RegFeeDaily: newMoRegDaily,
+                                                mo18RFIDaily: mo18RfiSub,
+                                                mo18CrewDaily: mo18CrewSub,
+                                                mo18RidersDaily: mo18RiderSub,
+                                                ab18DonDaily: newAbDonDaily,
+                                                ab17DonDaily: newAb17DonDaily,
+                                                ab18RegFeeDaily: newAbRegDaily,
+                                                ab18RFIDaily: ab18RfiSub,
+                                                ab18CrewDaily: ab18CrewSub,
+                                                ab18RidersDaily: ab18RiderSub,
+                                                va18DonDaily: newVaDonDaily,
+                                                va17DonDaily: newVa17DonDaily,
+                                                va18RegFeeDaily: newVaRegDaily,
+                                                va18RFIDaily: va18RfiSub,
+                                                va18CrewDaily: va18CrewSub,
+                                                va18RidersDaily: va18RiderSub,
+                                                owto18DonDaily: newOwToDonDaily,
+                                                owto17DonDaily: newOwTo17DonDaily,
+                                                owto18RegDaily: newOwToRegDaily,
+                                                owto18RFIDaily: owto18RfiSub,
+                                                owTo18CrewsDaily: owto18CrewsDailySub,
+                                                ml18DonDaily: newMlDonDaily,
+                                                ml17DonDaily: newMl17DonDaily,
+                                                ml18RegDaily: newMlRegDaily,
+                                                ml18RidersDaily: ml18RiderSub
                                         });
                                         allData.save(function(error) {
                                             console.log("Data has been saved to MongoDB!");

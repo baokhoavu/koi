@@ -241,7 +241,7 @@ router.get('/alltables', function (req, res, next) {
                                             var newMl17DonDaily = '$' + ml17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newMlRegDaily = '$' + ml18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
-                                            console.log(owto18CrewsDailySub);
+                                            console.log(owTo182day);
                                                 
                                             res.render('data', {to18Donations: locals.getEventTotal.toronto.to18.totalDonation,
                                                 to18RegFee: locals.getEventTotal.toronto.to18.regFee,
