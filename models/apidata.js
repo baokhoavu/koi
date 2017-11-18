@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-const moment = require('moment')
+const moment = require('moment');
 var Schema = mongoose.Schema;
 
 var dataSchema = new Schema({
@@ -84,21 +84,29 @@ var dataSchema = new Schema({
     to18RegFeeDaily: String,
     to18RFIDaily: String,
     to18CrewDaily: String,
-    to18RiderDaily: String,
+    to18RidersDaily: String,
     to17DonDaily: String,
     pr18DonDaily: String,
     pr18RegFeeDaily: String,
     pr18RFIDaily: String,
+    pr18CrewDaily: String,
+    pr18RidersDaily: String,
     pr17DonDaily: String,
     mo18DonDaily: String,
     mo17DonDaily: String,
+    mo18CrewDaily: String,
+    mo18RidersDaily: String,
     mo18RegFeeDaily: String,
     mo18RFIDaily: String,
     ab18DonDaily: String,
     ab17DonDaily: String,
     ab18RegFeeDaily: String,
     ab18RFIDaily: String,
+    ab18CrewDaily: String,
+    ab18RidersDaily: String,
     va18DonDaily: String,
+    va18CrewDaily: String,
+    va18RidersDaily: String,
     va17DonDaily: String,
     va18RegFeeDaily: String,
     va18RFIDaily: String,

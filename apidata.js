@@ -1,7 +1,7 @@
 #! /app/.heroku/node/bin/node
 
 var mongoose = require('mongoose');
-const moment = require('moment')
+const moment = require('moment');
 const request = require('request');
 const fixieRequest = request.defaults({'proxy': process.env.FIXIE_URL});
 var ApiData = require('./models/apidata');
