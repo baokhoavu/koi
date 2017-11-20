@@ -125,6 +125,7 @@ var dataSchema = new Schema({
     owto18RegDaily: String,
     owto18RFIDaily: String,
     owto18WalkersDaily: String,
+    owto18CrewsDaily: String,
     ml18DonDaily: String,
     ml17DonDaily: String,
     ml18RegDaily: String,
@@ -327,6 +328,7 @@ fixieRequest(apiURL, function(err, response, body) {
                                         var owTo18NightWalkersDaily = locals2.getEventTotal.toronto.to18.nightWlk - data.owTo1815kmWalkers;
                                         var owto18TotalWalkers = parseFloat(owTo18NightWalkers) + parseFloat(owTo1815kmWalkers) + parseFloat(owTo1825kmWalkers) + parseFloat(owTo1840kmWalkers) + parseFloat(owTo182day);
                                         var owto18CrewsDailySub = locals2.getEventTotal.toronto.to18.crews - data.owTo18Crews;
+                                        var owto18WalkersDailySub = owto18TotalWalkers - data.owTo18Walkers;
 
                                         var ml18DonationSub = numberMl18v1 - numberMl18v2;
                                         var ml17DonationSub = numberMl17v1 - numberMl17v2;
@@ -469,7 +471,8 @@ fixieRequest(apiURL, function(err, response, body) {
                                                 owto17DonDaily: newOwTo17DonDaily,
                                                 owto18RegDaily: newOwToRegDaily,
                                                 owto18RFIDaily: owto18RfiSub,
-                                                owTo18CrewsDaily: owto18CrewsDailySub,
+                                                owto18WalkersDaily: owto18WalkersDailySub,
+                                                owto18CrewsDaily: owto18CrewsDailySub,
                                                 ml18DonDaily: newMlDonDaily,
                                                 ml17DonDaily: newMl17DonDaily,
                                                 ml18RegDaily: newMlRegDaily,

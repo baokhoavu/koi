@@ -2,7 +2,8 @@ import { Component } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "../auth/auth.service";
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
+import 'rxjs/add/operator/map';
 import {
     HttpClient,
     HttpRequest,
@@ -19,10 +20,12 @@ import * as $ from 'jquery';
 })
 export class AllTablesComponent {
     myForm: FormGroup;
+    data: any;
+    private apiUrl = '/api/data';
 
     constructor(private router: Router, private http: HttpClient, private authService: AuthService) {
 
-        this.getData('/api/data');
+        // this.getData('/api/data');
 
         $(window).on('load', function(){
             $('.btn-view').on('click', function() {
@@ -202,193 +205,160 @@ export class AllTablesComponent {
         //      location.reload(true);
         // }
     }
+
+    ngOnInit(): void {
+        interface UserResponse {
+            to18Donations: string;
+            to18RegFee: string;
+            to18Crews: string;
+            to18RFI: string;
+            to18Riders: string;
+            mo18Donations: string;
+            mo18RegFee: string;
+            mo18Crews: string;
+            mo18RFI: string;
+            mo18Riders: string;
+            ab18Donations: string;
+            ab18RegFee: string;
+            ab18Crews: string;
+            ab18RFI: string;
+            ab18Riders: string;
+            va18Donations: string;
+            va18RegFee: string;
+            va18Crews: string;
+            va18RFI: string;
+            va18Riders: string;
+            to17Donations: string;
+            to17RegFee: string;
+            to17Crews: string;
+            to17RFI: string;
+            to17Riders: string;
+            mo17Donations: string;
+            mo17RegFee: string;
+            mo17Crews: string;
+            mo17RFI: string;
+            mo17Riders: string;
+            ab17Donations: string;
+            ab17RegFee: string;
+            ab17Crews: string;
+            ab17RFI: string;
+            ab17Riders: string;
+            va17Donations: string;
+            va17RegFee: string;
+            va17Crews: string;
+            va17RFI: string;
+            va17Riders: string;
+            owTo18Donations: string;
+            owTo18RegFee: string;
+            owTo18Crews: string;
+            owTo18Walkers: string;
+            owTo18NightWalkers: string;
+            owTo182day: string;
+            owTo1815kmWalkers: string;
+            owTo1825kmWalkers: string;
+            owTo1840kmWalkers: string;
+            owTo18RFI: string;
+            owTo17Donations: string;
+            owTo17RegFee: string;
+            owTo17Crews: string;
+            owTo17Walkers: string;
+            owTo1715kmWalkers: string;
+            owTo1725kmWalkers: string;
+            owTo1740kmWalkers: string;
+            owTo17RFI: string;
+            pr18Donations: string;
+            pr18RegFee: string;
+            pr18Crews: string;
+            pr18RFI: string;
+            pr18Riders: string;
+            pr17Donations: string;
+            pr17RegFee: string;
+            pr17Crews: string;
+            pr17RFI:string;
+            pr17Riders: string;
+            ml18Donations: string;
+            ml18RegFee: string;
+            ml18Walkers: string;
+            ml18Riders: string;
+            ml17Donations: string;
+            ml17RegFee: string;
+            ml17Walkers: string;
+            ml17Riders: string;
+            to18DonDaily: string;
+            to18RegFeeDaily: string;
+            to18RFIDaily: string;
+            to18CrewDaily: string;
+            to18RidersDaily: string;
+            to17DonDaily: string;
+            pr18DonDaily: string;
+            pr18RegFeeDaily: string;
+            pr18RFIDaily: string;
+            pr18CrewDaily: string;
+            pr18RidersDaily: string;
+            pr17DonDaily: string;
+            mo18DonDaily: string;
+            mo17DonDaily: string;
+            mo18CrewDaily: string;
+            mo18RidersDaily: string;
+            mo18RegFeeDaily: string;
+            mo18RFIDaily: string;
+            ab18DonDaily: string;
+            ab17DonDaily: string;
+            ab18RegFeeDaily: string;
+            ab18RFIDaily: string;
+            ab18CrewDaily: string;
+            ab18RidersDaily: string;
+            va18DonDaily: string;
+            va18CrewDaily: string;
+            va18RidersDaily: string;
+            va17DonDaily: string;
+            va18RegFeeDaily: string;
+            va18RFIDaily: string;
+            owto18DonDaily: string;
+            owto17DonDaily: string;
+            owto18RegDaily: string;
+            owto18RFIDaily: string;
+            owto18WalkersDaily: string;
+            owto18CrewsDaily: string;
+            ml18DonDaily: string;
+            ml17DonDaily: string;
+            ml18RegDaily: string;
+            ml18RidersDaily: string;
+        }
+
+        this.http.get<UserResponse>('/api/data')
+            .subscribe(data => {
+                this.data = data;
+            })
+    }
+
     isLoggedIn() {
         return this.authService.isLoggedIn();
     }
     
-    getData(url) {
-        const req = new HttpRequest('GET', url, {
-            reportProgress: true
-        });
+//     getData(url) {
+//         const req = new HttpRequest('GET', url, {
+//             reportProgress: true
+//         });
 
-        this.http.request(req).subscribe((event: HttpEvent<any>) => {
-            switch (event.type) {
-                case HttpEventType.Sent:
-//              console.log('Request sent!');
-            break;
-                case HttpEventType.ResponseHeader:
-//              console.log('Response header received!');
-            break;
-                case HttpEventType.DownloadProgress:
-            const kbLoaded = Math.round(event.loaded / 1024);
-//              console.log(`Download in progress! ${ kbLoaded }Kb loaded`);
-            break;
-                case HttpEventType.Response:
+//         this.http.request(req).subscribe((event: HttpEvent<any>) => {
+//             switch (event.type) {
+//                 case HttpEventType.Sent:
+// //              console.log('Request sent!');
+//             break;
+//                 case HttpEventType.ResponseHeader:
+// //              console.log('Response header received!');
+//             break;
+//                 case HttpEventType.DownloadProgress:
+//             const kbLoaded = Math.round(event.loaded / 1024);
+// //              console.log(`Download in progress! ${ kbLoaded }Kb loaded`);
+//             break;
+//                 case HttpEventType.Response:
 
-                // console.log('😺 Done!', event.body.getGroupInfoResponse);
-                console.log(event.body);
-                // $(element).append(event.body.getGroupInfoResponse.groupInfo.numMembers);
-
-                // Alberta Data
-                $('.ab18-rfi-daily').html(event.body.ab18RFIDaily);
-                $('.ab18-riders-daily').html(event.body.ab18RidersDaily);
-                $('.ab18-donations-daily').html(event.body.ab18DonDaily);
-                $('.ab18-regs-daily').html(event.body.ab18RegFeeDaily);
-                $('.ab18-crews-daily').html(event.body.ab18CrewDaily);
-
-                $('.ab18-donations').html(event.body.ab18Donations);
-                $('.ab18-regs').html(event.body.ab18RegFee);
-                $('.ab18-crews').html(event.body.ab18Crews);
-                $('.ab18-riders').html(event.body.ab18Riders);
-                $('.ab18-rfi').html(event.body.ab18RFI);
-
-                $('.ab17-donations').html(event.body.ab17Donations);
-                $('.ab17-regs').html(event.body.ab17RegFee);
-                $('.ab17-crews').html(event.body.ab17Crews);
-                $('.ab17-riders').html(event.body.ab17Riders);
-                $('.ab17-rfi').html(event.body.ab17RFI);
-
-                $('.ab17-donations-daily').html(event.body.ab17DonDaily);
-
-                // Montreal Data
-                $('.mo18-rfi-daily').html(event.body.mo18RFIDaily);
-                $('.mo18-riders-daily').html(event.body.mo18RidersDaily);
-                $('.mo18-donations-daily').html(event.body.mo18DonDaily);
-                $('.mo18-regs-daily').html(event.body.mo18RegFeeDaily);
-                $('.mo18-crews-daily').html(event.body.mo18CrewDaily);
-
-                $('.mo18-donations').html(event.body.mo18Donations);
-                $('.mo18-regs').html(event.body.mo18RegFee);
-                $('.mo18-crews').html(event.body.mo18Crews);
-                $('.mo18-riders').html(event.body.mo18Riders);
-                $('.mo18-rfi').html(event.body.mo18RFI);
-                
-                $('.mo17-donations').html(event.body.mo17Donations);
-                $('.mo17-regs').html(event.body.mo17RegFee);
-                $('.mo17-crews').html(event.body.mo17Crews);
-                $('.mo17-riders').html(event.body.mo17Riders);
-                $('.mo17-rfi').html(event.body.mo17RFI);
-
-                $('.mo17-donations-daily').html(event.body.mo17DonDaily);
-
-                // Toronto Data
-                $('.to18-rfi-daily').html(event.body.to18RFIDaily);
-                $('.to18-riders-daily').html(event.body.to18RidersDaily);
-                $('.to18-riders-daily').html(event.body.to18RidersDaily);
-                $('.to18-donations-daily').html(event.body.to18DonDaily);
-                $('.to18-regs-daily').html(event.body.to18RegFeeDaily);
-                $('.to18-crews-daily').html(event.body.to18CrewDaily);
-
-                $('.to18-donations').html(event.body.to18Donations);
-                $('.to18-regs').html(event.body.to18RegFee);
-                $('.to18-crews').html(event.body.to18Crews);
-                $('.to18-riders').html(event.body.to18Riders);
-                $('.to18-rfi').html(event.body.to18RFI);
-
-                $('.to17-donations').html(event.body.to17Donations);
-                $('.to17-regs').html(event.body.to17RegFee);
-                $('.to17-crews').html(event.body.to17Crews);
-                $('.to17-riders').html(event.body.to17Riders);
-                $('.to17-rfi').html(event.body.to17RFI);
-
-                $('.to17-donations-daily').html(event.body.to17DonDaily);
-
-                // Vancouver Data
-                $('.va18-rfi-daily').html(event.body.va18RFIDaily);
-                $('.va18-riders-daily').html(event.body.va18RidersDaily);
-                $('.va18-riders-daily').html(event.body.va18RidersDaily);
-                $('.va18-donations-daily').html(event.body.va18DonDaily);
-                $('.va18-regs-daily').html(event.body.va18RegFeeDaily);
-                $('.va18-crews-daily').html(event.body.va18CrewDaily);
-
-                $('.va18-donations').html(event.body.va18Donations);
-                $('.va18-regs').html(event.body.va18RegFee);
-                $('.va18-crews').html(event.body.va18Crews);
-                $('.va18-riders').html(event.body.va18Riders);
-                $('.va18-rfi').html(event.body.va18RFI);
-
-                $('.va17-donations').html(event.body.va17Donations);
-                $('.va17-regs').html(event.body.va17RegFee);
-                $('.va17-crews').html(event.body.va17Crews);
-                $('.va17-riders').html(event.body.va17Riders);
-                $('.va17-rfi').html(event.body.va17RFI);
-
-                $('.va17-donations-daily').html(event.body.va17DonDaily);
-
-                // Perth Data 
-                $('.pr18-rfi-daily').html(event.body.pr18RFIDaily);
-                $('.pr18-riders-daily').html(event.body.pr18RidersDaily);
-                $('.pr18-riders-daily').html(event.body.pr18RidersDaily);
-                $('.pr18-donations-daily').html(event.body.pr18DonDaily);
-                $('.pr18-regs-daily').html(event.body.pr18RegFeeDaily);
-                $('.pr18-crews-daily').html(event.body.pr18CrewDaily);
-
-                $('.pr18-donations').html(event.body.pr18Donations);
-                $('.pr18-regs').html(event.body.pr18RegFee);
-                $('.pr18-crews').html(event.body.pr18Crews);
-                $('.pr18-riders').html(event.body.pr18Riders);
-                $('.pr18-rfi').html(event.body.pr18RFI);
-
-                $('.pr17-donations').html(event.body.pr17Donations);
-                $('.pr17-regs').html(event.body.pr17RegFee);
-                $('.pr17-crews').html(event.body.pr17Crews);
-                $('.pr17-riders').html(event.body.pr17Riders);
-                $('.pr17-rfi').html(event.body.pr17RFI);
-
-                $('.pr17-donations-daily').html(event.body.pr17DonDaily);
-
-                // Melbourne Data
-                $('.ml18-donations').html($('.hbs-ml18-don').css('display','block').text());
-                $('.ml18-regs').html($('.hbs-ml18-reg').css('display','block').text());
-                $('.ml18-riders').html($('.hbs-ml18-riders').css('display','block').text());
-                $('.ml17-donations').html($('.hbs-ml17-don').css('display','block').text());
-                $('.ml17-regs').html($('.hbs-ml17-reg').css('display','block').text());
-                $('.ml17-riders').html($('.hbs-ml17-riders').css('display','block').text());
-                $('.ml17-walkers').html($('.hbs-ml17-rfi').css('display','block').text());
-
-                $('.ml18-riders-daily').html(event.body.ml18RidersDaily);
-                $('.ml18-donations-daily').html(event.body.ml18DonDaily);
-                $('.ml18-regs-daily').html(event.body.ml18RegDaily);
-
-                $('.ml18-donations').html(event.body.ml18Donations);
-                $('.ml18-regs').html(event.body.ml18RegFee);
-                $('.ml18-riders').html(event.body.ml18Riders);
-
-                $('.ml17-donations').html(event.body.ml17Donations);
-                $('.ml17-regs').html(event.body.ml17RegFee);
-                $('.ml17-riders').html(event.body.ml17Riders);
-
-                $('.ml17-donations-daily').html(event.body.ml17DonDaily);
-
-                // OneWalk Toronto
-                $('.owto18-rfi-daily').html(event.body.owto18RFIDaily);
-                $('.owto18-donations-daily').html(event.body.owto18DonDaily);
-                $('.owto18-regs-daily').html(event.body.owto18RegDaily);
-                $('.owto18-crews-daily').html(event.body.owTo18CrewDaily);
-
-                $('.owto18-donations').html(event.body.owTo18Donations);
-                $('.owto18-regs').html(event.body.owTo18RegFee);
-                $('.owto18-crews').html(event.body.owTo18Crews);
-                $('.owto18-walkers').html(event.body.owTo18Walkers);
-                $('.owto18-riders').html(event.body.owTo18Riders);
-                $('.owto18-rfi').html(event.body.owTo18RFI);
-                $('.owto18-night').html(event.body.owTo18NightWalkers);
-                $('.owto18-15km').html(event.body.owTo1815kmWalkers);
-                $('.owto18-25km').html(event.body.owTo1825kmWalkers);
-                $('.owto18-40km').html(event.body.owTo1840kmWalkers);
-                $('.owto18-2day').html(event.body.owTo182day);
-
-                $('.owto17-donations').html(event.body.owTo17Donations);
-                $('.owto17-regs').html(event.body.owTo17RegFee);
-                $('.owto17-crews').html(event.body.owTo17Crews);
-                $('.owto17-walkers').html(event.body.owTo17Walkers);
-                $('.owto17-rfi').html(event.body.owTo17RFI);
-                $('.owto17-15km').html(event.body.owTo1715kmWalkers);
-                $('.owto17-25km').html(event.body.owTo1725kmWalkers);
-                $('.owto17-40km').html(event.body.owTo1740kmWalkers);
-
-                $('.owto17-donations-daily').html(event.body.owto17DonDaily);
-            }
-           });
-      }
+//                 // console.log('😺 Done!', event.body.getGroupInfoResponse);
+//                 // console.log(event.body);
+//                 // $(element).append(event.body.getGroupInfoResponse.groupInfo.numMembers);
+//             }
+//            });
+//     }
 }

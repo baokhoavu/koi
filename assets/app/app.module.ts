@@ -34,8 +34,9 @@ import { LogoutComponent } from "./auth/logout.component";
 import { SignupComponent } from "./auth/signup.component";
 import { SigninComponent } from "./auth/signin.component";
 
-// Authentication Service
+// Services
 import { AuthService } from "./auth/auth.service";
+import { DataService } from "./data.service";
 
 @NgModule({
     declarations: [
@@ -66,7 +67,7 @@ import { AuthService } from "./auth/auth.service";
         HttpModule,
         HttpClientModule
     ],
-    providers: [AuthService],
+    providers: [AuthService, DataService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

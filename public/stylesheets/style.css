@@ -30,7 +30,7 @@ input.ng-invalid.ng-touched {
     display: none;
 }
 
-.pre-loader {
+/*.pre-loader {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -55,13 +55,132 @@ input.ng-invalid.ng-touched {
     animation-duration: 1750ms;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-}
+}*/
 
 /*
 .pre-loader svg {
     fill: #fff;
 }
 */
+.svg-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.svg-center {
+   position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -170px 0 0 -120px;
+}
+svg {
+  max-width: 200px;
+  position: absolute;
+  left: 50%;
+  display: block;
+}
+.koi-fish {
+  -webkit-animation: rotation 2s infinite linear;
+  animation: rotation 2s infinite linear;
+  position: absolute;
+  left: 10px;
+}
+.koi-txt {
+  max-width: 170px;
+  position: absolute;
+  top: 20px;
+  left: 25px;
+}
+.koi-logo-txt {
+  fill: #0075c9;
+  /* -webkit-animation: rotationText 2s infinite linear !important; */
+  width: 100%;
+}
+
+.koi-logo-txt-kay {
+    fill: #0075c9;
+    -webkit-animation: dimText 1s infinite;
+  animation: dimText 1s infinite;
+  animation-delay: 0s;
+   -webkit-animation-delay: 0s;
+}
+.koi-logo-txt-oh {
+    fill: #0075c9;
+   animation-delay: 0.2s;
+   -webkit-animation-delay: 0.2s;
+}
+.koi-logo-txt-eye {
+    fill: #0075c9;
+   animation-delay: 0.4s;
+   -webkit-animation-delay: 0.4s;
+}
+.rotate-fish {
+/*   transform: translate(-30px); */
+}
+
+@-webkit-keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+    }
+}
+
+@keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+    }
+}
+
+@-webkit-keyframes rotationText {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(0deg);
+    }
+}
+
+@keyframes rotationText {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(0deg);
+    }
+}
+
+@-webkit-keyframes dimText {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+        fill: #000;
+    }
+    100% {
+        opacity: 1;
+        fill: #0075c9;
+    }
+}
+@keyframes dimText {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+        fill: #000;
+    }
+    100% {
+        opacity: 1;
+        fill: #0075c9;
+    }
+}
+
 .hide-all-data {
     display: none;
 }

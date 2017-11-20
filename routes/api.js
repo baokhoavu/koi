@@ -52,6 +52,7 @@ router.get('/data', function(req, res) {
 
 	                                            		}
 	                                            		if (latestdata) {
+	                                            			console.log(latestdata);
 	                                            			// =========================== Ride Toronto 2018 =========================== //
 				                                            var removeDollarTo18v1 = latestdata.to18Donations;
 				                                            var removeDollarTo18v2 = yesterday[0].to18Donations;
@@ -218,7 +219,7 @@ router.get('/data', function(req, res) {
 				                                            var owto18RegSub = numberRegOwTo18v1 - numberRegOwTo18v2;
 				                                            var owto18TotalWalkers = parseFloat(owTo18NightWalkers) + parseFloat(owTo1815kmWalkers) + parseFloat(owTo1825kmWalkers) + parseFloat(owTo1840kmWalkers) + parseFloat(owTo182day);
 				                                            var owto18CrewsDailySub = locals2.getEventTotal.toronto.to18.crews - yesterday[0].owTo18Crews;
-				                                            // var owto18WalkersDailySub = owto18TotalWalkers - data.owTo18Walkers;
+				                                            var owto18WalkersDailySub = owto18TotalWalkers - yesterday[0].owTo18Walkers;
 				                                            
 				                                            var ml18DonationSub = numberMl18v1 - numberMl18v2;
 				                                            var ml17DonationSub = numberMl17v1 - numberMl17v2;
@@ -359,13 +360,15 @@ router.get('/data', function(req, res) {
 			                                                latestdata.owto17DonDaily = newOwTo17DonDaily;
 			                                                latestdata.owto18RegDaily = newOwToRegDaily;
 			                                                latestdata.owto18RFIDaily = owto18RfiSub;
-			                                                latestdata.owTo18CrewsDaily = owto18CrewsDailySub;
+			                                                latestdata.owto18WalkersDaily = owto18WalkersDailySub;
+			                                                latestdata.owto18CrewsDaily = owto18CrewsDailySub;
 			                                                latestdata.ml18DonDaily = newMlDonDaily;
 			                                                latestdata.ml17DonDaily = newMl17DonDaily;
 			                                                latestdata.ml18RegDaily = newMlRegDaily;
 			                                                latestdata.ml18RidersDaily = ml18RiderSub;
 
 				                                            latestdata.save();
+				                                            console.log(latestdata.owto18CrewsDaily);
 	                                            		}
 	                                            		else {
 

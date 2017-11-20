@@ -115,6 +115,7 @@ var dataSchema = new Schema({
     owto18RegDaily: String,
     owto18RFIDaily: String,
     owto18WalkersDaily: String,
+    owto18CrewsDaily: String,
     ml18DonDaily: String,
     ml17DonDaily: String,
     ml18RegDaily: String,
