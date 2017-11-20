@@ -5,6 +5,44 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
+// Material Design and Animation Modules
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatStepperModule
+} from '@angular/material';
+
+import { MatSnackBar } from '@angular/material';
+
 // Global Components
 import { AppComponent } from "./app.component";
 import { MessageComponent } from "./messages/message.component";
@@ -65,7 +103,9 @@ import { DataService } from "./data.service";
         routing,
         ReactiveFormsModule,
         HttpModule,
-        HttpClientModule
+        HttpClientModule,
+        MatSnackBarModule,
+        BrowserAnimationsModule
     ],
     providers: [AuthService, DataService],
     bootstrap: [AppComponent]

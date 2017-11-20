@@ -30,6 +30,17 @@ input.ng-invalid.ng-touched {
     display: none;
 }
 
+/*.cdk-visually-hidden {
+    position: fixed;
+    bottom: 0px;
+    right: 0;
+    left: 0;
+    padding: 20px 0;
+    background: #0075c9;
+    color: #fff;
+    text-align: center;
+}*/
+
 /*.pre-loader {
     position: absolute;
     top: 50%;

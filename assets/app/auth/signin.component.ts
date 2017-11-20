@@ -1,6 +1,10 @@
-import { Component } from "@angular/core";
+import { Component, Inject } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatSnackBar } from '@angular/material';
 
 import { User } from "./user.model";
 import { AuthService } from "./auth.service";
@@ -12,7 +16,8 @@ import { AuthService } from "./auth.service";
 export class SigninComponent {
     myForm: FormGroup;
 
-    constructor(private authService: AuthService, private router: Router) {}
+    constructor(private authService: AuthService, private router: Router, public snackBar: MatSnackBar) {
+    }
 
     onSubmit() {
         const user = new User(this.myForm.value.email, this.myForm.value.password);
@@ -21,7 +26,10 @@ export class SigninComponent {
                 data => {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('userId', data.userId);
-                    alert('Logged In!');
+                    this.snackBar.open("Logged in!", "Close", {
+                      duration: 2000,
+                    });
+                    // this.snackBar.dismiss();
                     this.router.navigateByUrl('/');
                     console.log(data.userId);
                 },
