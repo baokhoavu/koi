@@ -64,17 +64,16 @@ input.ng-invalid.ng-touched {
 */
 .svg-container {
   position: relative;
-  width: 100%;
-  height: 100%;
 }
 .svg-center {
-  position: absolute;
-  top: 50%;
+  position: fixed;
+  top: 25%;
   left: 50%;
+  transform: translate(-50%);
 
-  margin: 200px 0 0 -120px;
-  height: 100%;
+  height: auto;
   width: 100%;
+  max-width: 200px;
 }
 svg {
   max-width: 200px;
@@ -101,21 +100,21 @@ svg {
 }
 
 .koi-logo-txt-kay {
-    fill: #0075c9;
-    -webkit-animation: dimText 1s infinite;
+  fill: #0075c9;
+  -webkit-animation: dimText 1s infinite;
   animation: dimText 1s infinite;
   animation-delay: 0s;
-   -webkit-animation-delay: 0s;
+  -webkit-animation-delay: 0s;
 }
 .koi-logo-txt-oh {
-    fill: #0075c9;
-   animation-delay: 0.2s;
-   -webkit-animation-delay: 0.2s;
+  fill: #0075c9;
+  animation-delay: 0.2s;
+  -webkit-animation-delay: 0.2s;
 }
 .koi-logo-txt-eye {
-    fill: #0075c9;
-   animation-delay: 0.4s;
-   -webkit-animation-delay: 0.4s;
+  fill: #0075c9;
+  animation-delay: 0.4s;
+  -webkit-animation-delay: 0.4s;
 }
 .rotate-fish {
 /*   transform: translate(-30px); */
@@ -207,4 +206,11 @@ svg {
     to {
         transform:rotate(360deg);
     }
+}
+
+
+@media screen and (max-width: 400px) {
+  .svg-center {
+    left: 45%;
+  }
 }
