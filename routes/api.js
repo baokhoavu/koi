@@ -20,9 +20,7 @@ router.get('/data', function(req, res) {
 				console.log('Error getting data..');
 			} 
 			if (yesterday) {
-				console.log('in updating data...');
-				console.log('below should be yesterday\'s data: ')
-				console.log(yesterday[0].to18Donations);
+				console.log('Pulling yesterday\'s data then updating data...');
 
 				const apiURL = 'http://www.conquercancer.ca/site/PageServer?pagename=2018_api_testing&pgwrap=n';
 			    fixieRequest(apiURL, function(err, response, body) {
@@ -54,7 +52,6 @@ router.get('/data', function(req, res) {
 	                                            		}
 	                                            		if (latestdata) {
 	                                            			console.log("Getting latest data...");
-	                                            			console.log(latestdata.to18Donations);
 	                                            			// =========================== Ride Toronto 2018 =========================== //
 				                                            var removeDollarTo18v1 = latestdata.to18Donations;
 				                                            var removeDollarTo18v2 = yesterday[0].to18Donations;
@@ -380,7 +377,6 @@ router.get('/data', function(req, res) {
 			                                                latestdata.ml18RidersDaily = ml18RiderSub;
 
 				                                            latestdata.save();
-				                                            console.log(latestdata.owto18CrewsDaily);
 	                                            		}
 	                                            		else {
 
