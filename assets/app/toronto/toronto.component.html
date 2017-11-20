@@ -1,4 +1,4 @@
-<div class="table-responsive gradient-tbl">
+<div *ngIf="data" class="table-responsive gradient-tbl">
    <h1>Ride Toronto</h1>
   <div class="tbl-header">
     <table class="gradient-tbl" cellpadding="0" cellspacing="0" border="0">
@@ -29,27 +29,27 @@
       <tbody>
         <tr>
           <td>2018 (Today)</td>
-          <td>{{dataService.apiData.to18RFIDaily}}</td>
-          <td>{{dataService.apiData.to18CrewDaily}}</td>
-          <td>{{dataService.apiData.to18RidersDaily}}</td>
-          <td>{{dataService.apiData.to18DonDaily}}</td>
-          <td>{{dataService.apiData.to18RegFeeDaily}}</td>
+          <td>{{data.to18RFIDaily}}</td>
+          <td>{{data.to18CrewDaily}}</td>
+          <td>{{data.to18RidersDaily}}</td>
+          <td>{{data.to18DonDaily}}</td>
+          <td>{{data.to18RegFeeDaily}}</td>
         </tr>
         <tr>
           <td>2018 (YTD)</td>
-          <td>{{dataService.apiData.to18RFI}}</td>
-          <td>{{dataService.apiData.to18Crews}}</td>
-          <td>{{dataService.apiData.to18Riders}}</td>
-          <td>{{dataService.apiData.to18Donations}}</td>
-          <td>{{dataService.apiData.to18RegFee}}</td>
+          <td>{{data.to18RFI}}</td>
+          <td>{{data.to18Crews}}</td>
+          <td>{{data.to18Riders}}</td>
+          <td>{{data.to18Donations}}</td>
+          <td>{{data.to18RegFee}}</td>
         </tr>
         <tr>
           <td>2017 (YTD)</td>
-          <td>{{dataService.apiData.to17RFI}}</td>
-          <td>{{dataService.apiData.to17Crews}}</td>
-          <td>{{dataService.apiData.to17Riders}}</td>
-          <td>{{dataService.apiData.to17Donations}}</td>
-          <td>{{dataService.apiData.to17RegFee}}</td>
+          <td>{{data.to17RFI}}</td>
+          <td>{{data.to17Crews}}</td>
+          <td>{{data.to17Riders}}</td>
+          <td>{{data.to17Donations}}</td>
+          <td>{{data.to17RegFee}}</td>
         </tr>
       </tbody>
     </table>

@@ -1,4 +1,4 @@
-<div class="table-responsive gradient-tbl ow-to-table">
+<div *ngIf="data" class="table-responsive gradient-tbl ow-to-table">
    <h1>OneWalk Toronto</h1>
   <div class="tbl-header">
     <table class="gradient-tbl" cellpadding="0" cellspacing="0" border="0">
@@ -31,7 +31,7 @@
       <tbody>
         <tr>
           <td>2018 (TODAY)</td>
-          <td class="owto18-walkers-daily"></td>
+          <td>{{data.owto18WalkersDaily}}</td>
           <td class="owto18-night-daily"></td>
           <td class="owto18-2day-daily"></td>
           <td class="owto18-15km-daily"></td>
@@ -40,28 +40,28 @@
         </tr>
         <tr>
           <td>2018 (YTD)</td>
-          <td class="owto18-walkers"></td>
-          <td class="owto18-night"></td>
-          <td class="owto18-2day"></td>
-          <td class="owto18-15km"></td>
-          <td class="owto18-25km"></td>
-          <td class="owto18-40km"></td>
+          <td class="owto18-walkers">{{data.owTo18Walkers}}</td>
+          <td class="owto18-night">{{data.owTo18NightWalkers}}</td>
+          <td class="owto18-2day">{{data.owTo182day}}</td>
+          <td class="owto18-15km">{{data.owTo1815kmWalkers}}</td>
+          <td class="owto18-25km">{{data.owTo1825kmWalkers}}</td>
+          <td class="owto18-40km">{{data.owTo1840kmWalkers}}</td>
         </tr>
         <tr>
           <td>2017 (YTD)</td>
-          <td class="owto17-walkers"></td>
+          <td class="owto18-walkers">{{data.owTo17Walkers}}</td>
           <td class="owto17-night">NONE</td>
           <td class="owto17-2day">NONE</td>
-          <td class="owto17-15km"></td>
-          <td class="owto17-25km"></td>
-          <td class="owto17-40km"></td>
+          <td class="owto18-15km">{{data.owTo1715kmWalkers}}</td>
+          <td class="owto18-25km">{{data.owTo1725kmWalkers}}</td>
+          <td class="owto18-40km">{{data.owTo1740kmWalkers}}</td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<div class="table-responsive gradient-tbl ow-to-table">
+<div *ngIf="data" class="table-responsive gradient-tbl ow-to-table">
    <h1>OneWalk Toronto</h1>
   <div class="tbl-header">
     <table class="gradient-tbl" cellpadding="0" cellspacing="0" border="0">
@@ -90,24 +90,24 @@
       <tbody>
         <tr>
           <td>2018 (TODAY)</td>
-          <td class="owto18-rfi-daily"></td>
-          <td class="owto18-crews-daily"></td>
-          <td class="owto18-donations-daily"></td>
-          <td class="owto18-regs-daily"></td>
+          <td>{{data.owto18RFIDaily}}</td>
+          <td>{{data.owto18CrewsDaily}}</td>
+          <td>{{data.owto18DonDaily}}</td>
+          <td>{{data.owto18RegDaily}}</td>
         </tr>
         <tr>
           <td>2018 (YTD)</td>
-          <td class="owto18-rfi"></td>
-          <td class="owto18-crews"></td>
-          <td class="owto18-donations"></td>
-          <td class="owto18-regs"></td>
+          <td>{{data.owTo18RFI}}</td>
+          <td>{{data.owTo18Crews}}</td>
+          <td>{{data.owTo18Donations}}</td>
+          <td>{{data.owTo18RegFee}}</td>
         </tr>
         <tr>
           <td>2017 (YTD)</td>
-          <td class="owto17-rfi"></td>
-          <td class="owto17-crews"></td>
-          <td class="owto17-donations"></td>
-          <td class="owto17-regs"></td>
+          <td>{{data.owTo17RFI}}</td>
+          <td>{{data.owTo17Crews}}</td>
+          <td>{{data.owTo17Donations}}</td>
+          <td>{{data.owTo17RegFee}}</td>
         </tr>
       </tbody>
     </table>

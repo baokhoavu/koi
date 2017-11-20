@@ -1,4 +1,4 @@
-<div class="table-responsive gradient-tbl">
+<div *ngIf="data" class="table-responsive gradient-tbl">
    <h1>Ride Montreal</h1>
   <div class="tbl-header">
     <table class="gradient-tbl" cellpadding="0" cellspacing="0" border="0">
@@ -29,27 +29,27 @@
       <tbody>
         <tr>
           <td>2018 (Today)</td>
-          <td class="mo18-rfi-daily"></td>
-          <td class="mo18-crews-daily"></td>
-          <td class="mo18-riders-daily"></td>
-          <td class="mo18-donations-daily"></td>
-          <td class="mo18-regs-daily"></td>
+          <td>{{data.mo18RFIDaily}}</td>
+          <td>{{data.mo18CrewDaily}}</td>
+          <td>{{data.mo18RidersDaily}}</td>
+          <td>{{data.mo18DonDaily}}</td>
+          <td>{{data.mo18RegFeeDaily}}</td>
         </tr>
         <tr>
           <td>2018 (YTD)</td>
-          <td class="mo18-rfi"></td>
-          <td class="mo18-crews"></td>
-          <td class="mo18-riders"></td>
-          <td class="mo18-donations"></td>
-          <td class="mo18-regs"></td>
+          <td>{{data.mo18RFI}}</td>
+          <td>{{data.mo18Crews}}</td>
+          <td>{{data.mo18Riders}}</td>
+          <td>{{data.mo18Donations}}</td>
+          <td>{{data.mo18RegFee}}</td>
         </tr>
         <tr>
           <td>2017 (YTD)</td>
-          <td class="mo17-rfi"></td>
-          <td class="mo17-crews"></td>
-          <td class="mo17-riders"></td>
-          <td class="mo17-donations"></td>
-          <td class="mo17-regs"></td>
+          <td>{{data.mo17RFI}}</td>
+          <td>{{data.mo17Crews}}</td>
+          <td>{{data.mo17Riders}}</td>
+          <td>{{data.mo17Donations}}</td>
+          <td>{{data.mo17RegFee}}</td>
         </tr>
       </tbody>
     </table>

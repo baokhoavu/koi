@@ -1,4 +1,4 @@
-<div class="table-responsive gradient-tbl">
+<div *ngIf="data" class="table-responsive gradient-tbl">
    <h1>Ride Perth</h1>
   <div class="tbl-header">
     <table class="gradient-tbl" cellpadding="0" cellspacing="0" border="0">
@@ -29,27 +29,27 @@
       <tbody>
         <tr>
           <td>2018 (Today)</td>
-          <td class="pr18-rfi-daily"></td>
-          <td class="pr18-crews-daily"></td>
-          <td class="pr18-riders-daily"></td>
-          <td class="pr18-donations-daily"></td>
-          <td class="pr18-regs-daily"></td>
+          <td>{{data.pr18RFIDaily}}</td>
+          <td>{{data.pr18CrewDaily}}</td>
+          <td>{{data.pr18RidersDaily}}</td>
+          <td>{{data.pr18DonDaily}}</td>
+          <td>{{data.pr18RegFeeDaily}}</td>
         </tr>
         <tr>
           <td>2018 (YTD)</td>
-          <td class="pr18-rfi-daily"></td>
-          <td class="pr18-crews-daily"></td>
-          <td class="pr18-riders-daily"></td>
-          <td class="pr18-donations-daily"></td>
-          <td class="pr18-regs-daily"></td>
+          <td>{{data.pr18RFI}}</td>
+          <td>{{data.pr18Crews}}</td>
+          <td>{{data.pr18Riders}}</td>
+          <td>{{data.pr18Donations}}</td>
+          <td>{{data.pr18RegFee}}</td>
         </tr>
         <tr>
           <td>2017 (YTD)</td>
-          <td class="pr17-rfi"></td>
-          <td class="pr17-crews"></td>
-          <td class="pr17-riders"></td>
-          <td class="pr17-donations"></td>
-          <td class="pr17-regs"></td>
+          <td>{{data.pr17RFI}}</td>
+          <td>{{data.pr17Crews}}</td>
+          <td>{{data.pr17Riders}}</td>
+          <td>{{data.pr17Donations}}</td>
+          <td>{{data.pr17RegFee}}</td>
         </tr>
       </tbody>
     </table>

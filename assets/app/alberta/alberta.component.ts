@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import * as $ from 'jquery';
+import { DataService } from './../data.service';
 
 @Component({
     selector: 'app-alberta',
@@ -7,8 +7,10 @@ import * as $ from 'jquery';
     styleUrls: ['./alberta.component.css']
 })
 export class AlbertaComponent {
+	data: any;
 
-    constructor() {
+    constructor(private dataService: DataService) {
+    	dataService.apiData$.subscribe(data => this.data = data)
     }
 
 }

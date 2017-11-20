@@ -19,8 +19,7 @@ import * as $ from 'jquery';
 @Component({
     selector: 'all-tables',
     templateUrl: './alltables.component.html',
-    styleUrls: ['./alltables.component.css'],
-    providers: [DataService]
+    styleUrls: ['./alltables.component.css']
 })
 export class AllTablesComponent {
     myForm: FormGroup;
@@ -28,6 +27,13 @@ export class AllTablesComponent {
     private apiUrl = '/api/data';
 
     constructor(private router: Router, private http: HttpClient, private authService: AuthService, private dataService: DataService) {
+
+
+        this.dataService.fetchData() 
+            .subscribe(data => {
+                this.data = data;
+                this.dataService.setData(data)
+            });
 
         // this.getData('/api/data');
 

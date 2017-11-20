@@ -1,4 +1,4 @@
-<div class="table-responsive gradient-tbl">
+<div *ngIf="data" class="table-responsive gradient-tbl">
    <h1>OneDay Melbourne</h1>
   <div class="tbl-header">
     <table class="gradient-tbl" cellpadding="0" cellspacing="0" border="0">
@@ -31,25 +31,25 @@
           <td>2018 (Today)</td>
           <td class="ml18-rfi-daily">Not Applicable</td>
           <td class="ml18-crews-daily">Not Applicable</td>
-          <td class="ml18-riders-daily"></td>
-          <td class="ml18-donations-daily"></td>
-          <td class="ml18-regs-daily"></td>
+          <td>{{data.ml18RidersDaily}}</td>
+          <td>{{data.ml18DonDaily}}</td>
+          <td>{{data.ml18RegFeeDaily}}</td>
         </tr>
         <tr>
           <td>2018 (YTD)</td>
           <td class="ml18-rfi">Not Applicable</td>
           <td class="ml18-crews">Not Applicable</td>
-          <td class="ml18-riders"></td>
-          <td class="ml18-donations"></td>
-          <td class="ml18-regs"></td>
+          <td>{{data.ml18Riders}}</td>
+          <td>{{data.ml18Donations}}</td>
+          <td>{{data.ml18RegFee}}</td>
         </tr>
         <tr>
           <td>2017 (YTD)</td>
           <td class="ml17-rfi">Not Applicable</td>
           <td class="ml17-crews">Not Applicable</td>
-          <td class="ml17-riders"></td>
-          <td class="ml17-donations"></td>
-          <td class="ml17-regs"></td>
+          <td>{{data.ml17Riders}}</td>
+          <td>{{data.ml17Donations}}</td>
+          <td>{{data.ml17RegFee}}</td>
         </tr>
       </tbody>
     </table>

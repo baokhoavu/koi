@@ -322,10 +322,11 @@ fixieRequest(apiURL, function(err, response, body) {
                                         var owto17DonationSub = numberOwTo17v1 - numberOwTo17v2;
                                         var owto18RfiSub = locals2.getEventTotal.toronto.to18.rfi - data.owTo18RFI;
                                         var owto18RegSub = numberRegOwTo18v1 - numberRegOwTo18v2;
+                                        var owTo182dayDaily = locals2.getEventTotal.toronto.to18.Wlkr15km - data.owTo182day;
                                         var owTo1815kmWalkersDaily = locals2.getEventTotal.toronto.to18.Wlkr15km - data.owTo1815kmWalkers;
                                         var owTo1825kmWalkersDaily = locals2.getEventTotal.toronto.to18.Wlkr25km - data.owTo1825kmWalkers;
                                         var owTo1840kmWalkersDaily = locals2.getEventTotal.toronto.to18.Wlkr40km - data.owTo1840kmWalkers;
-                                        var owTo18NightWalkersDaily = locals2.getEventTotal.toronto.to18.nightWlk - data.owTo1815kmWalkers;
+                                        var owTo18NightWalkersDaily = locals2.getEventTotal.toronto.to18.nightWlk - data.owTo18NightWalkers;
                                         var owto18TotalWalkers = parseFloat(owTo18NightWalkers) + parseFloat(owTo1815kmWalkers) + parseFloat(owTo1825kmWalkers) + parseFloat(owTo1840kmWalkers) + parseFloat(owTo182day);
                                         var owto18CrewsDailySub = locals2.getEventTotal.toronto.to18.crews - data.owTo18Crews;
                                         var owto18WalkersDailySub = owto18TotalWalkers - data.owTo18Walkers;
@@ -472,6 +473,11 @@ fixieRequest(apiURL, function(err, response, body) {
                                                 owto18RegDaily: newOwToRegDaily,
                                                 owto18RFIDaily: owto18RfiSub,
                                                 owto18WalkersDaily: owto18WalkersDailySub,
+                                                owto182dayDaily: owTo182dayDaily,
+                                                owto18NightWalkersDaily: owTo18NightWalkersDaily,
+                                                owto1815kmWalkersDaily: owTo1815kmWalkersDaily,
+                                                owto1825kmWalkersDaily: owTo1825kmWalkersDaily,
+                                                owto1840kmWalkersDaily: owTo1840kmWalkersDaily,
                                                 owto18CrewsDaily: owto18CrewsDailySub,
                                                 ml18DonDaily: newMlDonDaily,
                                                 ml17DonDaily: newMl17DonDaily,
