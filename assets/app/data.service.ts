@@ -1,3 +1,4 @@
+import { Component, OnInit } from "@angular/core";
 import {Injectable} from "@angular/core";
 import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs/Rx";
@@ -10,10 +11,9 @@ import {
 } from '@angular/common/http';
 
 @Injectable()
-export class DataService {
+export class DataService implements OnInit {
 	apiData: any = {};
 	constructor(private http: HttpClient) {
-
 		interface UserResponse {
             to18Donations: string;
             to18RegFee: string;
@@ -136,11 +136,11 @@ export class DataService {
         this.http.get<UserResponse>('/api/data')
             .subscribe(data => {
                 this.apiData = data;
-                console.log(this.apiData);
+                // console.log(this.apiData);
             })
 	}
 
 	ngOnInit(): void {
-
+        
     }
 }
