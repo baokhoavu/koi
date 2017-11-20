@@ -85,30 +85,4 @@ export class AllTablesComponent {
     isLoggedIn() {
         return this.authService.isLoggedIn();
     }
-    
-//     getData(url) {
-//         const req = new HttpRequest('GET', url, {
-//             reportProgress: true
-//         });
-
-//         this.http.request(req).subscribe((event: HttpEvent<any>) => {
-//             switch (event.type) {
-//                 case HttpEventType.Sent:
-// //              console.log('Request sent!');
-//             break;
-//                 case HttpEventType.ResponseHeader:
-// //              console.log('Response header received!');
-//             break;
-//                 case HttpEventType.DownloadProgress:
-//             const kbLoaded = Math.round(event.loaded / 1024);
-// //              console.log(`Download in progress! ${ kbLoaded }Kb loaded`);
-//             break;
-//                 case HttpEventType.Response:
-
-//                 // console.log('😺 Done!', event.body.getGroupInfoResponse);
-//                 // console.log(event.body);
-//                 // $(element).append(event.body.getGroupInfoResponse.groupInfo.numMembers);
-//             }
-//            });
-//     }
 }

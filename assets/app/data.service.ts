@@ -12,7 +12,7 @@ import {
 } from '@angular/common/http';
 
 @Injectable()
-export class DataService implements OnInit {
+export class DataService {
 	private apiData = new BehaviorSubject<any>(null);
 	public apiData$ = this.apiData.asObservable();
 
@@ -32,7 +32,4 @@ export class DataService implements OnInit {
 		console.log('Setting data...')
 	}
 
-	ngOnInit(): void {
-        
-    }
 }
