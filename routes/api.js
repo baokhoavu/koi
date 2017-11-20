@@ -6,9 +6,13 @@ const moment = require('moment');
 const router = express.Router();
 const data = require('../models/apidata');
 
+mongoose.connect('mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw/node-angular');
+
+var db = mongoose.connection;
+
 router.get('/data', function(req, res) {
 	console.log('Requesting data...');
-
+	// Find data from yesterday with MomentJS (subtract 1 from Today's date)
 	data.find({"updated": moment().subtract(1, 'days').format('L')})
 		// .sort({"_id": -1})
 		.exec(function(err, yesterday) {
@@ -17,7 +21,8 @@ router.get('/data', function(req, res) {
 			} 
 			if (yesterday) {
 				console.log('in updating data...');
-				// console.log(data);
+				console.log('below should be yesterday\'s data: ')
+				console.log(yesterday[0].to18Donations);
 
 				const apiURL = 'http://www.conquercancer.ca/site/PageServer?pagename=2018_api_testing&pgwrap=n';
 			    fixieRequest(apiURL, function(err, response, body) {
@@ -41,14 +46,15 @@ router.get('/data', function(req, res) {
 
 	                                            // console.log(yesterday[0].to18Donations);
 
-	                                            data.findOneAndUpdate()
+	                                            data.findOne()
 	                                            	.sort({"_id": -1})
 	                                            	.exec(function(err, latestdata) {
 	                                            		if (err) {
 
 	                                            		}
 	                                            		if (latestdata) {
-	                                            			console.log(latestdata);
+	                                            			console.log("Getting latest data...");
+	                                            			console.log(latestdata.to18Donations);
 	                                            			// =========================== Ride Toronto 2018 =========================== //
 				                                            var removeDollarTo18v1 = latestdata.to18Donations;
 				                                            var removeDollarTo18v2 = yesterday[0].to18Donations;
@@ -216,6 +222,11 @@ router.get('/data', function(req, res) {
 				                                            var owto18TotalWalkers = parseFloat(owTo18NightWalkers) + parseFloat(owTo1815kmWalkers) + parseFloat(owTo1825kmWalkers) + parseFloat(owTo1840kmWalkers) + parseFloat(owTo182day);
 				                                            var owto18CrewsDailySub = locals2.getEventTotal.toronto.to18.crews - yesterday[0].owTo18Crews;
 				                                            var owto18WalkersDailySub = owto18TotalWalkers - yesterday[0].owTo18Walkers;
+				                                            var owTo182dayDailySub = locals2.getEventTotal.toronto.to18.Wlkr15km - yesterday[0].owTo182day;
+					                                        var owTo1815kmWalkersDailySub = locals2.getEventTotal.toronto.to18.Wlkr15km - yesterday[0].owTo1815kmWalkers;
+					                                        var owTo1825kmWalkersDailySub = locals2.getEventTotal.toronto.to18.Wlkr25km - yesterday[0].owTo1825kmWalkers;
+					                                        var owTo1840kmWalkersDailySub = locals2.getEventTotal.toronto.to18.Wlkr40km - yesterday[0].owTo1840kmWalkers;
+					                                        var owTo18NightWalkersDailySub = locals2.getEventTotal.toronto.to18.nightWlk - yesterday[0].owTo18NightWalkers;
 				                                            
 				                                            var ml18DonationSub = numberMl18v1 - numberMl18v2;
 				                                            var ml17DonationSub = numberMl17v1 - numberMl17v2;
@@ -357,6 +368,11 @@ router.get('/data', function(req, res) {
 			                                                latestdata.owto18RegDaily = newOwToRegDaily;
 			                                                latestdata.owto18RFIDaily = owto18RfiSub;
 			                                                latestdata.owto18WalkersDaily = owto18WalkersDailySub;
+			                                                latestdata.owto182dayDaily = owTo182dayDailySub,
+														    latestdata.owto18NightWalkersDaily = owTo18NightWalkersDailySub,
+														    latestdata.owto1815kmWalkersDaily = owTo1815kmWalkersDailySub,
+														    latestdata.owto1825kmWalkersDaily = owTo1825kmWalkersDailySub,
+														    latestdata.owto1840kmWalkersDaily = owTo1840kmWalkersDailySub,
 			                                                latestdata.owto18CrewsDaily = owto18CrewsDailySub;
 			                                                latestdata.ml18DonDaily = newMlDonDaily;
 			                                                latestdata.ml17DonDaily = newMl17DonDaily;

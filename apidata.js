@@ -161,6 +161,8 @@ fixieRequest(apiURL, function(err, response, body) {
 
                                 ApiData.findOne(
                                     (err, data) => {
+
+                                        console.log("In the scheduler getting nightly data...");
                                         
                                         // Set Variables for Real Time vs Static Event Data
                                             
