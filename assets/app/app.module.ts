@@ -38,7 +38,7 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatStepperModule
+  MatStepperModule,
 } from '@angular/material';
 
 import { MatSnackBar } from '@angular/material';
@@ -105,7 +105,8 @@ import { DataService } from "./data.service";
         HttpModule,
         HttpClientModule,
         MatSnackBarModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatToolbarModule
     ],
     providers: [AuthService, DataService],
     bootstrap: [AppComponent]

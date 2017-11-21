@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MatToolbarModule } from '@angular/material';
 import { MatSnackBar } from '@angular/material';
 
 import { User } from "./user.model";
@@ -11,7 +11,8 @@ import { AuthService } from "./auth.service";
 
 @Component({
     selector: 'app-signin',
-    templateUrl: './signin.component.html'
+    templateUrl: './signin.component.html',
+    styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent {
     myForm: FormGroup;
@@ -27,10 +28,11 @@ export class SigninComponent {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('userId', data.userId);
                     this.snackBar.open("Logged in!", "Close", {
-                      duration: 2000,
+                        duration: 2500,
+                        extraClasses: ['logged-in']
                     });
                     // this.snackBar.dismiss();
-                    this.router.navigateByUrl('/');
+                    this.router.navigateByUrl('/alltables');
                     console.log(data.userId);
                 },
                 error => console.error(error)

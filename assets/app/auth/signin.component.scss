@@ -1,0 +1,14 @@
+// @import '../node_modules/@angular/material/prebuilt-themes/indigo-pink.css';
+
+::ng-deep snack-bar-container.logged-in {
+	background: #0075c9;
+	color: #fff;
+}
+
+::ng-deep .logged-in .mat-simple-snackbar {
+	color: #fff;
+}
+
+::ng-deep .logged-in .mat-simple-snackbar-action {
+	color: #fff;
+}

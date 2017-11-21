@@ -30,17 +30,6 @@ input.ng-invalid.ng-touched {
     display: none;
 }
 
-/*.cdk-visually-hidden {
-    position: fixed;
-    bottom: 0px;
-    right: 0;
-    left: 0;
-    padding: 20px 0;
-    background: #0075c9;
-    color: #fff;
-    text-align: center;
-}*/
-
 /*.pre-loader {
     position: absolute;
     top: 50%;
@@ -112,24 +101,24 @@ svg {
 
 .koi-logo-txt-kay {
   fill: #0075c9;
-  /*-webkit-animation: dimText 1s infinite;
-  animation: dimText 1s infinite;
+/*  -webkit-animation: dimText 1s infinite;
+  animation: dimText 1s infinite;*/
   animation-delay: 0s;
-  -webkit-animation-delay: 0s;*/
+  -webkit-animation-delay: 0s;
 }
 .koi-logo-txt-oh {
   fill: #0075c9;
-  /*animation: dimText 1s infinite;
-  -webkit-animation: dimText 1s infinite;
+/*  animation: dimText 1s infinite;
+  -webkit-animation: dimText 1s infinite;*/
   animation-delay: 0.2s;
-  -webkit-animation-delay: 0.2s;*/
+  -webkit-animation-delay: 0.2s;
 }
 .koi-logo-txt-eye {
   fill: #0075c9;
- /* animation: dimText 1s infinite;
-  -webkit-animation: dimText 1s infinite;
+/*  animation: dimText 1s infinite;
+  -webkit-animation: dimText 1s infinite;*/
   animation-delay: 0.4s;
-  -webkit-animation-delay: 0.4s;*/
+  -webkit-animation-delay: 0.4s;
 }
 .rotate-fish {
 /*   transform: translate(-30px); */
