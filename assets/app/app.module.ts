@@ -38,8 +38,9 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatStepperModule,
+  MatStepperModule
 } from '@angular/material';
+import {CdkTableModule} from '@angular/cdk/table';
 
 import { MatSnackBar } from '@angular/material';
 
@@ -76,6 +77,46 @@ import { SigninComponent } from "./auth/signin.component";
 import { AuthService } from "./auth/auth.service";
 import { DataService } from "./data.service";
 
+
+@NgModule({
+  exports: [
+    CdkTableModule,
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+  ]
+})
+export class AngularMaterialModule {}
+
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -106,7 +147,7 @@ import { DataService } from "./data.service";
         HttpClientModule,
         MatSnackBarModule,
         BrowserAnimationsModule,
-        MatToolbarModule
+        AngularMaterialModule
     ],
     providers: [AuthService, DataService],
     bootstrap: [AppComponent]

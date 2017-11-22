@@ -5,6 +5,8 @@ import { Router } from "@angular/router";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material';
 import { MatSnackBar } from '@angular/material';
+import { MatButtonModule } from '@angular/material';
+import { MatButtonToggleModule } from '@angular/material';
 
 import { User } from "./user.model";
 import { AuthService } from "./auth.service";
@@ -27,8 +29,8 @@ export class SigninComponent {
                 data => {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('userId', data.userId);
-                    this.snackBar.open("Logged in!", "Close", {
-                        duration: 2500,
+                    this.snackBar.open("Welcome to the KOI Web App! You are logged in.", "Close", {
+                        duration: 3500,
                         extraClasses: ['logged-in']
                     });
                     // this.snackBar.dismiss();

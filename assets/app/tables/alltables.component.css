@@ -8,10 +8,12 @@
     color: #fff;
     text-transform: uppercase;
     border: none;
+    transition: all 0.2s ease-in-out;
 }
 
 .view-hide {
     background: #808080;
+    transition: all 0.2s ease-in-out;
 }
 
 .all-buttons-row {

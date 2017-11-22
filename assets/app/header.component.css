@@ -13,6 +13,11 @@
 .nav-pills {
 	border-radius: 0px;
 }
+
+.float-right {
+	float: right;
+}
+
 .logout-btn {
 	background: #e10000;
 	transition: all 0.2s ease-in-out;

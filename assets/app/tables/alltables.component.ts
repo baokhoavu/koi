@@ -37,14 +37,14 @@ export class AllTablesComponent {
 
         // this.getData('/api/data');
 
-        $(window).on('load', function(){
+        $(document).ready(function(){
             $('.btn-view').on('click', function() {
                 $('.all-buttons-row').slideToggle();
                 $(this).toggleClass('view-hide');
                 if ($(this).hasClass('view-hide')) {
                     $(this).text('Hide Table Menu');
                 } else {
-                    $(this).text('Show Table Menu');
+                    $(this).text('View Table Menu');
                 }
             });
 
