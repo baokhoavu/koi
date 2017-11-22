@@ -14,6 +14,8 @@ import {
     HttpEventType
 } from '@angular/common/http';
 
+import { MatSidenavModule } from '@angular/material';
+
 import * as $ from 'jquery';
 
 @Component({
