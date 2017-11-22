@@ -45,7 +45,8 @@ router.get('/data', function(req, res) {
 	                                            // console.log(yesterday[0].to18Donations);
 
 	                                            // Find today's data, subtract from yesterday's total to display daily amount 
-	                                            data.find({"updated": moment().format('L')})
+	                                            data.findOne()
+	                                            	.sort({"_id": -1})
 	                                            	.exec(function(err, latestdata) {
 	                                            		if (err) {
 	                                            			console.log('There was an error getting Today\'s data: ');
@@ -54,56 +55,56 @@ router.get('/data', function(req, res) {
 	                                            		if (latestdata) {
 	                                            			console.log("Getting latest data...");
 	                                            			// =========================== Ride Toronto 2018 =========================== //
-				                                            var removeDollarTo18v1 = latestdata[0].to18Donations;
+				                                            var removeDollarTo18v1 = latestdata.to18Donations;
 				                                            var removeDollarTo18v2 = yesterday[0].to18Donations;
-				                                            var removeRegTo18v1 = latestdata[0].to18RegFee;
+				                                            var removeRegTo18v1 = latestdata.to18RegFee;
 				                                            var removeRegTo18v2 = yesterday[0].to18RegFee;
 				                                            // =========================== Ride Toronto 2017 =========================== //
-				                                            var removeDollarTo17v1 = latestdata[0].to17Donations;
+				                                            var removeDollarTo17v1 = latestdata.to17Donations;
 				                                            var removeDollarTo17v2 = yesterday[0].to17Donations;
 
 				                                            // =========================== Ride Montreal 2018 =========================== //
-				                                            var removeDollarMo18v1 = latestdata[0].mo18Donations;
+				                                            var removeDollarMo18v1 = latestdata.mo18Donations;
 				                                            var removeDollarMo18v2 = yesterday[0].mo18Donations;
-				                                            var removeRegMo18v1 = latestdata[0].mo18RegFee;
+				                                            var removeRegMo18v1 = latestdata.mo18RegFee;
 				                                            var removeRegMo18v2 = yesterday[0].mo18RegFee;
 				                                            // =========================== Ride Montreal 2018 =========================== //
-				                                            var removeDollarMo17v1 = latestdata[0].mo17Donations;
+				                                            var removeDollarMo17v1 = latestdata.mo17Donations;
 				                                            var removeDollarMo17v2 = yesterday[0].mo17Donations;
 
 				                                            // =========================== Ride Alberta 2018 =========================== //
-				                                            var removeDollarAb18v1 = latestdata[0].ab18Donations;
+				                                            var removeDollarAb18v1 = latestdata.ab18Donations;
 				                                            var removeDollarAb18v2 = yesterday[0].ab18Donations;
-				                                            var removeRegAb18v1 = latestdata[0].ab18RegFee;
+				                                            var removeRegAb18v1 = latestdata.ab18RegFee;
 				                                            var removeRegAb18v2 = yesterday[0].ab18RegFee;
 				                                            // =========================== Ride Alberta 2017 =========================== //
-				                                            var removeDollarAb17v1 = latestdata[0].ab17Donations;
+				                                            var removeDollarAb17v1 = latestdata.ab17Donations;
 				                                            var removeDollarAb17v2 = yesterday[0].ab17Donations;
 					                                            
 				                                            // =========================== Ride Vancouver 2018 =========================== //
-				                                            var removeDollarVa18v1 = latestdata[0].va18Donations;
+				                                            var removeDollarVa18v1 = latestdata.va18Donations;
 				                                            var removeDollarVa18v2 = yesterday[0].va18Donations;
-				                                            var removeRegVa18v1 = latestdata[0].va18RegFee;
+				                                            var removeRegVa18v1 = latestdata.va18RegFee;
 				                                            var removeRegVa18v2 = yesterday[0].va18RegFee;
 				                                            // =========================== Ride Vancouver 2017 =========================== //
-				                                            var removeDollarVa17v1 = latestdata[0].va17Donations;
+				                                            var removeDollarVa17v1 = latestdata.va17Donations;
 				                                            var removeDollarVa17v2 = yesterday[0].va17Donations;
 				                                            
 				                                            // =========================== Ride Perth 2018 =========================== //
-				                                            var removeDollarPr18v1 = latestdata[0].pr18Donations;
+				                                            var removeDollarPr18v1 = latestdata.pr18Donations;
 				                                            var removeDollarPr18v2 = yesterday[0].pr18Donations;
-				                                            var removeRegPr18v1 = latestdata[0].pr18RegFee;
+				                                            var removeRegPr18v1 = latestdata.pr18RegFee;
 				                                            var removeRegPr18v2 = yesterday[0].pr18RegFee;
 				                                            // =========================== Ride Perth 2017 =========================== //
-				                                            var removeDollarPr17v1 = latestdata[0].pr17Donations;
+				                                            var removeDollarPr17v1 = latestdata.pr17Donations;
 				                                            var removeDollarPr17v2 = yesterday[0].pr17Donations;
-				                                            var removeRegPr17v1 = latestdata[0].pr17RegFee; 
+				                                            var removeRegPr17v1 = latestdata.pr17RegFee; 
 				                                            var removeRegPr17v2 = yesterday[0].pr17RegFee; 
 				                                                
 				                                            // =========================== OneWalk Toronto 2018 =========================== //
-				                                            var removeDollarOwTo18v1 = latestdata[0].owTo18Donations;
+				                                            var removeDollarOwTo18v1 = latestdata.owTo18Donations;
 				                                            var removeDollarOwTo18v2 = yesterday[0].owTo18Donations;
-				                                            var removeRegOwTo18v1 = latestdata[0].owTo18RegFee;
+				                                            var removeRegOwTo18v1 = latestdata.owTo18RegFee;
 				                                            var removeRegOwTo18v2 = yesterday[0].owTo18RegFee;
 				                                            var owTo18NightWalkers = locals2.getEventTotal.toronto.to18.nightWlk;
 				                                            var owTo182day = locals2.getEventTotal.toronto.to18.twoDayWlk;
@@ -111,20 +112,20 @@ router.get('/data', function(req, res) {
 				                                            var owTo1825kmWalkers = locals2.getEventTotal.toronto.to18.Wlkr25km;
 				                                            var owTo1840kmWalkers = locals2.getEventTotal.toronto.to18.Wlkr40km;
 				                                            // =========================== OneWalk Toronto 2018 =========================== //
-				                                            var removeDollarOwTo17v1 = latestdata[0].owTo17Donations;
+				                                            var removeDollarOwTo17v1 = latestdata.owTo17Donations;
 				                                            var removeDollarOwTo17v2 = yesterday[0].owTo17Donations;
 				                                            var owTo1715kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr15km;
 				                                            var owTo1725kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr25km;
 				                                            var owTo1740kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr40km;
 				                                            
 				                                            // =========================== OneDay Melbourne 2018 =========================== //
-				                                            var removeDollarMl18v1 = latestdata[0].ml18Donations;
+				                                            var removeDollarMl18v1 = latestdata.ml18Donations;
 				                                            var removeDollarMl18v2 = yesterday[0].ml18Donations;
-				                                            var removeRegMl18v1 = latestdata[0].ml18RegFee;
+				                                            var removeRegMl18v1 = latestdata.ml18RegFee;
 				                                            var removeRegMl18v2 = yesterday[0].ml18RegFee;
 
 				                                            // =========================== OneDay Melbourne 2017 =========================== //
-				                                            var removeDollarMl17v1 = latestdata[0].ml17Donations;
+				                                            var removeDollarMl17v1 = latestdata.ml17Donations;
 				                                            var removeDollarMl17v2 = yesterday[0].ml17Donations;
 				                                            
 				                                            // Remove Dollar Sign from Data Brought In
@@ -377,7 +378,7 @@ router.get('/data', function(req, res) {
 			                                                latestdata.ml18RegDaily = newMlRegDaily;
 			                                                latestdata.ml18RidersDaily = ml18RiderSub;
 
-				                                            latestdata[0].save();
+				                                            latestdata.save();
 	                                            		}
 	                                            		else {
 
