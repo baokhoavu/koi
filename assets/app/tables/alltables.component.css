@@ -8,6 +8,7 @@
     color: #fff;
     text-transform: uppercase;
     border: none;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
     transition: all 0.2s ease-in-out;
 }
 
@@ -194,6 +195,16 @@ p {
     word-spacing: normal;
 }
 
+app-alberta.table-responsive.ab-table,
+app-toronto.table-responsive.to-table,
+app-montreal.table-responsive.mo-table,
+app-vancouver.table-responsive.va-table,
+app-perth.table-responsive.pr-table,
+app-ow-toronto.table-responsive.ow-to-table,
+app-melbourne.table-responsive.ml-table {
+    border: none;
+}
+
 @media screen and (max-width: 768px) {
     th {
         word-spacing: normal;
@@ -205,7 +216,7 @@ p {
     .table-responsive.all-table h3 {
         margin-left: 20px;
     }
-    .table-responsive {
+    .table-responsive.all-table {
         border-color: #000;
     }
 }

@@ -31,6 +31,7 @@
 <br/>
 <div *ngIf="isLoggedIn() && data" class="table-responsive all-table">
     <h3>Today</h3>
+    <p>* x = not applicable data</p>
     <table class="table table-bordered table-hover">
         <tr class="text-center">
             <th>RTCC</th>
@@ -48,7 +49,7 @@
             <td>{{data.ab18RFIDaily}}</td>
             <td>{{data.ab18RidersDaily}}</td>
             <td>{{data.ab18CrewDaily}}</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.ab18DonDaily}}</td>
             <td>{{data.ab18RegFeeDaily}}</td>
         </tr>
@@ -59,7 +60,7 @@
             <td>{{data.mo18RFIDaily}}</td>
             <td>{{data.mo18RidersDaily}}</td>
             <td>{{data.mo18CrewDaily}}</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.mo18DonDaily}}</td>
             <td>{{data.mo18RegFeeDaily}}</td>
         </tr>
@@ -70,7 +71,7 @@
             <td>{{data.pr18RFIDaily}}</td>
             <td>{{data.pr18RidersDaily}}</td>
             <td>{{data.pr18CrewDaily}}</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.pr18DonDaily}}</td>
             <td>{{data.pr18RegFeeDaily}}</td>
         </tr>
@@ -81,7 +82,7 @@
             <td>{{data.to18RFIDaily}}</td>
             <td>{{data.to18RidersDaily}}</td>
             <td>{{data.to18CrewDaily}}</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.to18DonDaily}}</td>
             <td>{{data.to18RegFeeDaily}}</td>
         </tr>
@@ -92,7 +93,7 @@
             <td>{{data.va18RFIDaily}}</td>
             <td>{{data.va18RidersDaily}}</td>
             <td>{{data.va18CrewDaily}}</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.va18DonDaily}}</td>
             <td>{{data.va18RegFeeDaily}}</td>
         </tr> 
@@ -100,10 +101,10 @@
             <td class="koi-blue">
                2018 Melbourne OneDay
             </td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.ml18RidersDaily}}</td>
-            <td>NOT APPLICABLE</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
+            <td>x</td>
             <td>{{data.ml18DonDaily}}</td>
             <td>{{data.ml18RegDaily}}</td>
         </tr>
@@ -112,7 +113,7 @@
                 2018 OneWalk Toronto
             </td>
             <td>{{data.owto18RFIDaily}}</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.owto18CrewsDaily}}</td>
             <td>{{data.owto18WalkersDaily}}</td>
             <td>{{data.owto18DonDaily}}</td>
@@ -123,6 +124,7 @@
 
 <div  *ngIf="isLoggedIn() && data" class="table-responsive all-table">
     <h3>Year to Date</h3>
+    <p>* x = not applicable data</p>
     <table class="table table-bordered table-hover">
         <tr class="text-center">
             <th>RTCC</th>
@@ -140,7 +142,7 @@
             <td>{{data.ab18RFI}}</td>
             <td>{{data.ab18Riders}}</td>
             <td>{{data.ab18Crews}}</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.ab18Donations}}</td>
             <td>{{data.ab18RegFee}}</td>
         </tr>
@@ -151,7 +153,7 @@
             <td>{{data.mo18RFI}}</td>
             <td>{{data.mo18Riders}}</td>
             <td>{{data.mo18Crews}}</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.mo18Donations}}</td>
             <td>{{data.mo18RegFee}}</td>
         </tr>
@@ -162,7 +164,7 @@
             <td>{{data.pr18RFI}}</td>
             <td>{{data.pr18Riders}}</td>
             <td>{{data.pr18Crews}}</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.pr18Donations}}</td>
             <td>{{data.pr18RegFee}}</td>
         </tr>
@@ -173,7 +175,7 @@
             <td>{{data.to18RFI}}</td>
             <td>{{data.to18Riders}}</td>
             <td>{{data.to18Crews}}</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.to18Donations}}</td>
             <td>{{data.to18RegFee}}</td>
         </tr>
@@ -184,7 +186,7 @@
             <td>{{data.va18RFI}}</td>
             <td>{{data.va18Riders}}</td>
             <td>{{data.va18Crews}}</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.va18Donations}}</td>
             <td>{{data.va18RegFee}}</td>
         </tr> 
@@ -192,10 +194,10 @@
             <td class="koi-blue">
                2018 Melbourne OneDay
             </td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.ml18Riders}}</td>
-            <td>NOT APPLICABLE</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
+            <td>x</td>
             <td>{{data.ml18Donations}}</td>
             <td>{{data.ml18RegFee}}</td>
         </tr>
@@ -204,7 +206,7 @@
                 2018 OneWalk Toronto
             </td>
             <td>{{data.owTo18RFI}}</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.owTo18Crews}}</td>
             <td>{{data.owTo18Walkers}}</td>
             <td>{{data.owTo18Donations}}</td>
@@ -217,7 +219,7 @@
             <td>{{data.ab17RFI}}</td>
             <td>{{data.ab17Riders}}</td>
             <td>{{data.ab17Crews}}</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.ab17Donations}}</td>
             <td>{{data.ab17RegFee}}</td>
         </tr>
@@ -228,7 +230,7 @@
             <td>{{data.mo17RFI}}</td>
             <td>{{data.mo17Riders}}</td>
             <td>{{data.mo17Crews}}</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.mo17Donations}}</td>
             <td>{{data.mo17RegFee}}</td>
         </tr>
@@ -239,7 +241,7 @@
             <td>{{data.pr17RFI}}</td>
             <td>{{data.pr17Riders}}</td>
             <td>{{data.pr17Crews}}</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.pr17Donations}}</td>
             <td>{{data.pr17RegFee}}</td>
         </tr>
@@ -250,7 +252,7 @@
             <td>{{data.to17RFI}}</td>
             <td>{{data.to17Riders}}</td>
             <td>{{data.to17Crews}}</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.to17Donations}}</td>
             <td>{{data.to17RegFee}}</td>
         </tr>
@@ -261,7 +263,7 @@
             <td>{{data.va17RFI}}</td>
             <td>{{data.va17Riders}}</td>
             <td>{{data.va17Crews}}</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.va17Donations}}</td>
             <td>{{data.va17RegFee}}</td>
         </tr>
@@ -269,10 +271,10 @@
             <td class="koi-blue">
                2017 Melbourne OneDay
             </td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.ml17Riders}}</td>
-            <td>NOT APPLICABLE</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
+            <td>x</td>
             <td>{{data.ml17Donations}}</td>
             <td>{{data.ml17RegFee}}</td>
         </tr>
@@ -281,7 +283,7 @@
                 2017 OneWalk Toronto
             </td>
             <td>{{data.owTo17RFI}}</td>
-            <td>NOT APPLICABLE</td>
+            <td>x</td>
             <td>{{data.owTo17Crews}}</td>
             <td>{{data.owTo17Walkers}}</td>
             <td>{{data.owTo17Donations}}</td>
