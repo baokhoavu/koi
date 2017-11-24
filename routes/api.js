@@ -45,7 +45,7 @@ router.get('/data', function(req, res) {
 	                                            // console.log(yesterday[0].to18Donations);
 
 	                                            // Find today's data, subtract from yesterday's total to display daily amount 
-	                                            data.findOne()
+	                                            data.findOneAndUpdate()
 	                                            	.sort({"_id": -1})
 	                                            	.exec(function(err, latestdata) {
 	                                            		if (err) {
