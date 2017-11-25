@@ -42,7 +42,7 @@ router.get('/data', function(req, res) {
 			                                if (!err && response.statusCode == 200) {
 				                                var locals4 = JSON.parse(body);
 
-	                                            // console.log(yesterday[0].to18Donations);
+	                                            // console.log(yesterday.to18Donations);
 
 	                                            // Find today's data, subtract from yesterday's total to display daily amount 
 	                                            data.findOneAndUpdate({"updated": moment().format('L')})
@@ -56,56 +56,56 @@ router.get('/data', function(req, res) {
 	                                            			console.log("Getting latest data! Date: " + latestdata.updated);
 	                                            			// =========================== Ride Toronto 2018 =========================== //
 				                                            var removeDollarTo18v1 = latestdata.to18Donations;
-				                                            var removeDollarTo18v2 = yesterday[0].to18Donations;
+				                                            var removeDollarTo18v2 = yesterday.to18Donations;
 				                                            var removeRegTo18v1 = latestdata.to18RegFee;
-				                                            var removeRegTo18v2 = yesterday[0].to18RegFee;
+				                                            var removeRegTo18v2 = yesterday.to18RegFee;
 				                                            // =========================== Ride Toronto 2017 =========================== //
 				                                            var removeDollarTo17v1 = latestdata.to17Donations;
-				                                            var removeDollarTo17v2 = yesterday[0].to17Donations;
+				                                            var removeDollarTo17v2 = yesterday.to17Donations;
 
 				                                            // =========================== Ride Montreal 2018 =========================== //
 				                                            var removeDollarMo18v1 = latestdata.mo18Donations;
-				                                            var removeDollarMo18v2 = yesterday[0].mo18Donations;
+				                                            var removeDollarMo18v2 = yesterday.mo18Donations;
 				                                            var removeRegMo18v1 = latestdata.mo18RegFee;
-				                                            var removeRegMo18v2 = yesterday[0].mo18RegFee;
+				                                            var removeRegMo18v2 = yesterday.mo18RegFee;
 				                                            // =========================== Ride Montreal 2018 =========================== //
 				                                            var removeDollarMo17v1 = latestdata.mo17Donations;
-				                                            var removeDollarMo17v2 = yesterday[0].mo17Donations;
+				                                            var removeDollarMo17v2 = yesterday.mo17Donations;
 
 				                                            // =========================== Ride Alberta 2018 =========================== //
 				                                            var removeDollarAb18v1 = latestdata.ab18Donations;
-				                                            var removeDollarAb18v2 = yesterday[0].ab18Donations;
+				                                            var removeDollarAb18v2 = yesterday.ab18Donations;
 				                                            var removeRegAb18v1 = latestdata.ab18RegFee;
-				                                            var removeRegAb18v2 = yesterday[0].ab18RegFee;
+				                                            var removeRegAb18v2 = yesterday.ab18RegFee;
 				                                            // =========================== Ride Alberta 2017 =========================== //
 				                                            var removeDollarAb17v1 = latestdata.ab17Donations;
-				                                            var removeDollarAb17v2 = yesterday[0].ab17Donations;
+				                                            var removeDollarAb17v2 = yesterday.ab17Donations;
 					                                            
 				                                            // =========================== Ride Vancouver 2018 =========================== //
 				                                            var removeDollarVa18v1 = latestdata.va18Donations;
-				                                            var removeDollarVa18v2 = yesterday[0].va18Donations;
+				                                            var removeDollarVa18v2 = yesterday.va18Donations;
 				                                            var removeRegVa18v1 = latestdata.va18RegFee;
-				                                            var removeRegVa18v2 = yesterday[0].va18RegFee;
+				                                            var removeRegVa18v2 = yesterday.va18RegFee;
 				                                            // =========================== Ride Vancouver 2017 =========================== //
 				                                            var removeDollarVa17v1 = latestdata.va17Donations;
-				                                            var removeDollarVa17v2 = yesterday[0].va17Donations;
+				                                            var removeDollarVa17v2 = yesterday.va17Donations;
 				                                            
 				                                            // =========================== Ride Perth 2018 =========================== //
 				                                            var removeDollarPr18v1 = latestdata.pr18Donations;
-				                                            var removeDollarPr18v2 = yesterday[0].pr18Donations;
+				                                            var removeDollarPr18v2 = yesterday.pr18Donations;
 				                                            var removeRegPr18v1 = latestdata.pr18RegFee;
-				                                            var removeRegPr18v2 = yesterday[0].pr18RegFee;
+				                                            var removeRegPr18v2 = yesterday.pr18RegFee;
 				                                            // =========================== Ride Perth 2017 =========================== //
 				                                            var removeDollarPr17v1 = latestdata.pr17Donations;
-				                                            var removeDollarPr17v2 = yesterday[0].pr17Donations;
+				                                            var removeDollarPr17v2 = yesterday.pr17Donations;
 				                                            var removeRegPr17v1 = latestdata.pr17RegFee; 
-				                                            var removeRegPr17v2 = yesterday[0].pr17RegFee; 
+				                                            var removeRegPr17v2 = yesterday.pr17RegFee; 
 				                                                
 				                                            // =========================== OneWalk Toronto 2018 =========================== //
 				                                            var removeDollarOwTo18v1 = latestdata.owTo18Donations;
-				                                            var removeDollarOwTo18v2 = yesterday[0].owTo18Donations;
+				                                            var removeDollarOwTo18v2 = yesterday.owTo18Donations;
 				                                            var removeRegOwTo18v1 = latestdata.owTo18RegFee;
-				                                            var removeRegOwTo18v2 = yesterday[0].owTo18RegFee;
+				                                            var removeRegOwTo18v2 = yesterday.owTo18RegFee;
 				                                            var owTo18NightWalkers = locals2.getEventTotal.toronto.to18.nightWlk;
 				                                            var owTo182day = locals2.getEventTotal.toronto.to18.twoDayWlk;
 				                                            var owTo1815kmWalkers = locals2.getEventTotal.toronto.to18.Wlkr15km;
@@ -113,20 +113,20 @@ router.get('/data', function(req, res) {
 				                                            var owTo1840kmWalkers = locals2.getEventTotal.toronto.to18.Wlkr40km;
 				                                            // =========================== OneWalk Toronto 2018 =========================== //
 				                                            var removeDollarOwTo17v1 = latestdata.owTo17Donations;
-				                                            var removeDollarOwTo17v2 = yesterday[0].owTo17Donations;
+				                                            var removeDollarOwTo17v2 = yesterday.owTo17Donations;
 				                                            var owTo1715kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr15km;
 				                                            var owTo1725kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr25km;
 				                                            var owTo1740kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr40km;
 				                                            
 				                                            // =========================== OneDay Melbourne 2018 =========================== //
 				                                            var removeDollarMl18v1 = latestdata.ml18Donations;
-				                                            var removeDollarMl18v2 = yesterday[0].ml18Donations;
+				                                            var removeDollarMl18v2 = yesterday.ml18Donations;
 				                                            var removeRegMl18v1 = latestdata.ml18RegFee;
-				                                            var removeRegMl18v2 = yesterday[0].ml18RegFee;
+				                                            var removeRegMl18v2 = yesterday.ml18RegFee;
 
 				                                            // =========================== OneDay Melbourne 2017 =========================== //
 				                                            var removeDollarMl17v1 = latestdata.ml17Donations;
-				                                            var removeDollarMl17v2 = yesterday[0].ml17Donations;
+				                                            var removeDollarMl17v2 = yesterday.ml17Donations;
 				                                            
 				                                            // Remove Dollar Sign from Data Brought In
 				                                            var numberTo18v1 = Number(removeDollarTo18v1.replace(/[^0-9\.-]+/g,""));
@@ -181,56 +181,56 @@ router.get('/data', function(req, res) {
 				                                            // Subtract Real Time Data vs Static Data        
 				                                            var to18DonationSub = numberTo18v1 - numberTo18v2;
 				                                            var to17DonationSub = numberTo17v1 - numberTo17v2;
-				                                            var to18RfiSub = locals.getEventTotal.toronto.to18.rfi - yesterday[0].to18RFI;
-				                                            var to18CrewSub = locals.getEventTotal.toronto.to18.crews - yesterday[0].to18Crews;
-				                                            var to18RiderSub = locals.getEventTotal.toronto.to18.riders - yesterday[0].to18Riders;
+				                                            var to18RfiSub = locals.getEventTotal.toronto.to18.rfi - yesterday.to18RFI;
+				                                            var to18CrewSub = locals.getEventTotal.toronto.to18.crews - yesterday.to18Crews;
+				                                            var to18RiderSub = locals.getEventTotal.toronto.to18.riders - yesterday.to18Riders;
 				                                            var to18RegSub = numberRegTo18v1 - numberRegTo18v2;
 				                                            
 				                                            var pr18DonationSub = numberPr18v1 - numberPr18v2;
 				                                            var pr17DonationSub = numberPr17v1 - numberPr17v2;
-				                                            var pr18RfiSub = locals3.getEventTotal.perth.pr18.rfi - yesterday[0].pr18RFI;
-				                                            var pr18CrewSub = locals3.getEventTotal.perth.pr18.crews - yesterday[0].pr18Crews;
-				                                            var pr18RiderSub = locals3.getEventTotal.perth.pr18.riders - yesterday[0].pr18Riders;
+				                                            var pr18RfiSub = locals3.getEventTotal.perth.pr18.rfi - yesterday.pr18RFI;
+				                                            var pr18CrewSub = locals3.getEventTotal.perth.pr18.crews - yesterday.pr18Crews;
+				                                            var pr18RiderSub = locals3.getEventTotal.perth.pr18.riders - yesterday.pr18Riders;
 				                                            var pr18RegSub = numberRegPr18v1 - numberRegPr18v2;
 				                                            
 				                                            var mo18DonationSub = numberMo18v1 - numberMo18v2;
 				                                            var mo17DonationSub = numberMo17v1 - numberMo17v2;
-				                                            var mo18RfiSub = locals.getEventTotal.montreal.mo18.rfi - yesterday[0].mo18RFI;
-				                                            var mo18CrewSub = locals.getEventTotal.montreal.mo18.crews - yesterday[0].mo18Crews;
-				                                            var mo18RiderSub = locals.getEventTotal.montreal.mo18.riders - yesterday[0].mo18Riders;
+				                                            var mo18RfiSub = locals.getEventTotal.montreal.mo18.rfi - yesterday.mo18RFI;
+				                                            var mo18CrewSub = locals.getEventTotal.montreal.mo18.crews - yesterday.mo18Crews;
+				                                            var mo18RiderSub = locals.getEventTotal.montreal.mo18.riders - yesterday.mo18Riders;
 				                                            var mo18RegSub = numberRegMo18v1 - numberRegMo18v2;
 				                                            
 				                                            var ab18DonationSub = numberAb18v1 - numberAb18v2;
 				                                            var ab17DonationSub = numberAb17v1 - numberAb17v2;
-				                                            var ab18RfiSub = locals.getEventTotal.alberta.ab18.rfi - yesterday[0].ab18RFI;
-				                                            var ab18CrewSub = locals.getEventTotal.alberta.ab18.crews - yesterday[0].ab18Crews;
-				                                            var ab18RiderSub = locals.getEventTotal.alberta.ab18.riders - yesterday[0].ab18Riders;
+				                                            var ab18RfiSub = locals.getEventTotal.alberta.ab18.rfi - yesterday.ab18RFI;
+				                                            var ab18CrewSub = locals.getEventTotal.alberta.ab18.crews - yesterday.ab18Crews;
+				                                            var ab18RiderSub = locals.getEventTotal.alberta.ab18.riders - yesterday.ab18Riders;
 				                                            var ab18RegSub = numberRegAb18v1 - numberRegAb18v2;
 				                                                
 				                                            var va18DonationSub = numberVa18v1 - numberVa18v2;
 				                                            var va17DonationSub = numberVa17v1 - numberVa17v2;
-				                                            var va18RfiSub = locals.getEventTotal.vancouver.va18.rfi - yesterday[0].va18RFI;
-				                                            var va18CrewSub = locals.getEventTotal.vancouver.va18.crews - yesterday[0].va18Crews;
-				                                            var va18RiderSub = locals.getEventTotal.vancouver.va18.riders - yesterday[0].va18Riders;
+				                                            var va18RfiSub = locals.getEventTotal.vancouver.va18.rfi - yesterday.va18RFI;
+				                                            var va18CrewSub = locals.getEventTotal.vancouver.va18.crews - yesterday.va18Crews;
+				                                            var va18RiderSub = locals.getEventTotal.vancouver.va18.riders - yesterday.va18Riders;
 				                                            var va18RegSub = numberRegVa18v1 - numberRegVa18v2;
 				                                            
 				                                            var owto18DonationSub = numberOwTo18v1 - numberOwTo18v2;
 				                                            var owto17DonationSub = numberOwTo17v1 - numberOwTo17v2;
-				                                            var owto18RfiSub = locals2.getEventTotal.toronto.to18.rfi - yesterday[0].owTo18RFI;
+				                                            var owto18RfiSub = locals2.getEventTotal.toronto.to18.rfi - yesterday.owTo18RFI;
 				                                            var owto18RegSub = numberRegOwTo18v1 - numberRegOwTo18v2;
 				                                            var owto18TotalWalkers = parseFloat(owTo18NightWalkers) + parseFloat(owTo1815kmWalkers) + parseFloat(owTo1825kmWalkers) + parseFloat(owTo1840kmWalkers) + parseFloat(owTo182day);
-				                                            var owto18CrewsDailySub = locals2.getEventTotal.toronto.to18.crews - yesterday[0].owTo18Crews;
-				                                            var owto18WalkersDailySub = owto18TotalWalkers - yesterday[0].owTo18Walkers;
-				                                            var owTo182dayDailySub = locals2.getEventTotal.toronto.to18.Wlkr15km - yesterday[0].owTo182day;
-					                                        var owTo1815kmWalkersDailySub = locals2.getEventTotal.toronto.to18.Wlkr15km - yesterday[0].owTo1815kmWalkers;
-					                                        var owTo1825kmWalkersDailySub = locals2.getEventTotal.toronto.to18.Wlkr25km - yesterday[0].owTo1825kmWalkers;
-					                                        var owTo1840kmWalkersDailySub = locals2.getEventTotal.toronto.to18.Wlkr40km - yesterday[0].owTo1840kmWalkers;
-					                                        var owTo18NightWalkersDailySub = locals2.getEventTotal.toronto.to18.nightWlk - yesterday[0].owTo18NightWalkers;
+				                                            var owto18CrewsDailySub = locals2.getEventTotal.toronto.to18.crews - yesterday.owTo18Crews;
+				                                            var owto18WalkersDailySub = owto18TotalWalkers - yesterday.owTo18Walkers;
+				                                            var owTo182dayDailySub = locals2.getEventTotal.toronto.to18.Wlkr15km - yesterday.owTo182day;
+					                                        var owTo1815kmWalkersDailySub = locals2.getEventTotal.toronto.to18.Wlkr15km - yesterday.owTo1815kmWalkers;
+					                                        var owTo1825kmWalkersDailySub = locals2.getEventTotal.toronto.to18.Wlkr25km - yesterday.owTo1825kmWalkers;
+					                                        var owTo1840kmWalkersDailySub = locals2.getEventTotal.toronto.to18.Wlkr40km - yesterday.owTo1840kmWalkers;
+					                                        var owTo18NightWalkersDailySub = locals2.getEventTotal.toronto.to18.nightWlk - yesterday.owTo18NightWalkers;
 				                                            
 				                                            var ml18DonationSub = numberMl18v1 - numberMl18v2;
 				                                            var ml17DonationSub = numberMl17v1 - numberMl17v2;
 				                                            var ml18RegSub = numberRegMl18v1 - numberRegMl18v2;
-				                                            var ml18RiderSub = locals4.getEventTotal.melbourne.ml18.riders - yesterday[0].ml18Riders;
+				                                            var ml18RiderSub = locals4.getEventTotal.melbourne.ml18.riders - yesterday.ml18Riders;
 				                                            
 				                                            // Add Dollar Sign back into Data    
 				                                            var newToDonDaily = '$' + to18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
