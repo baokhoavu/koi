@@ -6,9 +6,16 @@ const moment = require('moment');
 const router = express.Router();
 const data = require('../models/apidata');
 
-mongoose.connect('mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw/node-angular');
+// mongoose.connect('mongodb://causeforce_koi:iheartcf323@ds157614.mlab.com:57614/heroku_q1rgmlhw');
+
+var promise = mongoose.connect('mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw', {
+  useMongoClient: true,
+  /* other options */
+});
 
 var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 router.get('/data', function(req, res) {
 	console.log('Requesting data...');
@@ -20,7 +27,7 @@ router.get('/data', function(req, res) {
 				console.log('Error getting data..');
 			} 
 			if (yesterday) {
-				console.log('Pulling yesterday\'s data then updating data...');
+				console.log('Pulling yesterday\'s data! Date: ' + yesterday[0].updated);
 
 				const apiURL = 'http://www.conquercancer.ca/site/PageServer?pagename=2018_api_testing&pgwrap=n';
 			    fixieRequest(apiURL, function(err, response, body) {
@@ -45,7 +52,7 @@ router.get('/data', function(req, res) {
 	                                            // console.log(yesterday[0].to18Donations);
 
 	                                            // Find today's data, subtract from yesterday's total to display daily amount 
-	                                            data.findOneAndUpdate()
+	                                            data.findOneAndUpdate({"updated": moment().format('L')})
 	                                            	.sort({"_id": -1})
 	                                            	.exec(function(err, latestdata) {
 	                                            		if (err) {
@@ -53,7 +60,7 @@ router.get('/data', function(req, res) {
 	                                            			console.log(err);
 	                                            		}
 	                                            		if (latestdata) {
-	                                            			console.log("Getting latest data...");
+	                                            			console.log("Getting latest data! Date: " + latestdata.updated);
 	                                            			// =========================== Ride Toronto 2018 =========================== //
 				                                            var removeDollarTo18v1 = latestdata.to18Donations;
 				                                            var removeDollarTo18v2 = yesterday[0].to18Donations;
@@ -378,7 +385,10 @@ router.get('/data', function(req, res) {
 			                                                latestdata.ml18RegDaily = newMlRegDaily;
 			                                                latestdata.ml18RidersDaily = ml18RiderSub;
 
-				                                            latestdata.save();
+				                                            latestdata.save(function (err){
+				                                            	if (err) return handleError(err);
+				                                            	console.log('Data saved to MongoDB!');
+				                                            });
 	                                            		}
 	                                            		else {
 
