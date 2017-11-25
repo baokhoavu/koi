@@ -6,7 +6,7 @@ const moment = require('moment');
 const router = express.Router();
 const data = require('../models/apidata');
 
-mongoose.connect('mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw/');
+mongoose.connect('mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw/node-angular');
 
 var db = mongoose.connection;
 
@@ -14,14 +14,12 @@ router.get('/data', function(req, res) {
 	console.log('Requesting data...');
 	// Find data from yesterday with MomentJS (subtract 1 from Today's date)
 	data.find({"updated": moment().subtract(1, 'days').format('L')})
-		.sort({"_id": -1})
 		.exec(function(err, yesterday) {
 			if (err) {
 				console.log('Error getting data..');
 			} 
 			if (yesterday) {
-				console.log(yesterday);
-				// console.log('Pulling yesterday\'s data! Date: ' + yesterday[0].updated);
+				console.log('Pulling yesterday\'s data! Date: ' + yesterday[0].updated);
 
 				const apiURL = 'http://www.conquercancer.ca/site/PageServer?pagename=2018_api_testing&pgwrap=n';
 			    fixieRequest(apiURL, function(err, response, body) {
