@@ -13,7 +13,7 @@ var db = mongoose.connection;
 router.get('/data', function(req, res) {
 	console.log('Requesting data...');
 	// Find data from yesterday with MomentJS (subtract 1 from Today's date)
-	data.fineOne({"updated": moment().subtract(1, 'days').format('L')})
+	data.findOne({"updated": moment().subtract(1, 'days').format('L')})
 		// .sort({"_id": -1})
 		.exec(function(err, yesterday) {
 			if (err) {
