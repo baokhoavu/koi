@@ -6,7 +6,7 @@ const moment = require('moment');
 const router = express.Router();
 const data = require('../models/apidata');
 
-mongoose.connect('mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw/node-angular');
+mongoose.connect('mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw/');
 
 var db = mongoose.connection;
 
