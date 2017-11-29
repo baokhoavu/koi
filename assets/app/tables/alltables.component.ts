@@ -77,7 +77,6 @@ export class AllTablesComponent {
                    $('.all-table').slideDown();
                }
             });
-            
         });
         // if (window.location.href.indexOf('alltables') == -1) {
         //      location.reload(true);

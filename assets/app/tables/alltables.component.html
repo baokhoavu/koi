@@ -37,6 +37,7 @@
             <th>RTCC</th>
             <th class="text-center">RFI</th>
             <th class="text-center">RIDERS</th>
+            <th class="text-center">VIRTUAL RIDERS</th>
             <th class="text-center">CREWS</th>
             <th class="text-center">WALKERS</th>
             <th class="text-center">DON$</th>
@@ -48,6 +49,7 @@
             </td>
             <td>{{data.ab18RFIDaily}}</td>
             <td>{{data.ab18RidersDaily}}</td>
+            <td>{{data.ab18VRDaily}}</td>
             <td>{{data.ab18CrewDaily}}</td>
             <td>x</td>
             <td>{{data.ab18DonDaily}}</td>
@@ -59,6 +61,7 @@
             </td>
             <td>{{data.mo18RFIDaily}}</td>
             <td>{{data.mo18RidersDaily}}</td>
+            <td>{{data.mo18VRDaily}}</td>
             <td>{{data.mo18CrewDaily}}</td>
             <td>x</td>
             <td>{{data.mo18DonDaily}}</td>
@@ -66,21 +69,11 @@
         </tr>
         <tr class="data-json">
             <td class="koi-blue">
-                2018 Perth RTCC
-            </td>
-            <td>{{data.pr18RFIDaily}}</td>
-            <td>{{data.pr18RidersDaily}}</td>
-            <td>{{data.pr18CrewDaily}}</td>
-            <td>x</td>
-            <td>{{data.pr18DonDaily}}</td>
-            <td>{{data.pr18RegFeeDaily}}</td>
-        </tr>
-        <tr class="data-json">
-            <td class="koi-blue">
                 2018 Toronto RTCC
             </td>
             <td>{{data.to18RFIDaily}}</td>
             <td>{{data.to18RidersDaily}}</td>
+            <td>{{data.to18VRDaily}}</td>
             <td>{{data.to18CrewDaily}}</td>
             <td>x</td>
             <td>{{data.to18DonDaily}}</td>
@@ -92,6 +85,7 @@
             </td>
             <td>{{data.va18RFIDaily}}</td>
             <td>{{data.va18RidersDaily}}</td>
+            <td>{{data.va18VRDaily}}</td>
             <td>{{data.va18CrewDaily}}</td>
             <td>x</td>
             <td>{{data.va18DonDaily}}</td>
@@ -99,10 +93,23 @@
         </tr> 
         <tr class="data-json">
             <td class="koi-blue">
+                2018 Perth RTCC
+            </td>
+            <td>{{data.pr18RFIDaily}}</td>
+            <td>{{data.pr18RidersDaily}}</td>
+            <td>x</td>
+            <td>{{data.pr18CrewDaily}}</td>
+            <td>x</td>
+            <td>{{data.pr18DonDaily}}</td>
+            <td>{{data.pr18RegFeeDaily}}</td>
+        </tr>
+        <tr class="data-json">
+            <td class="koi-blue">
                2018 Melbourne OneDay
             </td>
             <td>x</td>
             <td>{{data.ml18RidersDaily}}</td>
+            <td>x</td>
             <td>x</td>
             <td>x</td>
             <td>{{data.ml18DonDaily}}</td>
@@ -113,6 +120,7 @@
                 2018 OneWalk Toronto
             </td>
             <td>{{data.owto18RFIDaily}}</td>
+            <td>x</td>
             <td>x</td>
             <td>{{data.owto18CrewsDaily}}</td>
             <td>{{data.owto18WalkersDaily}}</td>
@@ -130,6 +138,7 @@
             <th>RTCC</th>
             <th class="text-center">RFI</th>
             <th class="text-center">RIDERS</th>
+            <th class="text-center">VIRTUAL RIDERS</th>
             <th class="text-center">CREWS</th>
             <th class="text-center">WALKERS</th>
             <th class="text-center">DON$</th>
@@ -141,6 +150,7 @@
             </td>
             <td>{{data.ab18RFI}}</td>
             <td>{{data.ab18Riders}}</td>
+            <td>{{data.ab18VR}}</td>
             <td>{{data.ab18Crews}}</td>
             <td>x</td>
             <td>{{data.ab18Donations}}</td>
@@ -152,6 +162,7 @@
             </td>
             <td>{{data.mo18RFI}}</td>
             <td>{{data.mo18Riders}}</td>
+            <td>{{data.mo18VR}}</td>
             <td>{{data.mo18Crews}}</td>
             <td>x</td>
             <td>{{data.mo18Donations}}</td>
@@ -159,21 +170,11 @@
         </tr>
         <tr class="data-json">
             <td class="koi-blue">
-                2018 Perth RTCC
-            </td>
-            <td>{{data.pr18RFI}}</td>
-            <td>{{data.pr18Riders}}</td>
-            <td>{{data.pr18Crews}}</td>
-            <td>x</td>
-            <td>{{data.pr18Donations}}</td>
-            <td>{{data.pr18RegFee}}</td>
-        </tr>
-        <tr class="data-json">
-            <td class="koi-blue">
                 2018 Toronto RTCC
             </td>
             <td>{{data.to18RFI}}</td>
             <td>{{data.to18Riders}}</td>
+            <td>{{data.to18VR}}</td>
             <td>{{data.to18Crews}}</td>
             <td>x</td>
             <td>{{data.to18Donations}}</td>
@@ -185,6 +186,7 @@
             </td>
             <td>{{data.va18RFI}}</td>
             <td>{{data.va18Riders}}</td>
+            <td>{{data.va18VR}}</td>
             <td>{{data.va18Crews}}</td>
             <td>x</td>
             <td>{{data.va18Donations}}</td>
@@ -192,10 +194,23 @@
         </tr> 
         <tr class="data-json">
             <td class="koi-blue">
+                2018 Perth RTCC
+            </td>
+            <td>{{data.pr18RFI}}</td>
+            <td>{{data.pr18Riders}}</td>
+            <td>x</td>
+            <td>{{data.pr18Crews}}</td>
+            <td>x</td>
+            <td>{{data.pr18Donations}}</td>
+            <td>{{data.pr18RegFee}}</td>
+        </tr>
+        <tr class="data-json">
+            <td class="koi-blue">
                2018 Melbourne OneDay
             </td>
             <td>x</td>
             <td>{{data.ml18Riders}}</td>
+            <td>x</td>
             <td>x</td>
             <td>x</td>
             <td>{{data.ml18Donations}}</td>
@@ -206,6 +221,7 @@
                 2018 OneWalk Toronto
             </td>
             <td>{{data.owTo18RFI}}</td>
+            <td>x</td>
             <td>x</td>
             <td>{{data.owTo18Crews}}</td>
             <td>{{data.owTo18Walkers}}</td>
@@ -218,6 +234,7 @@
             </td>
             <td>{{data.ab17RFI}}</td>
             <td>{{data.ab17Riders}}</td>
+            <td>{{data.ab17VR}}</td>
             <td>{{data.ab17Crews}}</td>
             <td>x</td>
             <td>{{data.ab17Donations}}</td>
@@ -229,6 +246,7 @@
             </td>
             <td>{{data.mo17RFI}}</td>
             <td>{{data.mo17Riders}}</td>
+            <td>{{data.mo17VR}}</td>
             <td>{{data.mo17Crews}}</td>
             <td>x</td>
             <td>{{data.mo17Donations}}</td>
@@ -240,6 +258,7 @@
             </td>
             <td>{{data.pr17RFI}}</td>
             <td>{{data.pr17Riders}}</td>
+            <td>x</td>
             <td>{{data.pr17Crews}}</td>
             <td>x</td>
             <td>{{data.pr17Donations}}</td>
@@ -251,6 +270,7 @@
             </td>
             <td>{{data.to17RFI}}</td>
             <td>{{data.to17Riders}}</td>
+            <td>{{data.to17VR}}</td>
             <td>{{data.to17Crews}}</td>
             <td>x</td>
             <td>{{data.to17Donations}}</td>
@@ -262,6 +282,7 @@
             </td>
             <td>{{data.va17RFI}}</td>
             <td>{{data.va17Riders}}</td>
+            <td>{{data.va17VR}}</td>
             <td>{{data.va17Crews}}</td>
             <td>x</td>
             <td>{{data.va17Donations}}</td>
@@ -275,6 +296,7 @@
             <td>{{data.ml17Riders}}</td>
             <td>x</td>
             <td>x</td>
+            <td>x</td>
             <td>{{data.ml17Donations}}</td>
             <td>{{data.ml17RegFee}}</td>
         </tr>
@@ -283,6 +305,7 @@
                 2017 OneWalk Toronto
             </td>
             <td>{{data.owTo17RFI}}</td>
+            <td>x</td>
             <td>x</td>
             <td>{{data.owTo17Crews}}</td>
             <td>{{data.owTo17Walkers}}</td>
