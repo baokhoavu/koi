@@ -19,41 +19,49 @@ var dataSchema = new Schema({
     to18Crews: String,
     to18RFI: String,
     to18Riders: String,
+    to18VR: String,
     mo18Donations: String,
     mo18RegFee: String,
     mo18Crews: String,
     mo18RFI: String,
     mo18Riders: String,
+    mo18VR: String,
     ab18Donations: String,
     ab18RegFee: String,
     ab18Crews: String,
     ab18RFI: String,
     ab18Riders: String,
+    ab18VR: String,
     va18Donations: String,
     va18RegFee: String,
     va18Crews: String,
     va18RFI: String,
     va18Riders: String,
+    va18VR: String,
     to17Donations: String,
     to17RegFee: String,
     to17Crews: String,
     to17RFI: String,
     to17Riders: String,
+    to17VR: String,
     mo17Donations: String,
     mo17RegFee: String,
     mo17Crews: String,
     mo17RFI: String,
     mo17Riders: String,
+    mo17VR: String,
     ab17Donations: String,
     ab17RegFee: String,
     ab17Crews: String,
     ab17RFI: String,
     ab17Riders: String,
+    ab17VR: String,
     va17Donations: String,
     va17RegFee: String,
     va17Crews: String,
     va17RFI: String,
     va17Riders: String,
+    va17VR: String,
     owTo18Donations: String,
     owTo18RegFee: String,
     owTo18Crews: String,
@@ -95,6 +103,7 @@ var dataSchema = new Schema({
     to18RFIDaily: String,
     to18CrewDaily: String,
     to18RidersDaily: String,
+    to18VRDaily: String,
     to17DonDaily: String,
     pr18DonDaily: String,
     pr18RegFeeDaily: String,
@@ -106,6 +115,7 @@ var dataSchema = new Schema({
     mo17DonDaily: String,
     mo18CrewDaily: String,
     mo18RidersDaily: String,
+    mo18VRDaily: String,
     mo18RegFeeDaily: String,
     mo18RFIDaily: String,
     ab18DonDaily: String,
@@ -114,9 +124,11 @@ var dataSchema = new Schema({
     ab18RFIDaily: String,
     ab18CrewDaily: String,
     ab18RidersDaily: String,
+    ab18VRDaily: String,
     va18DonDaily: String,
     va18CrewDaily: String,
     va18RidersDaily: String,
+    va18VRDaily: String,
     va17DonDaily: String,
     va18RegFeeDaily: String,
     va18RFIDaily: String,
@@ -296,6 +308,7 @@ fixieRequest(apiURL, function(err, response, body) {
                                         var to18CrewSub = locals.getEventTotal.toronto.to18.crews - data.to18Crews;
                                         var to18RiderSub = locals.getEventTotal.toronto.to18.riders - data.to18Riders;
                                         var to18RegSub = numberRegTo18v1 - numberRegTo18v2;
+                                        var to18VRDailySub = locals.getEventTotal.toronto.to18.virtual - data.to18VR;
                                         
                                         var pr18DonationSub = numberPr18v1 - numberPr18v2;
                                         var pr17DonationSub = numberPr17v1 - numberPr17v2;
@@ -310,6 +323,7 @@ fixieRequest(apiURL, function(err, response, body) {
                                         var mo18RegSub = numberRegMo18v1 - numberRegMo18v2;
                                         var mo18CrewSub = locals.getEventTotal.montreal.mo18.crews - data.mo18Crews;
                                         var mo18RiderSub = locals.getEventTotal.montreal.mo18.riders - data.mo18Riders;
+                                        var mo18VRDailySub = locals.getEventTotal.montreal.mo18.virtual - data.mo18VR;
                                         
                                         var ab18DonationSub = numberAb18v1 - numberAb18v2;
                                         var ab17DonationSub = numberAb17v1 - numberAb17v2;
@@ -317,6 +331,7 @@ fixieRequest(apiURL, function(err, response, body) {
                                         var ab18CrewSub = locals.getEventTotal.alberta.ab18.crews - data.ab18Crews;
                                         var ab18RiderSub = locals.getEventTotal.alberta.ab18.riders - data.ab18Riders;
                                         var ab18RegSub = numberRegAb18v1 - numberRegAb18v2;
+                                        var ab18VRDailySub = locals.getEventTotal.alberta.ab18.virtual - data.ab18VR;
                                             
                                         var va18DonationSub = numberVa18v1 - numberVa18v2;
                                         var va17DonationSub = numberVa17v1 - numberVa17v2;
@@ -324,6 +339,7 @@ fixieRequest(apiURL, function(err, response, body) {
                                         var va18CrewSub = locals.getEventTotal.vancouver.va18.crews - data.va18Crews;
                                         var va18RiderSub = locals.getEventTotal.vancouver.va18.riders - data.va18Riders;
                                         var va18RegSub = numberRegVa18v1 - numberRegVa18v2;
+                                        var va18VRDailySub = locals.getEventTotal.vancouver.va18.virtual - data.va18VR;
 
                                         var owto18DonationSub = numberOwTo18v1 - numberOwTo18v2;
                                         var owto17DonationSub = numberOwTo17v1 - numberOwTo17v2;
@@ -450,6 +466,7 @@ fixieRequest(apiURL, function(err, response, body) {
                                                 to18RFIDaily: to18RfiSub,
                                                 to18CrewDaily: to18CrewSub,
                                                 to18RidersDaily: to18RiderSub,
+                                                to18VRDaily: to18VRDailySub;
                                                 to17DonDaily: newTo17DonDaily,
                                                 pr18DonDaily: newPrDonDaily,
                                                 pr18RegFeeDaily: newPrRegDaily,
@@ -463,18 +480,21 @@ fixieRequest(apiURL, function(err, response, body) {
                                                 mo18RFIDaily: mo18RfiSub,
                                                 mo18CrewDaily: mo18CrewSub,
                                                 mo18RidersDaily: mo18RiderSub,
+                                                mo18VRDaily: mo18VRDailySub;
                                                 ab18DonDaily: newAbDonDaily,
                                                 ab17DonDaily: newAb17DonDaily,
                                                 ab18RegFeeDaily: newAbRegDaily,
                                                 ab18RFIDaily: ab18RfiSub,
                                                 ab18CrewDaily: ab18CrewSub,
                                                 ab18RidersDaily: ab18RiderSub,
+                                                ab18VRDaily: ab18VRDailySub;
                                                 va18DonDaily: newVaDonDaily,
                                                 va17DonDaily: newVa17DonDaily,
                                                 va18RegFeeDaily: newVaRegDaily,
                                                 va18RFIDaily: va18RfiSub,
                                                 va18CrewDaily: va18CrewSub,
                                                 va18RidersDaily: va18RiderSub,
+                                                va18VRDaily: va18VRDailySub;
                                                 owto18DonDaily: newOwToDonDaily,
                                                 owto17DonDaily: newOwTo17DonDaily,
                                                 owto18RegDaily: newOwToRegDaily,
