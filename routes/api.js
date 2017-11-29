@@ -6,16 +6,29 @@ const moment = require('moment');
 const router = express.Router();
 var data = require('../models/apidata');
 
-// mongoose.connect('mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw/node-angular');
 
 mongoose.Promise = require('bluebird');
-var db = mongoose.connection;
+// mongoose.connect('mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw/node-angular');
+var mongodbUri = 'mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw';
+
+var promise = mongoose.connect(mongodbUri, {
+  useMongoClient: true,
+  /* other options */
+});
+
+promise.then(function(db) {
+
+});
+
+
+
+// var db = mongoose.connection;
 
 router.get('/data', function(req, res) {
 	console.log('Requesting data...');
 	// Find data from yesterday with MomentJS (subtract 1 from Today's date)
 	data.find({"updated": moment().subtract(1, 'days').format('L')})
-		.sort({"_id": -1})
+		// .sort({"_id": -1})
 		.exec(function(err, yesterday) {
 			if (err) {
 				console.log('Error getting data..');
