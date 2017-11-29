@@ -36,7 +36,7 @@ router.get('/data', function(req, res) {
 			if (yesterday) {
 				console.log('Pulling yesterday\'s data! Date: ' + yesterday[0].updated);
 
-				const apiURL = 'http://www.conquercancer.ca/site/PageServer?pagename=2018_api_testing&pgwrap=n';
+				const apiURL = 'http://www.conquercancer.ca/site/PageServer?pagename=2018_api_data&pgwrap=n';
 			    fixieRequest(apiURL, function(err, response, body) {
 			        if (!err && response.statusCode == 200) {
 			            var locals = JSON.parse(body);
