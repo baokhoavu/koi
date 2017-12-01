@@ -271,6 +271,7 @@ router.get('/data', function(req, res) {
 				                                            var newMlRegDaily = '$' + ml18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
 				                                            latestdata.updated = moment().format('L');
+				                                            latestdata.nightly = 'false',
 	                                            			latestdata.to18Donations = locals.getEventTotal.toronto.to18.totalDonation;
 			                                            	latestdata.to18RegFee = locals.getEventTotal.toronto.to18.regFee;
 			                                                latestdata.to18Crews = locals.getEventTotal.toronto.to18.crews;

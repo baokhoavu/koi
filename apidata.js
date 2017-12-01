@@ -22,6 +22,7 @@ promise.then(function(db) {
 
     var dataSchema = new Schema({
         updated: String,
+        nightly: String,
         to18Donations: String,
         to18RegFee: String,
         to18Crews: String,
@@ -396,7 +397,8 @@ promise.then(function(db) {
 
 
                                             var allData = new ApiData({
-                                                updated: moment().format('L') + ' - Nightly',
+                                                updated: moment().format('L'),
+                                                nightly: 'true',
                                                 to18Donations: locals.getEventTotal.toronto.to18.totalDonation,
                                                 to18RegFee: locals.getEventTotal.toronto.to18.regFee,
                                                 to18Crews: locals.getEventTotal.toronto.to18.crews,

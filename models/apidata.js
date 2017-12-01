@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 
 var dataSchema = new Schema({
     updated: String,
+    nightly: String,
     to18Donations: String,
     to18RegFee: String,
     to18Crews: String,
