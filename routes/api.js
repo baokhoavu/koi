@@ -16,9 +16,7 @@ var promise = mongoose.connect(mongodbUri, {
   /* other options */
 });
 
-promise.then(function(db) {
-
-});
+promise.then(function(db) {});
 
 // var db = mongoose.connection;
 
@@ -56,7 +54,7 @@ router.get('/data', function(req, res) {
 
 	                                            // console.log(yesterday[0].to18Donations);
 
-	                                            // Find today's data, subtract from yesterday's total to display daily amount 
+	                                            // Find today's data
 	                                            data.findOneAndUpdate({"updated": moment().format('L')})
 	                                            	.sort({"_id": -1})
 	                                            	.exec(function(err, latestdata) {
