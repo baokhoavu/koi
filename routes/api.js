@@ -55,8 +55,8 @@ router.get('/data', function(req, res) {
 	                                            // console.log(yesterday[0].to18Donations);
 
 	                                            // Find today's data
-	                                            data.findOneAndUpdate({"updated": moment().format('L')})
-	                                            	.sort({"_id": -1})
+	                                            data.findOne({"updated": moment().format('L')})
+	                                            	// .sort({"_id": -1})
 	                                            	.exec(function(err, latestdata) {
 	                                            		if (err) {
 	                                            			console.log('There was an error getting Today\'s data: ');
@@ -64,6 +64,7 @@ router.get('/data', function(req, res) {
 	                                            		}
 	                                            		if (latestdata) {
 	                                            			console.log("Getting latest data! Date: " + latestdata.updated);
+	                                            			// console.log("Getting latest data! Date: " + latestdata);
 	                                            			// =========================== Ride Toronto 2018 =========================== //
 				                                            var removeDollarTo18v1 = latestdata.to18Donations;
 				                                            var removeDollarTo18v2 = yesterday[0].to18Donations;
@@ -269,7 +270,7 @@ router.get('/data', function(req, res) {
 				                                            var newMl17DonDaily = '$' + ml17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newMlRegDaily = '$' + ml18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
-
+				                                            latestdata.updated = moment().format('L');
 	                                            			latestdata.to18Donations = locals.getEventTotal.toronto.to18.totalDonation;
 			                                            	latestdata.to18RegFee = locals.getEventTotal.toronto.to18.regFee;
 			                                                latestdata.to18Crews = locals.getEventTotal.toronto.to18.crews;
