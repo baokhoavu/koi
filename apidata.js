@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 const moment = require('moment');
 const request = require('request');
-const fixieRequest = request.defaults({'proxy': process.env.FIXIE_URL});
+// const fixieRequest = request.defaults({'proxy': process.env.FIXIE_URL});
 var ApiData = require('./models/apidata');
 
 mongoose.Promise = require('bluebird');
@@ -161,25 +161,25 @@ promise.then(function(db) {
     // var ApiData = mongoose.model("ApiData", dataSchema);
 
     const apiURL = 'http://www.conquercancer.ca/site/PageServer?pagename=2018_api_data&pgwrap=n';
-    fixieRequest(apiURL, function(err, response, body) {
+    request(apiURL, function(err, response, body) {
         if (!err && response.statusCode == 200) {
             var locals = JSON.parse(body);
             console.log('Got ConquerCancer Data...');
 
             const apiOneWalk = 'http://www.onewalk.ca/site/PageServer?pagename=api_data&pgwrap=n';
-            fixieRequest(apiOneWalk, function(err, response, body) {
+            request(apiOneWalk, function(err, response, body) {
                 if (!err && response.statusCode == 200) {
                     var locals2 = JSON.parse(body);
                     console.log('Got OneWalk Data...');
 
                     const apiRidePerth = 'http://www.conquercancer.org.au/site/PageServer?pagename=api_data&pgwrap=n';
-                    fixieRequest(apiRidePerth, function(err, response, body) {
+                    request(apiRidePerth, function(err, response, body) {
                         if (!err && response.statusCode == 200) {
                             var locals3 = JSON.parse(body);
                             console.log('Got ConquerCancer AU Data...');
 
                             const apiOneDay = 'http://participate.theoneday.org.au/site/PageServer?pagename=api_data&pgwrap=n';
-                            fixieRequest(apiOneDay, function(err, response, body) {
+                            request(apiOneDay, function(err, response, body) {
                                 if (!err && response.statusCode == 200) {
                                 var locals4 = JSON.parse(body);
                                 console.log('Got TheOneDay Data...');
