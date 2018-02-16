@@ -405,48 +405,58 @@ promise.then(function(db) {
                                                 to18RFI: locals.getEventTotal.toronto.to18.rfi,
                                                 to18Riders: locals.getEventTotal.toronto.to18.riders,
                                                 to18VR: locals.getEventTotal.toronto.to18.virtual,
+                                                to18Rider2: locals.getEventTotal.toronto.to18.riders2,
+                                                to18OneDay: locals.getEventTotal.toronto.to18.oneday,
+                                                
                                                 to17Donations: locals.getEventTotal.toronto.to17.totalDonation,
                                                 to17RegFee: locals.getEventTotal.toronto.to17.regFee,
                                                 to17Crews: locals.getEventTotal.toronto.to17.crews,
                                                 to17RFI: locals.getEventTotal.toronto.to17.rfi,
                                                 to17Riders: locals.getEventTotal.toronto.to17.riders,
                                                 to17VR: locals.getEventTotal.toronto.to17.virtual,
+                                                
                                                 mo18Donations: locals.getEventTotal.montreal.mo18.totalDonation,
                                                 mo18RegFee: locals.getEventTotal.montreal.mo18.regFee,
                                                 mo18Crews: locals.getEventTotal.montreal.mo18.crews,
                                                 mo18RFI: locals.getEventTotal.montreal.mo18.rfi,
                                                 mo18Riders: locals.getEventTotal.montreal.mo18.riders,
                                                 mo18VR: locals.getEventTotal.montreal.mo18.virtual,
+                                                
                                                 mo17Donations: locals.getEventTotal.montreal.mo17.totalDonation,
                                                 mo17RegFee: locals.getEventTotal.montreal.mo17.regFee,
                                                 mo17Crews: locals.getEventTotal.montreal.mo17.crews,
                                                 mo17RFI: locals.getEventTotal.montreal.mo17.rfi,
                                                 mo17Riders: locals.getEventTotal.montreal.mo17.riders,
                                                 mo17VR: locals.getEventTotal.montreal.mo17.virtual,
+                                                
                                                 ab18Donations: locals.getEventTotal.alberta.ab18.totalDonation,
                                                 ab18RegFee: locals.getEventTotal.alberta.ab18.regFee,
                                                 ab18Crews: locals.getEventTotal.alberta.ab18.crews,
                                                 ab18RFI: locals.getEventTotal.alberta.ab18.rfi,
                                                 ab18Riders: locals.getEventTotal.alberta.ab18.riders,
                                                 ab18VR: locals.getEventTotal.alberta.ab18.virtual,
+                                                
                                                 ab17Donations: locals.getEventTotal.alberta.ab17.totalDonation,
                                                 ab17RegFee: locals.getEventTotal.alberta.ab17.regFee,
                                                 ab17Crews: locals.getEventTotal.alberta.ab17.crews,
                                                 ab17RFI: locals.getEventTotal.alberta.ab17.rfi,
                                                 ab17Riders: locals.getEventTotal.alberta.ab17.riders,
                                                 ab17VR: locals.getEventTotal.alberta.ab17.virtual,
+                                                
                                                 va18Donations: locals.getEventTotal.vancouver.va18.totalDonation,
                                                 va18RegFee: locals.getEventTotal.vancouver.va18.regFee,
                                                 va18Crews: locals.getEventTotal.vancouver.va18.crews,
                                                 va18RFI: locals.getEventTotal.vancouver.va18.rfi,
                                                 va18Riders: locals.getEventTotal.vancouver.va18.riders,
                                                 va18VR: locals.getEventTotal.vancouver.va18.virtual,
+                                                
                                                 va17Donations: locals.getEventTotal.vancouver.va17.totalDonation,
                                                 va17RegFee: locals.getEventTotal.vancouver.va17.regFee,
                                                 va17Crews: locals.getEventTotal.vancouver.va17.crews,
                                                 va17RFI: locals.getEventTotal.vancouver.va17.rfi,
                                                 va17Riders: locals.getEventTotal.vancouver.va17.riders,
                                                 va17VR: locals.getEventTotal.vancouver.va17.virtual,
+                                                
                                                 owTo18Donations: locals2.getEventTotal.toronto.to18.totalDonation,
                                                 owTo18RegFee: locals2.getEventTotal.toronto.to18.regFee,
                                                 owTo18Crews: locals2.getEventTotal.toronto.to18.crews,
@@ -457,6 +467,7 @@ promise.then(function(db) {
                                                 owTo1825kmWalkers: owTo1825kmWalkers,
                                                 owTo1840kmWalkers: owTo1840kmWalkers,
                                                 owTo18RFI: locals2.getEventTotal.toronto.to18.rfi,
+                                                
                                                 owTo17Donations: locals2.getEventTotal.toronto.to17.totalDonation,
                                                 owTo17RegFee: locals2.getEventTotal.toronto.to17.regFee,
                                                 owTo17Crews: locals2.getEventTotal.toronto.to17.crews,
@@ -465,60 +476,74 @@ promise.then(function(db) {
                                                 owTo1725kmWalkers: owTo1725kmWalkers,
                                                 owTo1740kmWalkers: owTo1740kmWalkers,
                                                 owTo17RFI: locals2.getEventTotal.toronto.to17.rfi,
+                                                
                                                 pr18Donations: locals3.getEventTotal.perth.pr18.totalDonation,
                                                 pr18RegFee: locals3.getEventTotal.perth.pr18.regFee,
                                                 pr18Crews: locals3.getEventTotal.perth.pr18.crews,
                                                 pr18RFI: locals3.getEventTotal.perth.pr18.rfi,
                                                 pr18Riders: locals3.getEventTotal.perth.pr18.riders,
+                                                
                                                 pr17Donations: locals3.getEventTotal.perth.pr17.totalDonation,
                                                 pr17RegFee: locals3.getEventTotal.perth.pr17.regFee,
                                                 pr17Crews: locals3.getEventTotal.perth.pr17.crews,
                                                 pr17RFI: locals3.getEventTotal.perth.pr17.rfi,
                                                 pr17Riders: locals3.getEventTotal.perth.pr17.riders,
+                                                
                                                 ml18Donations: locals4.getEventTotal.melbourne.ml18.totalDonation,
                                                 ml18RegFee: locals4.getEventTotal.melbourne.ml18.regFee,
                                                 ml18Walkers: locals4.getEventTotal.melbourne.ml18.walkers,
                                                 ml18Riders: locals4.getEventTotal.melbourne.ml18.riders,
+                                                
                                                 ml17Donations: locals4.getEventTotal.melbourne.ml17.totalDonation,
                                                 ml17RegFee: locals4.getEventTotal.melbourne.ml17.regFee,
                                                 ml17Walkers: locals4.getEventTotal.melbourne.ml17.walkers,
                                                 ml17Riders: locals4.getEventTotal.melbourne.ml17.riders,
+                                                
                                                 to18DonDaily: newToDonDaily,
                                                 to18RegFeeDaily: newToRegDaily,
                                                 to18RFIDaily: to18RfiSub,
                                                 to18CrewDaily: to18CrewSub,
                                                 to18RidersDaily: to18RiderSub,
                                                 to18VRDaily: to18VRDailySub,
+                                                
                                                 to17DonDaily: newTo17DonDaily,
+                                                
                                                 pr18DonDaily: newPrDonDaily,
                                                 pr18RegFeeDaily: newPrRegDaily,
                                                 pr18RFIDaily: pr18RfiSub,
                                                 pr18CrewDaily: pr18CrewSub,
                                                 pr18RidersDaily: pr18RiderSub,
+                                
                                                 pr17DonDaily: newPr17DonDaily,
+                                                
                                                 mo18DonDaily: newMoDonDaily,
-                                                mo17DonDaily: newMo17DonDaily,
                                                 mo18RegFeeDaily: newMoRegDaily,
                                                 mo18RFIDaily: mo18RfiSub,
                                                 mo18CrewDaily: mo18CrewSub,
                                                 mo18RidersDaily: mo18RiderSub,
                                                 mo18VRDaily: mo18VRDailySub,
+
+                                                mo17DonDaily: newMo17DonDaily,
+                                                
                                                 ab18DonDaily: newAbDonDaily,
-                                                ab17DonDaily: newAb17DonDaily,
                                                 ab18RegFeeDaily: newAbRegDaily,
                                                 ab18RFIDaily: ab18RfiSub,
                                                 ab18CrewDaily: ab18CrewSub,
                                                 ab18RidersDaily: ab18RiderSub,
                                                 ab18VRDaily: ab18VRDailySub,
+
+                                                ab17DonDaily: newAb17DonDaily,
+                                                
                                                 va18DonDaily: newVaDonDaily,
-                                                va17DonDaily: newVa17DonDaily,
                                                 va18RegFeeDaily: newVaRegDaily,
                                                 va18RFIDaily: va18RfiSub,
                                                 va18CrewDaily: va18CrewSub,
                                                 va18RidersDaily: va18RiderSub,
                                                 va18VRDaily: va18VRDailySub,
+                                                
+                                                va17DonDaily: newVa17DonDaily,
+                                                
                                                 owto18DonDaily: newOwToDonDaily,
-                                                owto17DonDaily: newOwTo17DonDaily,
                                                 owto18RegDaily: newOwToRegDaily,
                                                 owto18RFIDaily: owto18RfiSub,
                                                 owto18WalkersDaily: owto18WalkersDailySub,
@@ -528,10 +553,14 @@ promise.then(function(db) {
                                                 owto1825kmWalkersDaily: owTo1825kmWalkersDaily,
                                                 owto1840kmWalkersDaily: owTo1840kmWalkersDaily,
                                                 owto18CrewsDaily: owto18CrewsDailySub,
+
+                                                owto17DonDaily: newOwTo17DonDaily,
+                                                
                                                 ml18DonDaily: newMlDonDaily,
-                                                ml17DonDaily: newMl17DonDaily,
                                                 ml18RegDaily: newMlRegDaily,
-                                                ml18RidersDaily: ml18RiderSub
+                                                ml18RidersDaily: ml18RiderSub,
+
+                                                ml17DonDaily: newMl17DonDaily
                                             });
                                             allData.save(function(error) {
                                                 console.log("Data has been saved to MongoDB!");

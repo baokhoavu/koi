@@ -276,50 +276,60 @@ router.get('/data', function(req, res) {
 			                                            	latestdata.to18RegFee = locals.getEventTotal.toronto.to18.regFee;
 			                                                latestdata.to18Crews = locals.getEventTotal.toronto.to18.crews;
 			                                                latestdata.to18RFI = locals.getEventTotal.toronto.to18.rfi;
-			                                                latestdata.to18Riders = locals.getEventTotal.toronto.to18.riders;
+			                                                latestdata.to18Riders = locals.getEventTotal.toronto.to18.riders + locals.getEventTotal.toronto.to18.oneday + locals.getEventTotal.toronto.to18.riders2;
 			                                                latestdata.to18VR = locals.getEventTotal.toronto.to18.virtual;
+			                                                latestdata.to18Rider2 = locals.getEventTotal.toronto.to18.riders2;
+                                                			latestdata.to18OneDay = locals.getEventTotal.toronto.to18.oneday;
+			                                                
 			                                                latestdata.to17Donations = locals.getEventTotal.toronto.to17.totalDonation;
 			                                                latestdata.to17RegFee = locals.getEventTotal.toronto.to17.regFee;
 			                                                latestdata.to17Crews = locals.getEventTotal.toronto.to17.crews;
 			                                                latestdata.to17RFI = locals.getEventTotal.toronto.to17.rfi;
 			                                                latestdata.to17Riders = locals.getEventTotal.toronto.to17.riders;
 			                                                latestdata.to17VR = locals.getEventTotal.toronto.to17.virtual;
+			                                                
 			                                                latestdata.mo18Donations = locals.getEventTotal.montreal.mo18.totalDonation;
 			                                                latestdata.mo18RegFee = locals.getEventTotal.montreal.mo18.regFee;
 			                                                latestdata.mo18Crews = locals.getEventTotal.montreal.mo18.crews;
 			                                                latestdata.mo18RFI = locals.getEventTotal.montreal.mo18.rfi;
 			                                                latestdata.mo18Riders = locals.getEventTotal.montreal.mo18.riders;
 			                                                latestdata.mo18VR = locals.getEventTotal.montreal.mo18.virtual;
+			                                                
 			                                                latestdata.mo17Donations = locals.getEventTotal.montreal.mo17.totalDonation;
 			                                                latestdata.mo17RegFee = locals.getEventTotal.montreal.mo17.regFee;
 			                                                latestdata.mo17Crews = locals.getEventTotal.montreal.mo17.crews;
 			                                                latestdata.mo17RFI = locals.getEventTotal.montreal.mo17.rfi;
 			                                                latestdata.mo17Riders = locals.getEventTotal.montreal.mo17.riders;
 			                                                latestdata.mo17VR = locals.getEventTotal.montreal.mo17.virtual;
+			                                                
 			                                                latestdata.ab18Donations = locals.getEventTotal.alberta.ab18.totalDonation;
 			                                                latestdata.ab18RegFee = locals.getEventTotal.alberta.ab18.regFee;
 			                                                latestdata.ab18Crews = locals.getEventTotal.alberta.ab18.crews;
 			                                                latestdata.ab18RFI = locals.getEventTotal.alberta.ab18.rfi;
 			                                                latestdata.ab18Riders = locals.getEventTotal.alberta.ab18.riders;
 			                                                latestdata.ab18VR = locals.getEventTotal.alberta.ab18.virtual;
+			                                                
 			                                                latestdata.ab17Donations = locals.getEventTotal.alberta.ab17.totalDonation;
 			                                                latestdata.ab17RegFee = locals.getEventTotal.alberta.ab17.regFee;
 			                                                latestdata.ab17Crews = locals.getEventTotal.alberta.ab17.crews;
 			                                                latestdata.ab17RFI = locals.getEventTotal.alberta.ab17.rfi;
 			                                                latestdata.ab17Riders = locals.getEventTotal.alberta.ab17.riders;
 			                                                latestdata.ab17VR = locals.getEventTotal.alberta.ab17.virtual;
+			                                                
 			                                                latestdata.va18Donations = locals.getEventTotal.vancouver.va18.totalDonation;
 			                                                latestdata.va18RegFee = locals.getEventTotal.vancouver.va18.regFee;
 			                                                latestdata.va18Crews = locals.getEventTotal.vancouver.va18.crews;
 			                                                latestdata.va18RFI = locals.getEventTotal.vancouver.va18.rfi;
 			                                                latestdata.va18Riders = locals.getEventTotal.vancouver.va18.riders;
 			                                                latestdata.va18VR = locals.getEventTotal.vancouver.va18.virtual;
+			                                                
 			                                                latestdata.va17Donations = locals.getEventTotal.vancouver.va17.totalDonation;
 			                                                latestdata.va17RegFee = locals.getEventTotal.vancouver.va17.regFee;
 			                                                latestdata.va17Crews = locals.getEventTotal.vancouver.va17.crews;
 			                                                latestdata.va17RFI = locals.getEventTotal.vancouver.va17.rfi;
 			                                                latestdata.va17Riders = locals.getEventTotal.vancouver.va17.riders;
 			                                                latestdata.va17VR = locals.getEventTotal.vancouver.va17.virtual;
+			                                                
 			                                                latestdata.owTo18Donations = locals2.getEventTotal.toronto.to18.totalDonation;
 			                                                latestdata.owTo18RegFee = locals2.getEventTotal.toronto.to18.regFee;
 			                                                latestdata.owTo18Crews = locals2.getEventTotal.toronto.to18.crews;
@@ -330,6 +340,7 @@ router.get('/data', function(req, res) {
 			                                                latestdata.owTo1825kmWalkers = owTo1825kmWalkers;
 			                                                latestdata.owTo1840kmWalkers = owTo1840kmWalkers;
 			                                                latestdata.owTo18RFI = locals2.getEventTotal.toronto.to18.rfi;
+			                                                
 			                                                latestdata.owTo17Donations = locals2.getEventTotal.toronto.to17.totalDonation;
 			                                                latestdata.owTo17RegFee = locals2.getEventTotal.toronto.to17.regFee;
 			                                                latestdata.owTo17Crews = locals2.getEventTotal.toronto.to17.crews;
@@ -338,11 +349,13 @@ router.get('/data', function(req, res) {
 			                                                latestdata.owTo1725kmWalkers = owTo1725kmWalkers;
 			                                                latestdata.owTo1740kmWalkers = owTo1740kmWalkers;
 			                                                latestdata.owTo17RFI = locals2.getEventTotal.toronto.to17.rfi;
+			                                                
 			                                                latestdata.pr18Donations = locals3.getEventTotal.perth.pr18.totalDonation;
 			                                                latestdata.pr18RegFee = locals3.getEventTotal.perth.pr18.regFee;
 			                                                latestdata.pr18Crews = locals3.getEventTotal.perth.pr18.crews;
 			                                                latestdata.pr18RFI = locals3.getEventTotal.perth.pr18.rfi;
 			                                                latestdata.pr18Riders = locals3.getEventTotal.perth.pr18.riders;
+			                                                
 			                                                latestdata.pr17Donations = locals3.getEventTotal.perth.pr17.totalDonation;
 			                                                latestdata.pr17RegFee = locals3.getEventTotal.perth.pr17.regFee;
 			                                                latestdata.pr17Crews = locals3.getEventTotal.perth.pr17.crews;
@@ -352,46 +365,57 @@ router.get('/data', function(req, res) {
 			                                                latestdata.ml18RegFee = locals4.getEventTotal.melbourne.ml18.regFee;
 			                                                latestdata.ml18Walkers = locals4.getEventTotal.melbourne.ml18.walkers;
 			                                                latestdata.ml18Riders = locals4.getEventTotal.melbourne.ml18.riders;
+			                                                
 			                                                latestdata.ml17Donations = locals4.getEventTotal.melbourne.ml17.totalDonation;
 			                                                latestdata.ml17RegFee = locals4.getEventTotal.melbourne.ml17.regFee;
 			                                                latestdata.ml17Walkers = locals4.getEventTotal.melbourne.ml17.walkers;
 			                                                latestdata.ml17Riders = locals4.getEventTotal.melbourne.ml17.riders;
+			                                                
 			                                                latestdata.to18DonDaily = newToDonDaily;
 			                                                latestdata.to18RegFeeDaily = newToRegDaily;
 			                                                latestdata.to18RFIDaily = to18RfiSub;
 			                                                latestdata.to18CrewDaily = to18CrewSub;
 			                                                latestdata.to18RidersDaily = to18RiderSub;
 			                                                latestdata.to18VRDaily = to18VRDaily;
+			                                                
 			                                                latestdata.to17DonDaily = newTo17DonDaily;
+			                                                
 			                                                latestdata.pr18DonDaily = newPrDonDaily;
 			                                                latestdata.pr18RegFeeDaily = newPrRegDaily;
 			                                                latestdata.pr18RFIDaily = pr18RfiSub;
 			                                                latestdata.pr18CrewDaily = pr18CrewSub;
 			                                                latestdata.pr18RidersDaily = pr18RiderSub;
+			                                                
 			                                                latestdata.pr17DonDaily = newPr17DonDaily;
+			                                                
 			                                                latestdata.mo18DonDaily = newMoDonDaily;
-			                                                latestdata.mo17DonDaily = newMo17DonDaily;
 			                                                latestdata.mo18RegFeeDaily = newMoRegDaily;
 			                                                latestdata.mo18RFIDaily = mo18RfiSub;
 			                                                latestdata.mo18CrewDaily = mo18CrewSub;
 			                                                latestdata.mo18RidersDaily = mo18RiderSub;
 			                                                latestdata.mo18VRDaily = mo18VRDaily;
+			                                                
+			                                                latestdata.mo17DonDaily = newMo17DonDaily;
+
 			                                                latestdata.ab18DonDaily = newAbDonDaily;
-			                                                latestdata.ab17DonDaily = newAb17DonDaily;
 			                                                latestdata.ab18RegFeeDaily = newAbRegDaily;
 			                                                latestdata.ab18RFIDaily = ab18RfiSub;
 			                                                latestdata.ab18CrewDaily = ab18CrewSub;
 			                                                latestdata.ab18RidersDaily = ab18RiderSub;
 			                                                latestdata.ab18VRDaily = ab18VRDaily;
+			                                                
+			                                                latestdata.ab17DonDaily = newAb17DonDaily;
+
 			                                                latestdata.va18DonDaily = newVaDonDaily;
-			                                                latestdata.va17DonDaily = newVa17DonDaily;
 			                                                latestdata.va18RegFeeDaily = newVaRegDaily;
 			                                                latestdata.va18RFIDaily = va18RfiSub;
 			                                                latestdata.va18CrewDaily = va18CrewSub;
 			                                                latestdata.va18RidersDaily = va18RiderSub;
 			                                                latestdata.va18VRDaily = va18VRDaily;
+			                                                
+			                                                latestdata.va17DonDaily = newVa17DonDaily;
+
 			                                                latestdata.owto18DonDaily = newOwToDonDaily;
-			                                                latestdata.owto17DonDaily = newOwTo17DonDaily;
 			                                                latestdata.owto18RegDaily = newOwToRegDaily;
 			                                                latestdata.owto18RFIDaily = owto18RfiSub;
 			                                                latestdata.owto18WalkersDaily = owto18WalkersDailySub;
@@ -401,6 +425,9 @@ router.get('/data', function(req, res) {
 														    latestdata.owto1825kmWalkersDaily = owTo1825kmWalkersDailySub,
 														    latestdata.owto1840kmWalkersDaily = owTo1840kmWalkersDailySub,
 			                                                latestdata.owto18CrewsDaily = owto18CrewsDailySub;
+			                                                
+			                                                latestdata.owto17DonDaily = newOwTo17DonDaily;
+
 			                                                latestdata.ml18DonDaily = newMlDonDaily;
 			                                                latestdata.ml17DonDaily = newMl17DonDaily;
 			                                                latestdata.ml18RegDaily = newMlRegDaily;
