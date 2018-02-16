@@ -28,6 +28,8 @@ promise.then(function(db) {
         to18Crews: String,
         to18RFI: String,
         to18Riders: String,
+        to18Riders2: String,
+        to18OneDay: String,
         to18VR: String,
         mo18Donations: String,
         mo18RegFee: String,
