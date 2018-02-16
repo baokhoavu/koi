@@ -197,6 +197,8 @@ router.get('/data', function(req, res) {
 				                                            var to18RiderSub = locals.getEventTotal.toronto.to18.riders - yesterday[0].to18Riders;
 				                                            var to18RegSub = numberRegTo18v1 - numberRegTo18v2;
 				                                            var to18VRDaily = locals.getEventTotal.toronto.to18.virtual - yesterday[0].to18VR;
+
+				                                            var to18TotalRiders = parseFloat(locals.getEventTotal.toronto.to18.riders) + parseFloat(locals.getEventTotal.toronto.to18.riders2) + parseFloat(locals.getEventTotal.toronto.to18.oneday);
 				                                            
 				                                            var pr18DonationSub = numberPr18v1 - numberPr18v2;
 				                                            var pr17DonationSub = numberPr17v1 - numberPr17v2;
@@ -276,9 +278,9 @@ router.get('/data', function(req, res) {
 			                                            	latestdata.to18RegFee = locals.getEventTotal.toronto.to18.regFee;
 			                                                latestdata.to18Crews = locals.getEventTotal.toronto.to18.crews;
 			                                                latestdata.to18RFI = locals.getEventTotal.toronto.to18.rfi;
-			                                                latestdata.to18Riders = locals.getEventTotal.toronto.to18.riders + locals.getEventTotal.toronto.to18.oneday + locals.getEventTotal.toronto.to18.riders2;
+			                                                latestdata.to18Riders = to18TotalRiders;
 			                                                latestdata.to18VR = locals.getEventTotal.toronto.to18.virtual;
-			                                                latestdata.to18Rider2 = locals.getEventTotal.toronto.to18.riders2;
+			                                                latestdata.to18Riders2 = locals.getEventTotal.toronto.to18.riders2;
                                                 			latestdata.to18OneDay = locals.getEventTotal.toronto.to18.oneday;
 			                                                
 			                                                latestdata.to17Donations = locals.getEventTotal.toronto.to17.totalDonation;
