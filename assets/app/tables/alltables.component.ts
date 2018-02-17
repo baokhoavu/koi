@@ -30,7 +30,6 @@ export class AllTablesComponent {
 
     constructor(private router: Router, private http: HttpClient, private authService: AuthService, private dataService: DataService) {
 
-
         this.dataService.fetchData() 
             .subscribe(data => {
                 this.data = data;
