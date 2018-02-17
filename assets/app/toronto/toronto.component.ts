@@ -11,6 +11,9 @@ export class TorontoComponent {
 	data: any;
 
     constructor(private dataService: DataService) {
-    	dataService.apiData$.subscribe(data => this.data = data);
+    	dataService.apiData$.subscribe(data => {
+    		this.data = data;
+    		console.log(this.data);
+    	});
     }
 }
