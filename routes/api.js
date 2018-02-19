@@ -194,11 +194,13 @@ router.get('/data', function(req, res) {
 				                                            var to17DonationSub = numberTo17v1 - numberTo17v2;
 				                                            var to18RfiSub = locals.getEventTotal.toronto.to18.rfi - yesterday[0].to18RFI;
 				                                            var to18CrewSub = locals.getEventTotal.toronto.to18.crews - yesterday[0].to18Crews;
-				                                            var to18RiderSub = locals.getEventTotal.toronto.to18.riders - yesterday[0].to18Riders;
+				                                            
 				                                            var to18RegSub = numberRegTo18v1 - numberRegTo18v2;
 				                                            var to18VRDaily = locals.getEventTotal.toronto.to18.virtual - yesterday[0].to18VR;
 
 				                                            var to18TotalRiders = parseFloat(locals.getEventTotal.toronto.to18.riders) + parseFloat(locals.getEventTotal.toronto.to18.riders2) + parseFloat(locals.getEventTotal.toronto.to18.oneday);
+
+				                                            var to18RiderSub = to18TotalRiders - yesterday[0].to18Riders;
 				                                            
 				                                            var pr18DonationSub = numberPr18v1 - numberPr18v2;
 				                                            var pr17DonationSub = numberPr17v1 - numberPr17v2;
