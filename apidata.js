@@ -115,6 +115,8 @@ promise.then(function(db) {
         to18CrewDaily: String,
         to18RidersDaily: String,
         to18VRDaily: String,
+        to18Riders2Daily: String,
+        to18OneDayDaily: String,
         to17DonDaily: String,
         pr18DonDaily: String,
         pr18RegFeeDaily: String,
@@ -321,9 +323,15 @@ promise.then(function(db) {
                                             var to17DonationSub = numberTo17v1 - numberTo17v2;
                                             var to18RfiSub = locals.getEventTotal.toronto.to18.rfi - data.to18RFI;
                                             var to18CrewSub = locals.getEventTotal.toronto.to18.crews - data.to18Crews;
-                                            var to18RiderSub = locals.getEventTotal.toronto.to18.riders - data.to18Riders;
+                                            // var to18RiderSub = locals.getEventTotal.toronto.to18.riders - data.to18Riders;
                                             var to18RegSub = numberRegTo18v1 - numberRegTo18v2;
                                             var to18VRDailySub = locals.getEventTotal.toronto.to18.virtual - data.to18VR;
+                                            var to18Riders2Daily = locals.getEventTotal.toronto.to18.riders2 - data.to18Riders2;
+                                            var to18OneDayDaily = locals.getEventTotal.toronto.to18.oneday - data.to18OneDay;
+
+                                            var to18TotalRiders = parseFloat(locals.getEventTotal.toronto.to18.riders) + parseFloat(locals.getEventTotal.toronto.to18.riders2) + parseFloat(locals.getEventTotal.toronto.to18.oneday);
+
+                                            var to18RiderSub = to18TotalRiders - data.to18Riders;
                                             
                                             var pr18DonationSub = numberPr18v1 - numberPr18v2;
                                             var pr17DonationSub = numberPr17v1 - numberPr17v2;
@@ -507,6 +515,8 @@ promise.then(function(db) {
                                                 to18CrewDaily: to18CrewSub,
                                                 to18RidersDaily: to18RiderSub,
                                                 to18VRDaily: to18VRDailySub,
+                                                to18Riders2Daily: to18Riders2Daily,
+                                                to18OneDayDaily: to18OneDayDaily,
                                                 
                                                 to17DonDaily: newTo17DonDaily,
                                                 

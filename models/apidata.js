@@ -97,6 +97,8 @@ var dataSchema = new Schema({
     to18CrewDaily: String,
     to18RidersDaily: String,
     to18VRDaily: String,
+    to18Riders2Daily: String,
+    to18OneDayDaily: String,
     to17DonDaily: String,
     pr18DonDaily: String,
     pr18RegFeeDaily: String,

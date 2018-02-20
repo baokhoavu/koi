@@ -196,7 +196,9 @@ router.get('/data', function(req, res) {
 				                                            var to18CrewSub = locals.getEventTotal.toronto.to18.crews - yesterday[0].to18Crews;
 				                                            
 				                                            var to18RegSub = numberRegTo18v1 - numberRegTo18v2;
-				                                            var to18VRDaily = locals.getEventTotal.toronto.to18.virtual - yesterday[0].to18VR;
+				                                            var to18VRDaily = locals.getEventTotal.toronto.to18.virtual - yesterday[0].to18VR
+				                                            var to18Riders2Daily = locals.getEventTotal.toronto.to18.riders2 - yesterday[0].to18Riders2;
+				                                            var to18OneDayDaily = locals.getEventTotal.toronto.to18.oneday - yesterday[0].to18OneDay;
 
 				                                            var to18TotalRiders = parseFloat(locals.getEventTotal.toronto.to18.riders) + parseFloat(locals.getEventTotal.toronto.to18.riders2) + parseFloat(locals.getEventTotal.toronto.to18.oneday);
 
@@ -381,6 +383,8 @@ router.get('/data', function(req, res) {
 			                                                latestdata.to18CrewDaily = to18CrewSub;
 			                                                latestdata.to18RidersDaily = to18RiderSub;
 			                                                latestdata.to18VRDaily = to18VRDaily;
+			                                                latestdata.to18Riders2Daily = to18Riders2Daily;
+			                                                latestdata.to18OneDayDaily = to18OneDayDaily;
 			                                                
 			                                                latestdata.to17DonDaily = newTo17DonDaily;
 			                                                
