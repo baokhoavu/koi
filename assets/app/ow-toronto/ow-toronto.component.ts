@@ -4,7 +4,7 @@ import { DataService } from './../data.service';
 @Component({
     selector: 'app-ow-toronto',
     templateUrl: './ow-toronto.component.html',
-    styleUrls: ['./ow-toronto.component.css']
+    styleUrls: ['./ow-toronto.component.scss']
 })
 export class OWTorontoComponent {
 
