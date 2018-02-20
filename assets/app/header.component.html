@@ -9,4 +9,36 @@
             <li class="float-right" *ngIf="isLoggedIn()"><button mat-raised-button color="warn" (click)="onLogout()">Logout</button></li>
         </ul>
     </nav>
+
+    <div *ngIf="isLoggedIn()" class="row">
+	  <div class="col-xs-12">
+	    <button class="btn-view">View Table Menu</button>
+	  </div>
+	</div>
+
+    <div class="row all-buttons-row">
+	    <div class="col-xs-12">
+	        <h3 class="text-center">Choose location &amp; event:</h3>
+	    </div>
+	    <div class="col-md-3">
+	        <h4 class="text-center">All</h4>
+	        <button class="center-block btn btn-success all-btn">Display All Events</button>
+	    </div>
+	    <div class="col-md-3">
+	        <h4 class="text-center">Ride</h4>
+	        <button class="btn btn-primary alberta-btn">Alberta</button>
+	        <button class="btn btn-primary toronto-btn">Toronto</button>
+	        <button class="btn btn-primary montreal-btn">Montreal</button>
+	        <button class="btn btn-primary vancouver-btn">Vancouver</button>
+	        <button class="btn btn-primary perth-btn">Perth</button>
+	    </div>
+	    <div class="col-md-3">
+	        <h4 class="text-center">OneWalk</h4>
+	        <button class="btn btn-ow ow-toronto-btn">Toronto</button>
+	    </div>
+	    <div class="col-md-3">
+	        <h4 class="text-center">OneDay</h4>
+	        <button class="btn btn-od melbourne-btn">Melbourne</button>
+	    </div>
+	</div>
 </header>

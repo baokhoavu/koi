@@ -4,7 +4,7 @@ import { DataService } from './../data.service';
 @Component({
     selector: 'app-vancouver',
     templateUrl: './vancouver.component.html',
-    styleUrls: ['./vancouver.component.css']
+    styleUrls: ['./vancouver.component.scss']
 })
 export class VancouverComponent {
 

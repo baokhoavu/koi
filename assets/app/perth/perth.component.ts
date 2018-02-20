@@ -4,7 +4,7 @@ import { DataService } from "./../data.service";
 @Component({
     selector: 'app-perth',
     templateUrl: './perth.component.html',
-    styleUrls: ['./perth.component.css']
+    styleUrls: ['./perth.component.scss']
 })
 export class PerthComponent {
 
