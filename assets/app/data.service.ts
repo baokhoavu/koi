@@ -12,11 +12,20 @@ import {
 } from '@angular/common/http';
 
 @Injectable()
-export class DataService {
+export class DataService implements OnInit {
+	interval: any;
+
 	private apiData = new BehaviorSubject<any>(null);
 	public apiData$ = this.apiData.asObservable();
 
 	constructor(private http: Http) {
+	}
+
+	ngOnInit() {
+		this.fetchData();
+		this.interval = setInterval(() => { 
+            this.fetchData(); 
+        }, 1000);
 	}
 
 	fetchData() {

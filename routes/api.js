@@ -6,7 +6,6 @@ const moment = require('moment');
 const router = express.Router();
 var data = require('../models/apidata');
 
-
 mongoose.Promise = require('bluebird');
 // mongoose.connect('mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw/node-angular');
 var mongodbUri = 'mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw';
@@ -200,7 +199,9 @@ router.get('/data', function(req, res) {
 				                                            var to18Riders2Daily = locals.getEventTotal.toronto.to18.riders2 - yesterday[0].to18Riders2;
 				                                            var to18OneDayDaily = locals.getEventTotal.toronto.to18.oneday - yesterday[0].to18OneDay;
 
-				                                            var to18TotalRiders = parseFloat(locals.getEventTotal.toronto.to18.riders) + parseFloat(locals.getEventTotal.toronto.to18.riders2) + parseFloat(locals.getEventTotal.toronto.to18.oneday);
+				                                            var to18TotalParticipants = parseFloat(locals.getEventTotal.toronto.to18.riders) + parseFloat(locals.getEventTotal.toronto.to18.riders2) + parseFloat(locals.getEventTotal.toronto.to18.oneday);
+
+				                                            var to18TotalRiders = locals.getEventTotal.toronto.to18.riders;
 
 				                                            var to18RiderSub = to18TotalRiders - yesterday[0].to18Riders;
 				                                            
@@ -286,6 +287,7 @@ router.get('/data', function(req, res) {
 			                                                latestdata.to18VR = locals.getEventTotal.toronto.to18.virtual;
 			                                                latestdata.to18Riders2 = locals.getEventTotal.toronto.to18.riders2;
                                                 			latestdata.to18OneDay = locals.getEventTotal.toronto.to18.oneday;
+                                                			latestdata.to18TotalParticipants = to18TotalParticipants;
 			                                                
 			                                                latestdata.to17Donations = locals.getEventTotal.toronto.to17.totalDonation;
 			                                                latestdata.to17RegFee = locals.getEventTotal.toronto.to17.regFee;
