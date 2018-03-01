@@ -102,6 +102,10 @@ promise.then(function(db) {
         pr17Crews: String,
         pr17RFI:String,
         pr17Riders: String,
+        br18Donations: String,
+        br18RegFee: String,
+        br18Walkers: String,
+        br18Riders: String,
         ml18Donations: String,
         ml18RegFee: String,
         ml18Walkers: String,
@@ -259,12 +263,19 @@ promise.then(function(db) {
                                             var owTo1715kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr15km;
                                             var owTo1725kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr25km;
                                             var owTo1740kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr40km;
+
+                                            // =========================== OneDay Brisbane 2018 =========================== //
+                                            var removeDollarBr18v1 = locals4.getEventTotal.brisbane.br18.totalDonation;
+                                            var removeDollarBr18v2 = data.br18Donations;
+                                            var removeRegBr18v1 = locals4.getEventTotal.brisbane.br18.regFee;
+                                            var removeRegBr18v2 = data.br18RegFee;
                                             
                                             // =========================== OneDay Melbourne 2018 =========================== //
                                             var removeDollarMl18v1 = locals4.getEventTotal.melbourne.ml18.totalDonation;
                                             var removeDollarMl18v2 = data.ml18Donations;
                                             var removeRegMl18v1 = locals4.getEventTotal.melbourne.ml18.regFee;
                                             var removeRegMl18v2 = data.ml18RegFee;
+                                            
                                             // =========================== OneDay Melbourne 2017 =========================== //
                                             var removeDollarMl17v1 = locals4.getEventTotal.melbourne.ml17.totalDonation;
                                             var removeDollarMl17v2 = data.ml17Donations;
@@ -380,6 +391,10 @@ promise.then(function(db) {
                                             var owto18CrewsDailySub = locals2.getEventTotal.toronto.to18.crews - data.owTo18Crews;
                                             var owto18WalkersDailySub = owto18TotalWalkers - data.owTo18Walkers;
 
+                                            // var br18DonationSub = numberBr18v1 - numberBr18v2;
+                                            // var br18RegSub = numberBr18v1 - numberBr18v2;
+                                            // var br18RiderSub = locals4.getEventTotal.brisbane.br18.riders - data.br18Riders;
+
                                             var ml18DonationSub = numberMl18v1 - numberMl18v2;
                                             var ml17DonationSub = numberMl17v1 - numberMl17v2;
                                             var ml18RegSub = numberMl18v1 - numberMl18v2;
@@ -389,24 +404,33 @@ promise.then(function(db) {
                                             var newToDonDaily = '$' + to18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newTo17DonDaily = '$' + to17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newToRegDaily = '$' + to18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"); 
+                                            
                                             var newPrDonDaily = '$' + pr18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newPr17DonDaily = '$' + pr17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newPrRegDaily = '$' + pr18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                            
                                             var newMoDonDaily = '$' + mo18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newMo17DonDaily = '$' + mo17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newMoRegDaily = '$' + mo18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                            
                                             var newAbDonDaily = '$' + ab18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newAb17DonDaily = '$' + ab17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newAbRegDaily = '$' + ab18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                            
                                             var newVaDonDaily = '$' + va18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newVa17DonDaily = '$' + va17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newVaRegDaily = '$' + va18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                            
                                             var newOwToDonDaily = '$' + owto18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newOwTo17DonDaily = '$' + owto17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newOwToRegDaily = '$' + owto18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+
+                                            // var newBrDonDaily = '$' + br18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                            // var newBrRegDaily = '$' + br18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+
                                             var newMlDonDaily = '$' + ml18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newMl17DonDaily = '$' + ml17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-                                            var newMlRegDaily = '$' + ml18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                            var newMlRegDaily = '$' + ml18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
 
                                             var allData = new ApiData({
@@ -502,6 +526,11 @@ promise.then(function(db) {
                                                 pr17Crews: locals3.getEventTotal.perth.pr17.crews,
                                                 pr17RFI: locals3.getEventTotal.perth.pr17.rfi,
                                                 pr17Riders: locals3.getEventTotal.perth.pr17.riders,
+
+                                                br18Donations: locals4.getEventTotal.brisbane.br18.totalDonation,
+                                                br18RegFee: locals4.getEventTotal.brisbane.br18.regFee,
+                                                br18Walkers: locals4.getEventTotal.brisbane.br18.walkers,
+                                                br18Riders: locals4.getEventTotal.brisbane.br18.riders,
                                                 
                                                 ml18Donations: locals4.getEventTotal.melbourne.ml18.totalDonation,
                                                 ml18RegFee: locals4.getEventTotal.melbourne.ml18.regFee,
@@ -571,6 +600,10 @@ promise.then(function(db) {
                                                 owto18CrewsDaily: owto18CrewsDailySub,
 
                                                 owto17DonDaily: newOwTo17DonDaily,
+
+                                                // br18DonDaily: newBrDonDaily,
+                                                // br18RegDaily: newBrRegDaily,
+                                                // br18RidersDaily: r18RiderSub,
                                                 
                                                 ml18DonDaily: newMlDonDaily,
                                                 ml18RegDaily: newMlRegDaily,
