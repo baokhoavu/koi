@@ -1,0 +1,60 @@
+<div *ngIf="data" class="table-responsive gradient-tbl">
+   <h1>OneDay Brisbane</h1>
+  <div class="tbl-header">
+    <table class="gradient-tbl" cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th class="text-center">Year</th>
+          <th class="text-center">RFI</th>
+          <th class="text-center">CREWS</th>
+          <th class="text-center">RIDERS</th>
+          <th class="text-center">DON$</th>
+          <th class="text-center">REG$</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead class="tbl-hdr-mobile">
+        <tr>
+          <th class="text-center">Year</th>
+          <th class="text-center">RFI</th>
+          <th class="text-center">CREWS</th>
+          <th class="text-center">RIDERS</th>
+          <th class="text-center">DON$</th>
+          <th class="text-center">REG$</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2018 (Today)</td>
+          <td class="ml18-rfi-daily">Not Applicable</td>
+          <td class="ml18-crews-daily">Not Applicable</td>
+          <td>x</td>
+          <td>x</td>
+          <td>x</td>
+<!--      <td>{{data.br18RidersDaily}}</td>
+          <td>{{data.br18DonDaily}}</td>
+          <td>{{data.br18RegDaily}}</td> -->
+        </tr>
+        <tr>
+          <td>2018 (YTD)</td>
+          <td class="ml18-rfi">Not Applicable</td>
+          <td class="ml18-crews">Not Applicable</td>
+          <td>{{data.br18Riders}}</td>
+          <td>{{data.br18Donations}}</td>
+          <td>{{data.br18RegFee}}</td>
+        </tr>
+        <!-- <tr>
+          <td>2017 (YTD)</td>
+          <td class="ml17-rfi">Not Applicable</td>
+          <td class="ml17-crews">Not Applicable</td>
+          <td>{{data.ml17Riders}}</td>
+          <td>{{data.ml17Donations}}</td>
+          <td>{{data.ml17RegFee}}</td>
+        </tr> -->
+      </tbody>
+    </table>
+  </div>
+</div>

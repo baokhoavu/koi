@@ -91,13 +91,19 @@ export class AllTablesComponent {
                    $('.all-buttons-row').slideUp();
                    $('.btn-view').removeClass('view-hide');
                    $('.btn-view').text('View Table Menu');
+               } else if ($(this).hasClass('brisbane-btn')){
+                   $('.br-table').siblings('.table-responsive').slideUp();
+                   $('.br-table').slideDown();
+                   $('.all-buttons-row').slideUp();
+                   $('.btn-view').removeClass('view-hide');
+                   $('.btn-view').text('View Table Menu');
                } else if ($(this).hasClass('all-btn')){
                    $('.all-table').siblings('.table-responsive').slideUp();
                    $('.all-table').slideDown();
                    $('.all-buttons-row').slideUp();
                    $('.btn-view').removeClass('view-hide');
                    $('.btn-view').text('View Table Menu');
-               }
+               } 
             });
         });
         // if (window.location.href.indexOf('alltables') == -1) {
