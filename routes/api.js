@@ -130,10 +130,10 @@ router.get('/data', function(req, res) {
 
 				                                            // =========================== OneDay Brisbane 2018 =========================== //
 				                                            var removeDollarBr18v1 = latestdata.br18Donations;
+				                                            var removeDollarBr18v2 = yesterday[0].br18Donations;
 				                                            var removeRegBr18v1 = latestdata.br18RegFee;
-				                                            // var removeRegBr18v2 = yesterday[0].br18RegFee;
-				                                            // var removeDollarBr18v2 = yesterday[0].br18Donations;
-				                                            
+				                                            var removeRegBr18v2 = yesterday[0].br18RegFee;
+
 				                                            // =========================== OneDay Melbourne 2018 =========================== //
 				                                            var removeDollarMl18v1 = latestdata.ml18Donations;
 				                                            var removeDollarMl18v2 = yesterday[0].ml18Donations;
@@ -188,9 +188,9 @@ router.get('/data', function(req, res) {
 				                                            var numberRegOwTo18v2 = Number(removeRegOwTo18v2.replace(/[^0-9\.-]+/g,""));
 
 				                                            var numberBr18v1 = Number(removeDollarBr18v1.replace(/[^0-9\.-]+/g,""));
-				                                            // var numberBr18v2 = Number(removeDollarBr18v2.replace(/[^0-9\.-]+/g,""));
+				                                            var numberBr18v2 = Number(removeDollarBr18v2.replace(/[^0-9\.-]+/g,""));
 				                                            var numberRegBr18v1 = Number(removeRegBr18v1.replace(/[^0-9\.-]+/g,""));
-				                                            // var numberRegBr18v2 = Number(removeRegBr18v2.replace(/[^0-9\.-]+/g,"")); 
+				                                            var numberRegBr18v2 = Number(removeRegBr18v2.replace(/[^0-9\.-]+/g,"")); 
 				                                            
 				                                            var numberMl18v1 = Number(removeDollarMl18v1.replace(/[^0-9\.-]+/g,""));
 				                                            var numberMl18v2 = Number(removeDollarMl18v2.replace(/[^0-9\.-]+/g,"")); 
@@ -261,13 +261,18 @@ router.get('/data', function(req, res) {
 					                                        var owTo18NightWalkersDailySub = locals2.getEventTotal.toronto.to18.nightWlk - yesterday[0].owTo18NightWalkers;
 				                                            
 				                                            // ONEDAY - DAILY - Brisbane
-				                                            // var br18DonationSub = numberBr18v1 - numberBr18v2;
+				                                            var br18DonationSub = numberBr18v1 - numberBr18v2;
+				                                            var br18RegSub = numberRegBr18v1 - numberRegBr18v2;
+				                                            var br18RiderSub = locals4.getEventTotal.brisbane.br18.riders - yesterday[0].br18Riders;
+
+				                                            console.log(yesterday[0].br18Riders);
+				                                            console.log(locals4.getEventTotal.brisbane.br18.riders);
 
 				                                            // ONEDAY - DAILY - Melbourne
 				                                            var ml18DonationSub = numberMl18v1 - numberMl18v2;
-				                                            var ml17DonationSub = numberMl17v1 - numberMl17v2;
 				                                            var ml18RegSub = numberRegMl18v1 - numberRegMl18v2;
 				                                            var ml18RiderSub = locals4.getEventTotal.melbourne.ml18.riders - yesterday[0].ml18Riders;
+				                                            var ml17DonationSub = numberMl17v1 - numberMl17v2;
 				                                            
 				                                            // Add Dollar Sign back into Data    
 				                                            var newToDonDaily = '$' + to18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -289,11 +294,12 @@ router.get('/data', function(req, res) {
 				                                            var newOwTo17DonDaily = '$' + owto17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newOwToRegDaily = '$' + owto18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
-				                                            // var newBrDonDaily = '$' + br18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+				                                            var newBrDonDaily = '$' + br18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+				                                            var newBrRegDaily = '$' + br18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
-				                                            var newMlDonDaily = '$' + ml18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-				                                            var newMl17DonDaily = '$' + ml17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+				                                            var newMlDonDaily = '$' + ml18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"); 
 				                                            var newMlRegDaily = '$' + ml18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+				                                            var newMl17DonDaily = '$' + ml17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
 				                                            latestdata.updated = moment().format('L');
 				                                            latestdata.nightly = 'false',
@@ -484,9 +490,9 @@ router.get('/data', function(req, res) {
 			                                             	latestdata.ml17DonDaily = newMl17DonDaily;
 
 			                                             	// DAILY - ONEDAY - Brisbane
-			                                                // latestdata.br18DonDaily = newBrDonDaily;
-			                                                // latestdata.br18RegDaily = newBrRegDaily;
-			                                                // latestdata.br18RidersDaily = br18RiderSub;
+			                                                latestdata.br18DonDaily = newBrDonDaily;
+			                                                latestdata.br18RegDaily = newBrRegDaily;
+			                                                latestdata.br18RidersDaily = br18RiderSub;
 
 			                                             	// latestdata.br17DonDaily = newBr17DonDaily;
 
