@@ -88,6 +88,10 @@ var dataSchema = new Schema({
     br18RegFee: String,
     br18Walkers: String,
     br18Riders: String,
+    br17Donations: String,
+    br17RegFee: String,
+    br17Walkers: String,
+    br17Riders: String,
     ml18Donations: String,
     ml18RegFee: String,
     ml18Walkers: String,
@@ -146,10 +150,12 @@ var dataSchema = new Schema({
     br18DonDaily: String,
     br18RegDaily: String,
     br18RidersDaily: String,
+    br18WalkersDaily: String,
     ml18DonDaily: String,
     ml17DonDaily: String,
     ml18RegDaily: String,
-    ml18RidersDaily: String
+    ml18RidersDaily: String,
+    ml18WalkersDaily: String
 }, {versionKey: false});
 
 module.exports = mongoose.model('ApiData', dataSchema);

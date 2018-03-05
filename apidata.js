@@ -106,6 +106,10 @@ promise.then(function(db) {
         br18RegFee: String,
         br18Walkers: String,
         br18Riders: String,
+        br17Donations: String,
+        br17RegFee: String,
+        br17Walkers: String,
+        br17Riders: String,
         ml18Donations: String,
         ml18RegFee: String,
         ml18Walkers: String,
@@ -167,7 +171,8 @@ promise.then(function(db) {
         ml18DonDaily: String,
         ml17DonDaily: String,
         ml18RegDaily: String,
-        ml18RidersDaily: String
+        ml18RidersDaily: String,
+        ml18WalkersDaily: String
     }, {versionKey: false});
     
     // var ApiData = mongoose.model("ApiData", dataSchema);
@@ -402,11 +407,13 @@ promise.then(function(db) {
                                             var br18DonationSub = numberBr18v1 - numberBr18v2;
                                             var br18RegSub = numberBr18v1 - numberBr18v2;
                                             var br18RiderSub = locals4.getEventTotal.brisbane.br18.riders - data.br18Riders;
+                                            var br18WalkerSub = locals4.getEventTotal.brisbane.br18.walkers - data.br18Walkers;
 
                                             var ml18DonationSub = numberMl18v1 - numberMl18v2;
                                             var ml17DonationSub = numberMl17v1 - numberMl17v2;
                                             var ml18RegSub = numberMl18v1 - numberMl18v2;
                                             var ml18RiderSub = locals4.getEventTotal.melbourne.ml18.riders - data.ml18Riders;
+                                            var ml18WalkerSub = locals4.getEventTotal.melbourne.ml18.walkers - data.ml18Walkers;
 
                                             // Add Dollar Sign back into Data    
                                             var newToDonDaily = '$' + to18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -539,6 +546,11 @@ promise.then(function(db) {
                                                 br18RegFee: locals4.getEventTotal.brisbane.br18.regFee,
                                                 br18Walkers: locals4.getEventTotal.brisbane.br18.walkers,
                                                 br18Riders: locals4.getEventTotal.brisbane.br18.riders,
+
+                                                br17Donations: locals4.getEventTotal.brisbane.br17.totalDonation,
+                                                br17RegFee: locals4.getEventTotal.brisbane.br17.regFee,
+                                                br17Walkers: locals4.getEventTotal.brisbane.br17.walkers,
+                                                br17Riders: locals4.getEventTotal.brisbane.br17.riders,
                                                 
                                                 ml18Donations: locals4.getEventTotal.melbourne.ml18.totalDonation,
                                                 ml18RegFee: locals4.getEventTotal.melbourne.ml18.regFee,
@@ -612,10 +624,12 @@ promise.then(function(db) {
                                                 br18DonDaily: newBrDonDaily,
                                                 br18RegDaily: newBrRegDaily,
                                                 br18RidersDaily: br18RiderSub,
+                                                br18WalkersDaily: br18WalkerSub,
                                                 
                                                 ml18DonDaily: newMlDonDaily,
                                                 ml18RegDaily: newMlRegDaily,
                                                 ml18RidersDaily: ml18RiderSub,
+                                                ml18WalkersDaily: ml18WalkerSub,
 
                                                 ml17DonDaily: newMl17DonDaily
                                             });
