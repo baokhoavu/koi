@@ -21,12 +21,12 @@ export class AlbertaComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-    	this.datePicker.nativeElement.value = '11/20/2017';
-	    console.log(this.datePicker.nativeElement.value);
+    	// this.datePicker.nativeElement.value = '11/20/2017';
+	    // console.log(this.datePicker.nativeElement.value);
 	}
 
 	logValue() {
-		console.log(this.datePicker.nativeElement.value);
+		// console.log(this.datePicker.nativeElement.value);
 	}
 
 }
