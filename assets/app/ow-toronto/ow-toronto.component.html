@@ -1,4 +1,4 @@
-<div *ngIf="data" class="table-responsive gradient-tbl ow-to-table">
+<div *ngIf="dataService.data" class="table-responsive gradient-tbl ow-to-table">
    <h1>OneWalk Toronto</h1>
   <div class="tbl-header">
     <table class="gradient-tbl" cellpadding="0" cellspacing="0" border="0">
@@ -31,37 +31,37 @@
       <tbody>
         <tr>
           <td>2018 (TODAY)</td>
-          <td>{{data.owto18WalkersDaily}}</td>
-          <td>{{data.owto18NightWalkersDaily}}</td>
-          <td>{{data.owto182dayDaily}}</td>
-          <td>{{data.owto1815kmWalkersDaily}}</td>
-          <td>{{data.owto1825kmWalkersDaily}}</td>
-          <td>{{data.owto1840kmWalkersDaily}}</td>
+          <td>{{dataService.data.owto18WalkersDaily}}</td>
+          <td>{{dataService.data.owto18NightWalkersDaily}}</td>
+          <td>{{dataService.data.owto182dayDaily}}</td>
+          <td>{{dataService.data.owto1815kmWalkersDaily}}</td>
+          <td>{{dataService.data.owto1825kmWalkersDaily}}</td>
+          <td>{{dataService.data.owto1840kmWalkersDaily}}</td>
         </tr>
         <tr>
           <td>2018 (YTD)</td>
-          <td>{{data.owTo18Walkers}}</td>
-          <td>{{data.owTo18NightWalkers}}</td>
-          <td>{{data.owTo182day}}</td>
-          <td>{{data.owTo1815kmWalkers}}</td>
-          <td>{{data.owTo1825kmWalkers}}</td>
-          <td>{{data.owTo1840kmWalkers}}</td>
+          <td>{{dataService.data.owTo18Walkers}}</td>
+          <td>{{dataService.data.owTo18NightWalkers}}</td>
+          <td>{{dataService.data.owTo182day}}</td>
+          <td>{{dataService.data.owTo1815kmWalkers}}</td>
+          <td>{{dataService.data.owTo1825kmWalkers}}</td>
+          <td>{{dataService.data.owTo1840kmWalkers}}</td>
         </tr>
         <tr>
           <td>2017 (YTD)</td>
-          <td>{{data.owTo17Walkers}}</td>
+          <td>{{dataService.data.owTo17Walkers}}</td>
           <td>NONE</td>
           <td>NONE</td>
-          <td>{{data.owTo1715kmWalkers}}</td>
-          <td>{{data.owTo1725kmWalkers}}</td>
-          <td>{{data.owTo1740kmWalkers}}</td>
+          <td>{{dataService.data.owTo1715kmWalkers}}</td>
+          <td>{{dataService.data.owTo1725kmWalkers}}</td>
+          <td>{{dataService.data.owTo1740kmWalkers}}</td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<div *ngIf="data" class="table-responsive gradient-tbl ow-to-table">
+<div *ngIf="dataService.data" class="table-responsive gradient-tbl ow-to-table">
    <h1>OneWalk Toronto</h1>
   <div class="tbl-header">
     <table class="gradient-tbl" cellpadding="0" cellspacing="0" border="0">
@@ -90,24 +90,24 @@
       <tbody>
         <tr>
           <td>2018 (TODAY)</td>
-          <td>{{data.owto18RFIDaily}}</td>
-          <td>{{data.owto18CrewsDaily}}</td>
-          <td>{{data.owto18DonDaily}}</td>
-          <td>{{data.owto18RegDaily}}</td>
+          <td>{{dataService.data.owto18RFIDaily}}</td>
+          <td>{{dataService.data.owto18CrewsDaily}}</td>
+          <td>{{dataService.data.owto18DonDaily}}</td>
+          <td>{{dataService.data.owto18RegDaily}}</td>
         </tr>
         <tr>
           <td>2018 (YTD)</td>
-          <td>{{data.owTo18RFI}}</td>
-          <td>{{data.owTo18Crews}}</td>
-          <td>{{data.owTo18Donations}}</td>
-          <td>{{data.owTo18RegFee}}</td>
+          <td>{{dataService.data.owTo18RFI}}</td>
+          <td>{{dataService.data.owTo18Crews}}</td>
+          <td>{{dataService.data.owTo18Donations}}</td>
+          <td>{{dataService.data.owTo18RegFee}}</td>
         </tr>
         <tr>
           <td>2017 (YTD)</td>
-          <td>{{data.owTo17RFI}}</td>
-          <td>{{data.owTo17Crews}}</td>
-          <td>{{data.owTo17Donations}}</td>
-          <td>{{data.owTo17RegFee}}</td>
+          <td>{{dataService.data.owTo17RFI}}</td>
+          <td>{{dataService.data.owTo17Crews}}</td>
+          <td>{{dataService.data.owTo17Donations}}</td>
+          <td>{{dataService.data.owTo17RegFee}}</td>
         </tr>
       </tbody>
     </table>

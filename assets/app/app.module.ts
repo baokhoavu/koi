@@ -16,6 +16,7 @@ import {
   MatChipsModule,
   MatDatepickerModule,
   MatDialogModule,
+  MatDividerModule,
   MatExpansionModule,
   MatGridListModule,
   MatIconModule,
@@ -34,11 +35,11 @@ import {
   MatSlideToggleModule,
   MatSnackBarModule,
   MatSortModule,
+  MatStepperModule,
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatStepperModule
 } from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
 
@@ -147,7 +148,6 @@ export class AngularMaterialModule {}
         ReactiveFormsModule,
         HttpModule,
         HttpClientModule,
-        MatSnackBarModule,
         BrowserAnimationsModule,
         AngularMaterialModule
     ],

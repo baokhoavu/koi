@@ -1,4 +1,4 @@
-<div *ngIf="data" class="table-responsive gradient-tbl">
+<div *ngIf="dataService.data" class="table-responsive gradient-tbl">
    <h1>Ride Toronto</h1>
   <div class="tbl-header">
     <table class="gradient-tbl" cellpadding="0" cellspacing="0" border="0">
@@ -35,36 +35,36 @@
       <tbody>
         <tr>
           <td>2018 (Today)</td>
-          <td>{{data.to18RFIDaily}}</td>
-          <td>{{data.to18CrewDaily}}</td>
-          <td>{{data.to18RidersDaily}}</td>
-          <td>{{data.to18Riders2Daily}}</td>
-          <td>{{data.to18OneDayDaily}}</td>
-          <td>{{data.to18VRDaily}}</td>
-          <td>{{data.to18DonDaily}}</td>
-          <td>{{data.to18RegFeeDaily}}</td>
+          <td>{{dataService.data.to18RFIDaily}}</td>
+          <td>{{dataService.data.to18CrewDaily}}</td>
+          <td>{{dataService.data.to18RidersDaily}}</td>
+          <td>{{dataService.data.to18Riders2Daily}}</td>
+          <td>{{dataService.data.to18OneDayDaily}}</td>
+          <td>{{dataService.data.to18VRDaily}}</td>
+          <td>{{dataService.data.to18DonDaily}}</td>
+          <td>{{dataService.data.to18RegFeeDaily}}</td>
         </tr>
         <tr>
           <td>2018 (YTD)</td>
-          <td>{{data.to18RFI}}</td>
-          <td>{{data.to18Crews}}</td>
-          <td>{{data.to18Riders}}</td>
-          <td>{{data.to18Riders2}}</td>
-          <td>{{data.to18OneDay}}</td>
-          <td>{{data.to18VR}}</td>
-          <td>{{data.to18Donations}}</td>
-          <td>{{data.to18RegFee}}</td>
+          <td>{{dataService.data.to18RFI}}</td>
+          <td>{{dataService.data.to18Crews}}</td>
+          <td>{{dataService.data.to18Riders}}</td>
+          <td>{{dataService.data.to18Riders2}}</td>
+          <td>{{dataService.data.to18OneDay}}</td>
+          <td>{{dataService.data.to18VR}}</td>
+          <td>{{dataService.data.to18Donations}}</td>
+          <td>{{dataService.data.to18RegFee}}</td>
         </tr>
         <tr>
           <td>2017 (YTD)</td>
-          <td>{{data.to17RFI}}</td>
-          <td>{{data.to17Crews}}</td>
-          <td>{{data.to17Riders}}</td>
+          <td>{{dataService.data.to17RFI}}</td>
+          <td>{{dataService.data.to17Crews}}</td>
+          <td>{{dataService.data.to17Riders}}</td>
           <td>x</td>
           <td>x</td>
-          <td>{{data.to17VR}}</td>
-          <td>{{data.to17Donations}}</td>
-          <td>{{data.to17RegFee}}</td>
+          <td>{{dataService.data.to17VR}}</td>
+          <td>{{dataService.data.to17Donations}}</td>
+          <td>{{dataService.data.to17RegFee}}</td>
         </tr>
       </tbody>
     </table>

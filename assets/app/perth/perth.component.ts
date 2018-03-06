@@ -11,7 +11,7 @@ export class PerthComponent {
     data: any;
 
     constructor(private dataService: DataService) {
-    	dataService.apiData$.subscribe(data => this.data = data)
+    	this.dataService.fetchData();
     }
 
 }

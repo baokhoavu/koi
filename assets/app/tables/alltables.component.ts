@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
@@ -7,12 +7,7 @@ import { DataService } from './../data.service';
 
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
-import {
-    HttpClient,
-    HttpRequest,
-    HttpEvent,
-    HttpEventType
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { MatSidenavModule } from '@angular/material';
 
@@ -23,18 +18,12 @@ import * as $ from 'jquery';
     templateUrl: './alltables.component.html',
     styleUrls: ['./alltables.component.scss']
 })
-export class AllTablesComponent {
+export class AllTablesComponent implements OnInit {
     myForm: FormGroup;
     data: any;
     private apiUrl = '/api/data';
 
     constructor(private router: Router, private http: HttpClient, private authService: AuthService, private dataService: DataService) {
-
-        this.dataService.fetchData() 
-            .subscribe(data => {
-                this.data = data;
-                this.dataService.setData(data)
-            });
 
         // this.getData('/api/data');
 
@@ -109,6 +98,10 @@ export class AllTablesComponent {
         // if (window.location.href.indexOf('alltables') == -1) {
         //      location.reload(true);
         // }
+    }
+
+    ngOnInit() {
+      this.dataService.fetchData();
     }
 
     isLoggedIn() {

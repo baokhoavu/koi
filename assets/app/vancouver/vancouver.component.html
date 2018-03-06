@@ -1,4 +1,4 @@
-<div *ngIf="data" class="table-responsive gradient-tbl">
+<div *ngIf="dataService.data" class="table-responsive gradient-tbl">
    <h1>Ride Vancouver</h1>
   <div class="tbl-header">
     <table class="gradient-tbl" cellpadding="0" cellspacing="0" border="0">
@@ -31,30 +31,30 @@
       <tbody>
         <tr>
           <td>2018 (Today)</td>
-          <td>{{data.va18RFIDaily}}</td>
-          <td>{{data.va18CrewDaily}}</td>
-          <td>{{data.va18RidersDaily}}</td>
-          <td>{{data.va18VRDaily}}</td>
-          <td>{{data.va18DonDaily}}</td>
-          <td>{{data.va18RegFeeDaily}}</td>
+          <td>{{dataService.data.va18RFIDaily}}</td>
+          <td>{{dataService.data.va18CrewDaily}}</td>
+          <td>{{dataService.data.va18RidersDaily}}</td>
+          <td>{{dataService.data.va18VRDaily}}</td>
+          <td>{{dataService.data.va18DonDaily}}</td>
+          <td>{{dataService.data.va18RegFeeDaily}}</td>
         </tr>
         <tr>
           <td>2018 (YTD)</td>
-          <td>{{data.va18RFI}}</td>
-          <td>{{data.va18Crews}}</td>
-          <td>{{data.va18Riders}}</td>
-          <td>{{data.va18VR}}</td>
-          <td>{{data.va18Donations}}</td>
-          <td>{{data.va18RegFee}}</td>
+          <td>{{dataService.data.va18RFI}}</td>
+          <td>{{dataService.data.va18Crews}}</td>
+          <td>{{dataService.data.va18Riders}}</td>
+          <td>{{dataService.data.va18VR}}</td>
+          <td>{{dataService.data.va18Donations}}</td>
+          <td>{{dataService.data.va18RegFee}}</td>
         </tr>
         <tr>
           <td>2017 (YTD)</td>
-          <td>{{data.va17RFI}}</td>
-          <td>{{data.va17Crews}}</td>
-          <td>{{data.va17Riders}}</td>
-          <td>{{data.va17VR}}</td>
-          <td>{{data.va17Donations}}</td>
-          <td>{{data.va17RegFee}}</td>
+          <td>{{dataService.data.va17RFI}}</td>
+          <td>{{dataService.data.va17Crews}}</td>
+          <td>{{dataService.data.va17Riders}}</td>
+          <td>{{dataService.data.va17VR}}</td>
+          <td>{{dataService.data.va17Donations}}</td>
+          <td>{{dataService.data.va17RegFee}}</td>
         </tr>
       </tbody>
     </table>

@@ -75,19 +75,20 @@ input.ng-invalid.ng-touched {
   width: 100%;
   max-width: 200px;
 }
-svg {
+svg.koi-fish,
+svg.koi-txt {
   max-width: 200px;
   position: absolute;
   left: 50%;
   display: block;
 }
-.koi-fish {
+svg.koi-fish {
   -webkit-animation: rotation 2s infinite linear;
   animation: rotation 2s infinite linear;
   position: absolute;
   left: 10px;
 }
-.koi-txt {
+svg.koi-txt {
   max-width: 170px;
   position: absolute;
   top: 15px;
