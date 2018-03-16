@@ -1,5 +1,5 @@
 
-<div *ngIf="isLoggedIn() && dataService.data" class="table-responsive all-table">
+<div *ngIf="dataService.allTable === true && dataService.data" class="table-responsive all-table">
     <h3>Today</h3>
     <p>* x = not applicable data</p>
     <table class="table table-bordered table-hover">
@@ -112,7 +112,7 @@
     </table>
 </div>
 
-<div  *ngIf="isLoggedIn() && dataService.data" class="table-responsive all-table">
+<div  *ngIf="dataService.allTable === true && dataService.data" class="table-responsive all-table">
     <h3>Year to Date</h3>
     <p>* x = not applicable data</p>
     <table class="table table-bordered table-hover">
@@ -323,32 +323,32 @@
 
 <!-- BEGIN Toronto Table -->
 
-<app-toronto class="table-responsive to-table"></app-toronto>
+<app-toronto [@slideInOut] *ngIf="dataService.toTable === true" class="table-responsive to-table"></app-toronto>
 
 <!-- BEGIN Alberta Table -->
 
-<app-alberta class="table-responsive ab-table"></app-alberta>
+<app-alberta [@slideInOut] *ngIf="dataService.abTable === true" class="table-responsive ab-table"></app-alberta>
 
 <!-- BEGIN Montreal Table -->
 
-<app-montreal class="table-responsive mo-table"></app-montreal>
+<app-montreal [@slideInOut] *ngIf="dataService.moTable === true" class="table-responsive mo-table"></app-montreal>
 
 <!-- BEGIN Vancouver Table -->
 
-<app-vancouver class="table-responsive va-table"></app-vancouver>
+<app-vancouver [@slideInOut] *ngIf="dataService.vaTable === true" class="table-responsive va-table"></app-vancouver>
 
 <!-- BEGIN Ride Perth Table -->
 
-<app-perth class="table-responsive pr-table"></app-perth>
+<app-perth [@slideInOut] *ngIf="dataService.prTable === true" class="table-responsive pr-table"></app-perth>
 
 <!-- BEGIN OneWalk Toronto Table -->
 
-<app-ow-toronto class="table-responsive ow-to-table"></app-ow-toronto>
+<app-ow-toronto [@slideInOut] *ngIf="dataService.owtoTable === true" class="table-responsive ow-to-table"></app-ow-toronto>
 
 <!-- BEGIN OneDay Melbourne Table -->
 
-<app-melbourne class="table-responsive ml-table"></app-melbourne>
+<app-melbourne [@slideInOut] *ngIf="dataService.mlTable === true" class="table-responsive ml-table"></app-melbourne>
 
 <!-- BEGIN OneDay Brisbane Table -->
 
-<app-brisbane class="table-responsive br-table"></app-brisbane>
+<app-brisbane [@slideInOut] *ngIf="dataService.brTable === true" class="table-responsive br-table"></app-brisbane>

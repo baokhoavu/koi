@@ -640,7 +640,7 @@ promise.then(function(db) {
                                                     console.error(error);
                                                 }
                                             });
-                                    }).sort({"_id": -1});;
+                                    }).sort({"_id": -1});
                                 }
                             });
 

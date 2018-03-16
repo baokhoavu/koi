@@ -7,6 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 // Material Design and Animation Modules
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -147,6 +149,7 @@ export class AngularMaterialModule {}
         routing,
         ReactiveFormsModule,
         HttpModule,
+        MatMomentDateModule,
         HttpClientModule,
         BrowserAnimationsModule,
         AngularMaterialModule
