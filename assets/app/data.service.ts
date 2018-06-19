@@ -64,7 +64,8 @@ export class DataService implements OnInit {
 				this.data = data;
 				// console.log(this.data);
 			}, (error) => {
-				console.log('There was an error getting the data.')
+				console.log('There was an error getting the data.');
+				console.log(error);
 			});
 	}
 

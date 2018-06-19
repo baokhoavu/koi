@@ -9,6 +9,11 @@ import { HttpClient } from '@angular/common/http';
 
 import { MatSidenavModule } from '@angular/material';
 
+import { Observable } from "rxjs/Observable";
+import { Observer } from "rxjs/Observer";
+import { Subscription } from "rxjs/Subscription";
+import { Subject } from "rxjs/Subject";
+
 import { SlideInOutAnimation } from '../animation';
 
 import * as $ from 'jquery';
@@ -24,6 +29,10 @@ export class AllTablesComponent implements OnInit {
     myForm: FormGroup;
     data: any;
     private apiUrl = '/api/data';
+
+    interval: any;
+
+    _postsArray: any = {};
 
     constructor(private router: Router, private http: HttpClient, private authService: AuthService, private dataService: DataService) {
 
@@ -46,8 +55,13 @@ export class AllTablesComponent implements OnInit {
         // }
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.dataService.fetchData();
+        // this.interval = setInterval(() => {
+        //           this.dataService.fetchData();
+        //       }, 5000);
+
+
     }
 
     isLoggedIn() {
