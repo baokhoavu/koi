@@ -125,6 +125,10 @@ svg.koi-txt {
 /*   transform: translate(-30px); */
 }
 
+.mat-input-flex.mat-form-field-flex {
+    border-bottom: 1px solid #fff;
+}
+
 @-webkit-keyframes rotation {
     from {
         -webkit-transform: rotate(0deg);

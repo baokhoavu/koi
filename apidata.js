@@ -23,6 +23,16 @@ promise.then(function(db) {
     var dataSchema = new Schema({
         updated: String,
         nightly: String,
+        to19Donations: String,
+        to19RegFee: String,
+        to19Crews: String,
+        to19RFI: String,
+        to19Riders: String,
+        to19Riders2: String,
+        to19OneDay: String,
+        to19OneDay2: String,
+        to19VR: String,
+        to19TotalParticipants: String,
         to18Donations: String,
         to18RegFee: String,
         to18Crews: String,
@@ -344,7 +354,11 @@ promise.then(function(db) {
                                             var numberMl18v1 = Number(removeRegMl18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberMl18v2 = Number(removeRegMl18v2.replace(/[^0-9\.-]+/g,""));
                                             
-                                            // Subtract Real Time Data vs Static Data        
+                                            // Subtract Real Time Data vs Static Data
+
+                                            // Toronto 2019
+                                            var to19TotalParticipants = parseFloat(locals.getEventTotal.toronto.to19.riders) + parseFloat(locals.getEventTotal.toronto.to19.riders2) + parseFloat(locals.getEventTotal.toronto.to19.oneday) + parseFloat(locals.getEventTotal.toronto.to19.oneday2);
+
                                             var to18DonationSub = numberTo18v1 - numberTo18v2;
                                             var to17DonationSub = numberTo17v1 - numberTo17v2;
                                             var to18RfiSub = locals.getEventTotal.toronto.to18.rfi - data.to18RFI;
@@ -452,6 +466,17 @@ promise.then(function(db) {
                                             var allData = new ApiData({
                                                 updated: moment().format('L'),
                                                 nightly: 'true',
+                                                to19Donations: locals.getEventTotal.toronto.to19.totalDonation,
+                                                to19RegFee: locals.getEventTotal.toronto.to19.regFee,
+                                                to19Crews: locals.getEventTotal.toronto.to19.crews,
+                                                to19RFI: locals.getEventTotal.toronto.to19.rfi,
+                                                to19Riders: locals.getEventTotal.toronto.to19.riders,
+                                                to19VR: locals.getEventTotal.toronto.to19.virtual,
+                                                to19Rider2: locals.getEventTotal.toronto.to19.riders2,
+                                                to19OneDay: locals.getEventTotal.toronto.to19.oneday,
+                                                to19OneDay2: locals.getEventTotal.toronto.to19.oneday2,
+                                                to19TotalParticipants: to19TotalParticipants,
+
                                                 to18Donations: locals.getEventTotal.toronto.to18.totalDonation,
                                                 to18RegFee: locals.getEventTotal.toronto.to18.regFee,
                                                 to18Crews: locals.getEventTotal.toronto.to18.crews,
