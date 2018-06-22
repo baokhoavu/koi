@@ -129,6 +129,15 @@ promise.then(function(db) {
         ml17RegFee: String,
         ml17Walkers: String,
         ml17Riders: String,
+        to19DonDaily: String,
+        to19RegFeeDaily: String,
+        to19RFIDaily: String,
+        to19CrewDaily: String,
+        to19RidersDaily: String,
+        to19VRDaily: String,
+        to19Riders2Daily: String,
+        to19OneDayDaily: String,
+        to19OneDayDaily2: String,
         to18DonDaily: String,
         to18RegFeeDaily: String,
         to18RFIDaily: String,
@@ -218,6 +227,12 @@ promise.then(function(db) {
                                             console.log("In the scheduler getting nightly data...");
                                             
                                             // Set Variables for Real Time vs Static Event Data
+
+                                            // =========================== Ride Toronto 2019 =========================== //
+                                            var removeDollarTo19v1 = locals.getEventTotal.toronto.to19.totalDonation;
+                                            var removeDollarTo19v2 = data.to19Donations;
+                                            var removeRegTo19v1 = locals.getEventTotal.toronto.to19.regFee;
+                                            var removeRegTo19v2 = data.to19RegFee;
                                                 
                                             // =========================== Ride Toronto 2018 =========================== //
                                             var removeDollarTo18v1 = locals.getEventTotal.toronto.to18.totalDonation;
@@ -299,7 +314,11 @@ promise.then(function(db) {
                                             var removeDollarMl17v1 = locals4.getEventTotal.melbourne.ml17.totalDonation;
                                             var removeDollarMl17v2 = data.ml17Donations;
                                             
-                                            // Remove Dollar Sign from Data Brought In    
+                                            // Remove Dollar Sign from Data Brought In
+                                            var numberTo19v1 = Number(removeDollarTo19v1.replace(/[^0-9\.-]+/g,""));
+                                            var numberTo19v2 = Number(removeDollarTo19v2.replace(/[^0-9\.-]+/g,""));
+                                            var numberRegTo19v1 = Number(removeRegTo19v1.replace(/[^0-9\.-]+/g,""));
+                                            var numberRegTo19v2 = Number(removeRegTo19v2.replace(/[^0-9\.-]+/g,""));
                                             var numberTo18v1 = Number(removeDollarTo18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberTo18v2 = Number(removeDollarTo18v2.replace(/[^0-9\.-]+/g,""));
                                             var numberTo17v1 = Number(removeDollarTo17v1.replace(/[^0-9\.-]+/g,""));
@@ -357,7 +376,20 @@ promise.then(function(db) {
                                             // Subtract Real Time Data vs Static Data
 
                                             // Toronto 2019
+                                            var to19DonationSub = numberTo19v1 - numberTo19v2;
+                                            var to19RfiSub = locals.getEventTotal.toronto.to19.rfi - data.to19RFI;
+                                            var to19CrewSub = locals.getEventTotal.toronto.to19.crews - data.to19Crews;
+                                            var to19RegSub = numberRegTo19v1 - numberRegTo19v2;
+                                            var to19VRDailySub = locals.getEventTotal.toronto.to19.virtual - data.to19VR;
+                                            var to19Riders2Daily = locals.getEventTotal.toronto.to19.riders2 - data.to19Riders2;
+                                            var to19OneDayDaily = locals.getEventTotal.toronto.to19.oneday - data.to19OneDay;
+                                            var to19OneDayDaily2 = locals.getEventTotal.toronto.to19.oneday2 - data.to19OneDay2;
+
                                             var to19TotalParticipants = parseFloat(locals.getEventTotal.toronto.to19.riders) + parseFloat(locals.getEventTotal.toronto.to19.riders2) + parseFloat(locals.getEventTotal.toronto.to19.oneday) + parseFloat(locals.getEventTotal.toronto.to19.oneday2);
+
+                                            var to19TotalRiders = locals.getEventTotal.toronto.to19.riders;
+
+                                            var to19RiderSub = to19TotalRiders - data.to19Riders;
 
                                             var to18DonationSub = numberTo18v1 - numberTo18v2;
                                             var to17DonationSub = numberTo17v1 - numberTo17v2;
@@ -368,6 +400,7 @@ promise.then(function(db) {
                                             var to18VRDailySub = locals.getEventTotal.toronto.to18.virtual - data.to18VR;
                                             var to18Riders2Daily = locals.getEventTotal.toronto.to18.riders2 - data.to18Riders2;
                                             var to18OneDayDaily = locals.getEventTotal.toronto.to18.oneday - data.to18OneDay;
+                                            var to18OneDayDaily2 = locals.getEventTotal.toronto.to18.oneday2 - data.to18OneDay2;
 
                                             var to18TotalParticipants = parseFloat(locals.getEventTotal.toronto.to18.riders) + parseFloat(locals.getEventTotal.toronto.to18.riders2) + parseFloat(locals.getEventTotal.toronto.to18.oneday) + parseFloat(locals.getEventTotal.toronto.to18.oneday2);
 
@@ -430,7 +463,8 @@ promise.then(function(db) {
                                             var ml18RiderSub = locals4.getEventTotal.melbourne.ml18.riders - data.ml18Riders;
                                             var ml18WalkerSub = locals4.getEventTotal.melbourne.ml18.walkers - data.ml18Walkers;
 
-                                            // Add Dollar Sign back into Data    
+                                            // Add Dollar Sign back into Data
+                                            var newTo19DonDaily = '$' + to19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newToDonDaily = '$' + to18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newTo17DonDaily = '$' + to17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newToRegDaily = '$' + to18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"); 
@@ -588,6 +622,16 @@ promise.then(function(db) {
                                                 ml17RegFee: locals4.getEventTotal.melbourne.ml17.regFee,
                                                 ml17Walkers: locals4.getEventTotal.melbourne.ml17.walkers,
                                                 ml17Riders: locals4.getEventTotal.melbourne.ml17.riders,
+
+                                                to19DonDaily: newTo19DonDaily,
+                                                to19RegFeeDaily: newToRegDaily,
+                                                to19RFIDaily: to19RfiSub,
+                                                to19CrewDaily: to19CrewSub,
+                                                to19RidersDaily: to19RiderSub,
+                                                to19VRDaily: to19VRDailySub,
+                                                to19Riders2Daily: to19Riders2Daily,
+                                                to19OneDayDaily: to19OneDayDaily,
+                                                to19OneDayDaily2: to19OneDayDaily2,
                                                 
                                                 to18DonDaily: newToDonDaily,
                                                 to18RegFeeDaily: newToRegDaily,
@@ -597,6 +641,7 @@ promise.then(function(db) {
                                                 to18VRDaily: to18VRDailySub,
                                                 to18Riders2Daily: to18Riders2Daily,
                                                 to18OneDayDaily: to18OneDayDaily,
+                                                to18OneDayDaily2: to18OneDayDaily2,
                                                 
                                                 to17DonDaily: newTo17DonDaily,
                                                 
