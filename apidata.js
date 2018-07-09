@@ -43,6 +43,16 @@ promise.then(function(db) {
         to18OneDay2: String,
         to18VR: String,
         to18TotalParticipants: String,
+        mo19Donations: String,
+        mo19RegFee: String,
+        mo19Crews: String,
+        mo19RFI: String,
+        mo19Riders: String,
+        mo19Riders2: String,
+        mo19OneDay: String,
+        mo19OneDay2: String,
+        mo19VR: String,
+        mo19TotalParticipants: String,
         mo18Donations: String,
         mo18RegFee: String,
         mo18Crews: String,
@@ -197,25 +207,25 @@ promise.then(function(db) {
     
     // var ApiData = mongoose.model("ApiData", dataSchema);
 
-    const apiURL = 'http://www.conquercancer.ca/site/PageServer?pagename=2018_api_data&pgwrap=n';
+    var apiURL = 'http://www.conquercancer.ca/site/PageServer?pagename=2018_api_data&pgwrap=n';
     request(apiURL, function(err, response, body) {
         if (!err && response.statusCode == 200) {
             var locals = JSON.parse(body);
             console.log('Got ConquerCancer Data...');
 
-            const apiOneWalk = 'http://www.onewalk.ca/site/PageServer?pagename=api_data&pgwrap=n';
+            var apiOneWalk = 'http://www.onewalk.ca/site/PageServer?pagename=api_data&pgwrap=n';
             request(apiOneWalk, function(err, response, body) {
                 if (!err && response.statusCode == 200) {
                     var locals2 = JSON.parse(body);
                     console.log('Got OneWalk Data...');
 
-                    const apiRidePerth = 'http://www.conquercancer.org.au/site/PageServer?pagename=api_data&pgwrap=n';
+                    var apiRidePerth = 'http://www.conquercancer.org.au/site/PageServer?pagename=api_data&pgwrap=n';
                     request(apiRidePerth, function(err, response, body) {
                         if (!err && response.statusCode == 200) {
                             var locals3 = JSON.parse(body);
                             console.log('Got ConquerCancer AU Data...');
 
-                            const apiOneDay = 'http://participate.theoneday.org.au/site/PageServer?pagename=api_data&pgwrap=n';
+                            var apiOneDay = 'http://participate.theoneday.org.au/site/PageServer?pagename=api_data&pgwrap=n';
                             request(apiOneDay, function(err, response, body) {
                                 if (!err && response.statusCode == 200) {
                                 var locals4 = JSON.parse(body);
@@ -242,13 +252,18 @@ promise.then(function(db) {
                                             // =========================== Ride Toronto 2017 =========================== //
                                             var removeDollarTo17v1 = locals.getEventTotal.toronto.to17.totalDonation;
                                             var removeDollarTo17v2 = data.to17Donations;
-                                                
+
+                                            // =========================== Ride Montreal 2019 =========================== //
+                                            var removeDollarMo19v1 = locals.getEventTotal.montreal.mo19.totalDonation;
+                                            var removeDollarMo19v2 = data.mo19Donations;
+                                            var removeRegMo19v1 = locals.getEventTotal.montreal.mo19.regFee;
+                                            var removeRegMo19v2 = data.mo19RegFee;
                                             // =========================== Ride Montreal 2018 =========================== //
                                             var removeDollarMo18v1 = locals.getEventTotal.montreal.mo18.totalDonation;
                                             var removeDollarMo18v2 = data.mo18Donations;
                                             var removeRegMo18v1 = locals.getEventTotal.montreal.mo18.regFee;
                                             var removeRegMo18v2 = data.mo18RegFee;
-                                            // =========================== Ride Montreal 2018 =========================== //
+                                            // =========================== Ride Montreal 2017 =========================== //
                                             var removeDollarMo17v1 = locals.getEventTotal.montreal.mo17.totalDonation;
                                             var removeDollarMo17v2 = data.mo17Donations;
                                             
@@ -375,7 +390,7 @@ promise.then(function(db) {
                                             
                                             // Subtract Real Time Data vs Static Data
 
-                                            // Toronto 2019
+                                            // Toronto 2019 Daily
                                             var to19DonationSub = numberTo19v1 - numberTo19v2;
                                             var to19RfiSub = locals.getEventTotal.toronto.to19.rfi - data.to19RFI;
                                             var to19CrewSub = locals.getEventTotal.toronto.to19.crews - data.to19Crews;
@@ -414,6 +429,16 @@ promise.then(function(db) {
                                             var pr18CrewSub = locals3.getEventTotal.perth.pr18.crews - data.pr18Crews;
                                             var pr18RiderSub = locals3.getEventTotal.perth.pr18.riders - data.pr18Riders;
                                             var pr18RegSub = numberRegPr18v1 - numberRegPr18v2;
+
+                                            // Montreal 2019 Daily
+                                            // var mo19DonationSub = numberMo19v1 - numberMo19v2;
+                                            // var mo19RfiSub = locals.getEventTotal.montreal.mo19.rfi - data.mo19RFI;
+                                            // var mo19RegSub = numberRegMo19v1 - numberRegMo19v2;
+                                            // var mo19CrewSub = locals.getEventTotal.montreal.mo19.crews - data.mo19Crews;
+                                            // var mo19RiderSub = locals.getEventTotal.montreal.mo19.riders - data.mo19Riders;
+                                            // var mo19VRDailySub = locals.getEventTotal.montreal.mo19.virtual - data.mo19VR;
+
+                                            var mo19TotalParticipants = parseFloat(locals.getEventTotal.montreal.mo19.riders) + parseFloat(locals.getEventTotal.montreal.mo19.riders2);
                                             
                                             var mo18DonationSub = numberMo18v1 - numberMo18v2;
                                             var mo17DonationSub = numberMo17v1 - numberMo17v2;
@@ -528,6 +553,17 @@ promise.then(function(db) {
                                                 to17RFI: locals.getEventTotal.toronto.to17.rfi,
                                                 to17Riders: locals.getEventTotal.toronto.to17.riders,
                                                 to17VR: locals.getEventTotal.toronto.to17.virtual,
+
+                                                mo19Donations: locals.getEventTotal.montreal.mo19.totalDonation,
+                                                mo19RegFee: locals.getEventTotal.montreal.mo19.regFee,
+                                                mo19Crews: locals.getEventTotal.montreal.mo19.crews,
+                                                mo19RFI: locals.getEventTotal.montreal.mo19.rfi,
+                                                mo19Riders: locals.getEventTotal.montreal.mo19.riders,
+                                                mo19VR: locals.getEventTotal.montreal.mo19.virtual,
+                                                mo19Rider2: locals.getEventTotal.montreal.mo19.riders2,
+                                                mo19OneDay: locals.getEventTotal.montreal.mo19.oneday,
+                                                mo19OneDay2: locals.getEventTotal.montreal.mo19.oneday2,
+                                                mo19TotalParticipants: mo19TotalParticipants,
                                                 
                                                 mo18Donations: locals.getEventTotal.montreal.mo18.totalDonation,
                                                 mo18RegFee: locals.getEventTotal.montreal.mo18.regFee,

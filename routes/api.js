@@ -255,7 +255,20 @@ router.get('/data', function(req, res) {
 				                                            var pr18CrewSub = locals3.getEventTotal.perth.pr18.crews - yesterday[0].pr18Crews;
 				                                            var pr18RiderSub = locals3.getEventTotal.perth.pr18.riders - yesterday[0].pr18Riders;
 				                                            var pr18RegSub = numberRegPr18v1 - numberRegPr18v2;
-				                                            
+
+				                                            // Montreal 2019 Daily
+                                                            // var mo19RegSub = numberRegMo19v1 - numberRegMo19v2;
+                                                            // var mo19VRDaily = locals.getEventTotal.montreal.mo19.virtual - yesterday[0].mo19VR;
+                                                            // var mo19Riders2Daily = locals.getEventTotal.montreal.mo19.riders2 - yesterday[0].mo19Riders2;
+                                                            // var mo19OneDayDaily = locals.getEventTotal.montreal.mo19.oneday - yesterday[0].mo19OneDay;
+                                                            // var mo19OneDayDaily2 = locals.getEventTotal.montreal.mo19.oneday2 - yesterday[0].mo19OneDay2;
+
+                                                            var mo19TotalRiders = locals.getEventTotal.montreal.mo19.riders;
+                                                            // var mo19RiderSub = mo19TotalRiders - yesterday[0].mo19Riders;
+
+                                                            var mo19TotalParticipants = parseFloat(locals.getEventTotal.montreal.mo19.riders) + parseFloat(locals.getEventTotal.montreal.mo19.riders2);
+
+															// Montreal 2018 Dailu
 				                                            var mo18DonationSub = numberMo18v1 - numberMo18v2;
 				                                            var mo17DonationSub = numberMo17v1 - numberMo17v2;
 				                                            var mo18RfiSub = locals.getEventTotal.montreal.mo18.rfi - yesterday[0].mo18RFI;
@@ -369,8 +382,20 @@ router.get('/data', function(req, res) {
 			                                                latestdata.to17RFI = locals.getEventTotal.toronto.to17.rfi;
 			                                                latestdata.to17Riders = locals.getEventTotal.toronto.to17.riders;
 			                                                latestdata.to17VR = locals.getEventTotal.toronto.to17.virtual;
+
+                                                            // RIDE - Montreal - 2019
+                                                            latestdata.mo19Donations = locals.getEventTotal.montreal.mo19.totalDonation;
+                                                            latestdata.mo19RegFee = locals.getEventTotal.montreal.mo19.regFee;
+                                                            latestdata.mo19Crews = locals.getEventTotal.montreal.mo19.crews;
+                                                            latestdata.mo19RFI = locals.getEventTotal.montreal.mo19.rfi;
+                                                            latestdata.mo19Riders = mo19TotalRiders;
+                                                            latestdata.mo19VR = locals.getEventTotal.montreal.mo19.virtual;
+                                                            latestdata.mo19Riders2 = locals.getEventTotal.montreal.mo19.riders2;
+                                                            latestdata.mo19OneDay = locals.getEventTotal.montreal.mo19.oneday;
+                                                            latestdata.mo19OneDay2 = locals.getEventTotal.montreal.mo19.oneday2;
+                                                            latestdata.mo19TotalParticipants = mo19TotalParticipants;
 			                                                
-			                                                // RIDE - Montreal
+			                                                // RIDE - Montreal * 2018
 			                                                latestdata.mo18Donations = locals.getEventTotal.montreal.mo18.totalDonation;
 			                                                latestdata.mo18RegFee = locals.getEventTotal.montreal.mo18.regFee;
 			                                                latestdata.mo18Crews = locals.getEventTotal.montreal.mo18.crews;
