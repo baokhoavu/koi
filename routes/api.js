@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
-const request = require('request');
-// const fixieRequest = request.defaults({'proxy': process.env.FIXIE_URL});
-const express = require('express');
-const moment = require('moment');
-const router = express.Router();
+var mongoose = require('mongoose');
+var request = require('request');
+// var fixieRequest = request.defaults({'proxy': process.env.FIXIE_URL});
+var express = require('express');
+var moment = require('moment');
+var router = express.Router();
 var data = require('../models/apidata');
 
 mongoose.Promise = require('bluebird');
@@ -31,22 +31,22 @@ router.get('/data', function(req, res) {
 			if (yesterday) {
 				console.log('Pulling yesterday\'s data! Date: ' + yesterday[0].updated);
 
-				const apiURL = 'http://www.conquercancer.ca/site/PageServer?pagename=2018_api_data&pgwrap=n';
+				var apiURL = 'http://www.conquercancer.ca/site/PageServer?pagename=2018_api_data&pgwrap=n';
 			    request(apiURL, function(err, response, body) {
 			        if (!err && response.statusCode == 200) {
 			            var locals = JSON.parse(body);
 			            
-			            const apiOneWalk = 'http://www.onewalk.ca/site/PageServer?pagename=api_data&pgwrap=n';
+			            var apiOneWalk = 'http://www.onewalk.ca/site/PageServer?pagename=api_data&pgwrap=n';
 			            request(apiOneWalk, function(err, response, body) {
 			                if (!err && response.statusCode == 200) {
 			                    var locals2 = JSON.parse(body);
 			                    
-			                    const apiRidePerth = 'http://www.conquercancer.org.au/site/PageServer?pagename=api_data&pgwrap=n';
+			                    var apiRidePerth = 'http://www.conquercancer.org.au/site/PageServer?pagename=api_data&pgwrap=n';
 			                    request(apiRidePerth, function(err, response, body) {
 			                        if (!err && response.statusCode == 200) {
 			                            var locals3 = JSON.parse(body);
 			                            
-			                            const apiOneDay = 'http://participate.theoneday.org.au/site/PageServer?pagename=api_data&pgwrap=n';
+			                            var apiOneDay = 'http://participate.theoneday.org.au/site/PageServer?pagename=api_data&pgwrap=n';
 			                            request(apiOneDay, function(err, response, body) {
 			                                if (!err && response.statusCode == 200) {
 				                                var locals4 = JSON.parse(body);
@@ -78,12 +78,18 @@ router.get('/data', function(req, res) {
 				                                            var removeDollarTo17v1 = latestdata.to17Donations;
 				                                            var removeDollarTo17v2 = yesterday[0].to17Donations;
 
+                                                            // =========================== Ride Montreal 2018 =========================== //
+                                                            var removeDollarMo19v1 = latestdata.mo19Donations;
+                                                            var removeDollarMo19v2 = yesterday[0].mo19Donations;
+                                                            var removeRegMo19v1 = latestdata.mo19RegFee;
+                                                            var removeRegMo19v2 = yesterday[0].mo19RegFee;
+
 				                                            // =========================== Ride Montreal 2018 =========================== //
 				                                            var removeDollarMo18v1 = latestdata.mo18Donations;
 				                                            var removeDollarMo18v2 = yesterday[0].mo18Donations;
 				                                            var removeRegMo18v1 = latestdata.mo18RegFee;
 				                                            var removeRegMo18v2 = yesterday[0].mo18RegFee;
-				                                            // =========================== Ride Montreal 2018 =========================== //
+				                                            // =========================== Ride Montreal 2017 =========================== //
 				                                            var removeDollarMo17v1 = latestdata.mo17Donations;
 				                                            var removeDollarMo17v2 = yesterday[0].mo17Donations;
 
@@ -173,6 +179,11 @@ router.get('/data', function(req, res) {
 				                                            var numberPr17v2 = Number(removeDollarPr17v2.replace(/[^0-9\.-]+/g,""));
 				                                            var numberRegPr18v1 = Number(removeRegPr18v1.replace(/[^0-9\.-]+/g,""));
 				                                            var numberRegPr18v2 = Number(removeRegPr18v2.replace(/[^0-9\.-]+/g,""));
+
+                                                            var numberMo19v1 = Number(removeDollarMo19v1.replace(/[^0-9\.-]+/g,""));
+                                                            var numberMo19v2 = Number(removeDollarMo19v2.replace(/[^0-9\.-]+/g,""));
+                                                            var numberRegMo19v1 = Number(removeRegMo19v1.replace(/[^0-9\.-]+/g,""));
+                                                            var numberRegMo19v2 = Number(removeRegMo19v2.replace(/[^0-9\.-]+/g,""));
 				                                            
 				                                            var numberMo18v1 = Number(removeDollarMo18v1.replace(/[^0-9\.-]+/g,""));
 				                                            var numberMo18v2 = Number(removeDollarMo18v2.replace(/[^0-9\.-]+/g,""));
@@ -257,11 +268,15 @@ router.get('/data', function(req, res) {
 				                                            var pr18RegSub = numberRegPr18v1 - numberRegPr18v2;
 
 				                                            // Montreal 2019 Daily
-                                                            // var mo19RegSub = numberRegMo19v1 - numberRegMo19v2;
-                                                            // var mo19VRDaily = locals.getEventTotal.montreal.mo19.virtual - yesterday[0].mo19VR;
-                                                            // var mo19Riders2Daily = locals.getEventTotal.montreal.mo19.riders2 - yesterday[0].mo19Riders2;
-                                                            // var mo19OneDayDaily = locals.getEventTotal.montreal.mo19.oneday - yesterday[0].mo19OneDay;
-                                                            // var mo19OneDayDaily2 = locals.getEventTotal.montreal.mo19.oneday2 - yesterday[0].mo19OneDay2;
+                                                            var mo19RegSub = numberRegMo19v1 - numberRegMo19v2;
+                                                            var mo19VRDaily = locals.getEventTotal.montreal.mo19.virtual - yesterday[0].mo19VR;
+                                                            var mo19Riders2Daily = locals.getEventTotal.montreal.mo19.riders2 - yesterday[0].mo19Riders2;
+                                                            var mo19OneDayDaily = locals.getEventTotal.montreal.mo19.oneday - yesterday[0].mo19OneDay;
+                                                            var mo19OneDayDaily2 = locals.getEventTotal.montreal.mo19.oneday2 - yesterday[0].mo19OneDay2;
+                                                            var mo19DonationSub = numberMo19v1 - numberMo19v2;
+                                                            var mo19RfiSub = locals.getEventTotal.montreal.mo19.rfi - yesterday[0].mo19RFI;
+                                                            var mo19CrewSub = locals.getEventTotal.montreal.mo19.crews - yesterday[0].mo19Crews;
+                                                            var mo19RiderSub = locals.getEventTotal.montreal.mo19.riders - yesterday[0].mo19Riders;
 
                                                             var mo19TotalRiders = locals.getEventTotal.montreal.mo19.riders;
                                                             // var mo19RiderSub = mo19TotalRiders - yesterday[0].mo19Riders;
@@ -317,7 +332,7 @@ router.get('/data', function(req, res) {
 				                                            var ml18DonationSub = numberMl18v1 - numberMl18v2;
 				                                            var ml18RegSub = numberRegMl18v1 - numberRegMl18v2;
 				                                            var ml18RiderSub = locals4.getEventTotal.melbourne.ml18.riders - yesterday[0].ml18Riders;
-				                                             var ml18WalkerSub = locals4.getEventTotal.melbourne.ml18.walkers - yesterday[0].ml18Walkers;
+				                                            var ml18WalkerSub = locals4.getEventTotal.melbourne.ml18.walkers - yesterday[0].ml18Walkers;
 
 				                                            var ml17DonationSub = numberMl17v1 - numberMl17v2;
 				                                            
@@ -330,6 +345,10 @@ router.get('/data', function(req, res) {
 				                                            var newPrDonDaily = '$' + pr18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newPr17DonDaily = '$' + pr17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newPrRegDaily = '$' + pr18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+
+                                                            var newMo19DonDaily = '$' + mo19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                                            var newMo19RegDaily = '$' + mo19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+
 				                                            var newMoDonDaily = '$' + mo18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newMo17DonDaily = '$' + mo17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newMoRegDaily = '$' + mo18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -529,7 +548,17 @@ router.get('/data', function(req, res) {
 			                                                latestdata.pr17DonDaily = newPr17DonDaily;
 			                                                
 			                                                // DAILY - RIDE - Montreal
-			                                                latestdata.mo18DonDaily = newMoDonDaily;
+                                                            latestdata.mo19DonDaily = newMo19DonDaily;
+                                                            latestdata.mo19RegFeeDaily = newMo19RegDaily;
+                                                            latestdata.mo19RFIDaily = mo19RfiSub;
+                                                            latestdata.mo19CrewDaily = mo19CrewSub;
+                                                            latestdata.mo19RidersDaily = mo19RiderSub;
+                                                            latestdata.mo19Riders2Daily = mo19Riders2Daily;
+                                                            latestdata.mo19OneDayDaily = mo19OneDayDaily;
+                                                            latestdata.mo19OneDayDaily2 = mo19OneDayDaily2;
+                                                            latestdata.mo19VRDaily = mo19VRDaily;
+
+                                                            latestdata.mo18DonDaily = newMoDonDaily;
 			                                                latestdata.mo18RegFeeDaily = newMoRegDaily;
 			                                                latestdata.mo18RFIDaily = mo18RfiSub;
 			                                                latestdata.mo18CrewDaily = mo18CrewSub;

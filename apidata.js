@@ -163,13 +163,23 @@ promise.then(function(db) {
         pr18CrewDaily: String,
         pr18RidersDaily: String,
         pr17DonDaily: String,
+
+        mo19DonDaily: String,
+        mo19CrewDaily: String,
+        mo19RidersDaily: String,
+        mo19VRDaily: String,
+        mo19RegFeeDaily: String,
+        mo19RFIDaily: String,
+
         mo18DonDaily: String,
-        mo17DonDaily: String,
         mo18CrewDaily: String,
         mo18RidersDaily: String,
         mo18VRDaily: String,
         mo18RegFeeDaily: String,
         mo18RFIDaily: String,
+
+        mo17DonDaily: String,
+
         ab18DonDaily: String,
         ab17DonDaily: String,
         ab18RegFeeDaily: String,
@@ -347,6 +357,11 @@ promise.then(function(db) {
                                             var numberPr17v2 = Number(removeDollarPr17v2.replace(/[^0-9\.-]+/g,""));
                                             var numberRegPr18v1 = Number(removeRegPr18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberRegPr18v2 = Number(removeRegPr18v2.replace(/[^0-9\.-]+/g,""));
+
+                                            var numberMo19v1 = Number(removeDollarMo19v1.replace(/[^0-9\.-]+/g,""));
+                                            var numberMo19v2 = Number(removeDollarMo19v2.replace(/[^0-9\.-]+/g,""));
+                                            var numberRegMo19v1 = Number(removeRegMo19v1.replace(/[^0-9\.-]+/g,""));
+                                            var numberRegMo19v2 = Number(removeRegMo19v2.replace(/[^0-9\.-]+/g,""));
                                             
                                             var numberMo18v1 = Number(removeDollarMo18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberMo18v2 = Number(removeDollarMo18v2.replace(/[^0-9\.-]+/g,""));
@@ -431,12 +446,12 @@ promise.then(function(db) {
                                             var pr18RegSub = numberRegPr18v1 - numberRegPr18v2;
 
                                             // Montreal 2019 Daily
-                                            // var mo19DonationSub = numberMo19v1 - numberMo19v2;
-                                            // var mo19RfiSub = locals.getEventTotal.montreal.mo19.rfi - data.mo19RFI;
-                                            // var mo19RegSub = numberRegMo19v1 - numberRegMo19v2;
-                                            // var mo19CrewSub = locals.getEventTotal.montreal.mo19.crews - data.mo19Crews;
-                                            // var mo19RiderSub = locals.getEventTotal.montreal.mo19.riders - data.mo19Riders;
-                                            // var mo19VRDailySub = locals.getEventTotal.montreal.mo19.virtual - data.mo19VR;
+                                            var mo19DonationSub = numberMo19v1 - numberMo19v2;
+                                            var mo19RfiSub = locals.getEventTotal.montreal.mo19.rfi - data.mo19RFI;
+                                            var mo19RegSub = numberRegMo19v1 - numberRegMo19v2;
+                                            var mo19CrewSub = locals.getEventTotal.montreal.mo19.crews - data.mo19Crews;
+                                            var mo19RiderSub = locals.getEventTotal.montreal.mo19.riders - data.mo19Riders;
+                                            var mo19VRDailySub = locals.getEventTotal.montreal.mo19.virtual - data.mo19VR;
 
                                             var mo19TotalParticipants = parseFloat(locals.getEventTotal.montreal.mo19.riders) + parseFloat(locals.getEventTotal.montreal.mo19.riders2);
                                             
@@ -497,8 +512,11 @@ promise.then(function(db) {
                                             var newPrDonDaily = '$' + pr18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newPr17DonDaily = '$' + pr17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newPrRegDaily = '$' + pr18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+
+                                            var newMo19DonDaily = '$' + mo19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                            var newMo19RegDaily = '$' + mo19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             
-                                            var newMoDonDaily = '$' + mo18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                            var newMo18DonDaily = '$' + mo18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newMo17DonDaily = '$' + mo17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newMoRegDaily = '$' + mo18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             
@@ -688,8 +706,15 @@ promise.then(function(db) {
                                                 pr18RidersDaily: pr18RiderSub,
                                 
                                                 pr17DonDaily: newPr17DonDaily,
+
+                                                mo19DonDaily: newMo19DonDaily,
+                                                mo19RegFeeDaily: newMo19RegDaily,
+                                                mo19RFIDaily: mo19RfiSub,
+                                                mo19CrewDaily: mo19CrewSub,
+                                                mo19RidersDaily: mo19RiderSub,
+                                                mo19VRDaily: mo19VRDailySub,
                                                 
-                                                mo18DonDaily: newMoDonDaily,
+                                                mo18DonDaily: newMo18DonDaily,
                                                 mo18RegFeeDaily: newMoRegDaily,
                                                 mo18RFIDaily: mo18RfiSub,
                                                 mo18CrewDaily: mo18CrewSub,
