@@ -9,7 +9,7 @@ var router = express.Router();
 
 router.get('/', function (req, res, next) {
     res.render('index', {
-        test: 'Hi I am a test!'
+        test: 'Hi I am a test!!!!'
     });
 });
 
