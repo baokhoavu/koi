@@ -19,7 +19,7 @@ promise.then(function(db) { });
 
 // var db = mongoose.connection;
 
-router.get('/data', function(req, res) {
+router.get('/data', function(req, res) { 
 	console.log('Requesting data...');
 	// Find data from yesterday with MomentJS (subtract 1 from Today's date)
 	data.find({"updated": moment().subtract(1, 'days').format('L')})
@@ -28,7 +28,12 @@ router.get('/data', function(req, res) {
 			if (err) {
 				console.log('Error getting data..');
 			} 
-			if (yesterday) {
+			if(yesterday.length < 1){
+				console.log('Error getting data... It does not exists');
+				//return res.json({data: 'No data from yesterday'});
+			}
+			
+			if (yesterday.length > 0) {
 				console.log('Pulling yesterday\'s data! Date: ' + yesterday[0].updated);
 
 				var apiURL = 'http://www.conquercancer.ca/site/PageServer?pagename=2018_api_data&pgwrap=n';
