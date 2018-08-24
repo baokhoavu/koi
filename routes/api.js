@@ -46,7 +46,8 @@ router.get('/data', function(req, res) {
 			                if (!err && response.statusCode == 200) {
 			                    var locals2 = JSON.parse(body);
 			                    
-			                    var apiRidePerth = 'http://www.conquercancer.org.au/site/PageServer?pagename=api_data&pgwrap=n';
+							//var apiRidePerth = 'http://www.conquercancer.org.au/site/PageServer?pagename=api_data&pgwrap=n';
+							var apiRidePerth = 'http://pr18.conquercancer.org.au/site/PageServer?pagename=api_data&pgwrap=n';
 			                    request(apiRidePerth, function(err, response, body) {
 			                        if (!err && response.statusCode == 200) {
 			                            var locals3 = JSON.parse(body);
