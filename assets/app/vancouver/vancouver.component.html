@@ -8,6 +8,9 @@
           <th>RFI</th>
           <th>CREWS</th>
           <th>RIDERS</th>
+          <th>RIDERS II</th>
+          <th>ONE DAY RIDERS</th>
+          <th>ONE DAY RIDERS 2</th>
           <th>VIRTUAL RIDERS</th>
           <th>DON$</th>
           <th>REG$</th>
@@ -23,6 +26,9 @@
           <th>RFI</th>
           <th>CREWS</th>
           <th>RIDERS</th>
+          <th>RIDERS II</th>
+          <th>ONE DAY RIDERS</th>
+          <th>ONE DAY RIDERS 2</th>
           <th>VIRTUAL RIDERS</th>
           <th>DON$</th>
           <th>REG$</th>
@@ -30,19 +36,37 @@
       </thead>
       <tbody>
         <tr>
-          <td>2018 (Today)</td>
-          <td>{{dataService.data.va18RFIDaily}}</td>
-          <td>{{dataService.data.va18CrewDaily}}</td>
-          <td>{{dataService.data.va18RidersDaily}}</td>
-          <td>{{dataService.data.va18VRDaily}}</td>
-          <td>{{dataService.data.va18DonDaily}}</td>
-          <td>{{dataService.data.va18RegFeeDaily}}</td>
+          <td>2019 (Today)</td>
+          <td>{{dataService.data.va19RFIDaily}}</td>
+          <td>{{dataService.data.va19CrewDaily}}</td>
+          <td>{{dataService.data.va19RidersDaily}}</td>
+          <td>{{dataService.data.va19Riders2Daily}}</td>
+          <td>{{dataService.data.va19OneDayDaily}}</td>
+          <td>x</td>
+          <td>{{dataService.data.va19VRDaily}}</td>
+          <td>{{dataService.data.va19DonDaily}}</td>
+          <td>{{dataService.data.va19RegFeeDaily}}</td>
         </tr>
+        <tr>
+          <td>2019 (YTD)</td>
+          <td>{{dataService.data.va19RFI}}</td>
+          <td>{{dataService.data.va19Crews}}</td>
+          <td>{{dataService.data.va19Riders}}</td>
+          <td>{{dataService.data.va19Riders2}}</td>
+          <td>{{dataService.data.va19OneDay}}</td>
+          <td>{{dataService.data.va19OneDay2}}</td>
+          <td>{{dataService.data.va19VR}}</td>
+          <td>{{dataService.data.va19Donations}}</td>
+          <td>{{dataService.data.va19RegFee}}</td>
+        </tr>        
         <tr>
           <td>2018 (YTD)</td>
           <td>{{dataService.data.va18RFI}}</td>
           <td>{{dataService.data.va18Crews}}</td>
           <td>{{dataService.data.va18Riders}}</td>
+          <td>{{dataService.data.va18Riders2}}</td>
+          <td>{{dataService.data.va18OneDay}}</td>
+          <td>{{dataService.data.va18OneDay2}}</td>
           <td>{{dataService.data.va18VR}}</td>
           <td>{{dataService.data.va18Donations}}</td>
           <td>{{dataService.data.va18RegFee}}</td>
@@ -52,6 +76,9 @@
           <td>{{dataService.data.va17RFI}}</td>
           <td>{{dataService.data.va17Crews}}</td>
           <td>{{dataService.data.va17Riders}}</td>
+          <td>x</td>
+          <td>x</td>
+          <td>x</td>
           <td>{{dataService.data.va17VR}}</td>
           <td>{{dataService.data.va17Donations}}</td>
           <td>{{dataService.data.va17RegFee}}</td>
@@ -94,6 +121,8 @@
         <th>RFI</th>
         <th>CREWS</th>
         <th>RIDERS</th>
+        <th>RIDERS II</th>
+        <th>ONE DAY RIDERS</th>
         <th>VIRTUAL RIDERS</th>
         <th>DON$</th>
         <th>REG$</th>
@@ -109,6 +138,8 @@
         <th>RFI</th>
         <th>CREWS</th>
         <th>RIDERS</th>
+        <th>RIDERS II</th>
+        <th>ONE DAY RIDERS</th>
         <th>VIRTUAL RIDERS</th>
         <th>DON$</th>
         <th>REG$</th>
@@ -116,10 +147,23 @@
       </thead>
       <tbody>
       <tr>
+        <td>2019</td>
+        <td>{{dataService.allData[0]?.va19RFI}}</td>
+        <td>{{dataService.allData[0]?.va19Crews}}</td>
+        <td>{{dataService.allData[0]?.va19Riders}}</td>
+        <td>{{dataService.allData[0]?.va19Riders2}}</td>
+        <td>{{dataService.allData[0]?.va19OneDay}}</td>
+        <td>{{dataService.allData[0]?.va19VR}}</td>
+        <td>{{dataService.allData[0]?.va19Donations}}</td>
+        <td>{{dataService.allData[0]?.va19RegFee}}</td>
+      </tr>  
+      <tr>
         <td>2018</td>
         <td>{{dataService.allData[0]?.va18RFI}}</td>
         <td>{{dataService.allData[0]?.va18Crews}}</td>
         <td>{{dataService.allData[0]?.va18Riders}}</td>
+        <td>{{dataService.allData[0]?.va18Riders2}}</td>
+        <td>{{dataService.allData[0]?.va18OneDay}}</td>
         <td>{{dataService.allData[0]?.va18VR}}</td>
         <td>{{dataService.allData[0]?.va18Donations}}</td>
         <td>{{dataService.allData[0]?.va18RegFee}}</td>
@@ -129,6 +173,8 @@
         <td>{{dataService.allData[0]?.va17RFI}}</td>
         <td>{{dataService.allData[0]?.va17Crews}}</td>
         <td>{{dataService.allData[0]?.va17Riders}}</td>
+        <td>x</td>
+        <td>x</td>
         <td>{{dataService.allData[0]?.va17VR}}</td>
         <td>{{dataService.allData[0]?.va17Donations}}</td>
         <td>{{dataService.allData[0]?.va17RegFee}}</td>
