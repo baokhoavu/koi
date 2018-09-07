@@ -205,10 +205,10 @@ router.get('/data', function(req, res) {
 				                                            var numberRegMo18v1 = Number(removeRegMo18v1.replace(/[^0-9\.-]+/g,""));
 				                                            var numberRegMo18v2 = Number(removeRegMo18v2.replace(/[^0-9\.-]+/g,""));
 				                                            
-				                                            // var numberAb19v1 = Number(removeDollarAb19v1.replace(/[^0-9\.-]+/g,""));
-				                                            // var numberAb19v2 = Number(removeDollarAb19v2.replace(/[^0-9\.-]+/g,""));
-				                                            // var numberRegAb19v1 = Number(removeRegAb19v1.replace(/[^0-9\.-]+/g,""));
-                                                //             var numberRegAb19v2 = Number(removeRegAb19v2.replace(/[^0-9\.-]+/g,""));
+				                                            var numberAb19v1 = Number(removeDollarAb19v1.replace(/[^0-9\.-]+/g,""));
+				                                            var numberAb19v2 = Number(removeDollarAb19v2.replace(/[^0-9\.-]+/g,""));
+				                                            var numberRegAb19v1 = Number(removeRegAb19v1.replace(/[^0-9\.-]+/g,""));
+                                                            var numberRegAb19v2 = Number(removeRegAb19v2.replace(/[^0-9\.-]+/g,""));
 				                                            var numberAb18v1 = Number(removeDollarAb18v1.replace(/[^0-9\.-]+/g,""));
 				                                            var numberAb18v2 = Number(removeDollarAb18v2.replace(/[^0-9\.-]+/g,""));
 				                                            var numberAb17v1 = Number(removeDollarAb17v1.replace(/[^0-9\.-]+/g,""));
@@ -216,10 +216,10 @@ router.get('/data', function(req, res) {
 				                                            var numberRegAb18v1 = Number(removeRegAb18v1.replace(/[^0-9\.-]+/g,""));
 				                                            var numberRegAb18v2 = Number(removeRegAb18v2.replace(/[^0-9\.-]+/g,""));
 				                                            
-				                                            // var numberVa19v1 = Number(removeDollarVa19v1.replace(/[^0-9\.-]+/g,""));
-				                                            // var numberVa19v2 = Number(removeDollarVa19v2.replace(/[^0-9\.-]+/g,""));
-				                                            // var numberRegVa19v1 = Number(removeRegVa19v1.replace(/[^0-9\.-]+/g,""));
-                                                //             var numberRegVa19v2 = Number(removeRegVa19v2.replace(/[^0-9\.-]+/g,""));
+				                                            var numberVa19v1 = Number(removeDollarVa19v1.replace(/[^0-9\.-]+/g,""));
+				                                            var numberVa19v2 = Number(removeDollarVa19v2.replace(/[^0-9\.-]+/g,""));
+				                                            var numberRegVa19v1 = Number(removeRegVa19v1.replace(/[^0-9\.-]+/g,""));
+                                                            var numberRegVa19v2 = Number(removeRegVa19v2.replace(/[^0-9\.-]+/g,""));
 				                                            var numberVa18v1 = Number(removeDollarVa18v1.replace(/[^0-9\.-]+/g,""));
 				                                            var numberVa18v2 = Number(removeDollarVa18v2.replace(/[^0-9\.-]+/g,""));
 				                                            var numberVa17v1 = Number(removeDollarVa17v1.replace(/[^0-9\.-]+/g,""));
@@ -314,15 +314,15 @@ router.get('/data', function(req, res) {
 				                                            var mo18VRDaily = locals.getEventTotal.montreal.mo18.virtual - yesterday[0].mo18VR;
 				                                            
 				                                            // Alberta 2019 Daily
-				                                            // var ab19RegSub = numberRegAb19v1 - numberRegAb19v2;
-                                                //             var ab19VRDaily = locals.getEventTotal.alberta.ab19.virtual - yesterday[0].ab19VR;
-                                                //             var ab19Riders2Daily = locals.getEventTotal.alberta.ab19.riders2 - yesterday[0].ab19Riders2;
-                                                //             var ab19OneDayDaily = locals.getEventTotal.alberta.ab19.oneday - yesterday[0].ab19OneDay;
-                                                //             var ab19OneDayDaily2 = locals.getEventTotal.alberta.ab19.oneday2 - yesterday[0].ab19OneDay2;
-                                                //             var ab19DonationSub = numberAb19v1 - numberAb19v2;
-                                                //             var ab19RfiSub = locals.getEventTotal.alberta.ab19.rfi - yesterday[0].ab19RFI;
-                                                //             var ab19CrewSub = locals.getEventTotal.alberta.ab19.crews - yesterday[0].ab19Crews;
-                                                //             var ab19RiderSub = locals.getEventTotal.alberta.ab19.riders - yesterday[0].ab19Riders;
+				                                            var ab19RegSub = numberRegAb19v1 - numberRegAb19v2;
+                                                            var ab19VRDaily = locals.getEventTotal.alberta.ab19.virtual - yesterday[0].ab19VR;
+                                                            var ab19Riders2Daily = locals.getEventTotal.alberta.ab19.riders2 - yesterday[0].ab19Riders2;
+                                                            var ab19OneDayDaily = locals.getEventTotal.alberta.ab19.oneday - yesterday[0].ab19OneDay;
+                                                            var ab19OneDayDaily2 = locals.getEventTotal.alberta.ab19.oneday2 - yesterday[0].ab19OneDay2;
+                                                            var ab19DonationSub = numberAb19v1 - numberAb19v2;
+                                                            var ab19RfiSub = locals.getEventTotal.alberta.ab19.rfi - yesterday[0].ab19RFI;
+                                                            var ab19CrewSub = locals.getEventTotal.alberta.ab19.crews - yesterday[0].ab19Crews;
+                                                            var ab19RiderSub = locals.getEventTotal.alberta.ab19.riders - yesterday[0].ab19Riders;
 
 				                                            // Alberta 2018 Daily
 				                                            var ab18DonationSub = numberAb18v1 - numberAb18v2;
@@ -334,15 +334,15 @@ router.get('/data', function(req, res) {
 				                                            var ab18VRDaily = locals.getEventTotal.alberta.ab18.virtual - yesterday[0].ab18VR;
 				                                            
 				                                            // Vancouver 2019 Daily
-				                                            // var va19RegSub = numberRegVa19v1 - numberRegVa19v2;
-                                                //             var va19VRDaily = locals.getEventTotal.vancouver.va19.virtual - yesterday[0].va19VR;
-                                                //             var va19Riders2Daily = locals.getEventTotal.vancouver.va19.riders2 - yesterday[0].va19Riders2;
-                                                //             var va19OneDayDaily = locals.getEventTotal.vancouver.va19.oneday - yesterday[0].va19OneDay;
-                                                //             var va19OneDayDaily2 = locals.getEventTotal.vancouver.va19.oneday2 - yesterday[0].va19OneDay2;
-                                                //             var va19DonationSub = numberVa19v1 - numberVa19v2;
-                                                //             var va19RfiSub = locals.getEventTotal.vancouver.va19.rfi - yesterday[0].va19RFI;
-                                                //             var va19CrewSub = locals.getEventTotal.vancouver.va19.crews - yesterday[0].va19Crews;
-                                                //             var va19RiderSub = locals.getEventTotal.vancouver.va19.riders - yesterday[0].va19Riders;
+				                                            var va19RegSub = numberRegVa19v1 - numberRegVa19v2;
+                                                            var va19VRDaily = locals.getEventTotal.vancouver.va19.virtual - yesterday[0].va19VR;
+                                                            var va19Riders2Daily = locals.getEventTotal.vancouver.va19.riders2 - yesterday[0].va19Riders2;
+                                                            var va19OneDayDaily = locals.getEventTotal.vancouver.va19.oneday - yesterday[0].va19OneDay;
+                                                            var va19OneDayDaily2 = locals.getEventTotal.vancouver.va19.oneday2 - yesterday[0].va19OneDay2;
+                                                            var va19DonationSub = numberVa19v1 - numberVa19v2;
+                                                            var va19RfiSub = locals.getEventTotal.vancouver.va19.rfi - yesterday[0].va19RFI;
+                                                            var va19CrewSub = locals.getEventTotal.vancouver.va19.crews - yesterday[0].va19Crews;
+                                                            var va19RiderSub = locals.getEventTotal.vancouver.va19.riders - yesterday[0].va19Riders;
 
 				                                            var va18DonationSub = numberVa18v1 - numberVa18v2;
 				                                            var va17DonationSub = numberVa17v1 - numberVa17v2;
@@ -397,14 +397,14 @@ router.get('/data', function(req, res) {
 				                                            var newMo17DonDaily = '$' + mo17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newMoRegDaily = '$' + mo18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
-				                                            // var newAb19DonDaily = '$' + ab19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-                                                //             var newAb19RegDaily = '$' + ab19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+				                                            var newAb19DonDaily = '$' + ab19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                                            var newAb19RegDaily = '$' + ab19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newAbDonDaily = '$' + ab18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newAb17DonDaily = '$' + ab17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newAbRegDaily = '$' + ab18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
-				                                            // var newVa19DonDaily = '$' + va19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-                                                //             var newVa19RegDaily = '$' + va19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+				                                            var newVa19DonDaily = '$' + va19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                                            var newVa19RegDaily = '$' + va19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newVaDonDaily = '$' + va18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newVa17DonDaily = '$' + va17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newVaRegDaily = '$' + va18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -490,7 +490,7 @@ router.get('/data', function(req, res) {
                                                             latestdata.ab19Riders2 = locals.getEventTotal.alberta.ab19.riders2;
                                                             latestdata.ab19OneDay = locals.getEventTotal.alberta.ab19.oneday;
                                                             latestdata.ab19OneDay2 = locals.getEventTotal.alberta.ab19.oneday2;
-                                                            // latestdata.ab19TotalParticipants = ab19TotalParticipants;
+                                                            latestdata.ab19TotalParticipants = ab19TotalParticipants;
 
 			                                                latestdata.ab18Donations = locals.getEventTotal.alberta.ab18.totalDonation;
 			                                                latestdata.ab18RegFee = locals.getEventTotal.alberta.ab18.regFee;
@@ -516,7 +516,7 @@ router.get('/data', function(req, res) {
 			                                                latestdata.va19Riders2 = locals.getEventTotal.vancouver.va19.riders2;
                                                             latestdata.va19OneDay = locals.getEventTotal.vancouver.va19.oneday;
                                                             latestdata.va19OneDay2 = locals.getEventTotal.vancouver.va19.oneday2;
-                                                            // latestdata.va19TotalParticipants = va19TotalParticipants;
+                                                            latestdata.va19TotalParticipants = va19TotalParticipants;
 
 			                                                latestdata.va18Donations = locals.getEventTotal.vancouver.va18.totalDonation;
 			                                                latestdata.va18RegFee = locals.getEventTotal.vancouver.va18.regFee;
@@ -641,15 +641,15 @@ router.get('/data', function(req, res) {
 			                                                latestdata.mo17DonDaily = newMo17DonDaily;
 
 			                                                // DAILY - RIDE - Alberta
-			                                                // latestdata.ab19DonDaily = newAb19DonDaily;
-			                                                // latestdata.ab19RegFeeDaily = newAb19RegDaily;
-			                                                // latestdata.ab19RFIDaily = ab19RfiSub;
-			                                                // latestdata.ab19CrewDaily = ab19CrewSub;
-			                                                // latestdata.ab19RidersDaily = ab19RiderSub;
-			                                                // latestdata.ab19Riders2Daily = ab19Riders2Daily;
-                                                   //          latestdata.ab19OneDayDaily = ab19OneDayDaily;
-                                                   //          latestdata.ab19OneDayDaily2 = ab19OneDayDaily2;
-			                                                // latestdata.ab19VRDaily = ab19VRDaily;
+			                                                latestdata.ab19DonDaily = newAb19DonDaily;
+			                                                latestdata.ab19RegFeeDaily = newAb19RegDaily;
+			                                                latestdata.ab19RFIDaily = ab19RfiSub;
+			                                                latestdata.ab19CrewDaily = ab19CrewSub;
+			                                                latestdata.ab19RidersDaily = ab19RiderSub;
+			                                                latestdata.ab19Riders2Daily = ab19Riders2Daily;
+                                                            latestdata.ab19OneDayDaily = ab19OneDayDaily;
+                                                            latestdata.ab19OneDayDaily2 = ab19OneDayDaily2;
+			                                                latestdata.ab19VRDaily = ab19VRDaily;
 
 			                                                latestdata.ab18DonDaily = newAbDonDaily;
 			                                                latestdata.ab18RegFeeDaily = newAbRegDaily;
@@ -661,15 +661,15 @@ router.get('/data', function(req, res) {
 			                                                latestdata.ab17DonDaily = newAb17DonDaily;
 
 			                                                // DAILY - RIDE - Vancouver
-			                                                // latestdata.va19DonDaily = newVa19DonDaily;
-			                                                // latestdata.va19RegFeeDaily = newVa19RegDaily;
-			                                                // latestdata.va19RFIDaily = va19RfiSub;
-			                                                // latestdata.va19CrewDaily = va19CrewSub;
-			                                                // latestdata.va19RidersDaily = va19RiderSub;
-			                                                // latestdata.va19Riders2Daily = va19Riders2Daily;
-                                                   //          latestdata.va19OneDayDaily = va19OneDayDaily;
-                                                   //          latestdata.va19OneDayDaily2 = va19OneDayDaily2;
-			                                                // latestdata.va19VRDaily = va19VRDaily;
+			                                                latestdata.va19DonDaily = newVa19DonDaily;
+			                                                latestdata.va19RegFeeDaily = newVa19RegDaily;
+			                                                latestdata.va19RFIDaily = va19RfiSub;
+			                                                latestdata.va19CrewDaily = va19CrewSub;
+			                                                latestdata.va19RidersDaily = va19RiderSub;
+			                                                latestdata.va19Riders2Daily = va19Riders2Daily;
+                                                            latestdata.va19OneDayDaily = va19OneDayDaily;
+                                                            latestdata.va19OneDayDaily2 = va19OneDayDaily2;
+			                                                latestdata.va19VRDaily = va19VRDaily;
 
 			                                                latestdata.va18DonDaily = newVaDonDaily;
 			                                                latestdata.va18RegFeeDaily = newVaRegDaily;
