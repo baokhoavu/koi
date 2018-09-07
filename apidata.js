@@ -419,9 +419,9 @@ promise.then(function(db) {
                                             var numberRegMo18v2 = Number(removeRegMo18v2.replace(/[^0-9\.-]+/g,""));
 
                                             var numberAb19v1 = Number(removeDollarAb19v1.replace(/[^0-9\.-]+/g,""));
-                                            var numberAb19v2 = Number(removeDollarAb19v2.replace(/[^0-9\.-]+/g,""));
+                                            // var numberAb19v2 = Number(removeDollarAb19v2.replace(/[^0-9\.-]+/g,""));
                                             var numberRegAb19v1 = Number(removeRegAb19v1.replace(/[^0-9\.-]+/g,""));
-                                            var numberRegAb19v2 = Number(removeRegAb19v2.replace(/[^0-9\.-]+/g,""));                                            
+                                            // var numberRegAb19v2 = Number(removeRegAb19v2.replace(/[^0-9\.-]+/g,""));                                            
                                             var numberAb18v1 = Number(removeDollarAb18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberAb18v2 = Number(removeDollarAb18v2.replace(/[^0-9\.-]+/g,""));
                                             var numberAb17v1 = Number(removeDollarAb17v1.replace(/[^0-9\.-]+/g,""));
@@ -430,9 +430,9 @@ promise.then(function(db) {
                                             var numberRegAb18v2 = Number(removeRegAb18v2.replace(/[^0-9\.-]+/g,""));
                                             
                                             var numberVa19v1 = Number(removeDollarVa19v1.replace(/[^0-9\.-]+/g,""));
-                                            var numberVa19v2 = Number(removeDollarVa19v2.replace(/[^0-9\.-]+/g,""));
+                                            // var numberVa19v2 = Number(removeDollarVa19v2.replace(/[^0-9\.-]+/g,""));
                                             var numberRegVa19v1 = Number(removeRegVa19v1.replace(/[^0-9\.-]+/g,""));
-                                            var numberRegVa19v2 = Number(removeRegVa19v2.replace(/[^0-9\.-]+/g,""));
+                                            // var numberRegVa19v2 = Number(removeRegVa19v2.replace(/[^0-9\.-]+/g,""));
                                             var numberVa18v1 = Number(removeDollarVa18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberVa18v2 = Number(removeDollarVa18v2.replace(/[^0-9\.-]+/g,""));
                                             var numberVa17v1 = Number(removeDollarVa17v1.replace(/[^0-9\.-]+/g,""));
@@ -521,9 +521,11 @@ promise.then(function(db) {
                                             var mo18VRDailySub = locals.getEventTotal.montreal.mo18.virtual - data.mo18VR;
                                             
                                             // Alberta 2019 Daily
-                                            var ab19DonationSub = numberAb19v1 - numberAb19v2;
+                                            // var ab19DonationSub = numberAb19v1 - numberAb19v2;
+                                            var ab19DonationSub = numberAb19v1;
                                             var ab19RfiSub = locals.getEventTotal.alberta.ab19.rfi - data.ab19RFI;
-                                            var ab19RegSub = numberRegAb19v1 - numberRegAb19v2;
+                                            // var ab19RegSub = numberRegAb19v1 - numberRegAb19v2;
+                                            var ab19RegSub = numberRegAb19v1;
                                             var ab19CrewSub = locals.getEventTotal.alberta.ab19.crews - data.ab19Crews;
                                             var ab19RiderSub = locals.getEventTotal.alberta.ab19.riders - data.ab19Riders;
                                             var ab19VRDailySub = locals.getEventTotal.alberta.ab19.virtual - data.ab19VR;
@@ -539,9 +541,11 @@ promise.then(function(db) {
                                             var ab18VRDailySub = locals.getEventTotal.alberta.ab18.virtual - data.ab18VR;
                                             
                                             // Vancouver 2019 Daily
-                                            var va19DonationSub = numberVa19v1 - numberVa19v2;
+                                            // var va19DonationSub = numberVa19v1 - numberVa19v2;
+                                            var va19DonationSub = numberVa19v1;
                                             var va19RfiSub = locals.getEventTotal.vancouver.va19.rfi - data.va19RFI;
-                                            var va19RegSub = numberRegVa19v1 - numberRegVa19v2;
+                                            // var va19RegSub = numberRegVa19v1 - numberRegVa19v2;
+                                            var va19RegSub = numberRegVa19v1;
                                             var va19CrewSub = locals.getEventTotal.vancouver.va19.crews - data.va19Crews;
                                             var va19RiderSub = locals.getEventTotal.vancouver.va19.riders - data.va19Riders;
                                             var va19VRDailySub = locals.getEventTotal.vancouver.va19.virtual - data.va19VR;
