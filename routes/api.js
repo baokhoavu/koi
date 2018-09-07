@@ -328,6 +328,11 @@ router.get('/data', function(req, res) {
                                                             var ab19CrewSub = locals.getEventTotal.alberta.ab19.crews - yesterday[0].ab19Crews;
                                                             var ab19RiderSub = locals.getEventTotal.alberta.ab19.riders - yesterday[0].ab19Riders;
 
+                                                            var ab19TotalRiders = locals.getEventTotal.alberta.ab19.riders;
+                                                            var ab19RiderSub = ab19TotalRiders - yesterday[0].ab19Riders;
+
+                                                            var ab19TotalParticipants = parseFloat(locals.getEventTotal.alberta.ab19.riders) + parseFloat(locals.getEventTotal.alberta.ab19.riders2);
+
 				                                            // Alberta 2018 Daily
 				                                            var ab18DonationSub = numberAb18v1 - numberAb18v2;
 				                                            var ab17DonationSub = numberAb17v1 - numberAb17v2;
@@ -348,6 +353,11 @@ router.get('/data', function(req, res) {
                                                             var va19RfiSub = locals.getEventTotal.vancouver.va19.rfi - yesterday[0].va19RFI;
                                                             var va19CrewSub = locals.getEventTotal.vancouver.va19.crews - yesterday[0].va19Crews;
                                                             var va19RiderSub = locals.getEventTotal.vancouver.va19.riders - yesterday[0].va19Riders;
+
+                                                            var va19TotalRiders = locals.getEventTotal.vancouver.va19.riders;
+                                                            var va19RiderSub = mo19TotalRiders - yesterday[0].va19Riders;
+
+                                                            var va19TotalParticipants = parseFloat(locals.getEventTotal.vancouver.va19.riders) + parseFloat(locals.getEventTotal.vancouver.va19.riders2);
 
 				                                            var va18DonationSub = numberVa18v1 - numberVa18v2;
 				                                            var va17DonationSub = numberVa17v1 - numberVa17v2;
