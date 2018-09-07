@@ -521,10 +521,10 @@ promise.then(function(db) {
                                             var mo18VRDailySub = locals.getEventTotal.montreal.mo18.virtual - data.mo18VR;
                                             
                                             // Alberta 2019 Daily
-                                            // var ab19DonationSub = numberAb19v1 - numberAb19v2;
-                                            var ab19DonationSub = numberAb19v1;
+                                            var ab19DonationSub = numberAb19v1 - numberAb19v2;
+                                            // var ab19DonationSub = numberAb19v1;
                                             var ab19RfiSub = locals.getEventTotal.alberta.ab19.rfi - data.ab19RFI;
-                                            // var ab19RegSub = numberRegAb19v1 - numberRegAb19v2;
+                                            var ab19RegSub = numberRegAb19v1 - numberRegAb19v2;
                                             var ab19RegSub = numberRegAb19v1;
                                             var ab19CrewSub = locals.getEventTotal.alberta.ab19.crews - data.ab19Crews;
                                             var ab19RiderSub = locals.getEventTotal.alberta.ab19.riders - data.ab19Riders;
@@ -545,7 +545,7 @@ promise.then(function(db) {
                                             // var va19DonationSub = numberVa19v1;
                                             var va19RfiSub = locals.getEventTotal.vancouver.va19.rfi - data.va19RFI;
                                             var va19RegSub = numberRegVa19v1 - numberRegVa19v2;
-                                            // var va19RegSub = numberRegVa19v1;
+                                            var va19RegSub = numberRegVa19v1;
                                             var va19CrewSub = locals.getEventTotal.vancouver.va19.crews - data.va19Crews;
                                             var va19RiderSub = locals.getEventTotal.vancouver.va19.riders - data.va19Riders;
                                             var va19VRDailySub = locals.getEventTotal.vancouver.va19.virtual - data.va19VR;
@@ -829,8 +829,8 @@ promise.then(function(db) {
 
                                                 mo17DonDaily: newMo17DonDaily,
                                                 
-                                                ab19DonDaily: newAbDonDaily,
-                                                ab19RegFeeDaily: newAbRegDaily,
+                                                ab19DonDaily: newAb19DonDaily,
+                                                ab19RegFeeDaily: newAb19RegDaily,
                                                 ab19RFIDaily: ab19RfiSub,
                                                 ab19CrewDaily: ab19CrewSub,
                                                 ab19RidersDaily: ab19RiderSub,
@@ -845,8 +845,8 @@ promise.then(function(db) {
 
                                                 ab17DonDaily: newAb17DonDaily,
                                                 
-                                                va19DonDaily: newVaDonDaily,
-                                                va19RegFeeDaily: newVaRegDaily,
+                                                va19DonDaily: newVa19DonDaily,
+                                                va19RegFeeDaily: newVa19RegDaily,
                                                 va19RFIDaily: va19RfiSub,
                                                 va19CrewDaily: va19CrewSub,
                                                 va19RidersDaily: va19RiderSub,

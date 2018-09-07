@@ -318,7 +318,6 @@ router.get('/data', function(req, res) {
 				                                            
 				                                            // Alberta 2019 Daily
 				                                            var ab19RegSub = numberRegAb19v1 - numberRegAb19v2;
-				                                            var ab19RegSub = numberRegAb19v1;
                                                             var ab19VRDaily = locals.getEventTotal.alberta.ab19.virtual - yesterday[0].ab19VR;
                                                             var ab19Riders2Daily = locals.getEventTotal.alberta.ab19.riders2 - yesterday[0].ab19Riders2;
                                                             var ab19OneDayDaily = locals.getEventTotal.alberta.ab19.oneday - yesterday[0].ab19OneDay;
@@ -344,7 +343,6 @@ router.get('/data', function(req, res) {
 				                                            
 				                                            // Vancouver 2019 Daily
 				                                            var va19RegSub = numberRegVa19v1 - numberRegVa19v2;
-				                                            var va19RegSub = numberRegVa19v1;
                                                             var va19VRDaily = locals.getEventTotal.vancouver.va19.virtual - yesterday[0].va19VR;
                                                             var va19Riders2Daily = locals.getEventTotal.vancouver.va19.riders2 - yesterday[0].va19Riders2;
                                                             var va19OneDayDaily = locals.getEventTotal.vancouver.va19.oneday - yesterday[0].va19OneDay;
