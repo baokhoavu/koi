@@ -40,22 +40,25 @@ router.get('/data', function(req, res) {
 			    request(apiURL, function(err, response, body) {
 			        if (!err && response.statusCode == 200) {
 			            var locals = JSON.parse(body);
-			            // console.log(body)
+			            console.log(locals)
 			            
 			            var apiOneWalk = 'http://www.onewalk.ca/site/PageServer?pagename=api_data&pgwrap=n';
 			            request(apiOneWalk, function(err, response, body) {
 			                if (!err && response.statusCode == 200) {
 			                    var locals2 = JSON.parse(body);
+			                    console.log(locals2)
 			                    
 			                    var apiRidePerth = 'http://www.conquercancer.org.au/site/PageServer?pagename=api_data&pgwrap=n';
 			                    request(apiRidePerth, function(err, response, body) {
 			                        if (!err && response.statusCode == 200) {
 			                            var locals3 = JSON.parse(body);
+			                            console.log(locals3)
 			                            
 			                            var apiOneDay = 'http://participate.theoneday.org.au/site/PageServer?pagename=api_data&pgwrap=n';
 			                            request(apiOneDay, function(err, response, body) {
 			                                if (!err && response.statusCode == 200) {
 				                                var locals4 = JSON.parse(body);
+				                                console.log(locals4)
 
 	                                            // Find today's data
 	                                            data.findOne({"updated": moment().format('L')})
