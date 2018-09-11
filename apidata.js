@@ -522,12 +522,11 @@ promise.then(function(db) {
                                             
                                             // Alberta 2019 Daily
                                             var ab19DonationSub = numberAb19v1 - numberAb19v2;
-                                            // var ab19DonationSub = numberAb19v1;
                                             var ab19RfiSub = locals.getEventTotal.alberta.ab19.rfi - data.ab19RFI;
                                             var ab19RegSub = numberRegAb19v1 - numberRegAb19v2;
-                                            var ab19RegSub = numberRegAb19v1;
                                             var ab19CrewSub = locals.getEventTotal.alberta.ab19.crews - data.ab19Crews;
                                             var ab19RiderSub = locals.getEventTotal.alberta.ab19.riders - data.ab19Riders;
+                                            // var ab19RiderSub = locals.getEventTotal.alberta.ab19.riders - 1042;
                                             var ab19VRDailySub = locals.getEventTotal.alberta.ab19.virtual - data.ab19VR;
 
                                             var ab19TotalParticipants = parseFloat(locals.getEventTotal.alberta.ab19.riders) + parseFloat(locals.getEventTotal.alberta.ab19.riders2);
@@ -542,10 +541,8 @@ promise.then(function(db) {
                                             
                                             // Vancouver 2019 Daily
                                             var va19DonationSub = numberVa19v1 - numberVa19v2;
-                                            // var va19DonationSub = numberVa19v1;
                                             var va19RfiSub = locals.getEventTotal.vancouver.va19.rfi - data.va19RFI;
                                             var va19RegSub = numberRegVa19v1 - numberRegVa19v2;
-                                            var va19RegSub = numberRegVa19v1;
                                             var va19CrewSub = locals.getEventTotal.vancouver.va19.crews - data.va19Crews;
                                             var va19RiderSub = locals.getEventTotal.vancouver.va19.riders - data.va19Riders;
                                             var va19VRDailySub = locals.getEventTotal.vancouver.va19.virtual - data.va19VR;
