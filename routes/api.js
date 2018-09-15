@@ -353,7 +353,7 @@ router.get('/data', function(req, res) {
                                                             var va19RiderSub = locals.getEventTotal.vancouver.va19.riders - yesterday[0].va19Riders;
 
                                                             var va19TotalRiders = locals.getEventTotal.vancouver.va19.riders;
-                                                            var va19RiderSub = ab19TotalRiders - yesterday[0].va19Riders;
+                                                           // var va19RiderSub = ab19TotalRiders - yesterday[0].va19Riders;
 
                                                             var va19TotalParticipants = parseFloat(locals.getEventTotal.vancouver.va19.riders) + parseFloat(locals.getEventTotal.vancouver.va19.riders2);
 

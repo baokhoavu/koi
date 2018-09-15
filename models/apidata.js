@@ -235,6 +235,6 @@ var dataSchema = new Schema({
     ml18RegDaily: String,
     ml18RidersDaily: String,
     ml18WalkersDaily: String
-}, {versionKey: false});
+}, {versionKey: false,  timestamps: { createdAt: 'created_at' }}, );
 
 module.exports = mongoose.model('ApiData', dataSchema);

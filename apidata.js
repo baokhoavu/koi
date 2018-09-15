@@ -252,7 +252,7 @@ promise.then(function(db) {
         ml18RegDaily: String,
         ml18RidersDaily: String,
         ml18WalkersDaily: String
-    }, {versionKey: false});
+    }, {versionKey: false, timestamps: { createdAt: 'created_at' }});
     
     // var ApiData = mongoose.model("ApiData", dataSchema);
 
