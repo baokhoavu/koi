@@ -497,8 +497,9 @@ router.get('/data', function(req, res) {
 			                                                latestdata.ab19Donations = locals.getEventTotal.alberta.ab19.totalDonation;
                                                             latestdata.ab19RegFee = locals.getEventTotal.alberta.ab19.regFee;
                                                             latestdata.ab19Crews = locals.getEventTotal.alberta.ab19.crews;
-                                                            latestdata.ab19RFI = locals.getEventTotal.alberta.ab19.rfi;
-                                                            latestdata.ab19Riders = to19TotalRiders;
+												latestdata.ab19RFI = locals.getEventTotal.alberta.ab19.rfi;
+												latestdata.ab19Riders = locals.getEventTotal.alberta.ab19.riders;
+                                                            //latestdata.ab19Riders = to19TotalRiders;
                                                             latestdata.ab19VR = locals.getEventTotal.alberta.ab19.virtual;
                                                             latestdata.ab19Riders2 = locals.getEventTotal.alberta.ab19.riders2;
                                                             latestdata.ab19OneDay = locals.getEventTotal.alberta.ab19.oneday;
