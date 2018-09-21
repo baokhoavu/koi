@@ -116,6 +116,15 @@ promise.then(function(db) {
         va17RFI: String,
         va17Riders: String,
         va17VR: String,
+        owTo19Donations: String,
+        owTo19RegFee: String,
+        owTo19RFI: String,
+        owTo19Crews: String,
+        owTo19Virtual: String,
+        owTo19Walkers: String,
+        owTo1925kmWalkers: String,
+        owTo19NightWalkers: String,
+        owTo192day: String,
         owTo18Donations: String,
         owTo18RegFee: String,
         owTo18Crews: String,
@@ -233,6 +242,15 @@ promise.then(function(db) {
         va17DonDaily: String,
         va18RegFeeDaily: String,
         va18RFIDaily: String,
+        owto19DonDaily: String,
+        owto19RegDaily: String,
+        owto19RFIDaily: String,
+        owto19CrewsDaily: String,
+        owto19VirtualDaily: String,
+        owto19WalkersDaily: String,
+        owto1925kmWalkersDaily: String,
+        owto19NightWalkersDaily: String,
+        owto192dayDaily: String,
         owto18DonDaily: String,
         owto17DonDaily: String,
         owto18RegDaily: String,
@@ -353,8 +371,16 @@ promise.then(function(db) {
                                             var removeDollarPr17v1 = locals3.getEventTotal.perth.pr17.totalDonation;
                                             var removeDollarPr17v2 = data.pr17Donations;
                                             var removeRegPr17v1 = locals3.getEventTotal.perth.pr17.regFee;
-                                            var removeRegPr17v2 = data.pr17RegFee; 
-                                                
+                                            var removeRegPr17v2 = data.pr17RegFee;
+                                            // =========================== OneWalk Toronto 2019 =========================== //
+                                            var removeDollarOwTo19v1 = locals2.getEventTotal.toronto.to19.totalDonation;
+                                            var removeDollarOwTo19v2 = data.owTo19Donations;
+                                            var removeRegOwTo19v1 = locals2.getEventTotal.toronto.to19.regFee;
+                                            var removeRegOwTo19v2 = data.owTo19RegFee;
+                                            var owTo19Virtual = locals2.getEventTotal.toronto.to19.virtual;
+                                            var owTo1925kmWalkers = locals2.getEventTotal.toronto.to19.Wlkr25km;       
+                                            var owTo19NightWalkers = locals2.getEventTotal.toronto.to19.nightWlk;
+                                            var owTo192day = locals2.getEventTotal.toronto.to19.twoDayWlk;                                              
                                             // =========================== OneWalk Toronto 2018 =========================== //
                                             var removeDollarOwTo18v1 = locals2.getEventTotal.toronto.to18.totalDonation;
                                             var removeDollarOwTo18v2 = data.owTo18Donations;
@@ -365,7 +391,7 @@ promise.then(function(db) {
                                             var owTo1815kmWalkers = locals2.getEventTotal.toronto.to18.Wlkr15km;
                                             var owTo1825kmWalkers = locals2.getEventTotal.toronto.to18.Wlkr25km;
                                             var owTo1840kmWalkers = locals2.getEventTotal.toronto.to18.Wlkr40km;
-                                            // =========================== OneWalk Toronto 2018 =========================== //
+                                            // =========================== OneWalk Toronto 2017 =========================== //
                                             var removeDollarOwTo17v1 = locals2.getEventTotal.toronto.to17.totalDonation;
                                             var removeDollarOwTo17v2 = data.owTo17Donations;
                                             var owTo1715kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr15km;
@@ -439,11 +465,15 @@ promise.then(function(db) {
                                             var numberVa17v2 = Number(removeDollarVa17v2.replace(/[^0-9\.-]+/g,""));
                                             var numberRegVa18v1 = Number(removeRegVa18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberRegVa18v2 = Number(removeRegVa18v2.replace(/[^0-9\.-]+/g,""));
-                                            
+
+                                            var numberOwTo19v1 = Number(removeDollarOwTo19v1.replace(/[^0-9\.-]+/g,""));
+                                            var numberOwTo19v2 = Number(removeDollarOwTo19v2.replace(/[^0-9\.-]+/g,""));                                            
                                             var numberOwTo18v1 = Number(removeDollarOwTo18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberOwTo18v2 = Number(removeDollarOwTo18v2.replace(/[^0-9\.-]+/g,""));
                                             var numberOwTo17v1 = Number(removeDollarOwTo17v1.replace(/[^0-9\.-]+/g,""));
                                             var numberOwTo17v2 = Number(removeDollarOwTo17v2.replace(/[^0-9\.-]+/g,""));
+                                            var numberRegOwTo19v1 = Number(removeRegOwTo19v1.replace(/[^0-9\.-]+/g,""));
+                                            var numberRegOwTo19v2 = Number(removeRegOwTo19v2.replace(/[^0-9\.-]+/g,""));
                                             var numberRegOwTo18v1 = Number(removeRegOwTo18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberRegOwTo18v2 = Number(removeRegOwTo18v2.replace(/[^0-9\.-]+/g,""));
 
@@ -557,6 +587,17 @@ promise.then(function(db) {
                                             var va18RegSub = numberRegVa18v1 - numberRegVa18v2;
                                             var va18VRDailySub = locals.getEventTotal.vancouver.va18.virtual - data.va18VR;
 
+                                            var owto19DonationSub = numberOwTo19v1 - numberOwTo19v2;
+                                            var owto19RegSub = numberRegOwTo19v1 - numberRegOwTo19v2;
+                                            var owto19RfiSub = locals2.getEventTotal.toronto.to19.rfi;
+                                            var owto19CrewsDailySub = locals2.getEventTotal.toronto.to19.crews;
+                                            var owto19TotalWalkers = parseFloat(owTo19NightWalkers) + parseFloat(owTo1925kmWalkers) + parseFloat(owTo182day);
+                                            var owto19VirtualDailySub = owTo19Virtual - data.owTo19Virtual;
+                                            var owto19WalkersDailySub = owto19TotalWalkers - data.owTo19Walkers;
+                                            var owTo1925kmWalkersDaily = locals2.getEventTotal.toronto.to19.Wlkr25km - data.owTo1925kmWalkers;
+                                            var owTo19NightWalkersDaily = locals2.getEventTotal.toronto.to19.nightWlk - data.owTo19NightWalkers;
+                                            var owTo192dayDaily = locals2.getEventTotal.toronto.to19.Wlkr15km - data.owTo192day;
+
                                             var owto18DonationSub = numberOwTo18v1 - numberOwTo18v2;
                                             var owto17DonationSub = numberOwTo17v1 - numberOwTo17v2;
                                             var owto18RfiSub = locals2.getEventTotal.toronto.to18.rfi - data.owTo18RFI;
@@ -609,6 +650,8 @@ promise.then(function(db) {
                                             var newVa17DonDaily = '$' + va17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newVaRegDaily = '$' + va18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             
+                                            var newOwTo19DonDaily = '$' + owto19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                            var newOwTo19RegDaily = '$' + owto19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newOwToDonDaily = '$' + owto18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newOwTo17DonDaily = '$' + owto17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newOwToRegDaily = '$' + owto18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -728,6 +771,16 @@ promise.then(function(db) {
                                                 va17Riders: locals.getEventTotal.vancouver.va17.riders,
                                                 va17VR: locals.getEventTotal.vancouver.va17.virtual,
                                                 
+                                                owTo19Donations: locals2.getEventTotal.toronto.to19.totalDonation,
+                                                owTo19RegFee: locals2.getEventTotal.toronto.to19.regFee,
+                                                owTo19RFI: locals2.getEventTotal.toronto.to19.rfi,
+                                                owTo19Crews: locals2.getEventTotal.toronto.to19.crews,
+                                                owTo19Virtual: locals2.getEventTotal.toronto.to19.virtual,
+                                                owTo19Walkers: owto19TotalWalkers,
+                                                owTo1925kmWalkers: owTo1925kmWalkers,
+                                                owTo19NightWalkers: owTo19NightWalkers,
+                                                owTo192day: owTo192day,
+
                                                 owTo18Donations: locals2.getEventTotal.toronto.to18.totalDonation,
                                                 owTo18RegFee: locals2.getEventTotal.toronto.to18.regFee,
                                                 owTo18Crews: locals2.getEventTotal.toronto.to18.crews,
@@ -858,6 +911,16 @@ promise.then(function(db) {
                                                 
                                                 va17DonDaily: newVa17DonDaily,
                                                 
+                                                owto19DonDaily: newOwTo19DonDaily,
+                                                owto19RegDaily: newOwTo19RegDaily,
+                                                owto19RFIDaily: owto19RfiSub,
+                                                owto19CrewsDaily: owto19CrewsDailySub,
+                                                owTo19VirtualDaily: owto19VirtualDailySub,
+                                                owto19WalkersDaily: owto19WalkersDailySub,
+                                                owto1925kmWalkersDaily: owTo1925kmWalkersDaily,
+                                                owto19NightWalkersDaily: owTo19NightWalkersDaily,
+                                                owto192dayDaily: owTo192dayDaily,
+
                                                 owto18DonDaily: newOwToDonDaily,
                                                 owto18RegDaily: newOwToRegDaily,
                                                 owto18RFIDaily: owto18RfiSub,

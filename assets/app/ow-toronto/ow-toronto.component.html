@@ -30,13 +30,22 @@
       </thead>
       <tbody>
         <tr>
-          <td>2018 (TODAY)</td>
-          <td>{{dataService.data.owto18WalkersDaily}}</td>
-          <td>{{dataService.data.owto18NightWalkersDaily}}</td>
-          <td>{{dataService.data.owto182dayDaily}}</td>
-          <td>{{dataService.data.owto1815kmWalkersDaily}}</td>
-          <td>{{dataService.data.owto1825kmWalkersDaily}}</td>
-          <td>{{dataService.data.owto1840kmWalkersDaily}}</td>
+          <td>2019 (TODAY)</td>
+          <td>{{dataService.data.owto19WalkersDaily}}</td>
+          <td>{{dataService.data.owto19NightWalkersDaily}}</td>
+          <td>{{dataService.data.owto192dayDaily}}</td>
+          <td>x</td>
+          <td>{{dataService.data.owto1925kmWalkersDaily}}</td>
+          <td>x</td>
+        </tr>
+        <tr>
+          <td>2019 (YTD)</td>
+          <td>{{dataService.data.owTo19Walkers}}</td>
+          <td>{{dataService.data.owTo19NightWalkers}}</td>
+          <td>{{dataService.data.owTo192day}}</td>
+          <td>x</td>
+          <td>{{dataService.data.owTo1925kmWalkers}}</td>
+          <td>x</td>
         </tr>
         <tr>
           <td>2018 (YTD)</td>
@@ -89,11 +98,18 @@
       </thead>
       <tbody>
         <tr>
-          <td>2018 (TODAY)</td>
-          <td>{{dataService.data.owto18RFIDaily}}</td>
-          <td>{{dataService.data.owto18CrewsDaily}}</td>
-          <td>{{dataService.data.owto18DonDaily}}</td>
-          <td>{{dataService.data.owto18RegDaily}}</td>
+          <td>2019 (TODAY)</td>
+          <td>{{dataService.data.owto19RFIDaily}}</td>
+          <td>{{dataService.data.owto19CrewsDaily}}</td>
+          <td>{{dataService.data.owto19DonDaily}}</td>
+          <td>{{dataService.data.owto19RegDaily}}</td>
+        </tr>
+        <tr>
+          <td>2019 (YTD)</td>
+          <td>{{dataService.data.owTo19RFI}}</td>
+          <td>{{dataService.data.owTo19Crews}}</td>
+          <td>{{dataService.data.owTo19Donations}}</td>
+          <td>{{dataService.data.owTo19RegFee}}</td>
         </tr>
         <tr>
           <td>2018 (YTD)</td>
@@ -169,6 +185,15 @@
       </thead>
       <tbody>
       <tr>
+        <td>2019</td>
+        <td>{{dataService.allData[0]?.owTo19Walkers}}</td>
+        <td>{{dataService.allData[0]?.owTo19NightWalkers}}</td>
+        <td>{{dataService.allData[0]?.owTo192day}}</td>
+        <td>{{dataService.allData[0]?.owTo1915kmWalkers}}</td>
+        <td>{{dataService.allData[0]?.owTo1925kmWalkers}}</td>
+        <td>{{dataService.allData[0]?.owTo1940kmWalkers}}</td>
+      </tr>
+      <tr>
         <td>2018</td>
         <td>{{dataService.allData[0]?.owTo18Walkers}}</td>
         <td>{{dataService.allData[0]?.owTo18NightWalkers}}</td>
@@ -219,6 +244,13 @@
       </tr>
       </thead>
       <tbody>
+      <tr>
+        <td>2019</td>
+        <td>{{dataService.allData[0]?.owTo19RFI}}</td>
+        <td>{{dataService.allData[0]?.owTo19Crews}}</td>
+        <td>{{dataService.allData[0]?.owTo19Donations}}</td>
+        <td>{{dataService.allData[0]?.owTo19RegFee}}</td>
+      </tr>
       <tr>
         <td>2018</td>
         <td>{{dataService.allData[0]?.owTo18RFI}}</td>
