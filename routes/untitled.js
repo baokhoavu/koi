@@ -384,7 +384,7 @@ router.get('/data', function(req, res) {
 													        var owto19RfiSub = locals2.getEventTotal.toronto.to19.rfi - yesterday[0].owTo19RFI;
 													        var owto19CrewsDailySub = locals2.getEventTotal.toronto.to19.crews - yesterday[0].owTo19Crews;
 													        var owto19TotalWalkers = parseFloat(owTo19NightWalkers) + parseFloat(owTo1925kmWalkers) + parseFloat(owTo182day);
-													        var owto19VirtualDailySub = owTo19Virtual - yesterday[0].owto19Virtual;
+													        var owto19VirtualDailySub = owto19Virtual - yesterday[0].owto19Virtual;
 													        var owto19WalkersDailySub = owto19TotalWalkers - yesterday[0].owTo19Walkers;
 													        var owTo1925kmWalkersDaily = locals2.getEventTotal.toronto.to19.Wlkr25km - yesterday[0].owTo1925kmWalkers;
 													        var owTo19NightWalkersDaily = locals2.getEventTotal.toronto.to19.nightWlk - yesterday[0].owTo19NightWalkers;
@@ -578,7 +578,7 @@ router.get('/data', function(req, res) {
 			                                                latestdata.owTo19RegFee = locals2.getEventTotal.toronto.to19.regFee;
 			                                                latestdata.owTo19RFI = locals2.getEventTotal.toronto.to19.rfi;
 			                                                latestdata.owTo19Crews = locals2.getEventTotal.toronto.to19.crews;
-			                                                latestdata.owTo19Virtual = owTo19Virtual;
+			                                                latestdata.owTo19Virtual = owto19Virtual;
 			                                                latestdata.owTo19Walkers = owto19TotalWalkers;
 			                                                latestdata.owTo1925kmWalkers = owTo1925kmWalkers;
 			                                                latestdata.owTo19NightWalkers = owTo19NightWalkers;
@@ -732,18 +732,8 @@ router.get('/data', function(req, res) {
 			                                                latestdata.va17DonDaily = newVa17DonDaily;
 
 			                                                // DAILY - ONEWALK - Toronto
-			                                                latestdata.owto19DonDaily = newOwTo19DonDaily;
-			                                                latestdata.owto19RegDaily = newOwTo19RegDaily;
-			                                                latestdata.owto19RFIDaily = owto19RfiSub;
-			                                                latestdata.owto19WalkersDaily = owto19WalkersDailySub;
-			                                                latestdata.owto192dayDaily = owTo192dayDailySub,
-														    latestdata.owto19NightWalkersDaily = owTo19NightWalkersDailySub,
-														    latestdata.owto1925kmWalkersDaily = owTo1925kmWalkersDailySub,
-			                                                latestdata.owto19CrewsDaily = owto19CrewsDailySub;
-			                                                latestdata.owto19Virtual = owto19Virtual;
-
-			                                                latestdata.owto18DonDaily = newOwToDonDaily;
-			                                                latestdata.owto18RegDaily = newOwToRegDaily;
+			                                                latestdata.owto18DonDaily = newOwTo19DonDaily;
+			                                                latestdata.owto18RegDaily = newOwTo19RegDaily;
 			                                                latestdata.owto18RFIDaily = owto18RfiSub;
 			                                                latestdata.owto18WalkersDaily = owto18WalkersDailySub;
 			                                                latestdata.owto182dayDaily = owTo182dayDailySub,
