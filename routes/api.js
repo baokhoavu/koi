@@ -388,7 +388,7 @@ router.get('/data', function(req, res) {
 													        var owto19WalkersDailySub = owto19TotalWalkers - yesterday[0].owTo19Walkers;
 													        var owTo1925kmWalkersDaily = locals2.getEventTotal.toronto.to19.Wlkr25km - yesterday[0].owTo1925kmWalkers;
 													        var owTo19NightWalkersDaily = locals2.getEventTotal.toronto.to19.nightWlk - yesterday[0].owTo19NightWalkers;
-													        var owTo192dayDaily = locals2.getEventTotal.toronto.to19.Wlkr15km - yesterday[0].owTo192day;
+													        var owTo192dayDailySub = locals2.getEventTotal.toronto.to19.Wlkr15km - yesterday[0].owTo192day;
 
 				                                            var owto18DonationSub = numberOwTo18v1 - numberOwTo18v2;
 				                                            var owto17DonationSub = numberOwTo17v1 - numberOwTo17v2;
