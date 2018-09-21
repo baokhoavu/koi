@@ -740,7 +740,7 @@ router.get('/data', function(req, res) {
 														    latestdata.owto19NightWalkersDaily = owTo19NightWalkersDailySub,
 														    latestdata.owto1925kmWalkersDaily = owTo1925kmWalkersDailySub,
 			                                                latestdata.owto19CrewsDaily = owto19CrewsDailySub;
-			                                                latestdata.owto19Virtual = owto19Virtual;
+			                                                latestdata.owto19Virtual = owTo19Virtual;
 
 			                                                latestdata.owto18DonDaily = newOwToDonDaily;
 			                                                latestdata.owto18RegDaily = newOwToRegDaily;
