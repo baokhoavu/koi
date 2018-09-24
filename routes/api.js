@@ -145,7 +145,6 @@ router.get('/data', function(req, res) {
 				                                            var removeDollarOwTo19v2 = yesterday[0].owTo19Donations;
 				                                            var removeRegOwTo19v1 = latestdata.owTo19RegFee;
 				                                            var removeRegOwTo19v2 = yesterday[0].owTo19RegFee;
-				                                            var owTo19Virtual = locals2.getEventTotal.toronto.to19.virtual;
 				                                            var owTo1925kmWalkers = locals2.getEventTotal.toronto.to19.Wlkr25km;  
 				                                            var owTo19NightWalkers = locals2.getEventTotal.toronto.to19.nightWlk;
 				                                            var owTo192day = locals2.getEventTotal.toronto.to19.twoDayWlk;
@@ -384,7 +383,7 @@ router.get('/data', function(req, res) {
 													        var owto19RfiSub = locals2.getEventTotal.toronto.to19.rfi - yesterday[0].owTo19RFI;
 													        var owto19CrewsDailySub = locals2.getEventTotal.toronto.to19.crews - yesterday[0].owTo19Crews;
 													        var owto19TotalWalkers = parseFloat(owTo19NightWalkers) + parseFloat(owTo1925kmWalkers) + parseFloat(owTo182day);
-													        var owto19VirtualDailySub = owTo19Virtual - yesterday[0].owto19Virtual;
+													        var owto19VirtualDailySub = locals.getEventTotal.toronto.to19.virtual - yesterday[0].owto19VR;
 													        var owto19WalkersDailySub = owto19TotalWalkers - yesterday[0].owTo19Walkers;
 													        var owTo1925kmWalkersDailySub = locals2.getEventTotal.toronto.to19.Wlkr25km - yesterday[0].owTo1925kmWalkers;
 													        var owTo19NightWalkersDailySub = locals2.getEventTotal.toronto.to19.nightWlk - yesterday[0].owTo19NightWalkers;
@@ -578,7 +577,7 @@ router.get('/data', function(req, res) {
 			                                                latestdata.owTo19RegFee = locals2.getEventTotal.toronto.to19.regFee;
 			                                                latestdata.owTo19RFI = locals2.getEventTotal.toronto.to19.rfi;
 			                                                latestdata.owTo19Crews = locals2.getEventTotal.toronto.to19.crews;
-			                                                latestdata.owTo19Virtual = owTo19Virtual;
+			                                                latestdata.owTo19VR = locals.getEventTotal.toronto.to19.virtual;
 			                                                latestdata.owTo19Walkers = owto19TotalWalkers;
 			                                                latestdata.owTo1925kmWalkers = owTo1925kmWalkers;
 			                                                latestdata.owTo19NightWalkers = owTo19NightWalkers;
@@ -740,7 +739,7 @@ router.get('/data', function(req, res) {
 														    latestdata.owto19NightWalkersDaily = owTo19NightWalkersDailySub,
 														    latestdata.owto1925kmWalkersDaily = owTo1925kmWalkersDailySub,
 			                                                latestdata.owto19CrewsDaily = owto19CrewsDailySub;
-			                                                latestdata.owto19Virtual = owTo19Virtual;
+			                                                latestdata.owto19VRDaily = owto19VirtualDailySub;
 
 			                                                latestdata.owto18DonDaily = newOwToDonDaily;
 			                                                latestdata.owto18RegDaily = newOwToRegDaily;

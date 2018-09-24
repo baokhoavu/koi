@@ -592,7 +592,7 @@ promise.then(function(db) {
                                             var owto19RfiSub = locals2.getEventTotal.toronto.to19.rfi;
                                             var owto19CrewsDailySub = locals2.getEventTotal.toronto.to19.crews;
                                             var owto19TotalWalkers = parseFloat(owTo19NightWalkers) + parseFloat(owTo1925kmWalkers) + parseFloat(owTo182day);
-                                            var owto19VirtualDailySub = owTo19Virtual - data.owTo19Virtual;
+                                            var owto19VRDailySub = locals.getEventTotal.toronto.to19.virtual - data.owTo19VR;
                                             var owto19WalkersDailySub = owto19TotalWalkers - data.owTo19Walkers;
                                             var owTo1925kmWalkersDaily = locals2.getEventTotal.toronto.to19.Wlkr25km - data.owTo1925kmWalkers;
                                             var owTo19NightWalkersDaily = locals2.getEventTotal.toronto.to19.nightWlk - data.owTo19NightWalkers;
@@ -915,7 +915,7 @@ promise.then(function(db) {
                                                 owto19RegDaily: newOwTo19RegDaily,
                                                 owto19RFIDaily: owto19RfiSub,
                                                 owto19CrewsDaily: owto19CrewsDailySub,
-                                                owTo19VirtualDaily: owto19VirtualDailySub,
+                                                owTo19VRDaily: owto19VRDailySub,
                                                 owto19WalkersDaily: owto19WalkersDailySub,
                                                 owto1925kmWalkersDaily: owTo1925kmWalkersDaily,
                                                 owto19NightWalkersDaily: owTo19NightWalkersDaily,
