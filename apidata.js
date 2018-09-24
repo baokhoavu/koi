@@ -596,7 +596,7 @@ promise.then(function(db) {
                                             var owto19WalkersDailySub = owto19TotalWalkers - data.owTo19Walkers;
                                             var owTo1925kmWalkersDaily = locals2.getEventTotal.toronto.to19.Wlkr25km - data.owTo1925kmWalkers;
                                             var owTo19NightWalkersDaily = locals2.getEventTotal.toronto.to19.nightWlk - data.owTo19NightWalkers;
-                                            var owTo192dayDaily = locals2.getEventTotal.toronto.to19.Wlkr15km - data.owTo192day;
+                                            var owTo192dayDaily = locals2.getEventTotal.toronto.to19.twoDayWlk - data.owTo192day;
 
                                             var owto18DonationSub = numberOwTo18v1 - numberOwTo18v2;
                                             var owto17DonationSub = numberOwTo17v1 - numberOwTo17v2;
