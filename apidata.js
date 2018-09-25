@@ -123,6 +123,7 @@ promise.then(function(db) {
         owTo19Virtual: String,
         owTo19Walkers: String,
         owTo1925kmWalkers: String,
+        owTo1940kmWalkers: String,
         owTo19NightWalkers: String,
         owTo192day: String,
         owTo18Donations: String,
@@ -249,6 +250,7 @@ promise.then(function(db) {
         owto19VirtualDaily: String,
         owto19WalkersDaily: String,
         owto1925kmWalkersDaily: String,
+        owto1940kmWalkersDaily: String,
         owto19NightWalkersDaily: String,
         owto192dayDaily: String,
         owto18DonDaily: String,
@@ -379,6 +381,7 @@ promise.then(function(db) {
                                             var removeRegOwTo19v2 = data.owTo19RegFee;
                                             var owTo19Virtual = locals2.getEventTotal.toronto.to19.virtual;
                                             var owTo1925kmWalkers = locals2.getEventTotal.toronto.to19.Wlkr25km;       
+                                            var owTo1940kmWalkers = locals2.getEventTotal.toronto.to19.Wlkr40km;       
                                             var owTo19NightWalkers = locals2.getEventTotal.toronto.to19.nightWlk;
                                             var owTo192day = locals2.getEventTotal.toronto.to19.twoDayWlk;                                              
                                             // =========================== OneWalk Toronto 2018 =========================== //
@@ -594,7 +597,8 @@ promise.then(function(db) {
                                             var owto19TotalWalkers = parseFloat(owTo19NightWalkers) + parseFloat(owTo1925kmWalkers) + parseFloat(owTo192day);
                                             var owto19VRDailySub = locals.getEventTotal.toronto.to19.virtual - data.owTo19VR;
                                             var owto19WalkersDailySub = owto19TotalWalkers - data.owTo19Walkers;
-                                            var owTo1925kmWalkersDaily = locals2.getEventTotal.toronto.to19.Wlkr25km - data.owTo1925kmWalkers;
+                                            var owTo1925kmWalkersDaily = locals 2.getEventTotal.toronto.to19.Wlkr25km - data.owTo1925kmWalkers;
+                                            var owTo1940kmWalkersDaily = locals 2.getEventTotal.toronto.to19.Wlkr40km - data.owTo1940kmWalkers;
                                             var owTo19NightWalkersDaily = locals2.getEventTotal.toronto.to19.nightWlk - data.owTo19NightWalkers;
                                             var owTo192dayDaily = locals2.getEventTotal.toronto.to19.twoDayWlk - data.owTo192day;
 
@@ -778,6 +782,7 @@ promise.then(function(db) {
                                                 owTo19Virtual: locals2.getEventTotal.toronto.to19.virtual,
                                                 owTo19Walkers: owto19TotalWalkers,
                                                 owTo1925kmWalkers: owTo1925kmWalkers,
+                                                owTo1940kmWalkers: owTo1940kmWalkers,
                                                 owTo19NightWalkers: owTo19NightWalkers,
                                                 owTo192day: owTo192day,
 
@@ -918,6 +923,7 @@ promise.then(function(db) {
                                                 owTo19VRDaily: owto19VRDailySub,
                                                 owto19WalkersDaily: owto19WalkersDailySub,
                                                 owto1925kmWalkersDaily: owTo1925kmWalkersDaily,
+                                                owto1940kmWalkersDaily: owTo1940kmWalkersDaily,
                                                 owto19NightWalkersDaily: owTo19NightWalkersDaily,
                                                 owto192dayDaily: owTo192dayDaily,
 
