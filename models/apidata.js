@@ -101,7 +101,7 @@ var dataSchema = new Schema({
     owTo19RegFee: String,
     owTo19RFI: String,
     owTo19Crews: String,
-    owTo19Virtual: String,
+    owTo19VR: String,
     owTo19Walkers: String,
     owTo1925kmWalkers: String,
     owTo1940kmWalkers: String,
