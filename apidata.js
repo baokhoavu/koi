@@ -591,7 +591,7 @@ promise.then(function(db) {
                                             var owto19RegSub = numberRegOwTo19v1 - numberRegOwTo19v2;
                                             var owto19RfiSub = locals2.getEventTotal.toronto.to19.rfi;
                                             var owto19CrewsDailySub = locals2.getEventTotal.toronto.to19.crews;
-                                            var owto19TotalWalkers = parseFloat(owTo19NightWalkers) + parseFloat(owTo1925kmWalkers) + parseFloat(owTo182day);
+                                            var owto19TotalWalkers = parseFloat(owTo19NightWalkers) + parseFloat(owTo1925kmWalkers) + parseFloat(owTo192day);
                                             var owto19VRDailySub = locals.getEventTotal.toronto.to19.virtual - data.owTo19VR;
                                             var owto19WalkersDailySub = owto19TotalWalkers - data.owTo19Walkers;
                                             var owTo1925kmWalkersDaily = locals2.getEventTotal.toronto.to19.Wlkr25km - data.owTo1925kmWalkers;
