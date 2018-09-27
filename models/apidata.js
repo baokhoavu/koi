@@ -229,7 +229,7 @@ var dataSchema = new Schema({
     owto19RegDaily: String,
     owto19RFIDaily: String,
     owto19CrewsDaily: String,
-    owto19VirtualDaily: String,
+    owto19VRDaily: String,
     owto19WalkersDaily: String,
     owto1925kmWalkersDaily: String,
     owto1940kmWalkersDaily: String,
