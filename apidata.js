@@ -31,6 +31,7 @@ promise.then(function(db) {
         to19Riders2: String,
         to19OneDay: String,
         to19OneDay2: String,
+        to19theHammer: String,
         to19VR: String,
         to19TotalParticipants: String,
         to18Donations: String,
@@ -179,6 +180,7 @@ promise.then(function(db) {
         to19Riders2Daily: String,
         to19OneDayDaily: String,
         to19OneDayDaily2: String,
+        to19theHammerDaily: String,
         to18DonDaily: String,
         to18RegFeeDaily: String,
         to18RFIDaily: String,
@@ -503,6 +505,7 @@ promise.then(function(db) {
                                             var to19Riders2Daily = locals.getEventTotal.toronto.to19.riders2 - data.to19Riders2;
                                             var to19OneDayDaily = locals.getEventTotal.toronto.to19.oneday - data.to19OneDay;
                                             var to19OneDayDaily2 = locals.getEventTotal.toronto.to19.oneday2 - data.to19OneDay2;
+                                            var to19theHammerDaily = locals.getEventTotal.toronto.to19.theHammer - data.to19theHammer;
 
                                             var to19TotalParticipants = parseFloat(locals.getEventTotal.toronto.to19.riders) + parseFloat(locals.getEventTotal.toronto.to19.riders2) + parseFloat(locals.getEventTotal.toronto.to19.oneday) + parseFloat(locals.getEventTotal.toronto.to19.oneday2);
 
@@ -680,6 +683,7 @@ promise.then(function(db) {
                                                 to19Rider2: locals.getEventTotal.toronto.to19.riders2,
                                                 to19OneDay: locals.getEventTotal.toronto.to19.oneday,
                                                 to19OneDay2: locals.getEventTotal.toronto.to19.oneday2,
+                                                to19theHammer: locals.getEventTotal.toronto.to19.theHammer,
                                                 to19TotalParticipants: to19TotalParticipants,
 
                                                 to18Donations: locals.getEventTotal.toronto.to18.totalDonation,
@@ -847,6 +851,7 @@ promise.then(function(db) {
                                                 to19Riders2Daily: to19Riders2Daily,
                                                 to19OneDayDaily: to19OneDayDaily,
                                                 to19OneDayDaily2: to19OneDayDaily2,
+                                                to19theHammerDaily: to19theHammerDaily,
                                                 
                                                 to18DonDaily: newToDonDaily,
                                                 to18RegFeeDaily: newToRegDaily,
