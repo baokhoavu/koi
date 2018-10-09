@@ -276,6 +276,7 @@ router.get('/data', function(req, res) {
                                                             var to19OneDayDaily = locals.getEventTotal.toronto.to19.oneday - yesterday[0].to19OneDay;
                                                             var to19OneDayDaily2 = locals.getEventTotal.toronto.to19.oneday2 - yesterday[0].to19OneDay2;
                                                             var to19theHammerDaily = locals.getEventTotal.toronto.to19.theHammer - yesterday[0].to19theHammer;
+                                                            var to19hammer260Daily = locals.getEventTotal.toronto.to19.hammer260 - yesterday[0].to19hammer260;
 
                                                             var to19TotalParticipants = parseFloat(locals.getEventTotal.toronto.to19.riders) + parseFloat(locals.getEventTotal.toronto.to19.riders2) + parseFloat(locals.getEventTotal.toronto.to19.oneday) + parseFloat(locals.getEventTotal.toronto.to19.oneday2);
 
@@ -472,6 +473,7 @@ router.get('/data', function(req, res) {
                                                             latestdata.to19Riders = to19TotalRiders;
                                                             latestdata.to19VR = locals.getEventTotal.toronto.to19.virtual;
                                                             latestdata.to19theHammer = locals.getEventTotal.toronto.to19.theHammer;
+                                                            latestdata.to19hammer260 = locals.getEventTotal.toronto.to19.hammer260;
                                                             latestdata.to19Riders2 = locals.getEventTotal.toronto.to19.riders2;
                                                             latestdata.to19OneDay = locals.getEventTotal.toronto.to19.oneday;
                                                             latestdata.to19OneDay2 = locals.getEventTotal.toronto.to19.oneday2;
@@ -654,6 +656,7 @@ router.get('/data', function(req, res) {
                                                             latestdata.to19Riders2Daily = to19Riders2Daily;
                                                             latestdata.to19OneDayDaily = to19OneDayDaily;
                                                             latestdata.to19theHammerDaily = to19theHammerDaily;
+                                                            latestdata.to19hammer260Daily = to19hammer260Daily;
 
                                                             // -- 2018
 			                                                latestdata.to18DonDaily = newToDonDaily;
