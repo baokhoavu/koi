@@ -128,6 +128,7 @@ promise.then(function(db) {
         owTo1940kmWalkers: String,
         owTo19NightWalkers: String,
         owTo192day: String,
+        owTo19rfiTotal: String,
         owTo18Donations: String,
         owTo18RegFee: String,
         owTo18Crews: String,
@@ -607,6 +608,7 @@ promise.then(function(db) {
                                             var owTo1940kmWalkersDaily = locals2.getEventTotal.toronto.to19.Wlkr40km - data.owTo1940kmWalkers;
                                             var owTo19NightWalkersDaily = locals2.getEventTotal.toronto.to19.nightWlk - data.owTo19NightWalkers;
                                             var owTo192dayDaily = locals2.getEventTotal.toronto.to19.twoDayWlk - data.owTo192day;
+                                            var owTo19rfiTotal = parseFloat(locals2.getEventTotal.toronto.to19.rfi) + parseFloat(locals2.getEventTotal.toronto.to19.rfinight) + parseFloat(locals2.getEventTotal.toronto.to19.rfinightfb) + parseFloat(locals2.getEventTotal.toronto.to19.rfiday) + parseFloat(locals2.getEventTotal.toronto.to19.rfidayfb);
 
                                             var owto18DonationSub = numberOwTo18v1 - numberOwTo18v2;
                                             var owto17DonationSub = numberOwTo17v1 - numberOwTo17v2;
@@ -785,7 +787,7 @@ promise.then(function(db) {
                                                 
                                                 owTo19Donations: locals2.getEventTotal.toronto.to19.totalDonation,
                                                 owTo19RegFee: locals2.getEventTotal.toronto.to19.regFee,
-                                                owTo19RFI: locals2.getEventTotal.toronto.to19.rfi,
+                                                owTo19RFI: owTo19rfiTotal,
                                                 owTo19Crews: locals2.getEventTotal.toronto.to19.crews,
                                                 owTo19VR: locals2.getEventTotal.toronto.to19.virtual,
                                                 owTo19Walkers: owto19TotalWalkers,

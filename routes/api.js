@@ -69,8 +69,8 @@ router.get('/data', function(req, res) {
 	                                            			console.log(err);
 	                                            		}
 	                                            		if (latestdata) {
-	                                            			console.log("Getting latest data! Date: " + latestdata.updated);
-	                                            			// console.log("Getting latest data! Date: " + latestdata);
+	                                            			// console.log("Getting latest data! Date: " + latestdata.updated);
+	                                            			console.log("Getting latest data! Date: " + latestdata);
 	                                            			// console.log("Getting latest data! Date: " + latestdata);
                                                             // =========================== Ride Toronto 2019 =========================== //
                                                             var removeDollarTo19v1 = latestdata.to19Donations;
@@ -392,6 +392,7 @@ router.get('/data', function(req, res) {
 													        var owTo1940kmWalkersDailySub = locals2.getEventTotal.toronto.to19.Wlkr40km - yesterday[0].owTo1940kmWalkers;
 													        var owTo19NightWalkersDailySub = locals2.getEventTotal.toronto.to19.nightWlk - yesterday[0].owTo19NightWalkers;
 													        var owTo192dayDailySub = locals2.getEventTotal.toronto.to19.twoDayWlk - yesterday[0].owTo192day;
+													        var owTo19rfiTotal = parseFloat(locals2.getEventTotal.toronto.to19.rfi) + parseFloat(locals2.getEventTotal.toronto.to19.rfinight) + parseFloat(locals2.getEventTotal.toronto.to19.rfinightfb) + parseFloat(locals2.getEventTotal.toronto.to19.rfiday) + parseFloat(locals2.getEventTotal.toronto.to19.rfidayfb);
 
 				                                            var owto18DonationSub = numberOwTo18v1 - numberOwTo18v2;
 				                                            var owto17DonationSub = numberOwTo17v1 - numberOwTo17v2;
@@ -581,7 +582,7 @@ router.get('/data', function(req, res) {
 			                                                // ONEWALK - Toronto
 			                                                latestdata.owTo19Donations = locals2.getEventTotal.toronto.to19.totalDonation;
 			                                                latestdata.owTo19RegFee = locals2.getEventTotal.toronto.to19.regFee;
-			                                                latestdata.owTo19RFI = locals2.getEventTotal.toronto.to19.rfi;
+			                                                latestdata.owTo19RFI = owTo19rfiTotal;
 			                                                latestdata.owTo19Crews = locals2.getEventTotal.toronto.to19.crews;
 			                                                latestdata.owTo19VR = locals.getEventTotal.toronto.to19.virtual;
 			                                                latestdata.owTo19Walkers = owto19TotalWalkers;
