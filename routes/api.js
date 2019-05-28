@@ -72,7 +72,7 @@ router.get('/data', function(req, res) {
 	                                            			// console.log("Getting latest data! Date: " + latestdata.updated);
 	                                            			console.log("Getting latest data! Date: " + latestdata);
 	                                            			// console.log("Getting latest data! Date: " + latestdata);
-	                                            			// =========================== Ride Toronto 2019 =========================== //
+	                                            			// =========================== Ride Toronto 2020 =========================== //
                                                             var removeDollarTo20v1 = latestdata.to20Donations;
                                                             var removeDollarTo20v2 = yesterday[0].to20Donations;
                                                             var removeRegTo20v1 = latestdata.to20RegFee;
