@@ -12,6 +12,7 @@ var mongodbUri = 'mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.
 
 var promise = mongoose.connect(mongodbUri, {
   // useMongoClient: true,
+  useNewUrlParser: true
   /* other options */
 });
 
