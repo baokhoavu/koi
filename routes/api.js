@@ -687,9 +687,10 @@ router.get('/data', function(req, res) {
                                                             latestdata.to20RFIDaily = to20RfiSub;
                                                             latestdata.to20CrewDaily = to20CrewSub;
                                                             latestdata.to20RidersDaily = to20RiderSub;
+                                                            latestdata.to19Riders2Daily = to20Riders2Daily;
                                                             latestdata.to20VRDaily = to20VRDaily;
-                                                            latestdata.to20Riders2Daily = to20Riders2Daily;
                                                             latestdata.to20OneDayDaily = to20OneDayDaily;
+                                                            latestdata.to20OneDayDaily2 = to20OneDayDaily2;
                                                             latestdata.to20theHammerDaily = to20theHammerDaily;
                                                             // -- 2019
                                                             latestdata.to19DonDaily = newTo19DonDaily;
