@@ -23,6 +23,17 @@ promise.then(function(db) {
     var dataSchema = new Schema({
         updated: String,
         nightly: String,
+        to20Donations: String,
+        to20RegFee: String,
+        to20Crews: String,
+        to20RFI: String,
+        to20Riders: String,
+        to20Riders2: String,
+        to20OneDay: String,
+        to20OneDay2: String,
+        to20theHammer: String,
+        to20VR: String,
+        to20TotalParticipants: String,
         to19Donations: String,
         to19RegFee: String,
         to19Crews: String,
@@ -199,23 +210,19 @@ promise.then(function(db) {
         pr18CrewDaily: String,
         pr18RidersDaily: String,
         pr17DonDaily: String,
-
         mo19DonDaily: String,
         mo19CrewDaily: String,
         mo19RidersDaily: String,
         mo19VRDaily: String,
         mo19RegFeeDaily: String,
         mo19RFIDaily: String,
-
         mo18DonDaily: String,
         mo18CrewDaily: String,
         mo18RidersDaily: String,
         mo18VRDaily: String,
         mo18RegFeeDaily: String,
         mo18RFIDaily: String,
-
         mo17DonDaily: String,
-
         ab19DonDaily: String,
         ab19RegFeeDaily: String,
         ab19RFIDaily: String,
@@ -311,6 +318,12 @@ promise.then(function(db) {
                                             console.log("In the scheduler getting nightly data...");
                                             
                                             // Set Variables for Real Time vs Static Event Data
+
+                                            // =========================== Ride Toronto 2020 =========================== //
+                                            var removeDollarTo20v1 = locals.getEventTotal.toronto.to20.totalDonation;
+                                            var removeDollarTo20v2 = data.to20Donations;
+                                            var removeRegTo20v1 = locals.getEventTotal.toronto.to20.regFee;
+                                            var removeRegTo20v2 = data.to20RegFee;
 
                                             // =========================== Ride Toronto 2019 =========================== //
                                             var removeDollarTo19v1 = locals.getEventTotal.toronto.to19.totalDonation;
@@ -423,6 +436,10 @@ promise.then(function(db) {
                                             var removeDollarMl17v2 = data.ml17Donations;
                                             
                                             // Remove Dollar Sign from Data Brought In
+                                            var numberTo20v1 = Number(removeDollarTo20v1.replace(/[^0-9\.-]+/g,""));
+                                            var numberTo20v2 = Number(removeDollarTo20v2.replace(/[^0-9\.-]+/g,""));
+                                            var numberRegTo20v1 = Number(removeRegTo20v1.replace(/[^0-9\.-]+/g,""));
+                                            var numberRegTo20v2 = Number(removeRegTo20v2.replace(/[^0-9\.-]+/g,""));
                                             var numberTo19v1 = Number(removeDollarTo19v1.replace(/[^0-9\.-]+/g,""));
                                             var numberTo19v2 = Number(removeDollarTo19v2.replace(/[^0-9\.-]+/g,""));
                                             var numberRegTo19v1 = Number(removeRegTo19v1.replace(/[^0-9\.-]+/g,""));
@@ -500,6 +517,19 @@ promise.then(function(db) {
                                             // Subtract Real Time Data vs Static Data
 
                                             // Toronto Daily
+                                            var to20DonationSub = numberTo20v1 - numberTo20v2;
+                                            var to20RfiSub = locals.getEventTotal.toronto.to20.rfi - data.to20RFI;
+                                            var to20CrewSub = locals.getEventTotal.toronto.to20.crews - data.to20Crews;
+                                            var to20RegSub = numberRegTo20v1 - numberRegTo20v2;
+                                            var to20VRDailySub = locals.getEventTotal.toronto.to20.virtual - data.to20VR;
+                                            var to20Riders2Daily = locals.getEventTotal.toronto.to20.riders2 - data.to20Riders2;
+                                            var to20OneDayDaily = locals.getEventTotal.toronto.to20.oneday - data.to20OneDay;
+                                            var to20OneDayDaily2 = locals.getEventTotal.toronto.to20.oneday2 - data.to20OneDay2;
+                                            var to20theHammerDaily = locals.getEventTotal.toronto.to20.theHammer - data.to20theHammer;
+                                            var to20TotalParticipants = parseFloat(locals.getEventTotal.toronto.to20.riders) + parseFloat(locals.getEventTotal.toronto.to20.riders2) + parseFloat(locals.getEventTotal.toronto.to20.oneday) + parseFloat(locals.getEventTotal.toronto.to20.oneday2);
+                                            var to20TotalRiders = locals.getEventTotal.toronto.to20.riders;
+                                            var to20RiderSub = to20TotalRiders - data.to20Riders;
+
                                             var to19DonationSub = numberTo19v1 - numberTo19v2;
                                             var to19RfiSub = locals.getEventTotal.toronto.to19.rfi - data.to19RFI;
                                             var to19CrewSub = locals.getEventTotal.toronto.to19.crews - data.to19Crews;
@@ -510,11 +540,8 @@ promise.then(function(db) {
                                             var to19OneDayDaily2 = locals.getEventTotal.toronto.to19.oneday2 - data.to19OneDay2;
                                             var to19theHammerDaily = locals.getEventTotal.toronto.to19.theHammer - data.to19theHammer;
                                             var to19hammer260Daily = locals.getEventTotal.toronto.to19.hammer260 - data.to19hammer260;
-
                                             var to19TotalParticipants = parseFloat(locals.getEventTotal.toronto.to19.riders) + parseFloat(locals.getEventTotal.toronto.to19.riders2) + parseFloat(locals.getEventTotal.toronto.to19.oneday) + parseFloat(locals.getEventTotal.toronto.to19.oneday2);
-
                                             var to19TotalRiders = locals.getEventTotal.toronto.to19.riders;
-
                                             var to19RiderSub = to19TotalRiders - data.to19Riders;
 
                                             var to18DonationSub = numberTo18v1 - numberTo18v2;
@@ -527,11 +554,8 @@ promise.then(function(db) {
                                             var to18Riders2Daily = locals.getEventTotal.toronto.to18.riders2 - data.to18Riders2;
                                             var to18OneDayDaily = locals.getEventTotal.toronto.to18.oneday - data.to18OneDay;
                                             var to18OneDayDaily2 = locals.getEventTotal.toronto.to18.oneday2 - data.to18OneDay2;
-
                                             var to18TotalParticipants = parseFloat(locals.getEventTotal.toronto.to18.riders) + parseFloat(locals.getEventTotal.toronto.to18.riders2) + parseFloat(locals.getEventTotal.toronto.to18.oneday) + parseFloat(locals.getEventTotal.toronto.to18.oneday2);
-
                                             var to18TotalRiders = locals.getEventTotal.toronto.to18.riders;
-
                                             var to18RiderSub = to18TotalRiders - data.to18Riders;
                                             
                                             // Perth Daily
@@ -635,7 +659,10 @@ promise.then(function(db) {
                                             var ml18WalkerSub = locals4.getEventTotal.melbourne.ml18.walkers - data.ml18Walkers;
 
                                             // Add Dollar Sign back into Data
+                                            var newTo20DonDaily = '$' + to20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                            var newTo20RegDaily = '$' + to20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newTo19DonDaily = '$' + to19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                            var newTo19RegDaily = '$' + to19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newToDonDaily = '$' + to18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newTo17DonDaily = '$' + to17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newToRegDaily = '$' + to18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"); 
@@ -679,6 +706,19 @@ promise.then(function(db) {
                                             var allData = new ApiData({
                                                 updated: moment().format('L'),
                                                 nightly: 'true',
+
+                                                to20Donations: locals.getEventTotal.toronto.to20.totalDonation,
+                                                to20RegFee: locals.getEventTotal.toronto.to20.regFee,
+                                                to20Crews: locals.getEventTotal.toronto.to20.crews,
+                                                to20RFI: locals.getEventTotal.toronto.to20.rfi,
+                                                to20Riders: locals.getEventTotal.toronto.to20.riders,
+                                                to20VR: locals.getEventTotal.toronto.to20.virtual,
+                                                to20Rider2: locals.getEventTotal.toronto.to20.riders2,
+                                                to20OneDay: locals.getEventTotal.toronto.to20.oneday,
+                                                to20OneDay2: locals.getEventTotal.toronto.to20.oneday2,
+                                                to20theHammer: locals.getEventTotal.toronto.to20.theHammer,
+                                                to20TotalParticipants: to20TotalParticipants,
+
                                                 to19Donations: locals.getEventTotal.toronto.to19.totalDonation,
                                                 to19RegFee: locals.getEventTotal.toronto.to19.regFee,
                                                 to19Crews: locals.getEventTotal.toronto.to19.crews,
@@ -848,8 +888,19 @@ promise.then(function(db) {
                                                 ml17Walkers: locals4.getEventTotal.melbourne.ml17.walkers,
                                                 ml17Riders: locals4.getEventTotal.melbourne.ml17.riders,
 
+                                                to20DonDaily: newTo20DonDaily,
+                                                to20RegFeeDaily: newTo20RegDaily,
+                                                to20RFIDaily: to20RfiSub,
+                                                to20CrewDaily: to20CrewSub,
+                                                to20RidersDaily: to20RiderSub,
+                                                to20VRDaily: to20VRDailySub,
+                                                to20Riders2Daily: to20Riders2Daily,
+                                                to20OneDayDaily: to20OneDayDaily,
+                                                to20OneDayDaily2: to20OneDayDaily2,
+                                                to20theHammerDaily: to20theHammerDaily,
+
                                                 to19DonDaily: newTo19DonDaily,
-                                                to19RegFeeDaily: newToRegDaily,
+                                                to19RegFeeDaily: newTo19RegDaily,
                                                 to19RFIDaily: to19RfiSub,
                                                 to19CrewDaily: to19CrewSub,
                                                 to19RidersDaily: to19RiderSub,

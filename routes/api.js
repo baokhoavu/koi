@@ -72,6 +72,11 @@ router.get('/data', function(req, res) {
 	                                            			// console.log("Getting latest data! Date: " + latestdata.updated);
 	                                            			console.log("Getting latest data! Date: " + latestdata);
 	                                            			// console.log("Getting latest data! Date: " + latestdata);
+	                                            			// =========================== Ride Toronto 2019 =========================== //
+                                                            var removeDollarTo20v1 = latestdata.to20Donations;
+                                                            var removeDollarTo20v2 = yesterday[0].to20Donations;
+                                                            var removeRegTo20v1 = latestdata.to20RegFee;
+                                                            var removeRegTo20v2 = yesterday[0].to20RegFee;
                                                             // =========================== Ride Toronto 2019 =========================== //
                                                             var removeDollarTo19v1 = latestdata.to19Donations;
                                                             var removeDollarTo19v2 = yesterday[0].to19Donations;
@@ -188,6 +193,10 @@ router.get('/data', function(req, res) {
 				                                            // Remove Dollar Sign from Data Brought In
 
                                                             // Toronto
+                                                            var numberTo20v1 = Number(removeDollarTo20v1.replace(/[^0-9\.-]+/g,""));
+                                                            var numberTo20v2 = Number(removeDollarTo20v2.replace(/[^0-9\.-]+/g,""));
+                                                            var numberRegTo20v1 = Number(removeRegTo20v1.replace(/[^0-9\.-]+/g,""));
+                                                            var numberRegTo20v2 = Number(removeRegTo20v2.replace(/[^0-9\.-]+/g,""));
                                                             var numberTo19v1 = Number(removeDollarTo19v1.replace(/[^0-9\.-]+/g,""));
                                                             var numberTo19v2 = Number(removeDollarTo19v2.replace(/[^0-9\.-]+/g,""));
                                                             var numberRegTo19v1 = Number(removeRegTo19v1.replace(/[^0-9\.-]+/g,""));
@@ -265,11 +274,24 @@ router.get('/data', function(req, res) {
 				                                            
 				                                            // Subtract Real Time Data vs Static Data
 
-                                                            // Toronto
+                                                            // Toronto 2020
+                                                            var to20DonationSub = numberTo20v1 - numberTo20v2;
+                                                            var to20RfiSub = locals.getEventTotal.toronto.to20.rfi - yesterday[0].to20RFI;
+                                                            var to20CrewSub = locals.getEventTotal.toronto.to20.crews - yesterday[0].to20Crews;
+                                                            var to20RegSub = numberRegTo20v1 - numberRegTo20v2;
+                                                            var to20VRDaily = locals.getEventTotal.toronto.to20.virtual - yesterday[0].to20VR;
+                                                            var to20Riders2Daily = locals.getEventTotal.toronto.to20.riders2 - yesterday[0].to20Riders2;
+                                                            var to20OneDayDaily = locals.getEventTotal.toronto.to20.oneday - yesterday[0].to20OneDay;
+                                                            var to20OneDayDaily2 = locals.getEventTotal.toronto.to20.oneday2 - yesterday[0].to20OneDay2;
+                                                            var to20theHammerDaily = locals.getEventTotal.toronto.to20.theHammer - yesterday[0].to20theHammer;
+                                                            var to20TotalParticipants = parseFloat(locals.getEventTotal.toronto.to20.riders) + parseFloat(locals.getEventTotal.toronto.to20.riders2) + parseFloat(locals.getEventTotal.toronto.to20.oneday) + parseFloat(locals.getEventTotal.toronto.to20.oneday2);
+                                                            var to20TotalRiders = locals.getEventTotal.toronto.to20.riders;
+                                                            var to20RiderSub = to20TotalRiders - yesterday[0].to20Riders;
+
+                                                            // Toronto 2019
                                                             var to19DonationSub = numberTo19v1 - numberTo19v2;
                                                             var to19RfiSub = locals.getEventTotal.toronto.to19.rfi - yesterday[0].to19RFI;
                                                             var to19CrewSub = locals.getEventTotal.toronto.to19.crews - yesterday[0].to19Crews;
-
                                                             var to19RegSub = numberRegTo19v1 - numberRegTo19v2;
                                                             var to19VRDaily = locals.getEventTotal.toronto.to19.virtual - yesterday[0].to19VR;
                                                             var to19Riders2Daily = locals.getEventTotal.toronto.to19.riders2 - yesterday[0].to19Riders2;
@@ -277,9 +299,7 @@ router.get('/data', function(req, res) {
                                                             var to19OneDayDaily2 = locals.getEventTotal.toronto.to19.oneday2 - yesterday[0].to19OneDay2;
                                                             var to19theHammerDaily = locals.getEventTotal.toronto.to19.theHammer - yesterday[0].to19theHammer;
                                                             var to19hammer260Daily = locals.getEventTotal.toronto.to19.hammer260 - yesterday[0].to19hammer260;
-
                                                             var to19TotalParticipants = parseFloat(locals.getEventTotal.toronto.to19.riders) + parseFloat(locals.getEventTotal.toronto.to19.riders2) + parseFloat(locals.getEventTotal.toronto.to19.oneday) + parseFloat(locals.getEventTotal.toronto.to19.oneday2);
-
                                                             var to19TotalRiders = locals.getEventTotal.toronto.to19.riders;
                                                             var to19RiderSub = to19TotalRiders - yesterday[0].to19Riders;
 
@@ -423,6 +443,8 @@ router.get('/data', function(req, res) {
 				                                            var ml17DonationSub = numberMl17v1 - numberMl17v2;
 				                                            
 				                                            // Add Dollar Sign back into Data
+				                                            var newTo20DonDaily = '$' + to20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                                            var newTo20RegDaily = '$' + to20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                                             var newTo19DonDaily = '$' + to19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                                             var newTo19RegDaily = '$' + to19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newToDonDaily = '$' + to18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -466,6 +488,18 @@ router.get('/data', function(req, res) {
 
 				                                            latestdata.updated = moment().format('L');
 				                                            latestdata.nightly = 'false';
+				                                            // RIDE - Toronto - 2020
+                                                            latestdata.to20Donations = locals.getEventTotal.toronto.to20.totalDonation;
+                                                            latestdata.to20RegFee = locals.getEventTotal.toronto.to20.regFee;
+                                                            latestdata.to20Crews = locals.getEventTotal.toronto.to20.crews;
+                                                            latestdata.to20RFI = locals.getEventTotal.toronto.to20.rfi;
+                                                            latestdata.to20Riders = to20TotalRiders;
+                                                            latestdata.to20VR = locals.getEventTotal.toronto.to20.virtual;
+                                                            latestdata.to20theHammer = locals.getEventTotal.toronto.to20.theHammer;
+                                                            latestdata.to20Riders2 = locals.getEventTotal.toronto.to20.riders2;
+                                                            latestdata.to20OneDay = locals.getEventTotal.toronto.to20.oneday;
+                                                            latestdata.to20OneDay2 = locals.getEventTotal.toronto.to20.oneday2;
+                                                            latestdata.to20TotalParticipants = to20TotalParticipants;
 				                                            // RIDE - Toronto - 2019
                                                             latestdata.to19Donations = locals.getEventTotal.toronto.to19.totalDonation;
                                                             latestdata.to19RegFee = locals.getEventTotal.toronto.to19.regFee;
@@ -647,6 +681,16 @@ router.get('/data', function(req, res) {
 			                                                latestdata.ml17Riders = locals4.getEventTotal.melbourne.ml17.riders;
 			                                                
 			                                                // DAILY - RIDE - Toronto
+			                                                // -- 2020
+                                                            latestdata.to20DonDaily = newTo20DonDaily;
+                                                            latestdata.to20RegFeeDaily = newTo20RegDaily;
+                                                            latestdata.to20RFIDaily = to20RfiSub;
+                                                            latestdata.to20CrewDaily = to20CrewSub;
+                                                            latestdata.to20RidersDaily = to20RiderSub;
+                                                            latestdata.to20VRDaily = to20VRDaily;
+                                                            latestdata.to20Riders2Daily = to20Riders2Daily;
+                                                            latestdata.to20OneDayDaily = to20OneDayDaily;
+                                                            latestdata.to20theHammerDaily = to20theHammerDaily;
                                                             // -- 2019
                                                             latestdata.to19DonDaily = newTo19DonDaily;
                                                             latestdata.to19RegFeeDaily = newTo19RegDaily;
