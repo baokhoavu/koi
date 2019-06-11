@@ -6,6 +6,7 @@ var moment = require('moment');
 var router = express.Router();
 var data = require('../models/apidata');
 
+mongoose.set('useCreateIndex', true)
 mongoose.Promise = require('bluebird');
 // mongoose.connect('mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw/node-angular');
 var mongodbUri = 'mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw';
