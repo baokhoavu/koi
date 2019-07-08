@@ -772,7 +772,7 @@ router.get('/data', function(req, res) {
                                                             latestdata.mo20RFIDaily = mo20RfiSub;
                                                             latestdata.mo20CrewDaily = mo20CrewSub;
                                                             latestdata.mo20RidersDaily = mo20RiderSub;
-                                                            latestdata.mo20Riders2Daily = mo120iders2Daily;
+                                                            latestdata.mo20Riders2Daily = mo20Riders2Daily;
                                                             latestdata.mo20OneDayDaily = mo20OneDayDaily;
                                                             latestdata.mo20OneDayDaily2 = mo20OneDayDaily2;
                                                             latestdata.mo20VRDaily = mo20VRDaily;
