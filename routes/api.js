@@ -66,7 +66,7 @@ router.get('/data', function(req, res) {
 	                                            	// .sort({"_id": -1})
 	                                            	.exec(function(err, latestdata) {
 	                                            		if (err) {
-	                                            			console.log('There was an error getting Today\'s data: ');
+	                                            			console.log('There was an error getting Today\'s data:');
 	                                            			console.log(err);
 	                                            		}
 	                                            		if (latestdata) {
