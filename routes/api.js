@@ -352,7 +352,7 @@ router.get('/data', function(req, res) {
                                                             var mo20TotalRiders = locals.getEventTotal.montreal.mo20.riders;
                                                             var mo20RiderSub = mo20TotalRiders - yesterday[0].mo20Riders;
 
-                                                            var mo19TotalParticipants = parseFloat(locals.getEventTotal.montreal.mo20.riders) + parseFloat(locals.getEventTotal.montreal.mo20.riders2);
+                                                            var mo20TotalParticipants = parseFloat(locals.getEventTotal.montreal.mo20.riders) + parseFloat(locals.getEventTotal.montreal.mo20.riders2);
 
 				                                            // Montreal 2019 Daily
                                                             var mo19RegSub = numberRegMo19v1 - numberRegMo19v2;
