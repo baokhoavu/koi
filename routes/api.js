@@ -92,7 +92,13 @@ router.get('/data', function(req, res) {
 				                                            var removeDollarTo17v1 = latestdata.to17Donations;
 				                                            var removeDollarTo17v2 = yesterday[0].to17Donations;
 
-                                                            // =========================== Ride Montreal 2018 =========================== //
+				                                            // =========================== Ride Montreal 2020 =========================== //
+                                                            var removeDollarMo20v1 = latestdata.mo20Donations;
+                                                            var removeDollarMo20v2 = yesterday[0].mo20Donations;
+                                                            var removeRegMo20v1 = latestdata.mo20RegFee;
+                                                            var removeRegMo20v2 = yesterday[0].mo20RegFee;
+
+                                                            // =========================== Ride Montreal 2019 =========================== //
                                                             var removeDollarMo19v1 = latestdata.mo19Donations;
                                                             var removeDollarMo19v2 = yesterday[0].mo19Donations;
                                                             var removeRegMo19v1 = latestdata.mo19RegFee;
@@ -216,6 +222,10 @@ router.get('/data', function(req, res) {
 				                                            var numberRegPr18v1 = Number(removeRegPr18v1.replace(/[^0-9\.-]+/g,""));
 				                                            var numberRegPr18v2 = Number(removeRegPr18v2.replace(/[^0-9\.-]+/g,""));
 
+				                                            var numberMo20v1 = Number(removeDollarMo20v1.replace(/[^0-9\.-]+/g,""));
+                                                            var numberMo20v2 = Number(removeDollarMo20v2.replace(/[^0-9\.-]+/g,""));
+                                                            var numberRegMo20v1 = Number(removeRegMo20v1.replace(/[^0-9\.-]+/g,""));
+                                                            var numberRegMo20v2 = Number(removeRegMo20v2.replace(/[^0-9\.-]+/g,""));
                                                             var numberMo19v1 = Number(removeDollarMo19v1.replace(/[^0-9\.-]+/g,""));
                                                             var numberMo19v2 = Number(removeDollarMo19v2.replace(/[^0-9\.-]+/g,""));
                                                             var numberRegMo19v1 = Number(removeRegMo19v1.replace(/[^0-9\.-]+/g,""));
@@ -327,6 +337,22 @@ router.get('/data', function(req, res) {
 				                                            var pr18CrewSub = locals3.getEventTotal.perth.pr18.crews - yesterday[0].pr18Crews;
 				                                            var pr18RiderSub = locals3.getEventTotal.perth.pr18.riders - yesterday[0].pr18Riders;
 				                                            var pr18RegSub = numberRegPr18v1 - numberRegPr18v2;
+
+				                                            // Montreal 2020 Daily
+                                                            var mo20RegSub = numberRegMo20v1 - numberRegMo20v2;
+                                                            var mo20VRDaily = locals.getEventTotal.montreal.mo20.virtual - yesterday[0].mo20VR;
+                                                            var mo20Riders2Daily = locals.getEventTotal.montreal.mo20.riders2 - yesterday[0].mo20Riders2;
+                                                            var mo20OneDayDaily = locals.getEventTotal.montreal.mo20.oneday - yesterday[0].mo20OneDay;
+                                                            var mo20OneDayDaily2 = locals.getEventTotal.montreal.mo20.oneday2 - yesterday[0].mo20OneDay2;
+                                                            var mo20DonationSub = numberMo20v1 - numberMo20v2;
+                                                            var mo20RfiSub = locals.getEventTotal.montreal.mo20.rfi - yesterday[0].mo20RFI;
+                                                            var mo20CrewSub = locals.getEventTotal.montreal.mo20.crews - yesterday[0].mo20Crews;
+                                                            var mo20RiderSub = locals.getEventTotal.montreal.mo20.riders - yesterday[0].mo20Riders;
+
+                                                            var mo20TotalRiders = locals.getEventTotal.montreal.mo20.riders;
+                                                            var mo20RiderSub = mo20TotalRiders - yesterday[0].mo20Riders;
+
+                                                            var mo19TotalParticipants = parseFloat(locals.getEventTotal.montreal.mo20.riders) + parseFloat(locals.getEventTotal.montreal.mo20.riders2);
 
 				                                            // Montreal 2019 Daily
                                                             var mo19RegSub = numberRegMo19v1 - numberRegMo19v2;
@@ -456,6 +482,8 @@ router.get('/data', function(req, res) {
 				                                            var newPr17DonDaily = '$' + pr17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newPrRegDaily = '$' + pr18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
+				                                            var newMo20DonDaily = '$' + mo20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                                            var newMo20RegDaily = '$' + mo20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                                             var newMo19DonDaily = '$' + mo19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                                             var newMo19RegDaily = '$' + mo19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newMoDonDaily = '$' + mo18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -533,6 +561,18 @@ router.get('/data', function(req, res) {
 			                                                latestdata.to17RFI = locals.getEventTotal.toronto.to17.rfi;
 			                                                latestdata.to17Riders = locals.getEventTotal.toronto.to17.riders;
 			                                                latestdata.to17VR = locals.getEventTotal.toronto.to17.virtual;
+
+                                                            // RIDE - Montreal - 2020
+                                                            latestdata.mo20Donations = locals.getEventTotal.montreal.mo20.totalDonation;
+                                                            latestdata.mo20RegFee = locals.getEventTotal.montreal.mo20.regFee;
+                                                            latestdata.mo20Crews = locals.getEventTotal.montreal.mo20.crews;
+                                                            latestdata.mo20RFI = locals.getEventTotal.montreal.mo20.rfi;
+                                                            latestdata.mo20Riders = mo20TotalRiders;
+                                                            latestdata.mo20VR = locals.getEventTotal.montreal.mo20.virtual;
+                                                            latestdata.mo20Riders2 = locals.getEventTotal.montreal.mo20.riders2;
+                                                            latestdata.mo20OneDay = locals.getEventTotal.montreal.mo20.oneday;
+                                                            latestdata.mo20OneDay2 = locals.getEventTotal.montreal.mo20.oneday2;
+                                                            latestdata.mo20TotalParticipants = mo20TotalParticipants;
 
                                                             // RIDE - Montreal - 2019
                                                             latestdata.mo19Donations = locals.getEventTotal.montreal.mo19.totalDonation;
@@ -727,6 +767,16 @@ router.get('/data', function(req, res) {
 			                                                latestdata.pr17DonDaily = newPr17DonDaily;
 			                                                
 			                                                // DAILY - RIDE - Montreal
+			                                                latestdata.mo20DonDaily = newMo20DonDaily;
+                                                            latestdata.mo20RegFeeDaily = newMo20RegDaily;
+                                                            latestdata.mo20RFIDaily = mo20RfiSub;
+                                                            latestdata.mo20CrewDaily = mo20CrewSub;
+                                                            latestdata.mo20RidersDaily = mo20RiderSub;
+                                                            latestdata.mo20Riders2Daily = mo120iders2Daily;
+                                                            latestdata.mo20OneDayDaily = mo20OneDayDaily;
+                                                            latestdata.mo20OneDayDaily2 = mo20OneDayDaily2;
+                                                            latestdata.mo20VRDaily = mo20VRDaily;
+
                                                             latestdata.mo19DonDaily = newMo19DonDaily;
                                                             latestdata.mo19RegFeeDaily = newMo19RegDaily;
                                                             latestdata.mo19RFIDaily = mo19RfiSub;

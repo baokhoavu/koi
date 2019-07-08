@@ -58,6 +58,16 @@ promise.then(function(db) {
         to18OneDay2: String,
         to18VR: String,
         to18TotalParticipants: String,
+        mo20Donations: String,
+        mo20RegFee: String,
+        mo20Crews: String,
+        mo20RFI: String,
+        mo20Riders: String,
+        mo20Riders2: String,
+        mo20OneDay: String,
+        mo20OneDay2: String,
+        mo20VR: String,
+        mo20TotalParticipants: String,
         mo19Donations: String,
         mo19RegFee: String,
         mo19Crews: String,
@@ -222,6 +232,13 @@ promise.then(function(db) {
         pr18CrewDaily: String,
         pr18RidersDaily: String,
         pr17DonDaily: String,
+        mo20DonDaily: String,
+        mo20CrewDaily: String,
+        mo20RidersDaily: String,
+        mo20Riders2Daily: String,
+        mo20VRDaily: String,
+        mo20RegFeeDaily: String,
+        mo20RFIDaily: String,
         mo19DonDaily: String,
         mo19CrewDaily: String,
         mo19RidersDaily: String,
@@ -352,6 +369,11 @@ promise.then(function(db) {
                                             var removeDollarTo17v1 = locals.getEventTotal.toronto.to17.totalDonation;
                                             var removeDollarTo17v2 = data.to17Donations;
 
+                                            // =========================== Ride Montreal 2020 =========================== //
+                                            var removeDollarMo20v1 = locals.getEventTotal.montreal.mo20.totalDonation;
+                                            var removeDollarMo20v2 = data.mo20Donations;
+                                            var removeRegMo20v1 = locals.getEventTotal.montreal.mo20.regFee;
+                                            var removeRegMo20v2 = data.mo20RegFee;
                                             // =========================== Ride Montreal 2019 =========================== //
                                             var removeDollarMo19v1 = locals.getEventTotal.montreal.mo19.totalDonation;
                                             var removeDollarMo19v2 = data.mo19Donations;
@@ -470,6 +492,10 @@ promise.then(function(db) {
                                             var numberRegPr18v1 = Number(removeRegPr18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberRegPr18v2 = Number(removeRegPr18v2.replace(/[^0-9\.-]+/g,""));
 
+                                            var numberMo20v1 = Number(removeDollarMo20v1.replace(/[^0-9\.-]+/g,""));
+                                            var numberMo20v2 = Number(removeDollarMo20v2.replace(/[^0-9\.-]+/g,""));
+                                            var numberRegMo20v1 = Number(removeRegMo20v1.replace(/[^0-9\.-]+/g,""));
+                                            var numberRegMo20v2 = Number(removeRegMo20v2.replace(/[^0-9\.-]+/g,""));
                                             var numberMo19v1 = Number(removeDollarMo19v1.replace(/[^0-9\.-]+/g,""));
                                             var numberMo19v2 = Number(removeDollarMo19v2.replace(/[^0-9\.-]+/g,""));
                                             var numberRegMo19v1 = Number(removeRegMo19v1.replace(/[^0-9\.-]+/g,""));
@@ -578,6 +604,16 @@ promise.then(function(db) {
                                             var pr18RiderSub = locals3.getEventTotal.perth.pr18.riders - data.pr18Riders;
                                             var pr18RegSub = numberRegPr18v1 - numberRegPr18v2;
 
+                                            // Montreal 2020 Daily
+                                            var mo20DonationSub = numberMo20v1 - numberMo20v2;
+                                            var mo20RfiSub = locals.getEventTotal.montreal.mo20.rfi - data.mo20RFI;
+                                            var mo20RegSub = numberRegMo20v1 - numberRegMo20v2;
+                                            var mo20CrewSub = locals.getEventTotal.montreal.mo20.crews - data.moCrews;
+                                            var mo20RiderSub = locals.getEventTotal.montreal.mo20.riders - data.moRiders;
+                                            var mo20VRDailySub = locals.getEventTotal.montreal.mo20.virtual - data.moVR;
+
+                                            var mo20TotalParticipants = parseFloat(locals.getEventTotal.montreal.mo20.riders) + parseFloat(locals.getEventTotal.montreal.mo20.riders2);
+
                                             // Montreal 2019 Daily
                                             var mo19DonationSub = numberMo19v1 - numberMo19v2;
                                             var mo19RfiSub = locals.getEventTotal.montreal.mo19.rfi - data.mo19RFI;
@@ -683,6 +719,8 @@ promise.then(function(db) {
                                             var newPr17DonDaily = '$' + pr17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newPrRegDaily = '$' + pr18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
+                                            var newMo20DonDaily = '$' + mo20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                            var newMo20RegDaily = '$' + mo20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newMo19DonDaily = '$' + mo19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newMo19RegDaily = '$' + mo19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newMo18DonDaily = '$' + mo18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -761,6 +799,17 @@ promise.then(function(db) {
                                                 to17RFI: locals.getEventTotal.toronto.to17.rfi,
                                                 to17Riders: locals.getEventTotal.toronto.to17.riders,
                                                 to17VR: locals.getEventTotal.toronto.to17.virtual,
+
+                                                mo20Donations: locals.getEventTotal.montreal.mo20.totalDonation,
+                                                mo20RegFee: locals.getEventTotal.montreal.mo20.regFee,
+                                                mo20Crews: locals.getEventTotal.montreal.mo20.crews,
+                                                mo20RFI: locals.getEventTotal.montreal.mo20.rfi,
+                                                mo20Riders: locals.getEventTotal.montreal.mo20.riders,
+                                                mo20VR: locals.getEventTotal.montreal.mo20.virtual,
+                                                mo20Rider2: locals.getEventTotal.montreal.mo20.riders2,
+                                                mo20OneDay: locals.getEventTotal.montreal.mo20.oneday,
+                                                mo20OneDay2: locals.getEventTotal.montreal.mo20.oneday2,
+                                                mo20TotalParticipants: mo20TotalParticipants,
 
                                                 mo19Donations: locals.getEventTotal.montreal.mo19.totalDonation,
                                                 mo19RegFee: locals.getEventTotal.montreal.mo19.regFee,
@@ -942,6 +991,13 @@ promise.then(function(db) {
                                                 pr18RidersDaily: pr18RiderSub,
                                 
                                                 pr17DonDaily: newPr17DonDaily,
+
+                                                mo20DonDaily: newMo20DonDaily,
+                                                mo20RegFeeDaily: newMo20RegDaily,
+                                                mo20RFIDaily: mo20RfiSub,
+                                                mo20CrewDaily: mo20CrewSub,
+                                                mo20RidersDaily: mo20RiderSub,
+                                                mo20VRDaily: mo20VRDailySub,
 
                                                 mo19DonDaily: newMo19DonDaily,
                                                 mo19RegFeeDaily: newMo19RegDaily,
