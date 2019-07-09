@@ -339,7 +339,7 @@ promise.then(function(db) {
                             request(apiOneDay, function(err, response, body) {
                                 if (!err && response.statusCode == 200) {
                                 var locals4 = JSON.parse(body);
-                                console.log('Got TheOneDay Data...');
+                                console.log('Got TheOneDay Data..');
 
                                     ApiData.findOne(
                                         (err, data) => {
