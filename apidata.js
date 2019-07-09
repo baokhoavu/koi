@@ -36,6 +36,7 @@ promise.then(function(db) {
         to20theHammer: String,
         to20VR: String,
         to20TotalParticipants: String,
+
         to19Donations: String,
         to19RegFee: String,
         to19Crews: String,
@@ -48,6 +49,7 @@ promise.then(function(db) {
         to19hammer260: String,
         to19VR: String,
         to19TotalParticipants: String,
+
         to18Donations: String,
         to18RegFee: String,
         to18Crews: String,
@@ -58,6 +60,7 @@ promise.then(function(db) {
         to18OneDay2: String,
         to18VR: String,
         to18TotalParticipants: String,
+
         mo20Donations: String,
         mo20RegFee: String,
         mo20Crews: String,
@@ -68,6 +71,7 @@ promise.then(function(db) {
         mo20OneDay2: String,
         mo20VR: String,
         mo20TotalParticipants: String,
+
         mo19Donations: String,
         mo19RegFee: String,
         mo19Crews: String,
@@ -78,12 +82,14 @@ promise.then(function(db) {
         mo19OneDay2: String,
         mo19VR: String,
         mo19TotalParticipants: String,
+
         mo18Donations: String,
         mo18RegFee: String,
         mo18Crews: String,
         mo18RFI: String,
         mo18Riders: String,
         mo18VR: String,
+
         ab20Donations: String,
         ab20RegFee: String,
         ab20Crews: String,
@@ -94,6 +100,7 @@ promise.then(function(db) {
         ab20OneDay2: String,
         ab20VR: String,
         ab20TotalParticipants: String,
+
         ab19Donations: String,
         ab19RegFee: String,
         ab19Crews: String,
@@ -104,12 +111,14 @@ promise.then(function(db) {
         ab19OneDay2: String,
         ab19VR: String,
         ab19TotalParticipants: String,
+
         ab18Donations: String,
         ab18RegFee: String,
         ab18Crews: String,
         ab18RFI: String,
         ab18Riders: String,
         ab18VR: String,
+
         va19Donations: String,
         va19RegFee: String,
         va19Crews: String,
@@ -120,6 +129,7 @@ promise.then(function(db) {
         va19OneDay2: String,
         va19VR: String,
         va19TotalParticipants: String,
+
         va18VR: String,
         va18Donations: String,
         va18RegFee: String,
@@ -127,30 +137,35 @@ promise.then(function(db) {
         va18RFI: String,
         va18Riders: String,
         va18VR: String,
+
         to17Donations: String,
         to17RegFee: String,
         to17Crews: String,
         to17RFI: String,
         to17Riders: String,
         to17VR: String,
+
         mo17Donations: String,
         mo17RegFee: String,
         mo17Crews: String,
         mo17RFI: String,
         mo17Riders: String,
         mo17VR: String,
+
         ab17Donations: String,
         ab17RegFee: String,
         ab17Crews: String,
         ab17RFI: String,
         ab17Riders: String,
         ab17VR: String,
+
         va17Donations: String,
         va17RegFee: String,
         va17Crews: String,
         va17RFI: String,
         va17Riders: String,
         va17VR: String,
+
         owTo19Donations: String,
         owTo19RegFee: String,
         owTo19RFI: String,
@@ -162,6 +177,7 @@ promise.then(function(db) {
         owTo19NightWalkers: String,
         owTo192day: String,
         owTo19rfiTotal: String,
+
         owTo18Donations: String,
         owTo18RegFee: String,
         owTo18Crews: String,
@@ -172,6 +188,7 @@ promise.then(function(db) {
         owTo1825kmWalkers: String,
         owTo1840kmWalkers: String,
         owTo18RFI: String,
+
         owTo17Donations: String,
         owTo17RegFee: String,
         owTo17Crews: String,
@@ -180,32 +197,39 @@ promise.then(function(db) {
         owTo1725kmWalkers: String,
         owTo1740kmWalkers: String,
         owTo17RFI: String,
+
         pr18Donations: String,
         pr18RegFee: String,
         pr18Crews: String,
         pr18RFI: String,
         pr18Riders: String,
+
         pr17Donations: String,
         pr17RegFee: String,
         pr17Crews: String,
         pr17RFI:String,
         pr17Riders: String,
+
         br18Donations: String,
         br18RegFee: String,
         br18Walkers: String,
         br18Riders: String,
+
         br17Donations: String,
         br17RegFee: String,
         br17Walkers: String,
         br17Riders: String,
+
         ml18Donations: String,
         ml18RegFee: String,
         ml18Walkers: String,
         ml18Riders: String,
+
         ml17Donations: String,
         ml17RegFee: String,
         ml17Walkers: String,
         ml17Riders: String,
+
         to20DonDaily: String,
         to20RegFeeDaily: String,
         to20RFIDaily: String,
@@ -216,6 +240,7 @@ promise.then(function(db) {
         to20OneDayDaily: String,
         to20OneDayDaily2: String,
         to20theHammerDaily: String,
+
         to19DonDaily: String,
         to19RegFeeDaily: String,
         to19RFIDaily: String,
@@ -227,6 +252,7 @@ promise.then(function(db) {
         to19OneDayDaily2: String,
         to19theHammerDaily: String,
         to19hammer260Daily: String,
+
         to18DonDaily: String,
         to18RegFeeDaily: String,
         to18RFIDaily: String,
@@ -235,13 +261,17 @@ promise.then(function(db) {
         to18VRDaily: String,
         to18Riders2Daily: String,
         to18OneDayDaily: String,
+
         to17DonDaily: String,
+
         pr18DonDaily: String,
         pr18RegFeeDaily: String,
         pr18RFIDaily: String,
         pr18CrewDaily: String,
         pr18RidersDaily: String,
+
         pr17DonDaily: String,
+
         mo20DonDaily: String,
         mo20CrewDaily: String,
         mo20RidersDaily: String,
@@ -249,19 +279,23 @@ promise.then(function(db) {
         mo20VRDaily: String,
         mo20RegFeeDaily: String,
         mo20RFIDaily: String,
+
         mo19DonDaily: String,
         mo19CrewDaily: String,
         mo19RidersDaily: String,
         mo19VRDaily: String,
         mo19RegFeeDaily: String,
         mo19RFIDaily: String,
+
         mo18DonDaily: String,
         mo18CrewDaily: String,
         mo18RidersDaily: String,
         mo18VRDaily: String,
         mo18RegFeeDaily: String,
         mo18RFIDaily: String,
+
         mo17DonDaily: String,
+
         ab20DonDaily: String,
         ab20RegFeeDaily: String,
         ab20RFIDaily: String,
@@ -271,6 +305,7 @@ promise.then(function(db) {
         ab20Riders2Daily: String,
         ab20OneDayDaily: String,
         ab20OneDayDaily2: String,
+
         ab19DonDaily: String,
         ab19RegFeeDaily: String,
         ab19RFIDaily: String,
@@ -280,13 +315,16 @@ promise.then(function(db) {
         ab19Riders2Daily: String,
         ab19OneDayDaily: String,
         ab19OneDayDaily2: String,
+
         ab18DonDaily: String,
-        ab17DonDaily: String,
         ab18RegFeeDaily: String,
         ab18RFIDaily: String,
         ab18CrewDaily: String,
         ab18RidersDaily: String,
         ab18VRDaily: String,
+
+        ab17DonDaily: String,
+
         va19DonDaily: String,
         va19RegFeeDaily: String,
         va19RFIDaily: String,
@@ -296,13 +334,16 @@ promise.then(function(db) {
         va19Riders2Daily: String,
         va19OneDayDaily: String,
         va19OneDayDaily2: String,
+
         va18DonDaily: String,
         va18CrewDaily: String,
         va18RidersDaily: String,
         va18VRDaily: String,
-        va17DonDaily: String,
         va18RegFeeDaily: String,
         va18RFIDaily: String,
+
+        va17DonDaily: String,
+
         owto19DonDaily: String,
         owto19RegDaily: String,
         owto19RFIDaily: String,
@@ -313,8 +354,8 @@ promise.then(function(db) {
         owto1940kmWalkersDaily: String,
         owto19NightWalkersDaily: String,
         owto192dayDaily: String,
+
         owto18DonDaily: String,
-        owto17DonDaily: String,
         owto18RegDaily: String,
         owto18RFIDaily: String,
         owto18WalkersDaily: String,
@@ -324,14 +365,19 @@ promise.then(function(db) {
         owto1825kmWalkersDaily: String,
         owto1840kmWalkersDaily: String,
         owto18CrewsDaily: String,
+
+        owto17DonDaily: String,
+
         br18DonDaily: String,
         br18RegDaily: String,
         br18RidersDaily: String,
+
         ml18DonDaily: String,
-        ml17DonDaily: String,
         ml18RegDaily: String,
         ml18RidersDaily: String,
-        ml18WalkersDaily: String
+        ml18WalkersDaily: String,
+
+        ml17DonDaily: String      
     }, {versionKey: false, timestamps: { createdAt: 'created_at' }});
     
     // var ApiData = mongoose.model("ApiData", dataSchema);
@@ -367,90 +413,94 @@ promise.then(function(db) {
                                             
                                             // Set Variables for Real Time vs Static Event Data
 
-                                            // =========================== Ride Toronto 2020 =========================== //
+                                            // Ride Toronto
                                             var removeDollarTo20v1 = locals.getEventTotal.toronto.to20.totalDonation;
                                             var removeDollarTo20v2 = data.to20Donations;
                                             var removeRegTo20v1 = locals.getEventTotal.toronto.to20.regFee;
                                             var removeRegTo20v2 = data.to20RegFee;
-
-                                            // =========================== Ride Toronto 2019 =========================== //
+                                           
                                             var removeDollarTo19v1 = locals.getEventTotal.toronto.to19.totalDonation;
                                             var removeDollarTo19v2 = data.to19Donations;
                                             var removeRegTo19v1 = locals.getEventTotal.toronto.to19.regFee;
                                             var removeRegTo19v2 = data.to19RegFee;
                                                 
-                                            // =========================== Ride Toronto 2018 =========================== //
                                             var removeDollarTo18v1 = locals.getEventTotal.toronto.to18.totalDonation;
                                             var removeDollarTo18v2 = data.to18Donations;
                                             var removeRegTo18v1 = locals.getEventTotal.toronto.to18.regFee;
                                             var removeRegTo18v2 = data.to18RegFee;
-                                            // =========================== Ride Toronto 2017 =========================== //
+
                                             var removeDollarTo17v1 = locals.getEventTotal.toronto.to17.totalDonation;
                                             var removeDollarTo17v2 = data.to17Donations;
 
-                                            // =========================== Ride Montreal 2020 =========================== //
+
+                                            // Ride Montreal
                                             var removeDollarMo20v1 = locals.getEventTotal.montreal.mo20.totalDonation;
                                             var removeDollarMo20v2 = data.mo20Donations;
                                             var removeRegMo20v1 = locals.getEventTotal.montreal.mo20.regFee;
                                             var removeRegMo20v2 = data.mo20RegFee;
-                                            // =========================== Ride Montreal 2019 =========================== //
+
                                             var removeDollarMo19v1 = locals.getEventTotal.montreal.mo19.totalDonation;
                                             var removeDollarMo19v2 = data.mo19Donations;
                                             var removeRegMo19v1 = locals.getEventTotal.montreal.mo19.regFee;
                                             var removeRegMo19v2 = data.mo19RegFee;
-                                            // =========================== Ride Montreal 2018 =========================== //
+                                            
                                             var removeDollarMo18v1 = locals.getEventTotal.montreal.mo18.totalDonation;
                                             var removeDollarMo18v2 = data.mo18Donations;
                                             var removeRegMo18v1 = locals.getEventTotal.montreal.mo18.regFee;
                                             var removeRegMo18v2 = data.mo18RegFee;
-                                            // =========================== Ride Montreal 2017 =========================== //
+                                            
                                             var removeDollarMo17v1 = locals.getEventTotal.montreal.mo17.totalDonation;
                                             var removeDollarMo17v2 = data.mo17Donations;
                                             
-                                            // =========================== Ride Alberta 2020 =========================== //
+
+                                            // Ride Alberta
                                             var removeDollarAb20v1 = locals.getEventTotal.alberta.ab20.totalDonation;
                                             var removeDollarAb20v2 = data.ab20Donations;
                                             var removeRegAb20v1 = locals.getEventTotal.alberta.ab20.regFee;
                                             var removeRegAb20v2 = data.ab20RegFee;
-                                            // =========================== Ride Alberta 2019 =========================== //
+                                            
                                             var removeDollarAb19v1 = locals.getEventTotal.alberta.ab19.totalDonation;
                                             var removeDollarAb19v2 = data.ab19Donations;
                                             var removeRegAb19v1 = locals.getEventTotal.alberta.ab19.regFee;
                                             var removeRegAb19v2 = data.ab19RegFee;
-                                            // =========================== Ride Alberta 2018 =========================== //
+                                            
                                             var removeDollarAb18v1 = locals.getEventTotal.alberta.ab18.totalDonation;
                                             var removeDollarAb18v2 = data.ab18Donations;
                                             var removeRegAb18v1 = locals.getEventTotal.alberta.ab18.regFee;
                                             var removeRegAb18v2 = data.ab18RegFee;
-                                            // =========================== Ride Alberta 2017 =========================== //
+                                            
                                             var removeDollarAb17v1 = locals.getEventTotal.alberta.ab17.totalDonation;
                                             var removeDollarAb17v2 = data.ab17Donations;
                                             
-                                            // =========================== Ride Vancouver 2019 =========================== //
+
+                                            // Ride Vancouver
                                             var removeDollarVa19v1 = locals.getEventTotal.vancouver.va19.totalDonation;
                                             var removeDollarVa19v2 = data.va19Donations;
                                             var removeRegVa19v1 = locals.getEventTotal.vancouver.va19.regFee;
                                             var removeRegVa19v2 = data.va19RegFee;
-                                            // =========================== Ride Vancouver 2018 =========================== //
+                                            
                                             var removeDollarVa18v1 = locals.getEventTotal.vancouver.va18.totalDonation;
                                             var removeDollarVa18v2 = data.va18Donations;
                                             var removeRegVa18v1 = locals.getEventTotal.vancouver.va18.regFee;
                                             var removeRegVa18v2 = data.va18RegFee;
-                                            // =========================== Ride Vancouver 2017 =========================== //
+                                            
                                             var removeDollarVa17v1 = locals.getEventTotal.vancouver.va17.totalDonation;
                                             var removeDollarVa17v2 = data.va17Donations;
                                             
-                                            // =========================== Ride Perth 2018 =========================== //
+
+                                            // Ride Perth
                                             var removeDollarPr18v1 = locals3.getEventTotal.perth.pr18.totalDonation;
                                             var removeDollarPr18v2 = data.pr18Donations;
                                             var removeRegPr18v1 = locals3.getEventTotal.perth.pr18.regFee;
                                             var removeRegPr18v2 = data.pr18RegFee;
-                                            // =========================== Ride Perth 2017 =========================== //
+                                            
                                             var removeDollarPr17v1 = locals3.getEventTotal.perth.pr17.totalDonation;
                                             var removeDollarPr17v2 = data.pr17Donations;
                                             var removeRegPr17v1 = locals3.getEventTotal.perth.pr17.regFee;
                                             var removeRegPr17v2 = data.pr17RegFee;
-                                            // =========================== OneWalk Toronto 2019 =========================== //
+                                            
+
+                                            // OneWalk Toronto
                                             var removeDollarOwTo19v1 = locals2.getEventTotal.toronto.to19.totalDonation;
                                             var removeDollarOwTo19v2 = data.owTo19Donations;
                                             var removeRegOwTo19v1 = locals2.getEventTotal.toronto.to19.regFee;
@@ -460,7 +510,7 @@ promise.then(function(db) {
                                             var owTo1940kmWalkers = locals2.getEventTotal.toronto.to19.Wlkr40km;       
                                             var owTo19NightWalkers = locals2.getEventTotal.toronto.to19.nightWlk;
                                             var owTo192day = locals2.getEventTotal.toronto.to19.twoDayWlk;                                              
-                                            // =========================== OneWalk Toronto 2018 =========================== //
+                                            
                                             var removeDollarOwTo18v1 = locals2.getEventTotal.toronto.to18.totalDonation;
                                             var removeDollarOwTo18v2 = data.owTo18Donations;
                                             var removeRegOwTo18v1 = locals2.getEventTotal.toronto.to18.regFee;
@@ -470,28 +520,30 @@ promise.then(function(db) {
                                             var owTo1815kmWalkers = locals2.getEventTotal.toronto.to18.Wlkr15km;
                                             var owTo1825kmWalkers = locals2.getEventTotal.toronto.to18.Wlkr25km;
                                             var owTo1840kmWalkers = locals2.getEventTotal.toronto.to18.Wlkr40km;
-                                            // =========================== OneWalk Toronto 2017 =========================== //
+                                            
                                             var removeDollarOwTo17v1 = locals2.getEventTotal.toronto.to17.totalDonation;
                                             var removeDollarOwTo17v2 = data.owTo17Donations;
                                             var owTo1715kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr15km;
                                             var owTo1725kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr25km;
                                             var owTo1740kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr40km;
 
-                                            // =========================== OneDay Brisbane 2018 =========================== //
+
+                                            // OneDay Brisbane
                                             var removeDollarBr18v1 = locals4.getEventTotal.brisbane.br18.totalDonation;
                                             var removeDollarBr18v2 = data.br18Donations;
                                             var removeRegBr18v1 = locals4.getEventTotal.brisbane.br18.regFee;
                                             var removeRegBr18v2 = data.br18RegFee;
+
                                             
-                                            // =========================== OneDay Melbourne 2018 =========================== //
+                                            // OneDay Melbourne
                                             var removeDollarMl18v1 = locals4.getEventTotal.melbourne.ml18.totalDonation;
                                             var removeDollarMl18v2 = data.ml18Donations;
                                             var removeRegMl18v1 = locals4.getEventTotal.melbourne.ml18.regFee;
                                             var removeRegMl18v2 = data.ml18RegFee;
-                                            
-                                            // =========================== OneDay Melbourne 2017 =========================== //
+                                                                                        
                                             var removeDollarMl17v1 = locals4.getEventTotal.melbourne.ml17.totalDonation;
                                             var removeDollarMl17v2 = data.ml17Donations;
+
                                             
                                             // Remove Dollar Sign from Data Brought In
                                             var numberTo20v1 = Number(removeDollarTo20v1.replace(/[^0-9\.-]+/g,""));
@@ -582,7 +634,7 @@ promise.then(function(db) {
                                             
                                             // Subtract Real Time Data vs Static Data
 
-                                            // Toronto Daily
+                                            // Toronto
                                             var to20DonationSub = numberTo20v1 - numberTo20v2;
                                             var to20RfiSub = locals.getEventTotal.toronto.to20.rfi - data.to20RFI;
                                             var to20CrewSub = locals.getEventTotal.toronto.to20.crews - data.to20Crews;
@@ -614,7 +666,6 @@ promise.then(function(db) {
                                             var to17DonationSub = numberTo17v1 - numberTo17v2;
                                             var to18RfiSub = locals.getEventTotal.toronto.to18.rfi - data.to18RFI;
                                             var to18CrewSub = locals.getEventTotal.toronto.to18.crews - data.to18Crews;
-                                            // var to18RiderSub = locals.getEventTotal.toronto.to18.riders - data.to18Riders;
                                             var to18RegSub = numberRegTo18v1 - numberRegTo18v2;
                                             var to18VRDailySub = locals.getEventTotal.toronto.to18.virtual - data.to18VR;
                                             var to18Riders2Daily = locals.getEventTotal.toronto.to18.riders2 - data.to18Riders2;
@@ -624,7 +675,8 @@ promise.then(function(db) {
                                             var to18TotalRiders = locals.getEventTotal.toronto.to18.riders;
                                             var to18RiderSub = to18TotalRiders - data.to18Riders;
                                             
-                                            // Perth Daily
+
+                                            // Perth 
                                             var pr18DonationSub = numberPr18v1 - numberPr18v2;
                                             var pr17DonationSub = numberPr17v1 - numberPr17v2;
                                             var pr18RfiSub = locals3.getEventTotal.perth.pr18.rfi - data.pr18RFI;
@@ -632,24 +684,22 @@ promise.then(function(db) {
                                             var pr18RiderSub = locals3.getEventTotal.perth.pr18.riders - data.pr18Riders;
                                             var pr18RegSub = numberRegPr18v1 - numberRegPr18v2;
 
-                                            // Montreal 2020 Daily
+
+                                            // Montreal
                                             var mo20DonationSub = numberMo20v1 - numberMo20v2;
                                             var mo20RfiSub = locals.getEventTotal.montreal.mo20.rfi - data.mo20RFI;
                                             var mo20RegSub = numberRegMo20v1 - numberRegMo20v2;
                                             var mo20CrewSub = locals.getEventTotal.montreal.mo20.crews - data.moCrews;
                                             var mo20RiderSub = locals.getEventTotal.montreal.mo20.riders - data.moRiders;
                                             var mo20VRDailySub = locals.getEventTotal.montreal.mo20.virtual - data.moVR;
-
                                             var mo20TotalParticipants = parseFloat(locals.getEventTotal.montreal.mo20.riders) + parseFloat(locals.getEventTotal.montreal.mo20.riders2);
-
-                                            // Montreal 2019 Daily
+                                            
                                             var mo19DonationSub = numberMo19v1 - numberMo19v2;
                                             var mo19RfiSub = locals.getEventTotal.montreal.mo19.rfi - data.mo19RFI;
                                             var mo19RegSub = numberRegMo19v1 - numberRegMo19v2;
                                             var mo19CrewSub = locals.getEventTotal.montreal.mo19.crews - data.mo19Crews;
                                             var mo19RiderSub = locals.getEventTotal.montreal.mo19.riders - data.mo19Riders;
                                             var mo19VRDailySub = locals.getEventTotal.montreal.mo19.virtual - data.mo19VR;
-
                                             var mo19TotalParticipants = parseFloat(locals.getEventTotal.montreal.mo19.riders) + parseFloat(locals.getEventTotal.montreal.mo19.riders2);
                                             
                                             var mo18DonationSub = numberMo18v1 - numberMo18v2;
@@ -660,25 +710,22 @@ promise.then(function(db) {
                                             var mo18RiderSub = locals.getEventTotal.montreal.mo18.riders - data.mo18Riders;
                                             var mo18VRDailySub = locals.getEventTotal.montreal.mo18.virtual - data.mo18VR;
 
-                                            // Alberta 2020 Daily
+
+                                            // Alberta
                                             var ab20DonationSub = numberAb20v1 - numberAb20v2;
                                             var ab20RfiSub = locals.getEventTotal.alberta.ab20.rfi - data.ab20RFI;
                                             var ab20RegSub = numberRegAb20v1 - numberRegAb20v2;
                                             var ab20CrewSub = locals.getEventTotal.alberta.ab20.crews - data.ab20Crews;
                                             var ab20RiderSub = locals.getEventTotal.alberta.ab20.riders - data.ab20Riders;
-                                            // var ab20RiderSub = locals.getEventTotal.alberta.ab20.riders - 1042;
                                             var ab20VRDailySub = locals.getEventTotal.alberta.ab20.virtual - data.ab20VR;
-
                                             var ab20TotalParticipants = parseFloat(locals.getEventTotal.alberta.ab20.riders) + parseFloat(locals.getEventTotal.alberta.ab20.riders2);
-                                            // Alberta 2019 Daily
+
                                             var ab19DonationSub = numberAb19v1 - numberAb19v2;
                                             var ab19RfiSub = locals.getEventTotal.alberta.ab19.rfi - data.ab19RFI;
                                             var ab19RegSub = numberRegAb19v1 - numberRegAb19v2;
                                             var ab19CrewSub = locals.getEventTotal.alberta.ab19.crews - data.ab19Crews;
                                             var ab19RiderSub = locals.getEventTotal.alberta.ab19.riders - data.ab19Riders;
-                                            // var ab19RiderSub = locals.getEventTotal.alberta.ab19.riders - 1042;
                                             var ab19VRDailySub = locals.getEventTotal.alberta.ab19.virtual - data.ab19VR;
-
                                             var ab19TotalParticipants = parseFloat(locals.getEventTotal.alberta.ab19.riders) + parseFloat(locals.getEventTotal.alberta.ab19.riders2);
 
                                             var ab18DonationSub = numberAb18v1 - numberAb18v2;
@@ -688,15 +735,15 @@ promise.then(function(db) {
                                             var ab18RiderSub = locals.getEventTotal.alberta.ab18.riders - data.ab18Riders;
                                             var ab18RegSub = numberRegAb18v1 - numberRegAb18v2;
                                             var ab18VRDailySub = locals.getEventTotal.alberta.ab18.virtual - data.ab18VR;
+
                                             
-                                            // Vancouver 2019 Daily
+                                            // Vancouver
                                             var va19DonationSub = numberVa19v1 - numberVa19v2;
                                             var va19RfiSub = locals.getEventTotal.vancouver.va19.rfi - data.va19RFI;
                                             var va19RegSub = numberRegVa19v1 - numberRegVa19v2;
                                             var va19CrewSub = locals.getEventTotal.vancouver.va19.crews - data.va19Crews;
                                             var va19RiderSub = locals.getEventTotal.vancouver.va19.riders - data.va19Riders;
                                             var va19VRDailySub = locals.getEventTotal.vancouver.va19.virtual - data.va19VR;
-
                                             var va19TotalParticipants = parseFloat(locals.getEventTotal.vancouver.va19.riders) + parseFloat(locals.getEventTotal.vancouver.va19.riders2);
 
                                             var va18DonationSub = numberVa18v1 - numberVa18v2;
@@ -707,6 +754,8 @@ promise.then(function(db) {
                                             var va18RegSub = numberRegVa18v1 - numberRegVa18v2;
                                             var va18VRDailySub = locals.getEventTotal.vancouver.va18.virtual - data.va18VR;
 
+
+                                            // OneWalk
                                             var owto19DonationSub = numberOwTo19v1 - numberOwTo19v2;
                                             var owto19RegSub = numberRegOwTo19v1 - numberRegOwTo19v2;
                                             var owto19RfiSub = locals2.getEventTotal.toronto.to19.rfi;
@@ -733,16 +782,21 @@ promise.then(function(db) {
                                             var owto18CrewsDailySub = locals2.getEventTotal.toronto.to18.crews - data.owTo18Crews;
                                             var owto18WalkersDailySub = owto18TotalWalkers - data.owTo18Walkers;
 
+
+                                            // Brisbane
                                             var br18DonationSub = numberBr18v1 - numberBr18v2;
                                             var br18RegSub = numberBr18v1 - numberBr18v2;
                                             var br18RiderSub = locals4.getEventTotal.brisbane.br18.riders - data.br18Riders;
                                             var br18WalkerSub = locals4.getEventTotal.brisbane.br18.walkers - data.br18Walkers;
 
+
+                                            // Melbourne
                                             var ml18DonationSub = numberMl18v1 - numberMl18v2;
                                             var ml17DonationSub = numberMl17v1 - numberMl17v2;
                                             var ml18RegSub = numberMl18v1 - numberMl18v2;
                                             var ml18RiderSub = locals4.getEventTotal.melbourne.ml18.riders - data.ml18Riders;
                                             var ml18WalkerSub = locals4.getEventTotal.melbourne.ml18.walkers - data.ml18Walkers;
+
 
                                             // Add Dollar Sign back into Data
                                             var newTo20DonDaily = '$' + to20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -797,6 +851,7 @@ promise.then(function(db) {
                                                 updated: moment().format('L'),
                                                 nightly: 'true',
 
+                                                // Toronto 2020
                                                 to20Donations: locals.getEventTotal.toronto.to20.totalDonation,
                                                 to20RegFee: locals.getEventTotal.toronto.to20.regFee,
                                                 to20Crews: locals.getEventTotal.toronto.to20.crews,
@@ -809,6 +864,7 @@ promise.then(function(db) {
                                                 to20theHammer: locals.getEventTotal.toronto.to20.theHammer,
                                                 to20TotalParticipants: to20TotalParticipants,
 
+                                                // Toronto 2019
                                                 to19Donations: locals.getEventTotal.toronto.to19.totalDonation,
                                                 to19RegFee: locals.getEventTotal.toronto.to19.regFee,
                                                 to19Crews: locals.getEventTotal.toronto.to19.crews,
@@ -822,6 +878,7 @@ promise.then(function(db) {
                                                 to19hammer260: locals.getEventTotal.toronto.to19.hammer260,
                                                 to19TotalParticipants: to19TotalParticipants,
 
+                                                // Toronto 2018
                                                 to18Donations: locals.getEventTotal.toronto.to18.totalDonation,
                                                 to18RegFee: locals.getEventTotal.toronto.to18.regFee,
                                                 to18Crews: locals.getEventTotal.toronto.to18.crews,
@@ -833,6 +890,7 @@ promise.then(function(db) {
                                                 to18OneDay2: locals.getEventTotal.toronto.to18.oneday2,
                                                 to18TotalParticipants: to18TotalParticipants,
                                                 
+                                                // Toronto 2017
                                                 to17Donations: locals.getEventTotal.toronto.to17.totalDonation,
                                                 to17RegFee: locals.getEventTotal.toronto.to17.regFee,
                                                 to17Crews: locals.getEventTotal.toronto.to17.crews,
@@ -840,6 +898,7 @@ promise.then(function(db) {
                                                 to17Riders: locals.getEventTotal.toronto.to17.riders,
                                                 to17VR: locals.getEventTotal.toronto.to17.virtual,
 
+                                                // Montreal 2020
                                                 mo20Donations: locals.getEventTotal.montreal.mo20.totalDonation,
                                                 mo20RegFee: locals.getEventTotal.montreal.mo20.regFee,
                                                 mo20Crews: locals.getEventTotal.montreal.mo20.crews,
@@ -851,6 +910,7 @@ promise.then(function(db) {
                                                 mo20OneDay2: locals.getEventTotal.montreal.mo20.oneday2,
                                                 mo20TotalParticipants: mo20TotalParticipants,
 
+                                                // Montreal 2019
                                                 mo19Donations: locals.getEventTotal.montreal.mo19.totalDonation,
                                                 mo19RegFee: locals.getEventTotal.montreal.mo19.regFee,
                                                 mo19Crews: locals.getEventTotal.montreal.mo19.crews,
@@ -862,6 +922,7 @@ promise.then(function(db) {
                                                 mo19OneDay2: locals.getEventTotal.montreal.mo19.oneday2,
                                                 mo19TotalParticipants: mo19TotalParticipants,
                                                 
+                                                // Montreal 2018
                                                 mo18Donations: locals.getEventTotal.montreal.mo18.totalDonation,
                                                 mo18RegFee: locals.getEventTotal.montreal.mo18.regFee,
                                                 mo18Crews: locals.getEventTotal.montreal.mo18.crews,
@@ -869,6 +930,7 @@ promise.then(function(db) {
                                                 mo18Riders: locals.getEventTotal.montreal.mo18.riders,
                                                 mo18VR: locals.getEventTotal.montreal.mo18.virtual,
                                                 
+                                                // Montreal 2017
                                                 mo17Donations: locals.getEventTotal.montreal.mo17.totalDonation,
                                                 mo17RegFee: locals.getEventTotal.montreal.mo17.regFee,
                                                 mo17Crews: locals.getEventTotal.montreal.mo17.crews,
@@ -876,6 +938,7 @@ promise.then(function(db) {
                                                 mo17Riders: locals.getEventTotal.montreal.mo17.riders,
                                                 mo17VR: locals.getEventTotal.montreal.mo17.virtual,
                                                 
+                                                // Alberta 2020
                                                 ab20Donations: locals.getEventTotal.alberta.ab20.totalDonation,
                                                 ab20RegFee: locals.getEventTotal.alberta.ab20.regFee,
                                                 ab20Crews: locals.getEventTotal.alberta.ab20.crews,
@@ -887,6 +950,7 @@ promise.then(function(db) {
                                                 ab20OneDay2: locals.getEventTotal.alberta.ab20.oneday2,
                                                 ab20TotalParticipants: ab20TotalParticipants,
 
+                                                // Alberta 2019
                                                 ab19Donations: locals.getEventTotal.alberta.ab19.totalDonation,
                                                 ab19RegFee: locals.getEventTotal.alberta.ab19.regFee,
                                                 ab19Crews: locals.getEventTotal.alberta.ab19.crews,
@@ -898,6 +962,7 @@ promise.then(function(db) {
                                                 ab19OneDay2: locals.getEventTotal.alberta.ab19.oneday2,
                                                 ab19TotalParticipants: ab19TotalParticipants,
 
+                                                // Alberta 2018
                                                 ab18Donations: locals.getEventTotal.alberta.ab18.totalDonation,
                                                 ab18RegFee: locals.getEventTotal.alberta.ab18.regFee,
                                                 ab18Crews: locals.getEventTotal.alberta.ab18.crews,
@@ -905,6 +970,7 @@ promise.then(function(db) {
                                                 ab18Riders: locals.getEventTotal.alberta.ab18.riders,
                                                 ab18VR: locals.getEventTotal.alberta.ab18.virtual,
                                                 
+                                                // Alberta 2017
                                                 ab17Donations: locals.getEventTotal.alberta.ab17.totalDonation,
                                                 ab17RegFee: locals.getEventTotal.alberta.ab17.regFee,
                                                 ab17Crews: locals.getEventTotal.alberta.ab17.crews,
@@ -912,6 +978,7 @@ promise.then(function(db) {
                                                 ab17Riders: locals.getEventTotal.alberta.ab17.riders,
                                                 ab17VR: locals.getEventTotal.alberta.ab17.virtual,
                                                 
+                                                // Vancouver 2019
                                                 va19Donations: locals.getEventTotal.vancouver.va19.totalDonation,
                                                 va19RegFee: locals.getEventTotal.vancouver.va19.regFee,
                                                 va19Crews: locals.getEventTotal.vancouver.va19.crews,
@@ -923,6 +990,7 @@ promise.then(function(db) {
                                                 va19OneDay2: locals.getEventTotal.vancouver.va19.oneday2,
                                                 va19TotalParticipants: va19TotalParticipants,
 
+                                                // Vancouver 2018
                                                 va18Donations: locals.getEventTotal.vancouver.va18.totalDonation,
                                                 va18RegFee: locals.getEventTotal.vancouver.va18.regFee,
                                                 va18Crews: locals.getEventTotal.vancouver.va18.crews,
@@ -930,6 +998,7 @@ promise.then(function(db) {
                                                 va18Riders: locals.getEventTotal.vancouver.va18.riders,
                                                 va18VR: locals.getEventTotal.vancouver.va18.virtual,
                                                 
+                                                // Vancouver 2017
                                                 va17Donations: locals.getEventTotal.vancouver.va17.totalDonation,
                                                 va17RegFee: locals.getEventTotal.vancouver.va17.regFee,
                                                 va17Crews: locals.getEventTotal.vancouver.va17.crews,
@@ -937,6 +1006,7 @@ promise.then(function(db) {
                                                 va17Riders: locals.getEventTotal.vancouver.va17.riders,
                                                 va17VR: locals.getEventTotal.vancouver.va17.virtual,
                                                 
+                                                // OneWalk 2019
                                                 owTo19Donations: locals2.getEventTotal.toronto.to19.totalDonation,
                                                 owTo19RegFee: locals2.getEventTotal.toronto.to19.regFee,
                                                 owTo19RFI: owTo19rfiTotal,
@@ -948,6 +1018,7 @@ promise.then(function(db) {
                                                 owTo19NightWalkers: owTo19NightWalkers,
                                                 owTo192day: owTo192day,
 
+                                                // OneWalk 2018
                                                 owTo18Donations: locals2.getEventTotal.toronto.to18.totalDonation,
                                                 owTo18RegFee: locals2.getEventTotal.toronto.to18.regFee,
                                                 owTo18Crews: locals2.getEventTotal.toronto.to18.crews,
@@ -959,6 +1030,7 @@ promise.then(function(db) {
                                                 owTo1840kmWalkers: owTo1840kmWalkers,
                                                 owTo18RFI: locals2.getEventTotal.toronto.to18.rfi,
                                                 
+                                                // OneWalk 2017
                                                 owTo17Donations: locals2.getEventTotal.toronto.to17.totalDonation,
                                                 owTo17RegFee: locals2.getEventTotal.toronto.to17.regFee,
                                                 owTo17Crews: locals2.getEventTotal.toronto.to17.crews,
@@ -968,38 +1040,45 @@ promise.then(function(db) {
                                                 owTo1740kmWalkers: owTo1740kmWalkers,
                                                 owTo17RFI: locals2.getEventTotal.toronto.to17.rfi,
                                                 
+                                                // Perth 2018
                                                 pr18Donations: locals3.getEventTotal.perth.pr18.totalDonation,
                                                 pr18RegFee: locals3.getEventTotal.perth.pr18.regFee,
                                                 pr18Crews: locals3.getEventTotal.perth.pr18.crews,
                                                 pr18RFI: locals3.getEventTotal.perth.pr18.rfi,
                                                 pr18Riders: locals3.getEventTotal.perth.pr18.riders,
                                                 
+                                                // Perth 2017
                                                 pr17Donations: locals3.getEventTotal.perth.pr17.totalDonation,
                                                 pr17RegFee: locals3.getEventTotal.perth.pr17.regFee,
                                                 pr17Crews: locals3.getEventTotal.perth.pr17.crews,
                                                 pr17RFI: locals3.getEventTotal.perth.pr17.rfi,
                                                 pr17Riders: locals3.getEventTotal.perth.pr17.riders,
 
+                                                // Brisbane 2018
                                                 br18Donations: locals4.getEventTotal.brisbane.br18.totalDonation,
                                                 br18RegFee: locals4.getEventTotal.brisbane.br18.regFee,
                                                 br18Walkers: locals4.getEventTotal.brisbane.br18.walkers,
                                                 br18Riders: locals4.getEventTotal.brisbane.br18.riders,
 
+                                                // Brisbane 2017
                                                 br17Donations: locals4.getEventTotal.brisbane.br17.totalDonation,
                                                 br17RegFee: locals4.getEventTotal.brisbane.br17.regFee,
                                                 br17Walkers: locals4.getEventTotal.brisbane.br17.walkers,
                                                 br17Riders: locals4.getEventTotal.brisbane.br17.riders,
                                                 
+                                                // Melbourne 2018
                                                 ml18Donations: locals4.getEventTotal.melbourne.ml18.totalDonation,
                                                 ml18RegFee: locals4.getEventTotal.melbourne.ml18.regFee,
                                                 ml18Walkers: locals4.getEventTotal.melbourne.ml18.walkers,
                                                 ml18Riders: locals4.getEventTotal.melbourne.ml18.riders,
                                                 
+                                                // Melbourne 2017
                                                 ml17Donations: locals4.getEventTotal.melbourne.ml17.totalDonation,
                                                 ml17RegFee: locals4.getEventTotal.melbourne.ml17.regFee,
                                                 ml17Walkers: locals4.getEventTotal.melbourne.ml17.walkers,
                                                 ml17Riders: locals4.getEventTotal.melbourne.ml17.riders,
 
+                                                // Toronto 2020 Daily
                                                 to20DonDaily: newTo20DonDaily,
                                                 to20RegFeeDaily: newTo20RegDaily,
                                                 to20RFIDaily: to20RfiSub,
@@ -1011,6 +1090,7 @@ promise.then(function(db) {
                                                 to20OneDayDaily2: to20OneDayDaily2,
                                                 to20theHammerDaily: to20theHammerDaily,
 
+                                                // Toronto 2019 Daily
                                                 to19DonDaily: newTo19DonDaily,
                                                 to19RegFeeDaily: newTo19RegDaily,
                                                 to19RFIDaily: to19RfiSub,
@@ -1023,6 +1103,7 @@ promise.then(function(db) {
                                                 to19theHammerDaily: to19theHammerDaily,
                                                 to19hammer260Daily: to19hammer260Daily,
                                                 
+                                                // Toronto 2018 Daily
                                                 to18DonDaily: newToDonDaily,
                                                 to18RegFeeDaily: newToRegDaily,
                                                 to18RFIDaily: to18RfiSub,
@@ -1033,23 +1114,28 @@ promise.then(function(db) {
                                                 to18OneDayDaily: to18OneDayDaily,
                                                 to18OneDayDaily2: to18OneDayDaily2,
                                                 
+                                                // Toronto 2017 Daily
                                                 to17DonDaily: newTo17DonDaily,
                                                 
+                                                // Perth 2018 Daily
                                                 pr18DonDaily: newPrDonDaily,
                                                 pr18RegFeeDaily: newPrRegDaily,
                                                 pr18RFIDaily: pr18RfiSub,
                                                 pr18CrewDaily: pr18CrewSub,
                                                 pr18RidersDaily: pr18RiderSub,
-                                
+                                                
+                                                // Perth 2017 Daily
                                                 pr17DonDaily: newPr17DonDaily,
-
+                                                
+                                                // Montreal 2020 Daily
                                                 mo20DonDaily: newMo20DonDaily,
                                                 mo20RegFeeDaily: newMo20RegDaily,
                                                 mo20RFIDaily: mo20RfiSub,
                                                 mo20CrewDaily: mo20CrewSub,
                                                 mo20RidersDaily: mo20RiderSub,
                                                 mo20VRDaily: mo20VRDailySub,
-
+                                                
+                                                // Montreal 2019 Daily
                                                 mo19DonDaily: newMo19DonDaily,
                                                 mo19RegFeeDaily: newMo19RegDaily,
                                                 mo19RFIDaily: mo19RfiSub,
@@ -1057,15 +1143,18 @@ promise.then(function(db) {
                                                 mo19RidersDaily: mo19RiderSub,
                                                 mo19VRDaily: mo19VRDailySub,
                                                 
+                                                // Montreal 2018 Daily
                                                 mo18DonDaily: newMo18DonDaily,
                                                 mo18RegFeeDaily: newMoRegDaily,
                                                 mo18RFIDaily: mo18RfiSub,
                                                 mo18CrewDaily: mo18CrewSub,
                                                 mo18RidersDaily: mo18RiderSub,
                                                 mo18VRDaily: mo18VRDailySub,
-
+                                                
+                                                // Montreal 2017 Daily
                                                 mo17DonDaily: newMo17DonDaily,
                                                 
+                                                // Alberta 2020 Daily
                                                 ab20DonDaily: newAb20DonDaily,
                                                 ab20RegFeeDaily: newAb20RegDaily,
                                                 ab20RFIDaily: ab20RfiSub,
@@ -1073,29 +1162,34 @@ promise.then(function(db) {
                                                 ab20RidersDaily: ab20RiderSub,
                                                 ab20VRDaily: ab20VRDailySub,
                                                 
+                                                // Alberta 2019 Daily
                                                 ab19DonDaily: newAb19DonDaily,
                                                 ab19RegFeeDaily: newAb19RegDaily,
                                                 ab19RFIDaily: ab19RfiSub,
                                                 ab19CrewDaily: ab19CrewSub,
                                                 ab19RidersDaily: ab19RiderSub,
                                                 ab19VRDaily: ab19VRDailySub,
-
+                                                
+                                                // Alberta 2018 Daily
                                                 ab18DonDaily: newAbDonDaily,
                                                 ab18RegFeeDaily: newAbRegDaily,
                                                 ab18RFIDaily: ab18RfiSub,
                                                 ab18CrewDaily: ab18CrewSub,
                                                 ab18RidersDaily: ab18RiderSub,
                                                 ab18VRDaily: ab18VRDailySub,
-
+                                                
+                                                // Alberta 2017 Daily
                                                 ab17DonDaily: newAb17DonDaily,
                                                 
+                                                // Vancouver 2019 Daily
                                                 va19DonDaily: newVa19DonDaily,
                                                 va19RegFeeDaily: newVa19RegDaily,
                                                 va19RFIDaily: va19RfiSub,
                                                 va19CrewDaily: va19CrewSub,
                                                 va19RidersDaily: va19RiderSub,
                                                 va19VRDaily: va19VRDailySub,
-
+                                                
+                                                // Vancouver 2018 Daily
                                                 va18DonDaily: newVaDonDaily,
                                                 va18RegFeeDaily: newVaRegDaily,
                                                 va18RFIDaily: va18RfiSub,
@@ -1103,8 +1197,10 @@ promise.then(function(db) {
                                                 va18RidersDaily: va18RiderSub,
                                                 va18VRDaily: va18VRDailySub,
                                                 
+                                                // Vancouver 2017 Daily
                                                 va17DonDaily: newVa17DonDaily,
                                                 
+                                                // OneWalk 2019 Daily
                                                 owto19DonDaily: newOwTo19DonDaily,
                                                 owto19RegDaily: newOwTo19RegDaily,
                                                 owto19RFIDaily: owto19RfiSub,
@@ -1115,7 +1211,8 @@ promise.then(function(db) {
                                                 owto1940kmWalkersDaily: owTo1940kmWalkersDaily,
                                                 owto19NightWalkersDaily: owTo19NightWalkersDaily,
                                                 owto192dayDaily: owTo192dayDaily,
-
+                                                
+                                                // OneWalk 2018 Daily
                                                 owto18DonDaily: newOwToDonDaily,
                                                 owto18RegDaily: newOwToRegDaily,
                                                 owto18RFIDaily: owto18RfiSub,
@@ -1126,32 +1223,36 @@ promise.then(function(db) {
                                                 owto1825kmWalkersDaily: owTo1825kmWalkersDaily,
                                                 owto1840kmWalkersDaily: owTo1840kmWalkersDaily,
                                                 owto18CrewsDaily: owto18CrewsDailySub,
-
+                                                
+                                                // OneWalk 2017 Daily
                                                 owto17DonDaily: newOwTo17DonDaily,
 
+                                                // Brisbane 2018 Daily
                                                 br18DonDaily: newBrDonDaily,
                                                 br18RegDaily: newBrRegDaily,
                                                 br18RidersDaily: br18RiderSub,
                                                 br18WalkersDaily: br18WalkerSub,
-                                                
+
+                                                // Melbourne 2018 Daily
                                                 ml18DonDaily: newMlDonDaily,
                                                 ml18RegDaily: newMlRegDaily,
                                                 ml18RidersDaily: ml18RiderSub,
                                                 ml18WalkersDaily: ml18WalkerSub,
-
+                                                
+                                                // Melbourne 2017 Daily
                                                 ml17DonDaily: newMl17DonDaily
+
                                             });
                                             allData.save(function(error) {
                                                 console.log("Data has been saved to MongoDB!");
                                                 process.exit();
                                                 if (error) {
                                                     console.error(error);
-                                                }
-                                            });
+                                            }
+                                        });
                                     }).sort({"_id": -1});
                                 }
                             });
-
                         }
                     });
                 }
@@ -1160,7 +1261,6 @@ promise.then(function(db) {
             console.log('there has been an error');
         }
     });
-
 });
 
 
