@@ -433,7 +433,7 @@ router.get('/data', function(req, res) {
 													        var owto19RfiSub = ( parseFloat(locals2.getEventTotal.toronto.to19.rfi) + parseFloat(locals2.getEventTotal.toronto.to19.rfinight) + parseFloat(locals2.getEventTotal.toronto.to19.rfinightfb) + parseFloat(locals2.getEventTotal.toronto.to19.rfiday) + parseFloat(locals2.getEventTotal.toronto.to19.rfidayfb) ) - yesterday[0].owTo19RFI;
 													        var owto19CrewsDailySub = locals2.getEventTotal.toronto.to19.crews - yesterday[0].owTo19Crews;
 													        var owto19TotalWalkers = parseFloat(owTo19NightWalkers) + parseFloat(owTo1925kmWalkers) + parseFloat(owTo192day);
-													        var owto19VirtualDailySub = locals2.getEventTotal.toronto.to19.virtual - yesterday[0].owto19VR;
+													        var owto19VirtualDailySub = locals2.getEventTotal.toronto.to19.virtual - yesterday[0].owTo19VR;
 													        var owto19WalkersDailySub = owto19TotalWalkers - yesterday[0].owTo19Walkers;
 													        var owTo1925kmWalkersDailySub = locals2.getEventTotal.toronto.to19.Wlkr25km - yesterday[0].owTo1925kmWalkers;
 													        var owTo1940kmWalkersDailySub = locals2.getEventTotal.toronto.to19.Wlkr40km - yesterday[0].owTo1940kmWalkers;
