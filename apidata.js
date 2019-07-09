@@ -84,6 +84,16 @@ promise.then(function(db) {
         mo18RFI: String,
         mo18Riders: String,
         mo18VR: String,
+        ab20Donations: String,
+        ab20RegFee: String,
+        ab20Crews: String,
+        ab20RFI: String,
+        ab20Riders: String,
+        ab20Riders2: String,
+        ab20OneDay: String,
+        ab20OneDay2: String,
+        ab20VR: String,
+        ab20TotalParticipants: String,
         ab19Donations: String,
         ab19RegFee: String,
         ab19Crews: String,
@@ -252,6 +262,15 @@ promise.then(function(db) {
         mo18RegFeeDaily: String,
         mo18RFIDaily: String,
         mo17DonDaily: String,
+        ab20DonDaily: String,
+        ab20RegFeeDaily: String,
+        ab20RFIDaily: String,
+        ab20CrewDaily: String,
+        ab20RidersDaily: String,
+        ab20VRDaily: String,
+        ab20Riders2Daily: String,
+        ab20OneDayDaily: String,
+        ab20OneDayDaily2: String,
         ab19DonDaily: String,
         ab19RegFeeDaily: String,
         ab19RFIDaily: String,
@@ -388,6 +407,11 @@ promise.then(function(db) {
                                             var removeDollarMo17v1 = locals.getEventTotal.montreal.mo17.totalDonation;
                                             var removeDollarMo17v2 = data.mo17Donations;
                                             
+                                            // =========================== Ride Alberta 2020 =========================== //
+                                            var removeDollarAb20v1 = locals.getEventTotal.alberta.ab20.totalDonation;
+                                            var removeDollarAb20v2 = data.ab20Donations;
+                                            var removeRegAb20v1 = locals.getEventTotal.alberta.ab20.regFee;
+                                            var removeRegAb20v2 = data.ab20RegFee;
                                             // =========================== Ride Alberta 2019 =========================== //
                                             var removeDollarAb19v1 = locals.getEventTotal.alberta.ab19.totalDonation;
                                             var removeDollarAb19v2 = data.ab19Donations;
@@ -507,10 +531,14 @@ promise.then(function(db) {
                                             var numberRegMo18v1 = Number(removeRegMo18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberRegMo18v2 = Number(removeRegMo18v2.replace(/[^0-9\.-]+/g,""));
 
+                                            var numberAb20v1 = Number(removeDollarAb20v1.replace(/[^0-9\.-]+/g,""));
+                                            var numberAb20v2 = Number(removeDollarAb20v2.replace(/[^0-9\.-]+/g,""));
+                                            var numberRegAb20v1 = Number(removeRegAb20v1.replace(/[^0-9\.-]+/g,""));
+                                            var numberRegAb20v2 = Number(removeRegAb20v2.replace(/[^0-9\.-]+/g,""));
                                             var numberAb19v1 = Number(removeDollarAb19v1.replace(/[^0-9\.-]+/g,""));
                                             var numberAb19v2 = Number(removeDollarAb19v2.replace(/[^0-9\.-]+/g,""));
                                             var numberRegAb19v1 = Number(removeRegAb19v1.replace(/[^0-9\.-]+/g,""));
-                                            var numberRegAb19v2 = Number(removeRegAb19v2.replace(/[^0-9\.-]+/g,""));                                            
+                                            var numberRegAb19v2 = Number(removeRegAb19v2.replace(/[^0-9\.-]+/g,""));
                                             var numberAb18v1 = Number(removeDollarAb18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberAb18v2 = Number(removeDollarAb18v2.replace(/[^0-9\.-]+/g,""));
                                             var numberAb17v1 = Number(removeDollarAb17v1.replace(/[^0-9\.-]+/g,""));
@@ -631,7 +659,17 @@ promise.then(function(db) {
                                             var mo18CrewSub = locals.getEventTotal.montreal.mo18.crews - data.mo18Crews;
                                             var mo18RiderSub = locals.getEventTotal.montreal.mo18.riders - data.mo18Riders;
                                             var mo18VRDailySub = locals.getEventTotal.montreal.mo18.virtual - data.mo18VR;
-                                            
+
+                                            // Alberta 2020 Daily
+                                            var ab20DonationSub = numberAb20v1 - numberAb20v2;
+                                            var ab20RfiSub = locals.getEventTotal.alberta.ab20.rfi - data.ab20RFI;
+                                            var ab20RegSub = numberRegAb20v1 - numberRegAb20v2;
+                                            var ab20CrewSub = locals.getEventTotal.alberta.ab20.crews - data.ab20Crews;
+                                            var ab20RiderSub = locals.getEventTotal.alberta.ab20.riders - data.ab20Riders;
+                                            // var ab20RiderSub = locals.getEventTotal.alberta.ab20.riders - 1042;
+                                            var ab20VRDailySub = locals.getEventTotal.alberta.ab20.virtual - data.ab20VR;
+
+                                            var ab20TotalParticipants = parseFloat(locals.getEventTotal.alberta.ab20.riders) + parseFloat(locals.getEventTotal.alberta.ab20.riders2);
                                             // Alberta 2019 Daily
                                             var ab19DonationSub = numberAb19v1 - numberAb19v2;
                                             var ab19RfiSub = locals.getEventTotal.alberta.ab19.rfi - data.ab19RFI;
@@ -727,8 +765,10 @@ promise.then(function(db) {
                                             var newMo17DonDaily = '$' + mo17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newMoRegDaily = '$' + mo18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
+                                            var newAb20DonDaily = '$' + ab20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                            var newAb20RegDaily = '$' + ab20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newAb19DonDaily = '$' + ab19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-                                            var newAb19RegDaily = '$' + ab19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");                                            
+                                            var newAb19RegDaily = '$' + ab19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newAbDonDaily = '$' + ab18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newAb17DonDaily = '$' + ab17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newAbRegDaily = '$' + ab18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -836,6 +876,17 @@ promise.then(function(db) {
                                                 mo17Riders: locals.getEventTotal.montreal.mo17.riders,
                                                 mo17VR: locals.getEventTotal.montreal.mo17.virtual,
                                                 
+                                                ab20Donations: locals.getEventTotal.alberta.ab20.totalDonation,
+                                                ab20RegFee: locals.getEventTotal.alberta.ab20.regFee,
+                                                ab20Crews: locals.getEventTotal.alberta.ab20.crews,
+                                                ab20RFI: locals.getEventTotal.alberta.ab20.rfi,
+                                                ab20Riders: locals.getEventTotal.alberta.ab20.riders,
+                                                ab20VR: locals.getEventTotal.alberta.ab20.virtual,
+                                                ab20Rider2: locals.getEventTotal.alberta.ab20.riders2,
+                                                ab20OneDay: locals.getEventTotal.alberta.ab20.oneday,
+                                                ab20OneDay2: locals.getEventTotal.alberta.ab20.oneday2,
+                                                ab20TotalParticipants: ab20TotalParticipants,
+
                                                 ab19Donations: locals.getEventTotal.alberta.ab19.totalDonation,
                                                 ab19RegFee: locals.getEventTotal.alberta.ab19.regFee,
                                                 ab19Crews: locals.getEventTotal.alberta.ab19.crews,
@@ -1014,6 +1065,13 @@ promise.then(function(db) {
                                                 mo18VRDaily: mo18VRDailySub,
 
                                                 mo17DonDaily: newMo17DonDaily,
+                                                
+                                                ab20DonDaily: newAb20DonDaily,
+                                                ab20RegFeeDaily: newAb20RegDaily,
+                                                ab20RFIDaily: ab20RfiSub,
+                                                ab20CrewDaily: ab20CrewSub,
+                                                ab20RidersDaily: ab20RiderSub,
+                                                ab20VRDaily: ab20VRDailySub,
                                                 
                                                 ab19DonDaily: newAb19DonDaily,
                                                 ab19RegFeeDaily: newAb19RegDaily,

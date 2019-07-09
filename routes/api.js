@@ -113,6 +113,11 @@ router.get('/data', function(req, res) {
 				                                            var removeDollarMo17v1 = latestdata.mo17Donations;
 				                                            var removeDollarMo17v2 = yesterday[0].mo17Donations;
 
+				                                            // =========================== Ride Alberta 2020 =========================== //
+                                                            var removeDollarAb20v1 = latestdata.ab20Donations;
+                                                            var removeDollarAb20v2 = yesterday[0].ab20Donations;
+                                                            var removeRegAb20v1 = latestdata.ab20RegFee;
+                                                            var removeRegAb20v2 = yesterday[0].ab20RegFee;
 				                                            // =========================== Ride Alberta 2019 =========================== //
                                                             var removeDollarAb19v1 = latestdata.ab19Donations;
                                                             var removeDollarAb19v2 = yesterday[0].ab19Donations;
@@ -237,6 +242,10 @@ router.get('/data', function(req, res) {
 				                                            var numberRegMo18v1 = Number(removeRegMo18v1.replace(/[^0-9\.-]+/g,""));
 				                                            var numberRegMo18v2 = Number(removeRegMo18v2.replace(/[^0-9\.-]+/g,""));
 				                                            
+				                                            var numberAb20v1 = Number(removeDollarAb20v1.replace(/[^0-9\.-]+/g,""));
+				                                            var numberAb20v2 = Number(removeDollarAb20v2.replace(/[^0-9\.-]+/g,""));
+				                                            var numberRegAb20v1 = Number(removeRegAb20v1.replace(/[^0-9\.-]+/g,""));
+                                                            var numberRegAb20v2 = Number(removeRegAb20v2.replace(/[^0-9\.-]+/g,""));
 				                                            var numberAb19v1 = Number(removeDollarAb19v1.replace(/[^0-9\.-]+/g,""));
 				                                            var numberAb19v2 = Number(removeDollarAb19v2.replace(/[^0-9\.-]+/g,""));
 				                                            var numberRegAb19v1 = Number(removeRegAb19v1.replace(/[^0-9\.-]+/g,""));
@@ -379,6 +388,21 @@ router.get('/data', function(req, res) {
 				                                            var mo18RegSub = numberRegMo18v1 - numberRegMo18v2;
 				                                            var mo18VRDaily = locals.getEventTotal.montreal.mo18.virtual - yesterday[0].mo18VR;
 				                                            
+				                                            // Alberta 2020 Daily
+				                                            var ab20RegSub = numberRegAb20v1 - numberRegAb20v2;
+                                                            var ab20VRDaily = locals.getEventTotal.alberta.ab20.virtual - yesterday[0].ab20VR;
+                                                            var ab20Riders2Daily = locals.getEventTotal.alberta.ab20.riders2 - yesterday[0].ab20Riders2;
+                                                            var ab20OneDayDaily = locals.getEventTotal.alberta.ab20.oneday - yesterday[0].ab20OneDay;
+                                                            var ab20OneDayDaily2 = locals.getEventTotal.alberta.ab20.oneday2 - yesterday[0].ab20OneDay2;
+                                                            var ab20DonationSub = numberAb20v1 - numberAb20v2;
+                                                            var ab20RfiSub = locals.getEventTotal.alberta.ab20.rfi - yesterday[0].ab20RFI;
+                                                            var ab20CrewSub = locals.getEventTotal.alberta.ab20.crews - yesterday[0].ab20Crews;
+                                                            var ab20RiderSub = locals.getEventTotal.alberta.ab20.riders - yesterday[0].ab20Riders;
+
+                                                            var ab20TotalRiders = locals.getEventTotal.alberta.ab20.riders;
+                                                            var ab20RiderSub = ab20TotalRiders - yesterday[0].ab20Riders;
+
+                                                            var ab20TotalParticipants = parseFloat(locals.getEventTotal.alberta.ab20.riders) + parseFloat(locals.getEventTotal.alberta.ab20.riders2);
 				                                            // Alberta 2019 Daily
 				                                            var ab19RegSub = numberRegAb19v1 - numberRegAb19v2;
                                                             var ab19VRDaily = locals.getEventTotal.alberta.ab19.virtual - yesterday[0].ab19VR;
@@ -490,6 +514,8 @@ router.get('/data', function(req, res) {
 				                                            var newMo17DonDaily = '$' + mo17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newMoRegDaily = '$' + mo18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
+				                                            var newAb20DonDaily = '$' + ab20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                                            var newAb20RegDaily = '$' + ab20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newAb19DonDaily = '$' + ab19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                                             var newAb19RegDaily = '$' + ab19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newAbDonDaily = '$' + ab18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -602,25 +628,36 @@ router.get('/data', function(req, res) {
 			                                                latestdata.mo17VR = locals.getEventTotal.montreal.mo17.virtual;
 			                                                
 			                                                // RIDE - Alberta
+			                                                // 2020
+			                                                latestdata.ab20Donations = locals.getEventTotal.alberta.ab20.totalDonation;
+                                                            latestdata.ab20RegFee = locals.getEventTotal.alberta.ab20.regFee;
+                                                            latestdata.ab20Crews = locals.getEventTotal.alberta.ab20.crews;
+															latestdata.ab20RFI = locals.getEventTotal.alberta.ab20.rfi;
+															latestdata.ab20Riders = locals.getEventTotal.alberta.ab20.riders;
+                                                            latestdata.ab20VR = locals.getEventTotal.alberta.ab20.virtual;
+                                                            latestdata.ab20Riders2 = locals.getEventTotal.alberta.ab20.riders2;
+                                                            latestdata.ab20OneDay = locals.getEventTotal.alberta.ab20.oneday;
+                                                            latestdata.ab20OneDay2 = locals.getEventTotal.alberta.ab20.oneday2;
+                                                            latestdata.ab20TotalParticipants = ab20TotalParticipants;
+                                                            // 2019
 			                                                latestdata.ab19Donations = locals.getEventTotal.alberta.ab19.totalDonation;
                                                             latestdata.ab19RegFee = locals.getEventTotal.alberta.ab19.regFee;
                                                             latestdata.ab19Crews = locals.getEventTotal.alberta.ab19.crews;
 															latestdata.ab19RFI = locals.getEventTotal.alberta.ab19.rfi;
 															latestdata.ab19Riders = locals.getEventTotal.alberta.ab19.riders;
-                                                            //latestdata.ab19Riders = to19TotalRiders;
                                                             latestdata.ab19VR = locals.getEventTotal.alberta.ab19.virtual;
                                                             latestdata.ab19Riders2 = locals.getEventTotal.alberta.ab19.riders2;
                                                             latestdata.ab19OneDay = locals.getEventTotal.alberta.ab19.oneday;
                                                             latestdata.ab19OneDay2 = locals.getEventTotal.alberta.ab19.oneday2;
                                                             latestdata.ab19TotalParticipants = ab19TotalParticipants;
-
+                                                            // 2018
 			                                                latestdata.ab18Donations = locals.getEventTotal.alberta.ab18.totalDonation;
 			                                                latestdata.ab18RegFee = locals.getEventTotal.alberta.ab18.regFee;
 			                                                latestdata.ab18Crews = locals.getEventTotal.alberta.ab18.crews;
 			                                                latestdata.ab18RFI = locals.getEventTotal.alberta.ab18.rfi;
 			                                                latestdata.ab18Riders = locals.getEventTotal.alberta.ab18.riders;
 			                                                latestdata.ab18VR = locals.getEventTotal.alberta.ab18.virtual;
-			                                                
+			                                                // 2017
 			                                                latestdata.ab17Donations = locals.getEventTotal.alberta.ab17.totalDonation;
 			                                                latestdata.ab17RegFee = locals.getEventTotal.alberta.ab17.regFee;
 			                                                latestdata.ab17Crews = locals.getEventTotal.alberta.ab17.crews;
@@ -797,6 +834,16 @@ router.get('/data', function(req, res) {
 			                                                latestdata.mo17DonDaily = newMo17DonDaily;
 
 			                                                // DAILY - RIDE - Alberta
+			                                                latestdata.ab20DonDaily = newAb20DonDaily;
+			                                                latestdata.ab20RegFeeDaily = newAb20RegDaily;
+			                                                latestdata.ab20RFIDaily = ab20RfiSub;
+			                                                latestdata.ab20CrewDaily = ab20CrewSub;
+			                                                latestdata.ab20RidersDaily = ab20RiderSub;
+			                                                latestdata.ab20Riders2Daily = ab20Riders2Daily;
+                                                            latestdata.ab20OneDayDaily = ab20OneDayDaily;
+                                                            latestdata.ab20OneDayDaily2 = ab20OneDayDaily2;
+			                                                latestdata.ab20VRDaily = ab20VRDaily;
+
 			                                                latestdata.ab19DonDaily = newAb19DonDaily;
 			                                                latestdata.ab19RegFeeDaily = newAb19RegDaily;
 			                                                latestdata.ab19RFIDaily = ab19RfiSub;
