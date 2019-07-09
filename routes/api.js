@@ -430,7 +430,7 @@ router.get('/data', function(req, res) {
 				                                            
 				                                            var owto19DonationSub = numberOwTo19v1 - numberOwTo19v2;
 													        var owto19RegSub = numberRegOwTo19v1 - numberRegOwTo19v2;
-													        var owto19RfiSub = locals2.getEventTotal.toronto.to19.rfi - yesterday[0].owTo19RFI;
+													        var owto19RfiSub = ( parseFloat(locals2.getEventTotal.toronto.to19.rfi) + parseFloat(locals2.getEventTotal.toronto.to19.rfinight) + parseFloat(locals2.getEventTotal.toronto.to19.rfinightfb) + parseFloat(locals2.getEventTotal.toronto.to19.rfiday) + parseFloat(locals2.getEventTotal.toronto.to19.rfidayfb) ) - yesterday[0].owTo19RFI;
 													        var owto19CrewsDailySub = locals2.getEventTotal.toronto.to19.crews - yesterday[0].owTo19Crews;
 													        var owto19TotalWalkers = parseFloat(owTo19NightWalkers) + parseFloat(owTo1925kmWalkers) + parseFloat(owTo192day);
 													        var owto19VirtualDailySub = locals2.getEventTotal.toronto.to19.virtual - yesterday[0].owto19VR;
