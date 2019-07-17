@@ -409,7 +409,7 @@ promise.then(function(db) {
                                     ApiData.findOne(
                                         (err, data) => {
 
-                                            console.log("In the scheduler getting nightly data...");
+                                            console.log("In the scheduler getting nightly data..");
                                             
                                             // Set Variables for Real Time vs Static Event Data
 
