@@ -138,7 +138,12 @@ router.get('/data', function(req, res) {
 				                                            var removeDollarAb17v2 = yesterday[0].ab17Donations;
 
 
-					                                            
+
+					                                        // =========================== Ride Vancouver 2020 =========================== //
+				                                            var removeDollarVa20v1 = latestdata.va20Donations;
+				                                            var removeDollarVa20v2 = yesterday[0].va20Donations;
+				                                            var removeRegVa20v1 = latestdata.va20RegFee;
+				                                            var removeRegVa20v2 = yesterday[0].va20RegFee;    
 					                                        // =========================== Ride Vancouver 2019 =========================== //
 				                                            var removeDollarVa19v1 = latestdata.va19Donations;
 				                                            var removeDollarVa19v2 = yesterday[0].va19Donations;
@@ -220,7 +225,6 @@ router.get('/data', function(req, res) {
 				                                            
 				                                            // Remove Dollar Sign from Data Brought In
 
-                                                            // Toronto
                                                             var numberTo20v1 = Number(removeDollarTo20v1.replace(/[^0-9\.-]+/g,""));
                                                             var numberTo20v2 = Number(removeDollarTo20v2.replace(/[^0-9\.-]+/g,""));
                                                             var numberRegTo20v1 = Number(removeRegTo20v1.replace(/[^0-9\.-]+/g,""));
@@ -273,6 +277,10 @@ router.get('/data', function(req, res) {
 				                                            var numberRegAb18v1 = Number(removeRegAb18v1.replace(/[^0-9\.-]+/g,""));
 				                                            var numberRegAb18v2 = Number(removeRegAb18v2.replace(/[^0-9\.-]+/g,""));
 				                                            
+				                                            var numberVa20v1 = Number(removeDollarVa20v1.replace(/[^0-9\.-]+/g,""));
+				                                            var numberVa20v2 = Number(removeDollarVa20v2.replace(/[^0-9\.-]+/g,""));
+				                                            var numberRegVa20v1 = Number(removeRegVa20v1.replace(/[^0-9\.-]+/g,""));
+                                                            var numberRegVa20v2 = Number(removeRegVa20v2.replace(/[^0-9\.-]+/g,""));
 				                                            var numberVa19v1 = Number(removeDollarVa19v1.replace(/[^0-9\.-]+/g,""));
 				                                            var numberVa19v2 = Number(removeDollarVa19v2.replace(/[^0-9\.-]+/g,""));
 				                                            var numberRegVa19v1 = Number(removeRegVa19v1.replace(/[^0-9\.-]+/g,""));
@@ -442,6 +450,18 @@ router.get('/data', function(req, res) {
 
 				                                            
 				                                            // Vancouver
+				                                            var va20RegSub = numberRegVa20v1 - numberRegVa20v2;
+                                                            var va20VRDaily = locals.getEventTotal.vancouver.va20.virtual - yesterday[0].va20VR;
+                                                            var va20Riders2Daily = locals.getEventTotal.vancouver.va20.riders2 - yesterday[0].va20Riders2;
+                                                            var va20OneDayDaily = locals.getEventTotal.vancouver.va20.oneday - yesterday[0].va20OneDay;
+                                                            var va20OneDayDaily2 = locals.getEventTotal.vancouver.va20.oneday2 - yesterday[0].va20OneDay2;
+                                                            var va20DonationSub = numberVa20v1 - numberVa20v2;
+                                                            var va20RfiSub = locals.getEventTotal.vancouver.va20.rfi - yesterday[0].va20RFI;
+                                                            var va20CrewSub = locals.getEventTotal.vancouver.va20.crews - yesterday[0].va20Crews;
+                                                            var va20RiderSub = locals.getEventTotal.vancouver.va20.riders - yesterday[0].va20Riders;
+                                                            var va20TotalRiders = locals.getEventTotal.vancouver.va20.riders;
+                                                            var va20TotalParticipants = parseFloat(locals.getEventTotal.vancouver.va20.riders) + parseFloat(locals.getEventTotal.vancouver.va20.riders2);
+
 				                                            var va19RegSub = numberRegVa19v1 - numberRegVa19v2;
                                                             var va19VRDaily = locals.getEventTotal.vancouver.va19.virtual - yesterday[0].va19VR;
                                                             var va19Riders2Daily = locals.getEventTotal.vancouver.va19.riders2 - yesterday[0].va19Riders2;
@@ -542,6 +562,8 @@ router.get('/data', function(req, res) {
 				                                            var newAb17DonDaily = '$' + ab17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newAbRegDaily = '$' + ab18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
+				                                            var newVa20DonDaily = '$' + va20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                                            var newVa20RegDaily = '$' + va20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newVa19DonDaily = '$' + va19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                                             var newVa19RegDaily = '$' + va19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newVaDonDaily = '$' + va18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -688,7 +710,18 @@ router.get('/data', function(req, res) {
 			                                                latestdata.ab17RFI = locals.getEventTotal.alberta.ab17.rfi;
 			                                                latestdata.ab17Riders = locals.getEventTotal.alberta.ab17.riders;
 			                                                latestdata.ab17VR = locals.getEventTotal.alberta.ab17.virtual;
-			                                                
+															
+															// RIDE - Vancouver - 2020
+			                                                latestdata.va20Donations = locals.getEventTotal.vancouver.va20.totalDonation;
+			                                                latestdata.va20RegFee = locals.getEventTotal.vancouver.va20.regFee;
+			                                                latestdata.va20Crews = locals.getEventTotal.vancouver.va20.crews;
+			                                                latestdata.va20RFI = locals.getEventTotal.vancouver.va20.rfi;
+			                                                latestdata.va20Riders = locals.getEventTotal.vancouver.va20.riders;
+			                                                latestdata.va20VR = locals.getEventTotal.vancouver.va20.virtual;
+			                                                latestdata.va20Riders2 = locals.getEventTotal.vancouver.va20.riders2;
+                                                            latestdata.va20OneDay = locals.getEventTotal.vancouver.va20.oneday;
+                                                            latestdata.va20OneDay2 = locals.getEventTotal.vancouver.va20.oneday2;
+                                                            latestdata.va20TotalParticipants = va20TotalParticipants;			                                                
 			                                                // RIDE - Vancouver - 2019
 			                                                latestdata.va19Donations = locals.getEventTotal.vancouver.va19.totalDonation;
 			                                                latestdata.va19RegFee = locals.getEventTotal.vancouver.va19.regFee;
@@ -905,6 +938,17 @@ router.get('/data', function(req, res) {
 			                                                latestdata.ab17DonDaily = newAb17DonDaily;
 
 			                                                // DAILY - RIDE - Vancouver
+			                                                // -- 2020
+			                                                latestdata.va20DonDaily = newVa20DonDaily;
+			                                                latestdata.va20RegFeeDaily = newVa20RegDaily;
+			                                                latestdata.va20RFIDaily = va20RfiSub;
+			                                                latestdata.va20CrewDaily = va20CrewSub;
+			                                                latestdata.va20RidersDaily = va20RiderSub;
+			                                                latestdata.va20Riders2Daily = va20Riders2Daily;
+                                                            latestdata.va20OneDayDaily = va20OneDayDaily;
+                                                            latestdata.va20OneDayDaily2 = va20OneDayDaily2;
+			                                                latestdata.va20VRDaily = va20VRDaily;
+			                                                
 			                                                // -- 2019
 			                                                latestdata.va19DonDaily = newVa19DonDaily;
 			                                                latestdata.va19RegFeeDaily = newVa19RegDaily;

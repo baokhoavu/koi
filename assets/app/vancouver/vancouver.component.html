@@ -36,25 +36,37 @@
       </thead>
       <tbody>
         <tr>
-          <td>2019 (Today)</td>
-          <td>{{dataService.data.va19RFIDaily}}</td>
-          <td>{{dataService.data.va19CrewDaily}}</td>
-          <td>{{dataService.data.va19RidersDaily}}</td>
-          <td>{{dataService.data.va19Riders2Daily}}</td>
-          <td>{{dataService.data.va19OneDayDaily}}</td>
+          <td>2020 (Today)</td>
+          <td>{{dataService.data.va20RFIDaily}}</td>
+          <td>{{dataService.data.va20CrewDaily}}</td>
+          <td>{{dataService.data.va20RidersDaily}}</td>
           <td>x</td>
-          <td>{{dataService.data.va19VRDaily}}</td>
-          <td>{{dataService.data.va19DonDaily}}</td>
-          <td>{{dataService.data.va19RegFeeDaily}}</td>
+          <td>x</td>
+          <td>x</td>
+          <td>{{dataService.data.va20VRDaily}}</td>
+          <td>{{dataService.data.va20DonDaily}}</td>
+          <td>{{dataService.data.va20RegFeeDaily}}</td>
         </tr>
+        <tr>
+          <td>2020 (YTD)</td>
+          <td>{{dataService.data.va20RFI}}</td>
+          <td>{{dataService.data.va20Crews}}</td>
+          <td>{{dataService.data.va20Riders}}</td>
+          <td>x</td>
+          <td>x</td>
+          <td>x</td>
+          <td>{{dataService.data.va20VR}}</td>
+          <td>{{dataService.data.va20Donations}}</td>
+          <td>{{dataService.data.va20RegFee}}</td>
+        </tr>    
         <tr>
           <td>2019 (YTD)</td>
           <td>{{dataService.data.va19RFI}}</td>
           <td>{{dataService.data.va19Crews}}</td>
           <td>{{dataService.data.va19Riders}}</td>
-          <td>{{dataService.data.va19Riders2}}</td>
-          <td>{{dataService.data.va19OneDay}}</td>
-          <td>{{dataService.data.va19OneDay2}}</td>
+          <td>x</td>
+          <td>x</td>
+          <td>x</td>
           <td>{{dataService.data.va19VR}}</td>
           <td>{{dataService.data.va19Donations}}</td>
           <td>{{dataService.data.va19RegFee}}</td>
@@ -64,9 +76,9 @@
           <td>{{dataService.data.va18RFI}}</td>
           <td>{{dataService.data.va18Crews}}</td>
           <td>{{dataService.data.va18Riders}}</td>
-          <td>{{dataService.data.va18Riders2}}</td>
-          <td>{{dataService.data.va18OneDay}}</td>
-          <td>{{dataService.data.va18OneDay2}}</td>
+          <td>x</td>
+          <td>x</td>
+          <td>x</td>
           <td>{{dataService.data.va18VR}}</td>
           <td>{{dataService.data.va18Donations}}</td>
           <td>{{dataService.data.va18RegFee}}</td>
@@ -146,6 +158,17 @@
       </tr>
       </thead>
       <tbody>
+      <tr>
+        <td>2020</td>
+        <td>{{dataService.allData[0]?.va20RFI}}</td>
+        <td>{{dataService.allData[0]?.va20Crews}}</td>
+        <td>{{dataService.allData[0]?.va20Riders}}</td>
+        <td>{{dataService.allData[0]?.va20Riders2}}</td>
+        <td>{{dataService.allData[0]?.va20OneDay}}</td>
+        <td>{{dataService.allData[0]?.va20VR}}</td>
+        <td>{{dataService.allData[0]?.va20Donations}}</td>
+        <td>{{dataService.allData[0]?.va20RegFee}}</td>
+      </tr>  
       <tr>
         <td>2019</td>
         <td>{{dataService.allData[0]?.va19RFI}}</td>

@@ -119,6 +119,17 @@ promise.then(function(db) {
         ab18Riders: String,
         ab18VR: String,
 
+        va20Donations: String,
+        va20RegFee: String,
+        va20Crews: String,
+        va20RFI: String,
+        va20Riders: String,
+        va20Riders2: String,
+        va20OneDay: String,
+        va20OneDay2: String,
+        va20VR: String,
+        va20TotalParticipants: String,
+
         va19Donations: String,
         va19RegFee: String,
         va19Crews: String,
@@ -325,6 +336,16 @@ promise.then(function(db) {
 
         ab17DonDaily: String,
 
+        va20DonDaily: String,
+        va20RegFeeDaily: String,
+        va20RFIDaily: String,
+        va20CrewDaily: String,
+        va20RidersDaily: String,
+        va20VRDaily: String,
+        va20Riders2Daily: String,
+        va20OneDayDaily: String,
+        va20OneDayDaily2: String,
+
         va19DonDaily: String,
         va19RegFeeDaily: String,
         va19RFIDaily: String,
@@ -474,6 +495,11 @@ promise.then(function(db) {
                                             
 
                                             // Ride Vancouver
+                                            var removeDollarVa20v1 = locals.getEventTotal.vancouver.va20.totalDonation;
+                                            var removeDollarVa20v2 = data.va20Donations;
+                                            var removeRegVa20v1 = locals.getEventTotal.vancouver.va20.regFee;
+                                            var removeRegVa20v2 = data.va20RegFee;
+
                                             var removeDollarVa19v1 = locals.getEventTotal.vancouver.va19.totalDonation;
                                             var removeDollarVa19v2 = data.va19Donations;
                                             var removeRegVa19v1 = locals.getEventTotal.vancouver.va19.regFee;
@@ -598,6 +624,10 @@ promise.then(function(db) {
                                             var numberRegAb18v1 = Number(removeRegAb18v1.replace(/[^0-9\.-]+/g,""));
                                             var numberRegAb18v2 = Number(removeRegAb18v2.replace(/[^0-9\.-]+/g,""));
                                             
+                                            var numberVa20v1 = Number(removeDollarVa20v1.replace(/[^0-9\.-]+/g,""));
+                                            var numberVa20v2 = Number(removeDollarVa20v2.replace(/[^0-9\.-]+/g,""));
+                                            var numberRegVa20v1 = Number(removeRegVa20v1.replace(/[^0-9\.-]+/g,""));
+                                            var numberRegVa20v2 = Number(removeRegVa20v2.replace(/[^0-9\.-]+/g,""));
                                             var numberVa19v1 = Number(removeDollarVa19v1.replace(/[^0-9\.-]+/g,""));
                                             var numberVa19v2 = Number(removeDollarVa19v2.replace(/[^0-9\.-]+/g,""));
                                             var numberRegVa19v1 = Number(removeRegVa19v1.replace(/[^0-9\.-]+/g,""));
@@ -738,6 +768,14 @@ promise.then(function(db) {
 
                                             
                                             // Vancouver
+                                            var va20DonationSub = numberVa20v1 - numberVa20v2;
+                                            var va20RfiSub = locals.getEventTotal.vancouver.va20.rfi - data.va20RFI;
+                                            var va20RegSub = numberRegVa20v1 - numberRegVa20v2;
+                                            var va20CrewSub = locals.getEventTotal.vancouver.va20.crews - data.va20Crews;
+                                            var va20RiderSub = locals.getEventTotal.vancouver.va20.riders - data.va20Riders;
+                                            var va20VRDailySub = locals.getEventTotal.vancouver.va20.virtual - data.va20VR;
+                                            var va20TotalParticipants = parseFloat(locals.getEventTotal.vancouver.va20.riders) + parseFloat(locals.getEventTotal.vancouver.va20.riders2);
+
                                             var va19DonationSub = numberVa19v1 - numberVa19v2;
                                             var va19RfiSub = locals.getEventTotal.vancouver.va19.rfi - data.va19RFI;
                                             var va19RegSub = numberRegVa19v1 - numberRegVa19v2;
@@ -827,6 +865,8 @@ promise.then(function(db) {
                                             var newAb17DonDaily = '$' + ab17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newAbRegDaily = '$' + ab18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             
+                                            var newVa20DonDaily = '$' + va20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");   
+                                            var newVa20RegDaily = '$' + va20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newVa19DonDaily = '$' + va19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");   
                                             var newVa19RegDaily = '$' + va19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                                             var newVaDonDaily = '$' + va18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -978,6 +1018,18 @@ promise.then(function(db) {
                                                 ab17Riders: locals.getEventTotal.alberta.ab17.riders,
                                                 ab17VR: locals.getEventTotal.alberta.ab17.virtual,
                                                 
+                                                // Vancouver 2020
+                                                va20Donations: locals.getEventTotal.vancouver.va20.totalDonation,
+                                                va20RegFee: locals.getEventTotal.vancouver.va20.regFee,
+                                                va20Crews: locals.getEventTotal.vancouver.va20.crews,
+                                                va20RFI: locals.getEventTotal.vancouver.va20.rfi,
+                                                va20Riders: locals.getEventTotal.vancouver.va20.riders,
+                                                va20VR: locals.getEventTotal.vancouver.va20.virtual,
+                                                va20Rider2: locals.getEventTotal.vancouver.va20.riders2,
+                                                va20OneDay: locals.getEventTotal.vancouver.va20.oneday,
+                                                va20OneDay2: locals.getEventTotal.vancouver.va20.oneday2,
+                                                va20TotalParticipants: va20TotalParticipants,
+
                                                 // Vancouver 2019
                                                 va19Donations: locals.getEventTotal.vancouver.va19.totalDonation,
                                                 va19RegFee: locals.getEventTotal.vancouver.va19.regFee,
@@ -1180,6 +1232,14 @@ promise.then(function(db) {
                                                 
                                                 // Alberta 2017 Daily
                                                 ab17DonDaily: newAb17DonDaily,
+                                                
+                                                // Vancouver 2020 Daily
+                                                va20DonDaily: newVa20DonDaily,
+                                                va20RegFeeDaily: newVa20RegDaily,
+                                                va20RFIDaily: va20RfiSub,
+                                                va20CrewDaily: va20CrewSub,
+                                                va20RidersDaily: va20RiderSub,
+                                                va20VRDaily: va20VRDailySub,
                                                 
                                                 // Vancouver 2019 Daily
                                                 va19DonDaily: newVa19DonDaily,
