@@ -499,7 +499,7 @@ router.get('/data', function(req, res) {
 				                                            // OneWalk
 				                                            var owto20DonationSub = numberOwTo20v1 - numberOwTo20v2;
 													        var owto20RegSub = numberRegOwTo20v1 - numberRegOwTo20v2;
-													        var owto20RfiSub = parseFloat(locals2.getEventTotal.toronto.to20.rfi;
+													        var owto20RfiSub = parseFloat(locals2.getEventTotal.toronto.to20.rfi);
 													        var owto20TotalWalkers = parseFloat(owTo20NightWalkers) + parseFloat(owTo2025kmWalkers) + parseFloat(owTo202day);
 													        var owto20VirtualDailySub = locals2.getEventTotal.toronto.to20.virtual - yesterday[0].owTo20VR;
 													        var owto20WalkersDailySub = owto20TotalWalkers - yesterday[0].owTo20Walkers;
