@@ -779,7 +779,7 @@ router.get('/data', function(req, res) {
 			                                                // ONEWALK - Toronto - 2020
 			                                                latestdata.owTo20Donations = locals2.getEventTotal.toronto.to20.totalDonation;
 			                                                latestdata.owTo20RegFee = locals2.getEventTotal.toronto.to20.regFee;
-			                                                latestdata.owTo20RFI = owTo20rfiTotal;
+			                                                latestdata.owTo20RFI = owto20RfiSub;
 			                                                latestdata.owTo20Crews = locals2.getEventTotal.toronto.to20.crews;
 			                                                latestdata.owTo20VR = locals.getEventTotal.toronto.to20.virtual;
 			                                                latestdata.owTo20Walkers = owto20TotalWalkers;

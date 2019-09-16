@@ -1113,7 +1113,7 @@ promise.then(function(db) {
                                                 // OneWalk 2020
                                                 owTo20Donations: locals2.getEventTotal.toronto.to20.totalDonation,
                                                 owTo20RegFee: locals2.getEventTotal.toronto.to20.regFee,
-                                                owTo20RFI: owTo20rfiTotal,
+                                                owTo20RFI: owto20RfiSub,
                                                 owTo20Crews: locals2.getEventTotal.toronto.to20.crews,
                                                 owTo20VR: locals2.getEventTotal.toronto.to20.virtual,
                                                 owTo20Walkers: owto20TotalWalkers,
