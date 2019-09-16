@@ -30,12 +30,12 @@
       </thead>
       <tbody>
         <tr>
-          <td>2019 (TODAY)</td>
-          <td>{{dataService.data.owto19WalkersDaily}}</td>
-          <td>{{dataService.data.owto19NightWalkersDaily}}</td>
-          <td>{{dataService.data.owto192dayDaily}}</td>
+          <td>2020 (TODAY)</td>
+          <td>{{dataService.data.owto20WalkersDaily}}</td>
+          <td>{{dataService.data.owto20NightWalkersDaily}}</td>
+          <td>{{dataService.data.owto202dayDaily}}</td>
           <td>x</td>
-          <td>{{dataService.data.owto1925kmWalkersDaily}}</td>
+          <td>{{dataService.data.owto2025kmWalkersDaily}}</td>
           <td> </td>
         </tr>
         <tr>
@@ -98,11 +98,11 @@
       </thead>
       <tbody>
         <tr>
-          <td>2019 (TODAY)</td>
-          <td>{{dataService.data.owto19RFIDaily}}</td>
-          <td>{{dataService.data.owto19CrewsDaily}}</td>
-          <td>{{dataService.data.owto19DonDaily}}</td>
-          <td>{{dataService.data.owto19RegDaily}}</td>
+          <td>2020 (TODAY)</td>
+          <td>{{dataService.data.owto20RFIDaily}}</td>
+          <td>{{dataService.data.owto20CrewsDaily}}</td>
+          <td>{{dataService.data.owto20DonDaily}}</td>
+          <td>{{dataService.data.owto20RegDaily}}</td>
         </tr>
         <tr>
           <td>2019 (YTD)</td>
@@ -185,6 +185,15 @@
       </thead>
       <tbody>
       <tr>
+        <td>2020</td>
+        <td>{{dataService.allData[0]?.owTo20Walkers}}</td>
+        <td>{{dataService.allData[0]?.owTo20NightWalkers}}</td>
+        <td>{{dataService.allData[0]?.owTo202day}}</td>
+        <td>{{dataService.allData[0]?.owTo2015kmWalkers}}</td>
+        <td>{{dataService.allData[0]?.owTo2025kmWalkers}}</td>
+        <td>{{dataService.allData[0]?.owTo2040kmWalkers}}</td>
+      </tr>  
+      <tr>
         <td>2019</td>
         <td>{{dataService.allData[0]?.owTo19Walkers}}</td>
         <td>{{dataService.allData[0]?.owTo19NightWalkers}}</td>
@@ -244,6 +253,13 @@
       </tr>
       </thead>
       <tbody>
+      <tr>
+        <td>2020</td>
+        <td>{{dataService.allData[0]?.owTo20RFI}}</td>
+        <td>{{dataService.allData[0]?.owTo20Crews}}</td>
+        <td>{{dataService.allData[0]?.owTo20Donations}}</td>
+        <td>{{dataService.allData[0]?.owTo20RegFee}}</td>
+      </tr>  
       <tr>
         <td>2019</td>
         <td>{{dataService.allData[0]?.owTo19RFI}}</td>

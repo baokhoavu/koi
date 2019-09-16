@@ -43,7 +43,7 @@ router.get('/data', function(req, res) {
 			            var locals = JSON.parse(body);
 			            console.log(locals)
 			            
-			            var apiOneWalk = 'http://www.onewalk.ca/site/PageServer?pagename=api_data&pgwrap=n';
+			            var apiOneWalk = 'http://secure.weekendtoconquercancer.ca/site/PageServer?pagename=api_data&pgwrap=n';
 			            request(apiOneWalk, function(err, response, body) {
 			                if (!err && response.statusCode == 200) {
 			                    var locals2 = JSON.parse(body);
@@ -171,7 +171,15 @@ router.get('/data', function(req, res) {
 				                                            var removeRegPr17v1 = latestdata.pr17RegFee; 
 				                                            var removeRegPr17v2 = yesterday[0].pr17RegFee; 
 
-
+				                                            // =========================== OneWalk Toronto 2020 =========================== //
+				                                            var removeDollarOwTo20v1 = latestdata.owTo20Donations;
+				                                            var removeDollarOwTo20v2 = yesterday[0].owTo20Donations;
+				                                            var removeRegOwTo20v1 = latestdata.owTo20RegFee;
+				                                            var removeRegOwTo20v2 = yesterday[0].owTo20RegFee;
+				                                            var owTo2025kmWalkers = locals2.getEventTotal.toronto.to20.Wlkr25km;  
+				                                            var owTo2040kmWalkers = locals2.getEventTotal.toronto.to20.Wlkr40km;  
+				                                            var owTo20NightWalkers = locals2.getEventTotal.toronto.to20.nightWlk;
+				                                            var owTo202day = locals2.getEventTotal.toronto.to20.twoDayWlk;
 				                                            
 				                                            // =========================== OneWalk Toronto 2019 =========================== //
 				                                            var removeDollarOwTo19v1 = latestdata.owTo19Donations;
@@ -292,7 +300,8 @@ router.get('/data', function(req, res) {
 				                                            var numberRegVa18v1 = Number(removeRegVa18v1.replace(/[^0-9\.-]+/g,""));
 				                                            var numberRegVa18v2 = Number(removeRegVa18v2.replace(/[^0-9\.-]+/g,""));
 				                                            
-
+				                                            var numberOwTo20v1 = Number(removeDollarOwTo20v1.replace(/[^0-9\.-]+/g,""));
+                                            				var numberOwTo20v2 = Number(removeDollarOwTo20v2.replace(/[^0-9\.-]+/g,"")); 
 				                                            var numberOwTo19v1 = Number(removeDollarOwTo19v1.replace(/[^0-9\.-]+/g,""));
                                             				var numberOwTo19v2 = Number(removeDollarOwTo19v2.replace(/[^0-9\.-]+/g,"")); 
 				                                            var numberOwTo18v1 = Number(removeDollarOwTo18v1.replace(/[^0-9\.-]+/g,""));
@@ -486,6 +495,19 @@ router.get('/data', function(req, res) {
 
 				                                            
 				                                            // OneWalk
+				                                            var owto20DonationSub = numberOwTo20v1 - numberOwTo20v2;
+													        var owto20RegSub = numberRegOwTo20v1 - numberRegOwTo20v2;
+													        var owto20RfiSub = ( parseFloat(locals2.getEventTotal.toronto.to20.rfi) + parseFloat(locals2.getEventTotal.toronto.to20.rfinight) + parseFloat(locals2.getEventTotal.toronto.to20.rfinightfb) + parseFloat(locals2.getEventTotal.toronto.to20.rfiday) + parseFloat(locals2.getEventTotal.toronto.to20.rfidayfb) ) - yesterday[0].owTo20RFI;
+													        var owto20CrewsDailySub = locals2.getEventTotal.toronto.to20.crews - yesterday[0].owTo20Crews;
+													        var owto20TotalWalkers = parseFloat(owTo20NightWalkers) + parseFloat(owTo2025kmWalkers) + parseFloat(owTo202day);
+													        var owto20VirtualDailySub = locals2.getEventTotal.toronto.to20.virtual - yesterday[0].owTo20VR;
+													        var owto20WalkersDailySub = owto20TotalWalkers - yesterday[0].owTo20Walkers;
+													        var owTo2025kmWalkersDailySub = locals2.getEventTotal.toronto.to20.Wlkr25km - yesterday[0].owTo2025kmWalkers;
+													        var owTo2040kmWalkersDailySub = locals2.getEventTotal.toronto.to20.Wlkr40km - yesterday[0].owTo2040kmWalkers;
+													        var owTo20NightWalkersDailySub = locals2.getEventTotal.toronto.to20.nightWlk - yesterday[0].owTo20NightWalkers;
+													        var owTo202dayDailySub = locals2.getEventTotal.toronto.to20.twoDayWlk - yesterday[0].owTo202day;
+													        var owTo20rfiTotal = parseFloat(locals2.getEventTotal.toronto.to20.rfi) + parseFloat(locals2.getEventTotal.toronto.to20.rfinight) + parseFloat(locals2.getEventTotal.toronto.to20.rfinightfb) + parseFloat(locals2.getEventTotal.toronto.to20.rfiday) + parseFloat(locals2.getEventTotal.toronto.to20.rfidayfb);
+
 				                                            var owto19DonationSub = numberOwTo19v1 - numberOwTo19v2;
 													        var owto19RegSub = numberRegOwTo19v1 - numberRegOwTo19v2;
 													        var owto19RfiSub = ( parseFloat(locals2.getEventTotal.toronto.to19.rfi) + parseFloat(locals2.getEventTotal.toronto.to19.rfinight) + parseFloat(locals2.getEventTotal.toronto.to19.rfinightfb) + parseFloat(locals2.getEventTotal.toronto.to19.rfiday) + parseFloat(locals2.getEventTotal.toronto.to19.rfidayfb) ) - yesterday[0].owTo19RFI;
@@ -570,6 +592,8 @@ router.get('/data', function(req, res) {
 				                                            var newVa17DonDaily = '$' + va17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newVaRegDaily = '$' + va18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
+				                                            var newOwTo20DonDaily = '$' + owto20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+				        									var newOwTo20RegDaily = '$' + owto20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newOwTo19DonDaily = '$' + owto19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				        									var newOwTo19RegDaily = '$' + owto19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 				                                            var newOwToDonDaily = '$' + owto18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -750,6 +774,18 @@ router.get('/data', function(req, res) {
 			                                                latestdata.va17Riders = locals.getEventTotal.vancouver.va17.riders;
 			                                                latestdata.va17VR = locals.getEventTotal.vancouver.va17.virtual;
 			                                                
+			                                                // ONEWALK - Toronto - 2020
+			                                                latestdata.owTo20Donations = locals2.getEventTotal.toronto.to20.totalDonation;
+			                                                latestdata.owTo20RegFee = locals2.getEventTotal.toronto.to20.regFee;
+			                                                latestdata.owTo20RFI = owTo20rfiTotal;
+			                                                latestdata.owTo20Crews = locals2.getEventTotal.toronto.to20.crews;
+			                                                latestdata.owTo20VR = locals.getEventTotal.toronto.to20.virtual;
+			                                                latestdata.owTo20Walkers = owto20TotalWalkers;
+			                                                latestdata.owTo2025kmWalkers = owTo2025kmWalkers;
+			                                                latestdata.owTo2040kmWalkers = owTo2040kmWalkers;
+			                                                latestdata.owTo20NightWalkers = owTo20NightWalkers;
+			                                                latestdata.owTo202day = owTo202day;
+
 			                                                // ONEWALK - Toronto - 2019
 			                                                latestdata.owTo19Donations = locals2.getEventTotal.toronto.to19.totalDonation;
 			                                                latestdata.owTo19RegFee = locals2.getEventTotal.toronto.to19.regFee;
@@ -972,6 +1008,19 @@ router.get('/data', function(req, res) {
 			                                                latestdata.va17DonDaily = newVa17DonDaily;
 
 			                                                // DAILY - ONEWALK - Toronto
+
+			                                                // -- 2020
+			                                                latestdata.owto20DonDaily = newOwTo20DonDaily;
+			                                                latestdata.owto20RegDaily = newOwTo20RegDaily;
+			                                                latestdata.owto20RFIDaily = owto20RfiSub;
+			                                                latestdata.owto20WalkersDaily = owto20WalkersDailySub;
+			                                                latestdata.owto202dayDaily = owTo202dayDailySub,
+														    latestdata.owto20NightWalkersDaily = owTo20NightWalkersDailySub,
+														    latestdata.owto2025kmWalkersDaily = owTo2025kmWalkersDailySub,
+														    latestdata.owto2040kmWalkersDaily = owTo2040kmWalkersDailySub,
+			                                                latestdata.owto20CrewsDaily = owto20CrewsDailySub;
+			                                                latestdata.owto20VRDaily = owto20VirtualDailySub;
+
 			                                                // -- 2019
 			                                                latestdata.owto19DonDaily = newOwTo19DonDaily;
 			                                                latestdata.owto19RegDaily = newOwTo19RegDaily;
