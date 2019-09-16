@@ -680,6 +680,8 @@ promise.then(function(db) {
                                             var numberOwTo18v2 = Number(removeDollarOwTo18v2.replace(/[^0-9\.-]+/g,""));
                                             var numberOwTo17v1 = Number(removeDollarOwTo17v1.replace(/[^0-9\.-]+/g,""));
                                             var numberOwTo17v2 = Number(removeDollarOwTo17v2.replace(/[^0-9\.-]+/g,""));
+                                            var numberRegOwTo20v1 = Number(removeRegOwTo20v1.replace(/[^0-9\.-]+/g,""));
+                                            var numberRegOwTo20v2 = Number(removeRegOwTo20v2.replace(/[^0-9\.-]+/g,""));
                                             var numberRegOwTo19v1 = Number(removeRegOwTo19v1.replace(/[^0-9\.-]+/g,""));
                                             var numberRegOwTo19v2 = Number(removeRegOwTo19v2.replace(/[^0-9\.-]+/g,""));
                                             var numberRegOwTo18v1 = Number(removeRegOwTo18v1.replace(/[^0-9\.-]+/g,""));
