@@ -23,8 +23,8 @@ export class SignupComponent implements OnInit {
 			this.myForm.value.lastName
 		);
 		this.authService.signup(user).subscribe(
-			(data) => console.log(data),
-			(error) => console.error(error)
+			() => {},
+			(error) => console.error('Signup error:', error)
 		);
 		this.myForm.reset();
 	}

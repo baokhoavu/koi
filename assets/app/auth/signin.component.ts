@@ -32,9 +32,8 @@ export class SigninComponent {
 				});
 				// this.snackBar.dismiss();
 				this.router.navigateByUrl('/alltables');
-				console.log(data.userId);
 			},
-			(error) => console.error(error)
+			(error) => console.error('Signin error:', error)
 		);
 		this.myForm.reset();
 	}

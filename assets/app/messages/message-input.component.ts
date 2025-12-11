@@ -17,14 +17,14 @@ export class MessageInputComponent implements OnInit {
 		if (this.message) {
 			// Edit
 			this.message.content = form.value.content;
-			this.messageService.updateMessage(this.message).subscribe((result) => console.log(result));
+			this.messageService.updateMessage(this.message).subscribe();
 			this.message = null;
 		} else {
 			// Create
 			const message = new Message(form.value.content, 'Max');
 			this.messageService.addMessage(message).subscribe(
-				(data) => console.log(data),
-				(error) => console.error(error)
+				() => {},
+				(error) => console.error('Error adding message:', error)
 			);
 		}
 		form.resetForm();
