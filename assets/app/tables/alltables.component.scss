@@ -1,4 +1,34 @@
 
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+
+/* Spinner animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Use Ride (Toronto) gradient styles for All Events tables */
+.table-responsive.all-table {
+    background: -webkit-linear-gradient(top, #256cc4, #25b7c4);
+    background: linear-gradient(to top, #256cc4, #25b7c4);
+    font-family: 'Roboto', sans-serif;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.table-responsive.all-table h3 {
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.table-responsive.all-table p {
+    color: #dadada;
+    margin-bottom: 15px !important;
+    font-size: 13px;
+}
+
 .data-json {
     list-style: none;
     font-weight: 700;
@@ -33,9 +63,16 @@ tr > td {
     text-align: center;
 }
 
-tr.data-json td {
-    color: #000;
+.all-table tr.data-json td {
+    color: #fff !important;
     text-align: center;
+    font-weight: 700;
+}
+
+.all-table tr.data-json td.koi-blue {
+    // background: #0075c9 !important;
+    color: #fff !important;
+    text-align: left;
     font-weight: 700;
 }
 
@@ -108,15 +145,6 @@ section{
 
 .tbl-hdr-mobile {
     display: none;
-}
-
-tr > td.koi-blue {
-    color: #0075c9;
-    text-align: left;
-}
-
-p {
-    margin-bottom: 0px !important;
 }
 
 .ow-to-table {
