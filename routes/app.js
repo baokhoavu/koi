@@ -6,11 +6,10 @@ var router = express.Router();
 
 // var db = mongoose.connection;
 
-
 router.get('/', function (req, res, next) {
-    res.render('index', {
-        test: 'Hi I am a test!!!!'
-    });
+	res.render('index', {
+		test: 'Hi I am a test!!!!'
+	});
 });
 
 module.exports = router;
