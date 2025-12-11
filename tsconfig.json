@@ -11,6 +11,8 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "useDefineForClassFields": false,
+    "sourceMap": false,
+    "inlineSourceMap": false,
     "types": ["node", "jquery"],
     "typeRoots": ["node_modules/@types"],
     "outDir": "./dist",
@@ -24,6 +26,8 @@
   "angularCompilerOptions": {
     "strictTemplates": false,
     "strictInjectionParameters": false,
-    "enableI18nLegacyMessageIdFormat": false
+    "enableI18nLegacyMessageIdFormat": false,
+    "disableTypeScriptVersionCheck": true,
+    "suppressOutputPathCheck": true
   }
 }
