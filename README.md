@@ -41,6 +41,55 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
+## Mock Data & Development Mode
+
+### Mock Login Credentials
+
+For development without MongoDB, the application supports mock authentication using credentials stored in the `.env` file:
+
+**Default Mock Credentials:**
+- **Email:** `admin@koi.com`
+- **Password:** `koi2025`
+
+These credentials are defined in `.env`:
+```
+MOCK_USER_EMAIL=admin@koi.com
+MOCK_USER_PASSWORD=koi2025
+MOCK_USER_FIRSTNAME=Koi
+MOCK_USER_LASTNAME=Admin
+MOCK_USER_ID=mock-user-12345
+```
+
+**Security Note:** Mock credentials are for development only. Never commit real user credentials to `.env` or version control.
+
+### Mock API Data
+
+The application includes comprehensive mock data for all events:
+- **Toronto RTCC** (2017-2020)
+- **Montreal RTCC** (2017-2020)
+- **Alberta RTCC** (2017-2020)
+- **Vancouver RTCC** (2017-2020)
+- **OneWalk Toronto** (2017-2020)
+- **Perth RTCC** (2017-2018)
+- **Melbourne One Day** (2017-2018)
+- **Brisbane One Day** (2017-2018)
+
+### Locale Filtering
+
+The application supports filtering data by locale. Available API endpoints:
+
+- `GET /api/data` - Returns all event data
+- `GET /api/locales` - Returns metadata for all available locales
+- `GET /api/data/:locale` - Returns filtered data for a specific locale (e.g., `/api/data/toronto`)
+
+### Table Display Options
+
+After logging in, you can view:
+- **All Tables** - Display data from all events
+- **Individual Locale Tables** - Filter by Toronto, Montreal, Alberta, Vancouver, Perth, Melbourne, Brisbane, or OneWalk Toronto
+
+Use the table menu buttons in the header to switch between different locale views.
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

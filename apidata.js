@@ -6,7 +6,7 @@ const moment = require('moment');
 const axios = require('axios');
 var ApiData = require('./models/apidata');
 
-mongoose.set('useCreateIndex', true);
+// mongoose.set('useCreateIndex', true); // Deprecated in Mongoose 6+
 mongoose.Promise = require('bluebird');
 
 const mongodbUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/koi';

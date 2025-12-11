@@ -19,27 +19,19 @@ var app = express();
 // var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
 //                 replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
 
-var mongodbUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/koi';
-
-// Connection with environment variable for security
-
-// mongoose.connect(mongodbUri, options, {useMongoClient: true});
-
-mongoose.set('useCreateIndex', true);
+// MongoDB Configuration
 mongoose.Promise = require('bluebird');
-// Using `mongoose.connect`...
-var promise = mongoose.connect(mongodbUri, {
-	useNewUrlParser: true
-	/* other options */
-});
 
-promise
-	.then(function (db) {
-		console.log('MongoDB connected successfully');
-	})
-	.catch(function (err) {
-		console.error('MongoDB connection error:', err);
-	});
+// MongoDB connection temporarily disabled - using mock data for development
+// To re-enable: uncomment below and ensure MONGODB_URI is set in .env
+// var mongodbUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/koi';
+// mongoose.connect(mongodbUri)
+// 	.then(function (db) {
+// 		console.log('MongoDB connected successfully');
+// 	})
+// 	.catch(function (err) {
+// 		console.error('MongoDB connection error:', err);
+// 	});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
