@@ -7,7 +7,8 @@ const moment = _moment;
 @Component({
 	selector: 'app-perth',
 	templateUrl: './perth.component.html',
-	styleUrls: ['./perth.component.scss']
+	styleUrls: ['./perth.component.scss'],
+	standalone: false
 })
 export class PerthComponent {
 	// Date picker variables
@@ -20,7 +21,7 @@ export class PerthComponent {
 
 	data: any;
 
-	constructor(private dataService: DataService) {
+	constructor(public dataService: DataService) {
 		this.dataService.fetchData();
 	}
 
@@ -32,3 +33,4 @@ export class PerthComponent {
 		this.datePickerSelected = true;
 	}
 }
+

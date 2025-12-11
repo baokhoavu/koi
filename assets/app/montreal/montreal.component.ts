@@ -7,7 +7,8 @@ const moment = _moment;
 @Component({
 	selector: 'app-montreal',
 	templateUrl: './montreal.component.html',
-	styleUrls: ['./montreal.component.scss']
+	styleUrls: ['./montreal.component.scss'],
+	standalone: false
 })
 export class MontrealComponent {
 	// Date picker variables
@@ -20,7 +21,7 @@ export class MontrealComponent {
 
 	data: any;
 
-	constructor(private dataService: DataService) {
+	constructor(public dataService: DataService) {
 		this.dataService.fetchData();
 	}
 
@@ -32,3 +33,4 @@ export class MontrealComponent {
 		this.datePickerSelected = true;
 	}
 }
+

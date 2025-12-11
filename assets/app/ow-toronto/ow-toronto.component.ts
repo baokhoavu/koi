@@ -7,7 +7,8 @@ const moment = _moment;
 @Component({
 	selector: 'app-ow-toronto',
 	templateUrl: './ow-toronto.component.html',
-	styleUrls: ['./ow-toronto.component.scss']
+	styleUrls: ['./ow-toronto.component.scss'],
+	standalone: false
 })
 export class OWTorontoComponent {
 	// Date picker variables
@@ -20,7 +21,7 @@ export class OWTorontoComponent {
 
 	data: any;
 
-	constructor(private dataService: DataService) {
+	constructor(public dataService: DataService) {
 		this.dataService.fetchData();
 	}
 
@@ -32,3 +33,4 @@ export class OWTorontoComponent {
 		this.datePickerSelected = true;
 	}
 }
+

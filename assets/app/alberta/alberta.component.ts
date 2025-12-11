@@ -8,7 +8,8 @@ const moment = _moment;
 @Component({
 	selector: 'app-alberta',
 	templateUrl: './alberta.component.html',
-	styleUrls: ['./alberta.component.scss']
+	styleUrls: ['./alberta.component.scss'],
+	standalone: false
 })
 export class AlbertaComponent implements OnInit, AfterViewInit {
 	@ViewChild('datePicker') datePicker: ElementRef;
@@ -22,7 +23,7 @@ export class AlbertaComponent implements OnInit, AfterViewInit {
 	myDate: string;
 	datePickerSelected: boolean = false;
 
-	constructor(private dataService: DataService) {}
+	constructor(public dataService: DataService) {}
 
 	ngOnInit() {
 		this.dataService.fetchData();
@@ -42,3 +43,4 @@ export class AlbertaComponent implements OnInit, AfterViewInit {
 		this.datePickerSelected = true;
 	}
 }
+

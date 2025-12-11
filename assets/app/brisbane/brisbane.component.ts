@@ -7,7 +7,8 @@ const moment = _moment;
 @Component({
 	selector: 'app-brisbane',
 	templateUrl: './brisbane.component.html',
-	styleUrls: ['./brisbane.component.scss']
+	styleUrls: ['./brisbane.component.scss'],
+	standalone: false
 })
 export class BrisbaneComponent {
 	// Date picker variables
@@ -20,7 +21,7 @@ export class BrisbaneComponent {
 
 	data: any;
 
-	constructor(private dataService: DataService) {
+	constructor(public dataService: DataService) {
 		this.dataService.fetchData();
 	}
 
@@ -32,3 +33,4 @@ export class BrisbaneComponent {
 		this.datePickerSelected = true;
 	}
 }
+
