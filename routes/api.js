@@ -1,1157 +1,592 @@
-var mongoose = require('mongoose');
-var request = require('request');
-// var fixieRequest = request.defaults({'proxy': process.env.FIXIE_URL});
+/**
+ * API Routes for Koi Application
+ * 
+ * This file handles data endpoints for the application.
+ * Currently configured to use mock data for development purposes.
+ * 
+ * ORIGINAL APPROACH (MongoDB with Real-time API Integration):
+ * The original implementation queried MongoDB to compare yesterday's data with today's data,
+ * calculated daily deltas, made real API calls to external services, and saved results back to MongoDB.
+ * This approach was ideal for production with a live database and real-time data tracking.
+ * 
+ * CURRENT APPROACH (Mock Data for Development):
+ * Using static mock data to enable development and testing without requiring:
+ * - MongoDB database connection
+ * - External API credentials and access
+ * - Complex data processing and calculations
+ * 
+ * TO RESTORE ORIGINAL APPROACH:
+ * 1. Uncomment the mongoose imports and connection code
+ * 2. Uncomment the original route implementation below
+ * 3. Comment out or remove the current mock data implementation
+ * 4. Ensure MongoDB is running and MONGODB_URI is set in .env
+ * 5. Verify external API credentials are configured
+ * 6. Update Mongoose queries to use async/await instead of callbacks (Mongoose 8.x requirement)
+ */
+
 var express = require('express');
 var moment = require('moment');
 var router = express.Router();
-var data = require('../models/apidata');
+var { mockApiData, localeMetadata, getCurrentDynamicData, getDailyIncrements } = require('./mockData');
 
-mongoose.set('useCreateIndex', true);
-mongoose.Promise = require('bluebird');
-// mongoose.connect('mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw/node-angular');
-var mongodbUri = 'mongodb://heroku_q1rgmlhw:6i8hl61vlc9g6ikqjcijmgscpv@ds157614.mlab.com:57614/heroku_q1rgmlhw';
+// ============================================================================
+// ORIGINAL DATABASE APPROACH (COMMENTED OUT)
+// ============================================================================
+// This section contains the original implementation that used MongoDB and
+// external API calls to fetch, process, and store live data with daily calculations.
+//
+// var mongoose = require('mongoose');
+// var axios = require('axios');
+// var data = require('../models/apidata');
+//
+// // MongoDB Configuration
+// mongoose.Promise = require('bluebird');
+// const mongodbUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/koi-test';
+// mongoose.connect(mongodbUri)
+// 	.then(() => console.log('MongoDB connected'))
+// 	.catch(err => console.error('MongoDB error:', err));
+//
+// router.get('/data', async function (req, res) {
+// 	console.log('Requesting data...');
+// 	try {
+// 		// Step 1: Fetch yesterday's data from MongoDB for comparison
+// 		const yesterday = await data
+// 			.find({ updated: moment().subtract(1, 'days').format('L') })
+// 			.exec();
+// 		
+// 		if (!yesterday || yesterday.length < 1) {
+// 			console.log('Error getting data... It does not exist');
+// 		}
+//
+// 		if (yesterday && yesterday.length > 0) {
+// 			console.log("Pulling yesterday's data! Date: " + yesterday[0].updated);
+//
+// 			// Step 2: Make external API calls to fetch current data
+// 			// const conquercancerResponse = await axios.get(CONQUERCANCER_API_URL);
+// 			// const onewalkResponse = await axios.get(ONEWALK_API_URL);
+// 			// const conquercancerAUResponse = await axios.get(CONQUERCANCER_AU_API_URL);
+// 			// const onedayAUResponse = await axios.get(ONEDAY_AU_API_URL);
+// 			//
+// 			// var locals = conquercancerResponse.data;
+// 			// var locals2 = onewalkResponse.data;
+// 			// var locals3 = conquercancerAUResponse.data;
+// 			// var locals4 = onedayAUResponse.data;
+//
+// 			try {
+// 				// Step 3: Find or create today's data entry
+// 				const latestdata = await data
+// 					.findOne({ updated: moment().format('L') })
+// 					.exec();
+// 				
+// 				if (latestdata) {
+// 					console.log('Getting latest data! Date: ' + latestdata);
+//
+// 					// Step 4: Extract values from both datasets for comparison
+// 					// Example: Toronto 2020 data extraction
+// 					// var removeDollarTo20v1 = latestdata.to20Donations;
+// 					// var removeDollarTo20v2 = yesterday[0].to20Donations;
+// 					// var removeRegTo20v1 = latestdata.to20RegFee;
+// 					// var removeRegTo20v2 = yesterday[0].to20RegFee;
+// 					// ... (repeat for all events and years)
+//
+// 					// Step 5: Convert currency strings to numbers for calculations
+// 					// var numberTo20v1 = Number(removeDollarTo20v1.replace(/[^0-9\.-]+/g, ''));
+// 					// var numberTo20v2 = Number(removeDollarTo20v2.replace(/[^0-9\.-]+/g, ''));
+// 					// ... (repeat for all monetary values)
+//
+// 					// Step 6: Calculate daily deltas (today minus yesterday)
+// 					// var to20DonationSub = numberTo20v1 - numberTo20v2;
+// 					// var to20RfiSub = locals.getEventTotal.toronto.to20.rfi - yesterday[0].to20RFI;
+// 					// var to20CrewSub = locals.getEventTotal.toronto.to20.crews - yesterday[0].to20Crews;
+// 					// var to20RiderSub = locals.getEventTotal.toronto.to20.riders - yesterday[0].to20Riders;
+// 					// ... (repeat for all metrics and events)
+//
+// 					// Step 7: Format calculated values back to currency strings
+// 					// var newTo20DonDaily = '$' + to20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+// 					// ... (repeat for all monetary calculations)
+//
+// 					// Step 8: Update latestdata object with all new values
+// 					// latestdata.updated = moment().format('L');
+// 					// latestdata.to20Donations = locals.getEventTotal.toronto.to20.totalDonation;
+// 					// latestdata.to20RegFee = locals.getEventTotal.toronto.to20.regFee;
+// 					// latestdata.to20DonDaily = newTo20DonDaily;
+// 					// latestdata.to20RFIDaily = to20RfiSub;
+// 					// ... (repeat for hundreds of fields across all events)
+//
+// 					// Step 9: Save updated data back to MongoDB
+// 					// await latestdata.save();
+// 					// console.log('Data saved to MongoDB!');
+// 				}
+// 			} catch (err) {
+// 				console.log("There was an error getting Today's data:");
+// 				console.log(err);
+// 			}
+// 		}
+//
+// 		// Step 10: Fetch and return the latest data to the client
+// 		const latestData = await data
+// 			.findOne()
+// 			.sort({ _id: -1 })
+// 			.exec();
+// 		
+// 		if (latestData) {
+// 			res.json(latestData);
+// 		} else {
+// 			console.log('No data found!');
+// 			res.json({});
+// 		}
+// 	} catch (err) {
+// 		console.log('Error getting data:');
+// 		console.log(err);
+// 		res.status(500).json({ error: 'Error fetching data' });
+// 	}
+// });
+//
+// Key differences in original approach:
+// - Required active MongoDB connection
+// - Fetched historical data for comparison
+// - Performed complex calculations for daily deltas
+// - Made external API calls to live services
+// - Stored processed results back to database
+// - Handled data for 15+ events across multiple years
+// - Calculated totals, participants, and various metrics
+// ============================================================================
 
-var promise = mongoose.connect(mongodbUri, {
-	useNewUrlParser: true
-	/* other options */
-});
-
-promise.then(function (db) {});
-
-// var db = mongoose.connection;
-
+// ============================================================================
+// CURRENT IMPLEMENTATION (Mock Data)
+// ============================================================================
 router.get('/data', function (req, res) {
 	console.log('Requesting data...');
-	// Find data from yesterday with MomentJS (subtract 1 from Today's date)
-	data
-		.find({ updated: moment().subtract(1, 'days').format('L') })
-		// .sort({"_id": -1})
-		.exec(function (err, yesterday) {
-			if (err) {
-				console.log('Error getting data..');
+	console.log('Using DYNAMIC mock data for development...');
+	
+	try {
+		// Using DYNAMIC mock data instead of database queries
+		// This data updates in real-time with random increments every 3-7 seconds
+		const dynamicData = getCurrentDynamicData();
+		const dailyIncrements = getDailyIncrements();
+		
+		var locals = dynamicData.conquercancer;
+		var locals2 = dynamicData.onewalk;
+		var locals3 = dynamicData.conquercancerAU;
+		var locals4 = dynamicData.onedayAU;
+
+		console.log('Dynamic mock data loaded successfully (live updates active)');
+
+		// Create a mock data object with all the expected fields
+		// All daily values come from the dynamic increment tracker (updates in real-time)
+		const mockResponse = {
+			updated: moment().format('L'),
+			// Toronto data
+			to20Donations: locals.getEventTotal.toronto.to20.donations,
+			to20RegFee: locals.getEventTotal.toronto.to20.regfee,
+			to20RFI: locals.getEventTotal.toronto.to20.rfi,
+			to20Crews: locals.getEventTotal.toronto.to20.crews,
+			to20Riders: locals.getEventTotal.toronto.to20.riders,
+			to20VR: locals.getEventTotal.toronto.to20.virtual,
+			to20TotalParticipants: locals.getEventTotal.toronto.to20.riders + locals.getEventTotal.toronto.to20.virtual + locals.getEventTotal.toronto.to20.crews,
+			to20RFIDaily: dailyIncrements.to20RFIDaily,
+			to20RidersDaily: dailyIncrements.to20RidersDaily,
+			to20VRDaily: dailyIncrements.to20VRDaily,
+			to20CrewDaily: dailyIncrements.to20CrewDaily,
+			to20DonDaily: dailyIncrements.to20DonDaily,
+			to20RegFeeDaily: dailyIncrements.to20RegFeeDaily,
+
+			to19Donations: locals.getEventTotal.toronto.to19.donations,
+			to19RegFee: locals.getEventTotal.toronto.to19.regfee,
+			to19RFI: locals.getEventTotal.toronto.to19.rfi,
+			to19Crews: locals.getEventTotal.toronto.to19.crews,
+			to19Riders: locals.getEventTotal.toronto.to19.riders,
+			to19VR: locals.getEventTotal.toronto.to19.virtual,
+			to19TotalParticipants: locals.getEventTotal.toronto.to19.riders + locals.getEventTotal.toronto.to19.virtual + locals.getEventTotal.toronto.to19.crews,
+			to19RFIDaily: dailyIncrements.to19RFIDaily,
+			to19RidersDaily: dailyIncrements.to19RidersDaily,
+			to19VRDaily: dailyIncrements.to19VRDaily,
+			to19CrewDaily: dailyIncrements.to19CrewDaily,
+			to19DonDaily: dailyIncrements.to19DonDaily,
+			to19RegFeeDaily: dailyIncrements.to19RegFeeDaily,
+
+			to18Donations: locals.getEventTotal.toronto.to18.donations,
+			to18RegFee: locals.getEventTotal.toronto.to18.regfee,
+			to18RFI: locals.getEventTotal.toronto.to18.rfi,
+			to18Crews: locals.getEventTotal.toronto.to18.crews,
+			to18Riders: locals.getEventTotal.toronto.to18.riders,
+			to18VR: locals.getEventTotal.toronto.to18.virtual,
+			to18TotalParticipants: locals.getEventTotal.toronto.to18.riders + locals.getEventTotal.toronto.to18.virtual + locals.getEventTotal.toronto.to18.crews,
+			to18RFIDaily: dailyIncrements.to18RFIDaily,
+			to18RidersDaily: dailyIncrements.to18RidersDaily,
+			to18VRDaily: dailyIncrements.to18VRDaily,
+			to18CrewDaily: dailyIncrements.to18CrewDaily,
+			to18DonDaily: dailyIncrements.to18DonDaily,
+			to18RegFeeDaily: dailyIncrements.to18RegFeeDaily,
+
+			to17Donations: locals.getEventTotal.toronto.to17.donations,
+			to17RegFee: locals.getEventTotal.toronto.to17.regfee,
+			to17RFI: locals.getEventTotal.toronto.to17.rfi,
+			to17Crews: locals.getEventTotal.toronto.to17.crews,
+			to17Riders: locals.getEventTotal.toronto.to17.riders,
+			to17VR: locals.getEventTotal.toronto.to17.virtual,
+			to17TotalParticipants: locals.getEventTotal.toronto.to17.riders + locals.getEventTotal.toronto.to17.virtual + locals.getEventTotal.toronto.to17.crews,
+			to17DonDaily: dailyIncrements.to17DonDaily,
+
+			// Montreal data
+			mo20Donations: locals.getEventTotal.montreal.mo20.donations,
+			mo20RegFee: locals.getEventTotal.montreal.mo20.regfee,
+			mo20RFI: locals.getEventTotal.montreal.mo20.rfi,
+			mo20Crews: locals.getEventTotal.montreal.mo20.crews,
+			mo20Riders: locals.getEventTotal.montreal.mo20.riders,
+			mo20VR: locals.getEventTotal.montreal.mo20.virtual,
+			mo20TotalParticipants: locals.getEventTotal.montreal.mo20.riders + locals.getEventTotal.montreal.mo20.virtual + locals.getEventTotal.montreal.mo20.crews,
+			mo20RFIDaily: dailyIncrements.mo20RFIDaily,
+			mo20RidersDaily: dailyIncrements.mo20RidersDaily,
+			mo20VRDaily: dailyIncrements.mo20VRDaily,
+			mo20CrewDaily: dailyIncrements.mo20CrewDaily,
+			mo20DonDaily: dailyIncrements.mo20DonDaily,
+			mo20RegFeeDaily: dailyIncrements.mo20RegFeeDaily,
+
+			mo19Donations: locals.getEventTotal.montreal.mo19.donations,
+			mo19RegFee: locals.getEventTotal.montreal.mo19.regfee,
+			mo19RFI: locals.getEventTotal.montreal.mo19.rfi,
+			mo19Crews: locals.getEventTotal.montreal.mo19.crews,
+			mo19Riders: locals.getEventTotal.montreal.mo19.riders,
+			mo19VR: locals.getEventTotal.montreal.mo19.virtual,
+			mo19TotalParticipants: locals.getEventTotal.montreal.mo19.riders + locals.getEventTotal.montreal.mo19.virtual + locals.getEventTotal.montreal.mo19.crews,
+			mo19RFIDaily: dailyIncrements.mo19RFIDaily,
+			mo19RidersDaily: dailyIncrements.mo19RidersDaily,
+			mo19VRDaily: dailyIncrements.mo19VRDaily,
+			mo19CrewDaily: dailyIncrements.mo19CrewDaily,
+			mo19DonDaily: dailyIncrements.mo19DonDaily,
+			mo19RegFeeDaily: dailyIncrements.mo19RegFeeDaily,
+
+			mo18Donations: locals.getEventTotal.montreal.mo18.donations,
+			mo18RegFee: locals.getEventTotal.montreal.mo18.regfee,
+			mo18RFI: locals.getEventTotal.montreal.mo18.rfi,
+			mo18Crews: locals.getEventTotal.montreal.mo18.crews,
+			mo18Riders: locals.getEventTotal.montreal.mo18.riders,
+			mo18VR: locals.getEventTotal.montreal.mo18.virtual,
+			mo18TotalParticipants: locals.getEventTotal.montreal.mo18.riders + locals.getEventTotal.montreal.mo18.virtual + locals.getEventTotal.montreal.mo18.crews,
+			mo18RFIDaily: dailyIncrements.mo18RFIDaily,
+			mo18RidersDaily: dailyIncrements.mo18RidersDaily,
+			mo18VRDaily: dailyIncrements.mo18VRDaily,
+			mo18CrewDaily: dailyIncrements.mo18CrewDaily,
+			mo18DonDaily: dailyIncrements.mo18DonDaily,
+			mo18RegFeeDaily: dailyIncrements.mo18RegFeeDaily,
+
+			mo17Donations: locals.getEventTotal.montreal.mo17.donations,
+			mo17RegFee: locals.getEventTotal.montreal.mo17.regfee,
+			mo17RFI: locals.getEventTotal.montreal.mo17.rfi,
+			mo17Crews: locals.getEventTotal.montreal.mo17.crews,
+			mo17Riders: locals.getEventTotal.montreal.mo17.riders,
+			mo17VR: locals.getEventTotal.montreal.mo17.virtual,
+			mo17TotalParticipants: locals.getEventTotal.montreal.mo17.riders + locals.getEventTotal.montreal.mo17.virtual + locals.getEventTotal.montreal.mo17.crews,
+			mo17DonDaily: dailyIncrements.mo17DonDaily,
+
+			// Alberta data
+			ab20Donations: locals.getEventTotal.alberta.ab20.donations,
+			ab20RegFee: locals.getEventTotal.alberta.ab20.regfee,
+			ab20RFI: locals.getEventTotal.alberta.ab20.rfi,
+			ab20Crews: locals.getEventTotal.alberta.ab20.crews,
+			ab20Riders: locals.getEventTotal.alberta.ab20.riders,
+			ab20VR: locals.getEventTotal.alberta.ab20.virtual,
+			ab20TotalParticipants: locals.getEventTotal.alberta.ab20.riders + locals.getEventTotal.alberta.ab20.virtual + locals.getEventTotal.alberta.ab20.crews,
+			ab20RFIDaily: dailyIncrements.ab20RFIDaily,
+			ab20RidersDaily: dailyIncrements.ab20RidersDaily,
+			ab20VRDaily: dailyIncrements.ab20VRDaily,
+			ab20CrewDaily: dailyIncrements.ab20CrewDaily,
+			ab20DonDaily: dailyIncrements.ab20DonDaily,
+			ab20RegFeeDaily: dailyIncrements.ab20RegFeeDaily,
+
+			ab19Donations: locals.getEventTotal.alberta.ab19.donations,
+			ab19RegFee: locals.getEventTotal.alberta.ab19.regfee,
+			ab19RFI: locals.getEventTotal.alberta.ab19.rfi,
+			ab19Crews: locals.getEventTotal.alberta.ab19.crews,
+			ab19Riders: locals.getEventTotal.alberta.ab19.riders,
+			ab19VR: locals.getEventTotal.alberta.ab19.virtual,
+			ab19TotalParticipants: locals.getEventTotal.alberta.ab19.riders + locals.getEventTotal.alberta.ab19.virtual + locals.getEventTotal.alberta.ab19.crews,
+			ab19RFIDaily: dailyIncrements.ab19RFIDaily,
+			ab19RidersDaily: dailyIncrements.ab19RidersDaily,
+			ab19VRDaily: dailyIncrements.ab19VRDaily,
+			ab19CrewDaily: dailyIncrements.ab19CrewDaily,
+			ab19DonDaily: dailyIncrements.ab19DonDaily,
+			ab19RegFeeDaily: dailyIncrements.ab19RegFeeDaily,
+
+			ab18Donations: locals.getEventTotal.alberta.ab18.donations,
+			ab18RegFee: locals.getEventTotal.alberta.ab18.regfee,
+			ab18RFI: locals.getEventTotal.alberta.ab18.rfi,
+			ab18Crews: locals.getEventTotal.alberta.ab18.crews,
+			ab18Riders: locals.getEventTotal.alberta.ab18.riders,
+			ab18VR: locals.getEventTotal.alberta.ab18.virtual,
+			ab18TotalParticipants: locals.getEventTotal.alberta.ab18.riders + locals.getEventTotal.alberta.ab18.virtual + locals.getEventTotal.alberta.ab18.crews,
+			ab18RFIDaily: dailyIncrements.ab18RFIDaily,
+			ab18RidersDaily: dailyIncrements.ab18RidersDaily,
+			ab18VRDaily: dailyIncrements.ab18VRDaily,
+			ab18CrewDaily: dailyIncrements.ab18CrewDaily,
+			ab18DonDaily: dailyIncrements.ab18DonDaily,
+			ab18RegFeeDaily: dailyIncrements.ab18RegFeeDaily,
+
+			ab17Donations: locals.getEventTotal.alberta.ab17.donations,
+			ab17RegFee: locals.getEventTotal.alberta.ab17.regfee,
+			ab17RFI: locals.getEventTotal.alberta.ab17.rfi,
+			ab17Crews: locals.getEventTotal.alberta.ab17.crews,
+			ab17Riders: locals.getEventTotal.alberta.ab17.riders,
+			ab17VR: locals.getEventTotal.alberta.ab17.virtual,
+			ab17TotalParticipants: locals.getEventTotal.alberta.ab17.riders + locals.getEventTotal.alberta.ab17.virtual + locals.getEventTotal.alberta.ab17.crews,
+			ab17DonDaily: dailyIncrements.ab17DonDaily,
+
+			// Vancouver data
+			va20Donations: locals.getEventTotal.vancouver.va20.donations,
+			va20RegFee: locals.getEventTotal.vancouver.va20.regfee,
+			va20RFI: locals.getEventTotal.vancouver.va20.rfi,
+			va20Crews: locals.getEventTotal.vancouver.va20.crews,
+			va20Riders: locals.getEventTotal.vancouver.va20.riders,
+			va20VR: locals.getEventTotal.vancouver.va20.virtual,
+			va20TotalParticipants: locals.getEventTotal.vancouver.va20.riders + locals.getEventTotal.vancouver.va20.virtual + locals.getEventTotal.vancouver.va20.crews,
+			va20RFIDaily: dailyIncrements.va20RFIDaily,
+			va20RidersDaily: dailyIncrements.va20RidersDaily,
+			va20VRDaily: dailyIncrements.va20VRDaily,
+			va20CrewDaily: dailyIncrements.va20CrewDaily,
+			va20DonDaily: dailyIncrements.va20DonDaily,
+			va20RegFeeDaily: dailyIncrements.va20RegFeeDaily,
+
+			va19Donations: locals.getEventTotal.vancouver.va19.donations,
+			va19RegFee: locals.getEventTotal.vancouver.va19.regfee,
+			va19RFI: locals.getEventTotal.vancouver.va19.rfi,
+			va19Crews: locals.getEventTotal.vancouver.va19.crews,
+			va19Riders: locals.getEventTotal.vancouver.va19.riders,
+			va19VR: locals.getEventTotal.vancouver.va19.virtual,
+			va19TotalParticipants: locals.getEventTotal.vancouver.va19.riders + locals.getEventTotal.vancouver.va19.virtual + locals.getEventTotal.vancouver.va19.crews,
+			va19RFIDaily: dailyIncrements.va19RFIDaily,
+			va19RidersDaily: dailyIncrements.va19RidersDaily,
+			va19VRDaily: dailyIncrements.va19VRDaily,
+			va19CrewDaily: dailyIncrements.va19CrewDaily,
+			va19DonDaily: dailyIncrements.va19DonDaily,
+			va19RegFeeDaily: dailyIncrements.va19RegFeeDaily,
+
+			va18Donations: locals.getEventTotal.vancouver.va18.donations,
+			va18RegFee: locals.getEventTotal.vancouver.va18.regfee,
+			va18RFI: locals.getEventTotal.vancouver.va18.rfi,
+			va18Crews: locals.getEventTotal.vancouver.va18.crews,
+			va18Riders: locals.getEventTotal.vancouver.va18.riders,
+			va18VR: locals.getEventTotal.vancouver.va18.virtual,
+			va18TotalParticipants: locals.getEventTotal.vancouver.va18.riders + locals.getEventTotal.vancouver.va18.virtual + locals.getEventTotal.vancouver.va18.crews,
+			va18RFIDaily: dailyIncrements.va18RFIDaily,
+			va18RidersDaily: dailyIncrements.va18RidersDaily,
+			va18VRDaily: dailyIncrements.va18VRDaily,
+			va18CrewDaily: dailyIncrements.va18CrewDaily,
+			va18DonDaily: dailyIncrements.va18DonDaily,
+			va18RegFeeDaily: dailyIncrements.va18RegFeeDaily,
+
+			va17Donations: locals.getEventTotal.vancouver.va17.donations,
+			va17RegFee: locals.getEventTotal.vancouver.va17.regfee,
+			va17RFI: locals.getEventTotal.vancouver.va17.rfi,
+			va17Crews: locals.getEventTotal.vancouver.va17.crews,
+			va17Riders: locals.getEventTotal.vancouver.va17.riders,
+			va17VR: locals.getEventTotal.vancouver.va17.virtual,
+			va17TotalParticipants: locals.getEventTotal.vancouver.va17.riders + locals.getEventTotal.vancouver.va17.virtual + locals.getEventTotal.vancouver.va17.crews,
+			va17DonDaily: dailyIncrements.va17DonDaily,
+
+			// OneWalk Toronto data
+			owto20Donations: locals2.getEventTotal.owto20.donations,
+			owto20RegFee: locals2.getEventTotal.owto20.regfee,
+			owto20RFI: locals2.getEventTotal.owto20.rfi,
+			owto20Walkers: locals2.getEventTotal.owto20.walkers,
+			owto20Crews: locals2.getEventTotal.owto20.crews,
+			owto20VR: locals2.getEventTotal.owto20.virtual,
+			owto20TotalParticipants: locals2.getEventTotal.owto20.walkers + locals2.getEventTotal.owto20.virtual + locals2.getEventTotal.owto20.crews,
+			owto20RFIDaily: dailyIncrements.owto20RFIDaily,
+			owto20WalkersDaily: dailyIncrements.owto20WalkersDaily,
+			owto20VRDaily: dailyIncrements.owto20VRDaily,
+			owto20CrewsDaily: dailyIncrements.owto20CrewDaily,
+			owto20DonDaily: dailyIncrements.owto20DonDaily,
+			owto20RegDaily: dailyIncrements.owto20RegFeeDaily,
+
+			owto19Donations: locals2.getEventTotal.owto19.donations,
+			owto19RegFee: locals2.getEventTotal.owto19.regfee,
+			owto19RFI: locals2.getEventTotal.owto19.rfi,
+			owto19Walkers: locals2.getEventTotal.owto19.walkers,
+			owto19Crews: locals2.getEventTotal.owto19.crews,
+			owto19VR: locals2.getEventTotal.owto19.virtual,
+			owto19TotalParticipants: locals2.getEventTotal.owto19.walkers + locals2.getEventTotal.owto19.virtual + locals2.getEventTotal.owto19.crews,
+			owto19RFIDaily: dailyIncrements.owto19RFIDaily,
+			owto19WalkersDaily: dailyIncrements.owto19WalkersDaily,
+			owto19VRDaily: dailyIncrements.owto19VRDaily,
+			owto19CrewsDaily: dailyIncrements.owto19CrewDaily,
+			owto19DonDaily: dailyIncrements.owto19DonDaily,
+			owto19RegDaily: dailyIncrements.owto19RegFeeDaily,
+
+			owto18Donations: locals2.getEventTotal.owto18.donations,
+			owto18RegFee: locals2.getEventTotal.owto18.regfee,
+			owto18RFI: locals2.getEventTotal.owto18.rfi,
+			owto18Walkers: locals2.getEventTotal.owto18.walkers,
+			owto18Crews: locals2.getEventTotal.owto18.crews,
+			owto18VR: locals2.getEventTotal.owto18.virtual || 0,
+			owto18TotalParticipants: locals2.getEventTotal.owto18.walkers + (locals2.getEventTotal.owto18.virtual || 0) + locals2.getEventTotal.owto18.crews,
+			owto18RFIDaily: dailyIncrements.owto18RFIDaily,
+			owto18WalkersDaily: dailyIncrements.owto18WalkersDaily,
+			owto18VRDaily: dailyIncrements.owto18VRDaily,
+			owto18CrewsDaily: dailyIncrements.owto18CrewDaily,
+			owto18DonDaily: dailyIncrements.owto18DonDaily,
+			owto18RegDaily: dailyIncrements.owto18RegFeeDaily,
+
+			owto17Donations: locals2.getEventTotal.owto17.donations,
+			owto17RegFee: locals2.getEventTotal.owto17.regfee,
+			owto17RFI: locals2.getEventTotal.owto17.rfi,
+			owto17Walkers: locals2.getEventTotal.owto17.walkers,
+			owto17Crews: locals2.getEventTotal.owto17.crews,
+			owto17VR: locals2.getEventTotal.owto17.virtual,
+			owto17TotalParticipants: locals2.getEventTotal.owto17.walkers + locals2.getEventTotal.owto17.virtual + locals2.getEventTotal.owto17.crews,
+			owto17DonDaily: dailyIncrements.owto17DonDaily,
+
+			// Perth data
+			pr18Donations: locals3.getEventTotal.perth.pr18.donations,
+			pr18RegFee: locals3.getEventTotal.perth.pr18.regfee,
+			pr18RFI: locals3.getEventTotal.perth.pr18.rfi,
+			pr18Crews: locals3.getEventTotal.perth.pr18.crews,
+			pr18Riders: locals3.getEventTotal.perth.pr18.riders,
+			pr18VR: locals3.getEventTotal.perth.pr18.virtual,
+			pr18TotalParticipants: locals3.getEventTotal.perth.pr18.riders + locals3.getEventTotal.perth.pr18.virtual + locals3.getEventTotal.perth.pr18.crews,
+			pr18RFIDaily: dailyIncrements.pr18RFIDaily,
+			pr18RidersDaily: dailyIncrements.pr18RidersDaily,
+			pr18VRDaily: dailyIncrements.pr18VRDaily,
+			pr18CrewDaily: dailyIncrements.pr18CrewDaily,
+			pr18DonDaily: dailyIncrements.pr18DonDaily,
+			pr18RegFeeDaily: dailyIncrements.pr18RegFeeDaily,
+
+			pr17Donations: locals3.getEventTotal.perth.pr17.donations,
+			pr17RegFee: locals3.getEventTotal.perth.pr17.regfee,
+			pr17RFI: locals3.getEventTotal.perth.pr17.rfi,
+			pr17Crews: locals3.getEventTotal.perth.pr17.crews,
+			pr17Riders: locals3.getEventTotal.perth.pr17.riders,
+			pr17VR: locals3.getEventTotal.perth.pr17.virtual,
+			pr17TotalParticipants: locals3.getEventTotal.perth.pr17.riders + locals3.getEventTotal.perth.pr17.virtual + locals3.getEventTotal.perth.pr17.crews,
+			pr17DonDaily: dailyIncrements.pr17DonDaily,
+
+			// Melbourne data
+			ml18Donations: locals4.getEventTotal.melbourne.ml18.donations,
+			ml18RegFee: locals4.getEventTotal.melbourne.ml18.regfee,
+			ml18Walkers: locals4.getEventTotal.melbourne.ml18.walkers,
+			ml18Riders: locals4.getEventTotal.melbourne.ml18.riders,
+			ml18RFI: locals4.getEventTotal.melbourne.ml18.rfi,
+			ml18Crews: locals4.getEventTotal.melbourne.ml18.crews,
+			ml18VR: locals4.getEventTotal.melbourne.ml18.virtual,
+			ml18TotalParticipants: locals4.getEventTotal.melbourne.ml18.walkers + locals4.getEventTotal.melbourne.ml18.riders + locals4.getEventTotal.melbourne.ml18.virtual + locals4.getEventTotal.melbourne.ml18.crews,
+			ml18WalkersDaily: dailyIncrements.ml18WalkersDaily,
+			ml18RidersDaily: dailyIncrements.ml18RidersDaily,
+			ml18VRDaily: dailyIncrements.ml18VRDaily,
+			ml18DonDaily: dailyIncrements.ml18DonDaily,
+			ml18RegDaily: dailyIncrements.ml18RegFeeDaily,
+
+			ml17Donations: locals4.getEventTotal.melbourne.ml17.donations,
+			ml17RegFee: locals4.getEventTotal.melbourne.ml17.regfee,
+			ml17RFI: locals4.getEventTotal.melbourne.ml17.rfi,
+			ml17Walkers: locals4.getEventTotal.melbourne.ml17.walkers,
+			ml17Riders: locals4.getEventTotal.melbourne.ml17.riders,
+			ml17Crews: locals4.getEventTotal.melbourne.ml17.crews,
+			ml17VR: locals4.getEventTotal.melbourne.ml17.virtual,
+			ml17TotalParticipants: locals4.getEventTotal.melbourne.ml17.walkers + locals4.getEventTotal.melbourne.ml17.riders + locals4.getEventTotal.melbourne.ml17.virtual + locals4.getEventTotal.melbourne.ml17.crews,
+			ml17DonDaily: dailyIncrements.ml17DonDaily,
+
+			// Brisbane data
+			br18Donations: locals4.getEventTotal.brisbane.br18.donations,
+			br18RegFee: locals4.getEventTotal.brisbane.br18.regfee,
+			br18Walkers: locals4.getEventTotal.brisbane.br18.walkers,
+			br18Riders: locals4.getEventTotal.brisbane.br18.riders,
+			br18RFI: locals4.getEventTotal.brisbane.br18.rfi,
+			br18Crews: locals4.getEventTotal.brisbane.br18.crews,
+			br18VR: locals4.getEventTotal.brisbane.br18.virtual,
+			br18TotalParticipants: locals4.getEventTotal.brisbane.br18.walkers + locals4.getEventTotal.brisbane.br18.riders + locals4.getEventTotal.brisbane.br18.virtual + locals4.getEventTotal.brisbane.br18.crews,
+			br18WalkersDaily: dailyIncrements.br18WalkersDaily,
+			br18RidersDaily: dailyIncrements.br18RidersDaily,
+			br18VRDaily: dailyIncrements.br18VRDaily,
+			br18DonDaily: dailyIncrements.br18DonDaily,
+			br18RegDaily: dailyIncrements.br18RegFeeDaily,
+
+			br17Donations: locals4.getEventTotal.brisbane.br17.donations,
+			br17RegFee: locals4.getEventTotal.brisbane.br17.regfee,
+			br17RFI: locals4.getEventTotal.brisbane.br17.rfi,
+			br17Walkers: locals4.getEventTotal.brisbane.br17.walkers,
+			br17Riders: locals4.getEventTotal.brisbane.br17.riders,
+			br17Crews: locals4.getEventTotal.brisbane.br17.crews,
+			br17VR: locals4.getEventTotal.brisbane.br17.virtual,
+			br17TotalParticipants: locals4.getEventTotal.brisbane.br17.walkers + locals4.getEventTotal.brisbane.br17.riders + locals4.getEventTotal.brisbane.br17.virtual + locals4.getEventTotal.brisbane.br17.crews,
+			br17DonDaily: dailyIncrements.br17DonDaily
+		};
+
+		console.log('Returning mock data to client');
+		res.json(mockResponse);
+	} catch (err) {
+		console.log('Error getting data:');
+		console.log(err);
+		res.status(500).json({ error: 'Error fetching data' });
+	}
+});
+
+// Get locale metadata for filtering and table options
+router.get('/locales', function (req, res) {
+	console.log('Requesting locale metadata...');
+	try {
+		res.json(localeMetadata);
+	} catch (err) {
+		console.log('Error getting locale metadata:');
+		console.log(err);
+		res.status(500).json({ error: 'Error fetching locale metadata' });
+	}
+});
+
+// Get filtered data by locale
+router.get('/data/:locale', function (req, res) {
+	const locale = req.params.locale.toLowerCase();
+	console.log('Requesting data for locale:', locale);
+	
+	try {
+		if (locale === 'all') {
+			// Return all data (same as /api/data)
+			return res.redirect('/api/data');
+		}
+		
+		if (!localeMetadata[locale]) {
+			return res.status(404).json({ 
+				error: 'Locale not found',
+				available: Object.keys(localeMetadata)
+			});
+		}
+		
+		// For specific locale, return only that locale's data
+		// This would filter the response to include only the requested locale
+		var locals = mockApiData.conquercancer;
+		var locals2 = mockApiData.onewalk;
+		var locals3 = mockApiData.conquercancerAU;
+		var locals4 = mockApiData.onedayAU;
+		
+		const filteredResponse = {
+			updated: moment().format('L'),
+			locale: locale,
+			localeName: localeMetadata[locale].name
+		};
+		
+		// Add only the requested locale's data
+		const events = localeMetadata[locale].events || [];
+		events.forEach(function(event) {
+			// Map event codes to data sources
+			// This is a simplified example - in production, would need comprehensive mapping
+			if (event.startsWith('to')) {
+				// Toronto data
+				const year = event.substring(2);
+				if (locals.getEventTotal.toronto[event]) {
+					filteredResponse[event + 'Donations'] = locals.getEventTotal.toronto[event].donations;
+					filteredResponse[event + 'RegFee'] = locals.getEventTotal.toronto[event].regfee || '$0.00';
+					// Add other fields as needed
+				}
 			}
-			if (yesterday.length < 1) {
-				console.log('Error getting data... It does not exists');
-				//return res.json({data: 'No data from yesterday'});
-			}
-
-			if (yesterday.length > 0) {
-				console.log("Pulling yesterday's data! Date: " + yesterday[0].updated);
-
-				var apiURL = 'http://www.conquercancer.ca/site/PageServer?pagename=2018_api_data&pgwrap=n';
-				request(apiURL, function (err, response, body) {
-					if (!err && response.statusCode == 200) {
-						var locals = JSON.parse(body);
-						console.log(locals);
-
-						var apiOneWalk = 'http://secure.weekendtoconquercancer.ca/site/PageServer?pagename=api_data&pgwrap=n';
-						request(apiOneWalk, function (err, response, body) {
-							if (!err && response.statusCode == 200) {
-								var locals2 = JSON.parse(body);
-								console.log(locals2);
-
-								var apiRidePerth = 'http://www.conquercancer.org.au/site/PageServer?pagename=api_data&pgwrap=n';
-								request(apiRidePerth, function (err, response, body) {
-									if (!err && response.statusCode == 200) {
-										var locals3 = JSON.parse(body);
-										console.log(locals3);
-
-										var apiOneDay = 'http://participate.theoneday.org.au/site/PageServer?pagename=api_data&pgwrap=n';
-										request(apiOneDay, function (err, response, body) {
-											if (!err && response.statusCode == 200) {
-												var locals4 = JSON.parse(body);
-												console.log(locals4);
-
-												// Find today's data
-												data
-													.findOne({ updated: moment().format('L') })
-													// .sort({"_id": -1})
-													.exec(function (err, latestdata) {
-														if (err) {
-															console.log("There was an error getting Today's data:");
-															console.log(err);
-														}
-														if (latestdata) {
-															// console.log("Getting latest data! Date: " + latestdata.updated);
-															console.log('Getting latest data! Date: ' + latestdata);
-															// console.log("Getting latest data! Date: " + latestdata);
-
-															// =========================== Ride Toronto 2020 =========================== //
-															var removeDollarTo20v1 = latestdata.to20Donations;
-															var removeDollarTo20v2 = yesterday[0].to20Donations;
-															var removeRegTo20v1 = latestdata.to20RegFee;
-															var removeRegTo20v2 = yesterday[0].to20RegFee;
-															// =========================== Ride Toronto 2019 =========================== //
-															var removeDollarTo19v1 = latestdata.to19Donations;
-															var removeDollarTo19v2 = yesterday[0].to19Donations;
-															var removeRegTo19v1 = latestdata.to19RegFee;
-															var removeRegTo19v2 = yesterday[0].to19RegFee;
-															// =========================== Ride Toronto 2018 =========================== //
-															var removeDollarTo18v1 = latestdata.to18Donations;
-															var removeDollarTo18v2 = yesterday[0].to18Donations;
-															var removeRegTo18v1 = latestdata.to18RegFee;
-															var removeRegTo18v2 = yesterday[0].to18RegFee;
-															// =========================== Ride Toronto 2017 =========================== //
-															var removeDollarTo17v1 = latestdata.to17Donations;
-															var removeDollarTo17v2 = yesterday[0].to17Donations;
-
-															// =========================== Ride Montreal 2020 =========================== //
-															var removeDollarMo20v1 = latestdata.mo20Donations;
-															var removeDollarMo20v2 = yesterday[0].mo20Donations;
-															var removeRegMo20v1 = latestdata.mo20RegFee;
-															var removeRegMo20v2 = yesterday[0].mo20RegFee;
-
-															// =========================== Ride Montreal 2019 =========================== //
-															var removeDollarMo19v1 = latestdata.mo19Donations;
-															var removeDollarMo19v2 = yesterday[0].mo19Donations;
-															var removeRegMo19v1 = latestdata.mo19RegFee;
-															var removeRegMo19v2 = yesterday[0].mo19RegFee;
-
-															// =========================== Ride Montreal 2018 =========================== //
-															var removeDollarMo18v1 = latestdata.mo18Donations;
-															var removeDollarMo18v2 = yesterday[0].mo18Donations;
-															var removeRegMo18v1 = latestdata.mo18RegFee;
-															var removeRegMo18v2 = yesterday[0].mo18RegFee;
-															// =========================== Ride Montreal 2017 =========================== //
-															var removeDollarMo17v1 = latestdata.mo17Donations;
-															var removeDollarMo17v2 = yesterday[0].mo17Donations;
-
-															// =========================== Ride Alberta 2020 =========================== //
-															var removeDollarAb20v1 = latestdata.ab20Donations;
-															var removeDollarAb20v2 = yesterday[0].ab20Donations;
-															var removeRegAb20v1 = latestdata.ab20RegFee;
-															var removeRegAb20v2 = yesterday[0].ab20RegFee;
-															// =========================== Ride Alberta 2019 =========================== //
-															var removeDollarAb19v1 = latestdata.ab19Donations;
-															var removeDollarAb19v2 = yesterday[0].ab19Donations;
-															var removeRegAb19v1 = latestdata.ab19RegFee;
-															var removeRegAb19v2 = yesterday[0].ab19RegFee;
-															// =========================== Ride Alberta 2018 =========================== //
-															var removeDollarAb18v1 = latestdata.ab18Donations;
-															var removeDollarAb18v2 = yesterday[0].ab18Donations;
-															var removeRegAb18v1 = latestdata.ab18RegFee;
-															var removeRegAb18v2 = yesterday[0].ab18RegFee;
-															// =========================== Ride Alberta 2017 =========================== //
-															var removeDollarAb17v1 = latestdata.ab17Donations;
-															var removeDollarAb17v2 = yesterday[0].ab17Donations;
-
-															// =========================== Ride Vancouver 2020 =========================== //
-															var removeDollarVa20v1 = latestdata.va20Donations;
-															var removeDollarVa20v2 = yesterday[0].va20Donations;
-															var removeRegVa20v1 = latestdata.va20RegFee;
-															var removeRegVa20v2 = yesterday[0].va20RegFee;
-															// =========================== Ride Vancouver 2019 =========================== //
-															var removeDollarVa19v1 = latestdata.va19Donations;
-															var removeDollarVa19v2 = yesterday[0].va19Donations;
-															var removeRegVa19v1 = latestdata.va19RegFee;
-															var removeRegVa19v2 = yesterday[0].va19RegFee;
-															// =========================== Ride Vancouver 2018 =========================== //
-															var removeDollarVa18v1 = latestdata.va18Donations;
-															var removeDollarVa18v2 = yesterday[0].va18Donations;
-															var removeRegVa18v1 = latestdata.va18RegFee;
-															var removeRegVa18v2 = yesterday[0].va18RegFee;
-															// =========================== Ride Vancouver 2017 =========================== //
-															var removeDollarVa17v1 = latestdata.va17Donations;
-															var removeDollarVa17v2 = yesterday[0].va17Donations;
-
-															// =========================== Ride Perth 2018 =========================== //
-															var removeDollarPr18v1 = latestdata.pr18Donations;
-															var removeDollarPr18v2 = yesterday[0].pr18Donations;
-															var removeRegPr18v1 = latestdata.pr18RegFee;
-															var removeRegPr18v2 = yesterday[0].pr18RegFee;
-															// =========================== Ride Perth 2017 =========================== //
-															var removeDollarPr17v1 = latestdata.pr17Donations;
-															var removeDollarPr17v2 = yesterday[0].pr17Donations;
-															var removeRegPr17v1 = latestdata.pr17RegFee;
-															var removeRegPr17v2 = yesterday[0].pr17RegFee;
-
-															// =========================== OneWalk Toronto 2020 =========================== //
-															var removeDollarOwTo20v1 = latestdata.owTo20Donations;
-															var removeDollarOwTo20v2 = yesterday[0].owTo20Donations;
-															var removeRegOwTo20v1 = latestdata.owTo20RegFee;
-															var removeRegOwTo20v2 = yesterday[0].owTo20RegFee;
-															var owTo2025kmWalkers = locals2.getEventTotal.toronto.to20.Wlkr25km;
-															var owTo2040kmWalkers = locals2.getEventTotal.toronto.to20.Wlkr40km;
-															var owTo20NightWalkers = locals2.getEventTotal.toronto.to20.nightWlk;
-															var owTo202day = locals2.getEventTotal.toronto.to20.twoDayWlk;
-
-															// =========================== OneWalk Toronto 2019 =========================== //
-															var removeDollarOwTo19v1 = latestdata.owTo19Donations;
-															var removeDollarOwTo19v2 = yesterday[0].owTo19Donations;
-															var removeRegOwTo19v1 = latestdata.owTo19RegFee;
-															var removeRegOwTo19v2 = yesterday[0].owTo19RegFee;
-															var owTo1925kmWalkers = locals2.getEventTotal.toronto.to19.Wlkr25km;
-															var owTo1940kmWalkers = locals2.getEventTotal.toronto.to19.Wlkr40km;
-															var owTo19NightWalkers = locals2.getEventTotal.toronto.to19.nightWlk;
-															var owTo192day = locals2.getEventTotal.toronto.to19.twoDayWlk;
-															// =========================== OneWalk Toronto 2018 =========================== //
-															var removeDollarOwTo18v1 = latestdata.owTo18Donations;
-															var removeDollarOwTo18v2 = yesterday[0].owTo18Donations;
-															var removeRegOwTo18v1 = latestdata.owTo18RegFee;
-															var removeRegOwTo18v2 = yesterday[0].owTo18RegFee;
-															var owTo18NightWalkers = locals2.getEventTotal.toronto.to18.nightWlk;
-															var owTo182day = locals2.getEventTotal.toronto.to18.twoDayWlk;
-															var owTo1815kmWalkers = locals2.getEventTotal.toronto.to18.Wlkr15km;
-															var owTo1825kmWalkers = locals2.getEventTotal.toronto.to18.Wlkr25km;
-															var owTo1840kmWalkers = locals2.getEventTotal.toronto.to18.Wlkr40km;
-															// =========================== OneWalk Toronto 2017 =========================== //
-															var removeDollarOwTo17v1 = latestdata.owTo17Donations;
-															var removeDollarOwTo17v2 = yesterday[0].owTo17Donations;
-															var owTo1715kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr15km;
-															var owTo1725kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr25km;
-															var owTo1740kmWalkers = locals2.getEventTotal.toronto.to17.Wlkr40km;
-
-															// =========================== OneDay Brisbane 2018 =========================== //
-															var removeDollarBr18v1 = latestdata.br18Donations;
-															var removeDollarBr18v2 = yesterday[0].br18Donations;
-															var removeRegBr18v1 = latestdata.br18RegFee;
-															var removeRegBr18v2 = yesterday[0].br18RegFee;
-
-															// =========================== OneDay Melbourne 2018 =========================== //
-															var removeDollarMl18v1 = latestdata.ml18Donations;
-															var removeDollarMl18v2 = yesterday[0].ml18Donations;
-															var removeRegMl18v1 = latestdata.ml18RegFee;
-															var removeRegMl18v2 = yesterday[0].ml18RegFee;
-
-															// =========================== OneDay Melbourne 2017 =========================== //
-															var removeDollarMl17v1 = latestdata.ml17Donations;
-															var removeDollarMl17v2 = yesterday[0].ml17Donations;
-
-															// Remove Dollar Sign from Data Brought In
-
-															var numberTo20v1 = Number(removeDollarTo20v1.replace(/[^0-9\.-]+/g, ''));
-															var numberTo20v2 = Number(removeDollarTo20v2.replace(/[^0-9\.-]+/g, ''));
-															var numberRegTo20v1 = Number(removeRegTo20v1.replace(/[^0-9\.-]+/g, ''));
-															var numberRegTo20v2 = Number(removeRegTo20v2.replace(/[^0-9\.-]+/g, ''));
-															var numberTo19v1 = Number(removeDollarTo19v1.replace(/[^0-9\.-]+/g, ''));
-															var numberTo19v2 = Number(removeDollarTo19v2.replace(/[^0-9\.-]+/g, ''));
-															var numberRegTo19v1 = Number(removeRegTo19v1.replace(/[^0-9\.-]+/g, ''));
-															var numberRegTo19v2 = Number(removeRegTo19v2.replace(/[^0-9\.-]+/g, ''));
-															var numberTo18v1 = Number(removeDollarTo18v1.replace(/[^0-9\.-]+/g, ''));
-															var numberTo18v2 = Number(removeDollarTo18v2.replace(/[^0-9\.-]+/g, ''));
-															var numberTo17v1 = Number(removeDollarTo17v1.replace(/[^0-9\.-]+/g, ''));
-															var numberTo17v2 = Number(removeDollarTo17v2.replace(/[^0-9\.-]+/g, ''));
-															var numberRegTo18v1 = Number(removeRegTo18v1.replace(/[^0-9\.-]+/g, ''));
-															var numberRegTo18v2 = Number(removeRegTo18v2.replace(/[^0-9\.-]+/g, ''));
-
-															var numberPr18v1 = Number(removeDollarPr18v1.replace(/[^0-9\.-]+/g, ''));
-															var numberPr18v2 = Number(removeDollarPr18v2.replace(/[^0-9\.-]+/g, ''));
-															var numberPr17v1 = Number(removeDollarPr17v1.replace(/[^0-9\.-]+/g, ''));
-															var numberPr17v2 = Number(removeDollarPr17v2.replace(/[^0-9\.-]+/g, ''));
-															var numberRegPr18v1 = Number(removeRegPr18v1.replace(/[^0-9\.-]+/g, ''));
-															var numberRegPr18v2 = Number(removeRegPr18v2.replace(/[^0-9\.-]+/g, ''));
-
-															var numberMo20v1 = Number(removeDollarMo20v1.replace(/[^0-9\.-]+/g, ''));
-															var numberMo20v2 = Number(removeDollarMo20v2.replace(/[^0-9\.-]+/g, ''));
-															var numberRegMo20v1 = Number(removeRegMo20v1.replace(/[^0-9\.-]+/g, ''));
-															var numberRegMo20v2 = Number(removeRegMo20v2.replace(/[^0-9\.-]+/g, ''));
-															var numberMo19v1 = Number(removeDollarMo19v1.replace(/[^0-9\.-]+/g, ''));
-															var numberMo19v2 = Number(removeDollarMo19v2.replace(/[^0-9\.-]+/g, ''));
-															var numberRegMo19v1 = Number(removeRegMo19v1.replace(/[^0-9\.-]+/g, ''));
-															var numberRegMo19v2 = Number(removeRegMo19v2.replace(/[^0-9\.-]+/g, ''));
-															var numberMo18v1 = Number(removeDollarMo18v1.replace(/[^0-9\.-]+/g, ''));
-															var numberMo18v2 = Number(removeDollarMo18v2.replace(/[^0-9\.-]+/g, ''));
-															var numberMo17v1 = Number(removeDollarMo17v1.replace(/[^0-9\.-]+/g, ''));
-															var numberMo17v2 = Number(removeDollarMo17v2.replace(/[^0-9\.-]+/g, ''));
-															var numberRegMo18v1 = Number(removeRegMo18v1.replace(/[^0-9\.-]+/g, ''));
-															var numberRegMo18v2 = Number(removeRegMo18v2.replace(/[^0-9\.-]+/g, ''));
-
-															var numberAb20v1 = Number(removeDollarAb20v1.replace(/[^0-9\.-]+/g, ''));
-															var numberAb20v2 = Number(removeDollarAb20v2.replace(/[^0-9\.-]+/g, ''));
-															var numberRegAb20v1 = Number(removeRegAb20v1.replace(/[^0-9\.-]+/g, ''));
-															var numberRegAb20v2 = Number(removeRegAb20v2.replace(/[^0-9\.-]+/g, ''));
-															var numberAb19v1 = Number(removeDollarAb19v1.replace(/[^0-9\.-]+/g, ''));
-															var numberAb19v2 = Number(removeDollarAb19v2.replace(/[^0-9\.-]+/g, ''));
-															var numberRegAb19v1 = Number(removeRegAb19v1.replace(/[^0-9\.-]+/g, ''));
-															var numberRegAb19v2 = Number(removeRegAb19v2.replace(/[^0-9\.-]+/g, ''));
-															var numberAb18v1 = Number(removeDollarAb18v1.replace(/[^0-9\.-]+/g, ''));
-															var numberAb18v2 = Number(removeDollarAb18v2.replace(/[^0-9\.-]+/g, ''));
-															var numberAb17v1 = Number(removeDollarAb17v1.replace(/[^0-9\.-]+/g, ''));
-															var numberAb17v2 = Number(removeDollarAb17v2.replace(/[^0-9\.-]+/g, ''));
-															var numberRegAb18v1 = Number(removeRegAb18v1.replace(/[^0-9\.-]+/g, ''));
-															var numberRegAb18v2 = Number(removeRegAb18v2.replace(/[^0-9\.-]+/g, ''));
-
-															var numberVa20v1 = Number(removeDollarVa20v1.replace(/[^0-9\.-]+/g, ''));
-															var numberVa20v2 = Number(removeDollarVa20v2.replace(/[^0-9\.-]+/g, ''));
-															var numberRegVa20v1 = Number(removeRegVa20v1.replace(/[^0-9\.-]+/g, ''));
-															var numberRegVa20v2 = Number(removeRegVa20v2.replace(/[^0-9\.-]+/g, ''));
-															var numberVa19v1 = Number(removeDollarVa19v1.replace(/[^0-9\.-]+/g, ''));
-															var numberVa19v2 = Number(removeDollarVa19v2.replace(/[^0-9\.-]+/g, ''));
-															var numberRegVa19v1 = Number(removeRegVa19v1.replace(/[^0-9\.-]+/g, ''));
-															var numberRegVa19v2 = Number(removeRegVa19v2.replace(/[^0-9\.-]+/g, ''));
-															var numberVa18v1 = Number(removeDollarVa18v1.replace(/[^0-9\.-]+/g, ''));
-															var numberVa18v2 = Number(removeDollarVa18v2.replace(/[^0-9\.-]+/g, ''));
-															var numberVa17v1 = Number(removeDollarVa17v1.replace(/[^0-9\.-]+/g, ''));
-															var numberVa17v2 = Number(removeDollarVa17v2.replace(/[^0-9\.-]+/g, ''));
-															var numberRegVa18v1 = Number(removeRegVa18v1.replace(/[^0-9\.-]+/g, ''));
-															var numberRegVa18v2 = Number(removeRegVa18v2.replace(/[^0-9\.-]+/g, ''));
-
-															var numberOwTo20v1 = Number(removeDollarOwTo20v1.replace(/[^0-9\.-]+/g, ''));
-															var numberOwTo20v2 = Number(removeDollarOwTo20v2.replace(/[^0-9\.-]+/g, ''));
-															var numberOwTo19v1 = Number(removeDollarOwTo19v1.replace(/[^0-9\.-]+/g, ''));
-															var numberOwTo19v2 = Number(removeDollarOwTo19v2.replace(/[^0-9\.-]+/g, ''));
-															var numberOwTo18v1 = Number(removeDollarOwTo18v1.replace(/[^0-9\.-]+/g, ''));
-															var numberOwTo18v2 = Number(removeDollarOwTo18v2.replace(/[^0-9\.-]+/g, ''));
-															var numberOwTo17v1 = Number(removeDollarOwTo17v1.replace(/[^0-9\.-]+/g, ''));
-															var numberOwTo17v2 = Number(removeDollarOwTo17v2.replace(/[^0-9\.-]+/g, ''));
-															var numberRegOwTo20v1 = Number(removeRegOwTo20v1.replace(/[^0-9\.-]+/g, ''));
-															var numberRegOwTo20v2 = Number(removeRegOwTo20v2.replace(/[^0-9\.-]+/g, ''));
-															var numberRegOwTo19v1 = Number(removeRegOwTo19v1.replace(/[^0-9\.-]+/g, ''));
-															var numberRegOwTo19v2 = Number(removeRegOwTo19v2.replace(/[^0-9\.-]+/g, ''));
-															var numberRegOwTo18v1 = Number(removeRegOwTo18v1.replace(/[^0-9\.-]+/g, ''));
-															var numberRegOwTo18v2 = Number(removeRegOwTo18v2.replace(/[^0-9\.-]+/g, ''));
-
-															var numberBr18v1 = Number(removeDollarBr18v1.replace(/[^0-9\.-]+/g, ''));
-															var numberBr18v2 = Number(removeDollarBr18v2.replace(/[^0-9\.-]+/g, ''));
-															var numberRegBr18v1 = Number(removeRegBr18v1.replace(/[^0-9\.-]+/g, ''));
-															var numberRegBr18v2 = Number(removeRegBr18v2.replace(/[^0-9\.-]+/g, ''));
-
-															var numberMl18v1 = Number(removeDollarMl18v1.replace(/[^0-9\.-]+/g, ''));
-															var numberMl18v2 = Number(removeDollarMl18v2.replace(/[^0-9\.-]+/g, ''));
-															var numberMl17v1 = Number(removeDollarMl17v1.replace(/[^0-9\.-]+/g, ''));
-															var numberMl17v2 = Number(removeDollarMl17v2.replace(/[^0-9\.-]+/g, ''));
-															var numberRegMl18v1 = Number(removeRegMl18v1.replace(/[^0-9\.-]+/g, ''));
-															var numberRegMl18v2 = Number(removeRegMl18v2.replace(/[^0-9\.-]+/g, ''));
-
-															// Subtract Real Time Data vs Static Data
-
-															// Toronto
-															var to20DonationSub = numberTo20v1 - numberTo20v2;
-															var to20RfiSub = locals.getEventTotal.toronto.to20.rfi - yesterday[0].to20RFI;
-															var to20CrewSub = locals.getEventTotal.toronto.to20.crews - yesterday[0].to20Crews;
-															var to20RegSub = numberRegTo20v1 - numberRegTo20v2;
-															var to20VRDaily = locals.getEventTotal.toronto.to20.virtual - yesterday[0].to20VR;
-															var to20Riders2Daily = locals.getEventTotal.toronto.to20.riders2 - yesterday[0].to20Riders2;
-															var to20OneDayDaily = locals.getEventTotal.toronto.to20.oneday - yesterday[0].to20OneDay;
-															var to20OneDayDaily2 = locals.getEventTotal.toronto.to20.oneday2 - yesterday[0].to20OneDay2;
-															var to20theHammerDaily = locals.getEventTotal.toronto.to20.theHammer - yesterday[0].to20theHammer;
-															var to20TotalParticipants =
-																parseFloat(locals.getEventTotal.toronto.to20.riders) +
-																parseFloat(locals.getEventTotal.toronto.to20.riders2) +
-																parseFloat(locals.getEventTotal.toronto.to20.oneday) +
-																parseFloat(locals.getEventTotal.toronto.to20.oneday2);
-															var to20TotalRiders = locals.getEventTotal.toronto.to20.riders;
-															var to20RiderSub = to20TotalRiders - yesterday[0].to20Riders;
-
-															var to19DonationSub = numberTo19v1 - numberTo19v2;
-															var to19RfiSub = locals.getEventTotal.toronto.to19.rfi - yesterday[0].to19RFI;
-															var to19CrewSub = locals.getEventTotal.toronto.to19.crews - yesterday[0].to19Crews;
-															var to19RegSub = numberRegTo19v1 - numberRegTo19v2;
-															var to19VRDaily = locals.getEventTotal.toronto.to19.virtual - yesterday[0].to19VR;
-															var to19Riders2Daily = locals.getEventTotal.toronto.to19.riders2 - yesterday[0].to19Riders2;
-															var to19OneDayDaily = locals.getEventTotal.toronto.to19.oneday - yesterday[0].to19OneDay;
-															var to19OneDayDaily2 = locals.getEventTotal.toronto.to19.oneday2 - yesterday[0].to19OneDay2;
-															var to19theHammerDaily = locals.getEventTotal.toronto.to19.theHammer - yesterday[0].to19theHammer;
-															var to19hammer260Daily = locals.getEventTotal.toronto.to19.hammer260 - yesterday[0].to19hammer260;
-															var to19TotalParticipants =
-																parseFloat(locals.getEventTotal.toronto.to19.riders) +
-																parseFloat(locals.getEventTotal.toronto.to19.riders2) +
-																parseFloat(locals.getEventTotal.toronto.to19.oneday) +
-																parseFloat(locals.getEventTotal.toronto.to19.oneday2);
-															var to19TotalRiders = locals.getEventTotal.toronto.to19.riders;
-															var to19RiderSub = to19TotalRiders - yesterday[0].to19Riders;
-
-															var to18DonationSub = numberTo18v1 - numberTo18v2;
-															var to18RfiSub = locals.getEventTotal.toronto.to18.rfi - yesterday[0].to18RFI;
-															var to18CrewSub = locals.getEventTotal.toronto.to18.crews - yesterday[0].to18Crews;
-															var to18RegSub = numberRegTo18v1 - numberRegTo18v2;
-															var to18VRDaily = locals.getEventTotal.toronto.to18.virtual - yesterday[0].to18VR;
-															var to18Riders2Daily = locals.getEventTotal.toronto.to18.riders2 - yesterday[0].to18Riders2;
-															var to18OneDayDaily = locals.getEventTotal.toronto.to18.oneday - yesterday[0].to18OneDay;
-															var to18OneDayDaily2 = locals.getEventTotal.toronto.to18.oneday2 - yesterday[0].to18OneDay2;
-															var to18TotalParticipants =
-																parseFloat(locals.getEventTotal.toronto.to18.riders) +
-																parseFloat(locals.getEventTotal.toronto.to18.riders2) +
-																parseFloat(locals.getEventTotal.toronto.to18.oneday) +
-																parseFloat(locals.getEventTotal.toronto.to18.oneday2);
-															var to18TotalRiders = locals.getEventTotal.toronto.to18.riders;
-															var to18RiderSub = to18TotalRiders - yesterday[0].to18Riders;
-
-															var to17DonationSub = numberTo17v1 - numberTo17v2;
-
-															// Perth
-															var pr18DonationSub = numberPr18v1 - numberPr18v2;
-															var pr18RfiSub = locals3.getEventTotal.perth.pr18.rfi - yesterday[0].pr18RFI;
-															var pr18CrewSub = locals3.getEventTotal.perth.pr18.crews - yesterday[0].pr18Crews;
-															var pr18RiderSub = locals3.getEventTotal.perth.pr18.riders - yesterday[0].pr18Riders;
-															var pr18RegSub = numberRegPr18v1 - numberRegPr18v2;
-
-															var pr17DonationSub = numberPr17v1 - numberPr17v2;
-
-															// Montreal
-															var mo20RegSub = numberRegMo20v1 - numberRegMo20v2;
-															var mo20VRDaily = locals.getEventTotal.montreal.mo20.virtual - yesterday[0].mo20VR;
-															var mo20Riders2Daily = locals.getEventTotal.montreal.mo20.riders2 - yesterday[0].mo20Riders2;
-															var mo20OneDayDaily = locals.getEventTotal.montreal.mo20.oneday - yesterday[0].mo20OneDay;
-															var mo20OneDayDaily2 = locals.getEventTotal.montreal.mo20.oneday2 - yesterday[0].mo20OneDay2;
-															var mo20DonationSub = numberMo20v1 - numberMo20v2;
-															var mo20RfiSub = locals.getEventTotal.montreal.mo20.rfi - yesterday[0].mo20RFI;
-															var mo20CrewSub = locals.getEventTotal.montreal.mo20.crews - yesterday[0].mo20Crews;
-															var mo20RiderSub = locals.getEventTotal.montreal.mo20.riders - yesterday[0].mo20Riders;
-															var mo20TotalRiders = locals.getEventTotal.montreal.mo20.riders;
-															var mo20RiderSub = mo20TotalRiders - yesterday[0].mo20Riders;
-															var mo20TotalParticipants =
-																parseFloat(locals.getEventTotal.montreal.mo20.riders) +
-																parseFloat(locals.getEventTotal.montreal.mo20.riders2);
-
-															var mo19RegSub = numberRegMo19v1 - numberRegMo19v2;
-															var mo19VRDaily = locals.getEventTotal.montreal.mo19.virtual - yesterday[0].mo19VR;
-															var mo19Riders2Daily = locals.getEventTotal.montreal.mo19.riders2 - yesterday[0].mo19Riders2;
-															var mo19OneDayDaily = locals.getEventTotal.montreal.mo19.oneday - yesterday[0].mo19OneDay;
-															var mo19OneDayDaily2 = locals.getEventTotal.montreal.mo19.oneday2 - yesterday[0].mo19OneDay2;
-															var mo19DonationSub = numberMo19v1 - numberMo19v2;
-															var mo19RfiSub = locals.getEventTotal.montreal.mo19.rfi - yesterday[0].mo19RFI;
-															var mo19CrewSub = locals.getEventTotal.montreal.mo19.crews - yesterday[0].mo19Crews;
-															var mo19RiderSub = locals.getEventTotal.montreal.mo19.riders - yesterday[0].mo19Riders;
-															var mo19TotalRiders = locals.getEventTotal.montreal.mo19.riders;
-															var mo19RiderSub = mo19TotalRiders - yesterday[0].mo19Riders;
-															var mo19TotalParticipants =
-																parseFloat(locals.getEventTotal.montreal.mo19.riders) +
-																parseFloat(locals.getEventTotal.montreal.mo19.riders2);
-
-															var mo18DonationSub = numberMo18v1 - numberMo18v2;
-															var mo18RfiSub = locals.getEventTotal.montreal.mo18.rfi - yesterday[0].mo18RFI;
-															var mo18CrewSub = locals.getEventTotal.montreal.mo18.crews - yesterday[0].mo18Crews;
-															var mo18RiderSub = locals.getEventTotal.montreal.mo18.riders - yesterday[0].mo18Riders;
-															var mo18RegSub = numberRegMo18v1 - numberRegMo18v2;
-															var mo18VRDaily = locals.getEventTotal.montreal.mo18.virtual - yesterday[0].mo18VR;
-
-															var mo17DonationSub = numberMo17v1 - numberMo17v2;
-
-															// Alberta
-															var ab20RegSub = numberRegAb20v1 - numberRegAb20v2;
-															var ab20VRDaily = locals.getEventTotal.alberta.ab20.virtual - yesterday[0].ab20VR;
-															var ab20Riders2Daily = locals.getEventTotal.alberta.ab20.riders2 - yesterday[0].ab20Riders2;
-															var ab20OneDayDaily = locals.getEventTotal.alberta.ab20.oneday - yesterday[0].ab20OneDay;
-															var ab20OneDayDaily2 = locals.getEventTotal.alberta.ab20.oneday2 - yesterday[0].ab20OneDay2;
-															var ab20DonationSub = numberAb20v1 - numberAb20v2;
-															var ab20RfiSub = locals.getEventTotal.alberta.ab20.rfi - yesterday[0].ab20RFI;
-															var ab20CrewSub = locals.getEventTotal.alberta.ab20.crews - yesterday[0].ab20Crews;
-															var ab20RiderSub = locals.getEventTotal.alberta.ab20.riders - yesterday[0].ab20Riders;
-															var ab20TotalRiders = locals.getEventTotal.alberta.ab20.riders;
-															var ab20RiderSub = ab20TotalRiders - yesterday[0].ab20Riders;
-															var ab20TotalParticipants =
-																parseFloat(locals.getEventTotal.alberta.ab20.riders) +
-																parseFloat(locals.getEventTotal.alberta.ab20.riders2);
-
-															var ab19RegSub = numberRegAb19v1 - numberRegAb19v2;
-															var ab19VRDaily = locals.getEventTotal.alberta.ab19.virtual - yesterday[0].ab19VR;
-															var ab19Riders2Daily = locals.getEventTotal.alberta.ab19.riders2 - yesterday[0].ab19Riders2;
-															var ab19OneDayDaily = locals.getEventTotal.alberta.ab19.oneday - yesterday[0].ab19OneDay;
-															var ab19OneDayDaily2 = locals.getEventTotal.alberta.ab19.oneday2 - yesterday[0].ab19OneDay2;
-															var ab19DonationSub = numberAb19v1 - numberAb19v2;
-															var ab19RfiSub = locals.getEventTotal.alberta.ab19.rfi - yesterday[0].ab19RFI;
-															var ab19CrewSub = locals.getEventTotal.alberta.ab19.crews - yesterday[0].ab19Crews;
-															var ab19RiderSub = locals.getEventTotal.alberta.ab19.riders - yesterday[0].ab19Riders;
-															var ab19TotalRiders = locals.getEventTotal.alberta.ab19.riders;
-															var ab19RiderSub = ab19TotalRiders - yesterday[0].ab19Riders;
-															var ab19TotalParticipants =
-																parseFloat(locals.getEventTotal.alberta.ab19.riders) +
-																parseFloat(locals.getEventTotal.alberta.ab19.riders2);
-
-															var ab18DonationSub = numberAb18v1 - numberAb18v2;
-															var ab18RfiSub = locals.getEventTotal.alberta.ab18.rfi - yesterday[0].ab18RFI;
-															var ab18CrewSub = locals.getEventTotal.alberta.ab18.crews - yesterday[0].ab18Crews;
-															var ab18RiderSub = locals.getEventTotal.alberta.ab18.riders - yesterday[0].ab18Riders;
-															var ab18RegSub = numberRegAb18v1 - numberRegAb18v2;
-															var ab18VRDaily = locals.getEventTotal.alberta.ab18.virtual - yesterday[0].ab18VR;
-
-															var ab17DonationSub = numberAb17v1 - numberAb17v2;
-
-															// Vancouver
-															var va20RegSub = numberRegVa20v1 - numberRegVa20v2;
-															var va20VRDaily = locals.getEventTotal.vancouver.va20.virtual - yesterday[0].va20VR;
-															var va20Riders2Daily = locals.getEventTotal.vancouver.va20.riders2 - yesterday[0].va20Riders2;
-															var va20OneDayDaily = locals.getEventTotal.vancouver.va20.oneday - yesterday[0].va20OneDay;
-															var va20OneDayDaily2 = locals.getEventTotal.vancouver.va20.oneday2 - yesterday[0].va20OneDay2;
-															var va20DonationSub = numberVa20v1 - numberVa20v2;
-															var va20RfiSub = locals.getEventTotal.vancouver.va20.rfi - yesterday[0].va20RFI;
-															var va20CrewSub = locals.getEventTotal.vancouver.va20.crews - yesterday[0].va20Crews;
-															var va20RiderSub = locals.getEventTotal.vancouver.va20.riders - yesterday[0].va20Riders;
-															var va20TotalRiders = locals.getEventTotal.vancouver.va20.riders;
-															var va20TotalParticipants =
-																parseFloat(locals.getEventTotal.vancouver.va20.riders) +
-																parseFloat(locals.getEventTotal.vancouver.va20.riders2);
-
-															var va19RegSub = numberRegVa19v1 - numberRegVa19v2;
-															var va19VRDaily = locals.getEventTotal.vancouver.va19.virtual - yesterday[0].va19VR;
-															var va19Riders2Daily = locals.getEventTotal.vancouver.va19.riders2 - yesterday[0].va19Riders2;
-															var va19OneDayDaily = locals.getEventTotal.vancouver.va19.oneday - yesterday[0].va19OneDay;
-															var va19OneDayDaily2 = locals.getEventTotal.vancouver.va19.oneday2 - yesterday[0].va19OneDay2;
-															var va19DonationSub = numberVa19v1 - numberVa19v2;
-															var va19RfiSub = locals.getEventTotal.vancouver.va19.rfi - yesterday[0].va19RFI;
-															var va19CrewSub = locals.getEventTotal.vancouver.va19.crews - yesterday[0].va19Crews;
-															var va19RiderSub = locals.getEventTotal.vancouver.va19.riders - yesterday[0].va19Riders;
-															var va19TotalRiders = locals.getEventTotal.vancouver.va19.riders;
-															var va19TotalParticipants =
-																parseFloat(locals.getEventTotal.vancouver.va19.riders) +
-																parseFloat(locals.getEventTotal.vancouver.va19.riders2);
-
-															var va18DonationSub = numberVa18v1 - numberVa18v2;
-															var va18RfiSub = locals.getEventTotal.vancouver.va18.rfi - yesterday[0].va18RFI;
-															var va18CrewSub = locals.getEventTotal.vancouver.va18.crews - yesterday[0].va18Crews;
-															var va18RiderSub = locals.getEventTotal.vancouver.va18.riders - yesterday[0].va18Riders;
-															var va18RegSub = numberRegVa18v1 - numberRegVa18v2;
-															var va18VRDaily = locals.getEventTotal.vancouver.va18.virtual - yesterday[0].va18VR;
-
-															var va17DonationSub = numberVa17v1 - numberVa17v2;
-
-															// OneWalk
-															var owto20DonationSub = numberOwTo20v1 - numberOwTo20v2;
-															var owto20RegSub = numberRegOwTo20v1 - numberRegOwTo20v2;
-															var owto20RfiSub = parseFloat(locals2.getEventTotal.toronto.to20.rfi);
-															var owto20CrewsDailySub = locals2.getEventTotal.toronto.to20.crews - yesterday[0].owTo20Crews;
-															var owto20TotalWalkers =
-																parseFloat(owTo20NightWalkers) + parseFloat(owTo2025kmWalkers) + parseFloat(owTo202day);
-															var owto20VirtualDailySub = locals2.getEventTotal.toronto.to20.virtual - yesterday[0].owTo20VR;
-															var owto20WalkersDailySub = owto20TotalWalkers - yesterday[0].owTo20Walkers;
-															var owTo2025kmWalkersDailySub =
-																locals2.getEventTotal.toronto.to20.Wlkr25km - yesterday[0].owTo2025kmWalkers;
-															var owTo2040kmWalkersDailySub =
-																locals2.getEventTotal.toronto.to20.Wlkr40km - yesterday[0].owTo2040kmWalkers;
-															var owTo20NightWalkersDailySub =
-																locals2.getEventTotal.toronto.to20.nightWlk - yesterday[0].owTo20NightWalkers;
-															var owTo202dayDailySub = locals2.getEventTotal.toronto.to20.twoDayWlk - yesterday[0].owTo202day;
-															var owTo20rfiTotal =
-																parseFloat(locals2.getEventTotal.toronto.to20.rfi) +
-																parseFloat(locals2.getEventTotal.toronto.to20.rfinight) +
-																parseFloat(locals2.getEventTotal.toronto.to20.rfinightfb) +
-																parseFloat(locals2.getEventTotal.toronto.to20.rfiday) +
-																parseFloat(locals2.getEventTotal.toronto.to20.rfidayfb);
-
-															var owto19DonationSub = numberOwTo19v1 - numberOwTo19v2;
-															var owto19RegSub = numberRegOwTo19v1 - numberRegOwTo19v2;
-															var owto19RfiSub =
-																parseFloat(locals2.getEventTotal.toronto.to19.rfi) +
-																parseFloat(locals2.getEventTotal.toronto.to19.rfinight) +
-																parseFloat(locals2.getEventTotal.toronto.to19.rfinightfb) +
-																parseFloat(locals2.getEventTotal.toronto.to19.rfiday) +
-																parseFloat(locals2.getEventTotal.toronto.to19.rfidayfb) -
-																yesterday[0].owTo19RFI;
-															var owto19CrewsDailySub = locals2.getEventTotal.toronto.to19.crews - yesterday[0].owTo19Crews;
-															var owto19TotalWalkers =
-																parseFloat(owTo19NightWalkers) + parseFloat(owTo1925kmWalkers) + parseFloat(owTo192day);
-															var owto19VirtualDailySub = locals2.getEventTotal.toronto.to19.virtual - yesterday[0].owTo19VR;
-															var owto19WalkersDailySub = owto19TotalWalkers - yesterday[0].owTo19Walkers;
-															var owTo1925kmWalkersDailySub =
-																locals2.getEventTotal.toronto.to19.Wlkr25km - yesterday[0].owTo1925kmWalkers;
-															var owTo1940kmWalkersDailySub =
-																locals2.getEventTotal.toronto.to19.Wlkr40km - yesterday[0].owTo1940kmWalkers;
-															var owTo19NightWalkersDailySub =
-																locals2.getEventTotal.toronto.to19.nightWlk - yesterday[0].owTo19NightWalkers;
-															var owTo192dayDailySub = locals2.getEventTotal.toronto.to19.twoDayWlk - yesterday[0].owTo192day;
-															var owTo19rfiTotal =
-																parseFloat(locals2.getEventTotal.toronto.to19.rfi) +
-																parseFloat(locals2.getEventTotal.toronto.to19.rfinight) +
-																parseFloat(locals2.getEventTotal.toronto.to19.rfinightfb) +
-																parseFloat(locals2.getEventTotal.toronto.to19.rfiday) +
-																parseFloat(locals2.getEventTotal.toronto.to19.rfidayfb);
-
-															var owto18DonationSub = numberOwTo18v1 - numberOwTo18v2;
-															var owto18RfiSub = locals2.getEventTotal.toronto.to18.rfi - yesterday[0].owTo18RFI;
-															var owto18RegSub = numberRegOwTo18v1 - numberRegOwTo18v2;
-															var owto18TotalWalkers =
-																parseFloat(owTo18NightWalkers) +
-																parseFloat(owTo1815kmWalkers) +
-																parseFloat(owTo1825kmWalkers) +
-																parseFloat(owTo1840kmWalkers) +
-																parseFloat(owTo182day);
-															var owto18CrewsDailySub = locals2.getEventTotal.toronto.to18.crews - yesterday[0].owTo18Crews;
-															var owto18WalkersDailySub = owto18TotalWalkers - yesterday[0].owTo18Walkers;
-															var owTo182dayDailySub = locals2.getEventTotal.toronto.to18.Wlkr15km - yesterday[0].owTo182day;
-															var owTo1815kmWalkersDailySub =
-																locals2.getEventTotal.toronto.to18.Wlkr15km - yesterday[0].owTo1815kmWalkers;
-															var owTo1825kmWalkersDailySub =
-																locals2.getEventTotal.toronto.to18.Wlkr25km - yesterday[0].owTo1825kmWalkers;
-															var owTo1840kmWalkersDailySub =
-																locals2.getEventTotal.toronto.to18.Wlkr40km - yesterday[0].owTo1840kmWalkers;
-															var owTo18NightWalkersDailySub =
-																locals2.getEventTotal.toronto.to18.nightWlk - yesterday[0].owTo18NightWalkers;
-
-															var owto17DonationSub = numberOwTo17v1 - numberOwTo17v2;
-
-															// OneDay Brisbane
-															var br18DonationSub = numberBr18v1 - numberBr18v2;
-															var br18RegSub = numberRegBr18v1 - numberRegBr18v2;
-															var br18RiderSub = locals4.getEventTotal.brisbane.br18.riders - yesterday[0].br18Riders;
-															var br18WalkerSub = locals4.getEventTotal.brisbane.br18.walkers - yesterday[0].br18Walkers;
-
-															// OneDay Melbourne
-															var ml18DonationSub = numberMl18v1 - numberMl18v2;
-															var ml18RegSub = numberRegMl18v1 - numberRegMl18v2;
-															var ml18RiderSub = locals4.getEventTotal.melbourne.ml18.riders - yesterday[0].ml18Riders;
-															var ml18WalkerSub = locals4.getEventTotal.melbourne.ml18.walkers - yesterday[0].ml18Walkers;
-
-															var ml17DonationSub = numberMl17v1 - numberMl17v2;
-
-															// Add Dollar Sign back into Data
-															var newTo20DonDaily = '$' + to20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newTo20RegDaily = '$' + to20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newTo19DonDaily = '$' + to19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newTo19RegDaily = '$' + to19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newToDonDaily = '$' + to18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newTo17DonDaily = '$' + to17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newToRegDaily = '$' + to18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-
-															var newPrDonDaily = '$' + pr18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newPr17DonDaily = '$' + pr17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newPrRegDaily = '$' + pr18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-
-															var newMo20DonDaily = '$' + mo20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newMo20RegDaily = '$' + mo20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newMo19DonDaily = '$' + mo19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newMo19RegDaily = '$' + mo19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newMoDonDaily = '$' + mo18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newMo17DonDaily = '$' + mo17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newMoRegDaily = '$' + mo18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-
-															var newAb20DonDaily = '$' + ab20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newAb20RegDaily = '$' + ab20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newAb19DonDaily = '$' + ab19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newAb19RegDaily = '$' + ab19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newAbDonDaily = '$' + ab18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newAb17DonDaily = '$' + ab17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newAbRegDaily = '$' + ab18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-
-															var newVa20DonDaily = '$' + va20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newVa20RegDaily = '$' + va20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newVa19DonDaily = '$' + va19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newVa19RegDaily = '$' + va19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newVaDonDaily = '$' + va18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newVa17DonDaily = '$' + va17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newVaRegDaily = '$' + va18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-
-															var newOwTo20DonDaily = '$' + owto20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newOwTo20RegDaily = '$' + owto20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newOwTo19DonDaily = '$' + owto19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newOwTo19RegDaily = '$' + owto19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newOwToDonDaily = '$' + owto18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newOwTo17DonDaily = '$' + owto17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newOwToRegDaily = '$' + owto18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-
-															var newBrDonDaily = '$' + br18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newBrRegDaily = '$' + br18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-
-															var newMlDonDaily = '$' + ml18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newMlRegDaily = '$' + ml18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-															var newMl17DonDaily = '$' + ml17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-
-															latestdata.updated = moment().format('L');
-															latestdata.nightly = 'false';
-															// RIDE - Toronto - 2020
-															latestdata.to20Donations = locals.getEventTotal.toronto.to20.totalDonation;
-															latestdata.to20RegFee = locals.getEventTotal.toronto.to20.regFee;
-															latestdata.to20Crews = locals.getEventTotal.toronto.to20.crews;
-															latestdata.to20RFI = locals.getEventTotal.toronto.to20.rfi;
-															latestdata.to20Riders = to20TotalRiders;
-															latestdata.to20VR = locals.getEventTotal.toronto.to20.virtual;
-															latestdata.to20theHammer = locals.getEventTotal.toronto.to20.theHammer;
-															latestdata.to20Riders2 = locals.getEventTotal.toronto.to20.riders2;
-															latestdata.to20OneDay = locals.getEventTotal.toronto.to20.oneday;
-															latestdata.to20OneDay2 = locals.getEventTotal.toronto.to20.oneday2;
-															latestdata.to20TotalParticipants = to20TotalParticipants;
-															// RIDE - Toronto - 2019
-															latestdata.to19Donations = locals.getEventTotal.toronto.to19.totalDonation;
-															latestdata.to19RegFee = locals.getEventTotal.toronto.to19.regFee;
-															latestdata.to19Crews = locals.getEventTotal.toronto.to19.crews;
-															latestdata.to19RFI = locals.getEventTotal.toronto.to19.rfi;
-															latestdata.to19Riders = to19TotalRiders;
-															latestdata.to19VR = locals.getEventTotal.toronto.to19.virtual;
-															latestdata.to19theHammer = locals.getEventTotal.toronto.to19.theHammer;
-															latestdata.to19hammer260 = locals.getEventTotal.toronto.to19.hammer260;
-															latestdata.to19Riders2 = locals.getEventTotal.toronto.to19.riders2;
-															latestdata.to19OneDay = locals.getEventTotal.toronto.to19.oneday;
-															latestdata.to19OneDay2 = locals.getEventTotal.toronto.to19.oneday2;
-															latestdata.to19TotalParticipants = to19TotalParticipants;
-
-															// RIDE - Toronto - 2018
-															latestdata.to18Donations = locals.getEventTotal.toronto.to18.totalDonation;
-															latestdata.to18RegFee = locals.getEventTotal.toronto.to18.regFee;
-															latestdata.to18Crews = locals.getEventTotal.toronto.to18.crews;
-															latestdata.to18RFI = locals.getEventTotal.toronto.to18.rfi;
-															latestdata.to18Riders = to18TotalRiders;
-															latestdata.to18VR = locals.getEventTotal.toronto.to18.virtual;
-															latestdata.to18Riders2 = locals.getEventTotal.toronto.to18.riders2;
-															latestdata.to18OneDay = locals.getEventTotal.toronto.to18.oneday;
-															latestdata.to18OneDay2 = locals.getEventTotal.toronto.to18.oneday2;
-															latestdata.to18TotalParticipants = to18TotalParticipants;
-
-															// RIDE - Toronto - 2017
-															latestdata.to17Donations = locals.getEventTotal.toronto.to17.totalDonation;
-															latestdata.to17RegFee = locals.getEventTotal.toronto.to17.regFee;
-															latestdata.to17Crews = locals.getEventTotal.toronto.to17.crews;
-															latestdata.to17RFI = locals.getEventTotal.toronto.to17.rfi;
-															latestdata.to17Riders = locals.getEventTotal.toronto.to17.riders;
-															latestdata.to17VR = locals.getEventTotal.toronto.to17.virtual;
-
-															// RIDE - Montreal - 2020
-															latestdata.mo20Donations = locals.getEventTotal.montreal.mo20.totalDonation;
-															latestdata.mo20RegFee = locals.getEventTotal.montreal.mo20.regFee;
-															latestdata.mo20Crews = locals.getEventTotal.montreal.mo20.crews;
-															latestdata.mo20RFI = locals.getEventTotal.montreal.mo20.rfi;
-															latestdata.mo20Riders = mo20TotalRiders;
-															latestdata.mo20VR = locals.getEventTotal.montreal.mo20.virtual;
-															latestdata.mo20Riders2 = locals.getEventTotal.montreal.mo20.riders2;
-															latestdata.mo20OneDay = locals.getEventTotal.montreal.mo20.oneday;
-															latestdata.mo20OneDay2 = locals.getEventTotal.montreal.mo20.oneday2;
-															latestdata.mo20TotalParticipants = mo20TotalParticipants;
-
-															// RIDE - Montreal - 2019
-															latestdata.mo19Donations = locals.getEventTotal.montreal.mo19.totalDonation;
-															latestdata.mo19RegFee = locals.getEventTotal.montreal.mo19.regFee;
-															latestdata.mo19Crews = locals.getEventTotal.montreal.mo19.crews;
-															latestdata.mo19RFI = locals.getEventTotal.montreal.mo19.rfi;
-															latestdata.mo19Riders = mo19TotalRiders;
-															latestdata.mo19VR = locals.getEventTotal.montreal.mo19.virtual;
-															latestdata.mo19Riders2 = locals.getEventTotal.montreal.mo19.riders2;
-															latestdata.mo19OneDay = locals.getEventTotal.montreal.mo19.oneday;
-															latestdata.mo19OneDay2 = locals.getEventTotal.montreal.mo19.oneday2;
-															latestdata.mo19TotalParticipants = mo19TotalParticipants;
-
-															// RIDE - Montreal - 2018
-															latestdata.mo18Donations = locals.getEventTotal.montreal.mo18.totalDonation;
-															latestdata.mo18RegFee = locals.getEventTotal.montreal.mo18.regFee;
-															latestdata.mo18Crews = locals.getEventTotal.montreal.mo18.crews;
-															latestdata.mo18RFI = locals.getEventTotal.montreal.mo18.rfi;
-															latestdata.mo18Riders = locals.getEventTotal.montreal.mo18.riders;
-															latestdata.mo18VR = locals.getEventTotal.montreal.mo18.virtual;
-
-															// RIDE - Montreal - 2017
-															latestdata.mo17Donations = locals.getEventTotal.montreal.mo17.totalDonation;
-															latestdata.mo17RegFee = locals.getEventTotal.montreal.mo17.regFee;
-															latestdata.mo17Crews = locals.getEventTotal.montreal.mo17.crews;
-															latestdata.mo17RFI = locals.getEventTotal.montreal.mo17.rfi;
-															latestdata.mo17Riders = locals.getEventTotal.montreal.mo17.riders;
-															latestdata.mo17VR = locals.getEventTotal.montreal.mo17.virtual;
-
-															// RIDE - Alberta - 2020
-															latestdata.ab20Donations = locals.getEventTotal.alberta.ab20.totalDonation;
-															latestdata.ab20RegFee = locals.getEventTotal.alberta.ab20.regFee;
-															latestdata.ab20Crews = locals.getEventTotal.alberta.ab20.crews;
-															latestdata.ab20RFI = locals.getEventTotal.alberta.ab20.rfi;
-															latestdata.ab20Riders = locals.getEventTotal.alberta.ab20.riders;
-															latestdata.ab20VR = locals.getEventTotal.alberta.ab20.virtual;
-															latestdata.ab20Riders2 = locals.getEventTotal.alberta.ab20.riders2;
-															latestdata.ab20OneDay = locals.getEventTotal.alberta.ab20.oneday;
-															latestdata.ab20OneDay2 = locals.getEventTotal.alberta.ab20.oneday2;
-															latestdata.ab20TotalParticipants = ab20TotalParticipants;
-
-															// RIDE - Alberta - 2019
-															latestdata.ab19Donations = locals.getEventTotal.alberta.ab19.totalDonation;
-															latestdata.ab19RegFee = locals.getEventTotal.alberta.ab19.regFee;
-															latestdata.ab19Crews = locals.getEventTotal.alberta.ab19.crews;
-															latestdata.ab19RFI = locals.getEventTotal.alberta.ab19.rfi;
-															latestdata.ab19Riders = locals.getEventTotal.alberta.ab19.riders;
-															latestdata.ab19VR = locals.getEventTotal.alberta.ab19.virtual;
-															latestdata.ab19Riders2 = locals.getEventTotal.alberta.ab19.riders2;
-															latestdata.ab19OneDay = locals.getEventTotal.alberta.ab19.oneday;
-															latestdata.ab19OneDay2 = locals.getEventTotal.alberta.ab19.oneday2;
-															latestdata.ab19TotalParticipants = ab19TotalParticipants;
-
-															// RIDE - Alberta - 2018
-															latestdata.ab18Donations = locals.getEventTotal.alberta.ab18.totalDonation;
-															latestdata.ab18RegFee = locals.getEventTotal.alberta.ab18.regFee;
-															latestdata.ab18Crews = locals.getEventTotal.alberta.ab18.crews;
-															latestdata.ab18RFI = locals.getEventTotal.alberta.ab18.rfi;
-															latestdata.ab18Riders = locals.getEventTotal.alberta.ab18.riders;
-															latestdata.ab18VR = locals.getEventTotal.alberta.ab18.virtual;
-
-															// RIDE - Alberta - 2017
-															latestdata.ab17Donations = locals.getEventTotal.alberta.ab17.totalDonation;
-															latestdata.ab17RegFee = locals.getEventTotal.alberta.ab17.regFee;
-															latestdata.ab17Crews = locals.getEventTotal.alberta.ab17.crews;
-															latestdata.ab17RFI = locals.getEventTotal.alberta.ab17.rfi;
-															latestdata.ab17Riders = locals.getEventTotal.alberta.ab17.riders;
-															latestdata.ab17VR = locals.getEventTotal.alberta.ab17.virtual;
-
-															// RIDE - Vancouver - 2020
-															latestdata.va20Donations = locals.getEventTotal.vancouver.va20.totalDonation;
-															latestdata.va20RegFee = locals.getEventTotal.vancouver.va20.regFee;
-															latestdata.va20Crews = locals.getEventTotal.vancouver.va20.crews;
-															latestdata.va20RFI = locals.getEventTotal.vancouver.va20.rfi;
-															latestdata.va20Riders = locals.getEventTotal.vancouver.va20.riders;
-															latestdata.va20VR = locals.getEventTotal.vancouver.va20.virtual;
-															latestdata.va20Riders2 = locals.getEventTotal.vancouver.va20.riders2;
-															latestdata.va20OneDay = locals.getEventTotal.vancouver.va20.oneday;
-															latestdata.va20OneDay2 = locals.getEventTotal.vancouver.va20.oneday2;
-															latestdata.va20TotalParticipants = va20TotalParticipants;
-															// RIDE - Vancouver - 2019
-															latestdata.va19Donations = locals.getEventTotal.vancouver.va19.totalDonation;
-															latestdata.va19RegFee = locals.getEventTotal.vancouver.va19.regFee;
-															latestdata.va19Crews = locals.getEventTotal.vancouver.va19.crews;
-															latestdata.va19RFI = locals.getEventTotal.vancouver.va19.rfi;
-															latestdata.va19Riders = locals.getEventTotal.vancouver.va19.riders;
-															latestdata.va19VR = locals.getEventTotal.vancouver.va19.virtual;
-															latestdata.va19Riders2 = locals.getEventTotal.vancouver.va19.riders2;
-															latestdata.va19OneDay = locals.getEventTotal.vancouver.va19.oneday;
-															latestdata.va19OneDay2 = locals.getEventTotal.vancouver.va19.oneday2;
-															latestdata.va19TotalParticipants = va19TotalParticipants;
-
-															// RIDE - Vancouver - 2018
-															latestdata.va18Donations = locals.getEventTotal.vancouver.va18.totalDonation;
-															latestdata.va18RegFee = locals.getEventTotal.vancouver.va18.regFee;
-															latestdata.va18Crews = locals.getEventTotal.vancouver.va18.crews;
-															latestdata.va18RFI = locals.getEventTotal.vancouver.va18.rfi;
-															latestdata.va18Riders = locals.getEventTotal.vancouver.va18.riders;
-															latestdata.va18VR = locals.getEventTotal.vancouver.va18.virtual;
-
-															// RIDE - Vancouver - 2017
-															latestdata.va17Donations = locals.getEventTotal.vancouver.va17.totalDonation;
-															latestdata.va17RegFee = locals.getEventTotal.vancouver.va17.regFee;
-															latestdata.va17Crews = locals.getEventTotal.vancouver.va17.crews;
-															latestdata.va17RFI = locals.getEventTotal.vancouver.va17.rfi;
-															latestdata.va17Riders = locals.getEventTotal.vancouver.va17.riders;
-															latestdata.va17VR = locals.getEventTotal.vancouver.va17.virtual;
-
-															// ONEWALK - Toronto - 2020
-															latestdata.owTo20Donations = locals2.getEventTotal.toronto.to20.totalDonation;
-															latestdata.owTo20RegFee = locals2.getEventTotal.toronto.to20.regFee;
-															latestdata.owTo20RFI = owto20RfiSub;
-															latestdata.owTo20Crews = locals2.getEventTotal.toronto.to20.crews;
-															latestdata.owTo20VR = locals.getEventTotal.toronto.to20.virtual;
-															latestdata.owTo20Walkers = owto20TotalWalkers;
-															latestdata.owTo2025kmWalkers = owTo2025kmWalkers;
-															latestdata.owTo2040kmWalkers = owTo2040kmWalkers;
-															latestdata.owTo20NightWalkers = owTo20NightWalkers;
-															latestdata.owTo202day = owTo202day;
-
-															// ONEWALK - Toronto - 2019
-															latestdata.owTo19Donations = locals2.getEventTotal.toronto.to19.totalDonation;
-															latestdata.owTo19RegFee = locals2.getEventTotal.toronto.to19.regFee;
-															latestdata.owTo19RFI = owTo19rfiTotal;
-															latestdata.owTo19Crews = locals2.getEventTotal.toronto.to19.crews;
-															latestdata.owTo19VR = locals.getEventTotal.toronto.to19.virtual;
-															latestdata.owTo19Walkers = owto19TotalWalkers;
-															latestdata.owTo1925kmWalkers = owTo1925kmWalkers;
-															latestdata.owTo1940kmWalkers = owTo1940kmWalkers;
-															latestdata.owTo19NightWalkers = owTo19NightWalkers;
-															latestdata.owTo192day = owTo192day;
-
-															// ONEWALK - Toronto - 2018
-															latestdata.owTo18Donations = locals2.getEventTotal.toronto.to18.totalDonation;
-															latestdata.owTo18RegFee = locals2.getEventTotal.toronto.to18.regFee;
-															latestdata.owTo18Crews = locals2.getEventTotal.toronto.to18.crews;
-															latestdata.owTo18Walkers = owto18TotalWalkers;
-															latestdata.owTo18NightWalkers = owTo18NightWalkers;
-															latestdata.owTo182day = owTo182day;
-															latestdata.owTo1815kmWalkers = owTo1815kmWalkers;
-															latestdata.owTo1825kmWalkers = owTo1825kmWalkers;
-															latestdata.owTo1840kmWalkers = owTo1840kmWalkers;
-															latestdata.owTo18RFI = locals2.getEventTotal.toronto.to18.rfi;
-
-															// ONEWALK - Toronto - 2017
-															latestdata.owTo17Donations = locals2.getEventTotal.toronto.to17.totalDonation;
-															latestdata.owTo17RegFee = locals2.getEventTotal.toronto.to17.regFee;
-															latestdata.owTo17Crews = locals2.getEventTotal.toronto.to17.crews;
-															latestdata.owTo17Walkers = locals2.getEventTotal.toronto.to17.walkers;
-															latestdata.owTo1715kmWalkers = owTo1715kmWalkers;
-															latestdata.owTo1725kmWalkers = owTo1725kmWalkers;
-															latestdata.owTo1740kmWalkers = owTo1740kmWalkers;
-															latestdata.owTo17RFI = locals2.getEventTotal.toronto.to17.rfi;
-
-															// RIDE - Perth - 2018
-															latestdata.pr18Donations = locals3.getEventTotal.perth.pr18.totalDonation;
-															latestdata.pr18RegFee = locals3.getEventTotal.perth.pr18.regFee;
-															latestdata.pr18Crews = locals3.getEventTotal.perth.pr18.crews;
-															latestdata.pr18RFI = locals3.getEventTotal.perth.pr18.rfi;
-															latestdata.pr18Riders = locals3.getEventTotal.perth.pr18.riders;
-
-															// RIDE - Perth - 2017
-															latestdata.pr17Donations = locals3.getEventTotal.perth.pr17.totalDonation;
-															latestdata.pr17RegFee = locals3.getEventTotal.perth.pr17.regFee;
-															latestdata.pr17Crews = locals3.getEventTotal.perth.pr17.crews;
-															latestdata.pr17RFI = locals3.getEventTotal.perth.pr17.rfi;
-															latestdata.pr17Riders = locals3.getEventTotal.perth.pr17.riders;
-
-															// ONEDAY - Brisbane - 2018
-															latestdata.br18Donations = locals4.getEventTotal.brisbane.br18.totalDonation;
-															latestdata.br18RegFee = locals4.getEventTotal.brisbane.br18.regFee;
-															latestdata.br18Walkers = locals4.getEventTotal.brisbane.br18.walkers;
-															latestdata.br18Riders = locals4.getEventTotal.brisbane.br18.riders;
-
-															// ONEDAY - Brisbane - 2017
-															latestdata.br17Donations = locals4.getEventTotal.brisbane.br17.totalDonation;
-															latestdata.br17RegFee = locals4.getEventTotal.brisbane.br17.regFee;
-															latestdata.br17Walkers = locals4.getEventTotal.brisbane.br17.walkers;
-															latestdata.br17Riders = locals4.getEventTotal.brisbane.br17.riders;
-
-															// ONEDAY - Melbourne - 2018
-															latestdata.ml18Donations = locals4.getEventTotal.melbourne.ml18.totalDonation;
-															latestdata.ml18RegFee = locals4.getEventTotal.melbourne.ml18.regFee;
-															latestdata.ml18Walkers = locals4.getEventTotal.melbourne.ml18.walkers;
-															latestdata.ml18Riders = locals4.getEventTotal.melbourne.ml18.riders;
-
-															// ONEDAY - Melbourne - 2017
-															latestdata.ml17Donations = locals4.getEventTotal.melbourne.ml17.totalDonation;
-															latestdata.ml17RegFee = locals4.getEventTotal.melbourne.ml17.regFee;
-															latestdata.ml17Walkers = locals4.getEventTotal.melbourne.ml17.walkers;
-															latestdata.ml17Riders = locals4.getEventTotal.melbourne.ml17.riders;
-
-															// DAILY - RIDE - Toronto
-															// -- 2020
-															latestdata.to20DonDaily = newTo20DonDaily;
-															latestdata.to20RegFeeDaily = newTo20RegDaily;
-															latestdata.to20RFIDaily = to20RfiSub;
-															latestdata.to20CrewDaily = to20CrewSub;
-															latestdata.to20RidersDaily = to20RiderSub;
-															latestdata.to19Riders2Daily = to20Riders2Daily;
-															latestdata.to20VRDaily = to20VRDaily;
-															latestdata.to20OneDayDaily = to20OneDayDaily;
-															latestdata.to20OneDayDaily2 = to20OneDayDaily2;
-															latestdata.to20theHammerDaily = to20theHammerDaily;
-															// -- 2019
-															latestdata.to19DonDaily = newTo19DonDaily;
-															latestdata.to19RegFeeDaily = newTo19RegDaily;
-															latestdata.to19RFIDaily = to19RfiSub;
-															latestdata.to19CrewDaily = to19CrewSub;
-															latestdata.to19RidersDaily = to19RiderSub;
-															latestdata.to19VRDaily = to19VRDaily;
-															latestdata.to19Riders2Daily = to19Riders2Daily;
-															latestdata.to19OneDayDaily = to19OneDayDaily;
-															latestdata.to19theHammerDaily = to19theHammerDaily;
-															latestdata.to19hammer260Daily = to19hammer260Daily;
-
-															// -- 2018
-															latestdata.to18DonDaily = newToDonDaily;
-															latestdata.to18RegFeeDaily = newToRegDaily;
-															latestdata.to18RFIDaily = to18RfiSub;
-															latestdata.to18CrewDaily = to18CrewSub;
-															latestdata.to18RidersDaily = to18RiderSub;
-															latestdata.to18VRDaily = to18VRDaily;
-															latestdata.to18Riders2Daily = to18Riders2Daily;
-															latestdata.to18OneDayDaily = to18OneDayDaily;
-
-															latestdata.to17DonDaily = newTo17DonDaily;
-
-															// DAILY - RIDE - Perth
-															// -- 2018
-															latestdata.pr18DonDaily = newPrDonDaily;
-															latestdata.pr18RegFeeDaily = newPrRegDaily;
-															latestdata.pr18RFIDaily = pr18RfiSub;
-															latestdata.pr18CrewDaily = pr18CrewSub;
-															latestdata.pr18RidersDaily = pr18RiderSub;
-
-															// -- 2017
-															latestdata.pr17DonDaily = newPr17DonDaily;
-
-															// DAILY - RIDE - Montreal
-															// -- 2020
-															latestdata.mo20DonDaily = newMo20DonDaily;
-															latestdata.mo20RegFeeDaily = newMo20RegDaily;
-															latestdata.mo20RFIDaily = mo20RfiSub;
-															latestdata.mo20CrewDaily = mo20CrewSub;
-															latestdata.mo20RidersDaily = mo20RiderSub;
-															latestdata.mo20Riders2Daily = mo20Riders2Daily;
-															latestdata.mo20OneDayDaily = mo20OneDayDaily;
-															latestdata.mo20OneDayDaily2 = mo20OneDayDaily2;
-															latestdata.mo20VRDaily = mo20VRDaily;
-
-															// -- 2019
-															latestdata.mo19DonDaily = newMo19DonDaily;
-															latestdata.mo19RegFeeDaily = newMo19RegDaily;
-															latestdata.mo19RFIDaily = mo19RfiSub;
-															latestdata.mo19CrewDaily = mo19CrewSub;
-															latestdata.mo19RidersDaily = mo19RiderSub;
-															latestdata.mo19Riders2Daily = mo19Riders2Daily;
-															latestdata.mo19OneDayDaily = mo19OneDayDaily;
-															latestdata.mo19OneDayDaily2 = mo19OneDayDaily2;
-															latestdata.mo19VRDaily = mo19VRDaily;
-
-															// -- 2018
-															latestdata.mo18DonDaily = newMoDonDaily;
-															latestdata.mo18RegFeeDaily = newMoRegDaily;
-															latestdata.mo18RFIDaily = mo18RfiSub;
-															latestdata.mo18CrewDaily = mo18CrewSub;
-															latestdata.mo18RidersDaily = mo18RiderSub;
-															latestdata.mo18VRDaily = mo18VRDaily;
-
-															// -- 2017
-															latestdata.mo17DonDaily = newMo17DonDaily;
-
-															// DAILY - RIDE - Alberta
-															// -- 2020
-															latestdata.ab20DonDaily = newAb20DonDaily;
-															latestdata.ab20RegFeeDaily = newAb20RegDaily;
-															latestdata.ab20RFIDaily = ab20RfiSub;
-															latestdata.ab20CrewDaily = ab20CrewSub;
-															latestdata.ab20RidersDaily = ab20RiderSub;
-															latestdata.ab20Riders2Daily = ab20Riders2Daily;
-															latestdata.ab20OneDayDaily = ab20OneDayDaily;
-															latestdata.ab20OneDayDaily2 = ab20OneDayDaily2;
-															latestdata.ab20VRDaily = ab20VRDaily;
-
-															// -- 2019
-															latestdata.ab19DonDaily = newAb19DonDaily;
-															latestdata.ab19RegFeeDaily = newAb19RegDaily;
-															latestdata.ab19RFIDaily = ab19RfiSub;
-															latestdata.ab19CrewDaily = ab19CrewSub;
-															latestdata.ab19RidersDaily = ab19RiderSub;
-															latestdata.ab19Riders2Daily = ab19Riders2Daily;
-															latestdata.ab19OneDayDaily = ab19OneDayDaily;
-															latestdata.ab19OneDayDaily2 = ab19OneDayDaily2;
-															latestdata.ab19VRDaily = ab19VRDaily;
-
-															// -- 2018
-															latestdata.ab18DonDaily = newAbDonDaily;
-															latestdata.ab18RegFeeDaily = newAbRegDaily;
-															latestdata.ab18RFIDaily = ab18RfiSub;
-															latestdata.ab18CrewDaily = ab18CrewSub;
-															latestdata.ab18RidersDaily = ab18RiderSub;
-															latestdata.ab18VRDaily = ab18VRDaily;
-
-															// -- 2017
-															latestdata.ab17DonDaily = newAb17DonDaily;
-
-															// DAILY - RIDE - Vancouver
-															// -- 2020
-															latestdata.va20DonDaily = newVa20DonDaily;
-															latestdata.va20RegFeeDaily = newVa20RegDaily;
-															latestdata.va20RFIDaily = va20RfiSub;
-															latestdata.va20CrewDaily = va20CrewSub;
-															latestdata.va20RidersDaily = va20RiderSub;
-															latestdata.va20Riders2Daily = va20Riders2Daily;
-															latestdata.va20OneDayDaily = va20OneDayDaily;
-															latestdata.va20OneDayDaily2 = va20OneDayDaily2;
-															latestdata.va20VRDaily = va20VRDaily;
-
-															// -- 2019
-															latestdata.va19DonDaily = newVa19DonDaily;
-															latestdata.va19RegFeeDaily = newVa19RegDaily;
-															latestdata.va19RFIDaily = va19RfiSub;
-															latestdata.va19CrewDaily = va19CrewSub;
-															latestdata.va19RidersDaily = va19RiderSub;
-															latestdata.va19Riders2Daily = va19Riders2Daily;
-															latestdata.va19OneDayDaily = va19OneDayDaily;
-															latestdata.va19OneDayDaily2 = va19OneDayDaily2;
-															latestdata.va19VRDaily = va19VRDaily;
-
-															// -- 2018
-															latestdata.va18DonDaily = newVaDonDaily;
-															latestdata.va18RegFeeDaily = newVaRegDaily;
-															latestdata.va18RFIDaily = va18RfiSub;
-															latestdata.va18CrewDaily = va18CrewSub;
-															latestdata.va18RidersDaily = va18RiderSub;
-															latestdata.va18VRDaily = va18VRDaily;
-
-															// -- 2017
-															latestdata.va17DonDaily = newVa17DonDaily;
-
-															// DAILY - ONEWALK - Toronto
-
-															// -- 2020
-															latestdata.owto20DonDaily = newOwTo20DonDaily;
-															latestdata.owto20RegDaily = newOwTo20RegDaily;
-															latestdata.owto20RFIDaily = owto20RfiSub;
-															latestdata.owto20WalkersDaily = owto20WalkersDailySub;
-															((latestdata.owto202dayDaily = owTo202dayDailySub),
-																(latestdata.owto20NightWalkersDaily = owTo20NightWalkersDailySub),
-																(latestdata.owto2025kmWalkersDaily = owTo2025kmWalkersDailySub),
-																(latestdata.owto2040kmWalkersDaily = owTo2040kmWalkersDailySub),
-																(latestdata.owto20CrewsDaily = owto20CrewsDailySub));
-															latestdata.owto20VRDaily = owto20VirtualDailySub;
-
-															// -- 2019
-															latestdata.owto19DonDaily = newOwTo19DonDaily;
-															latestdata.owto19RegDaily = newOwTo19RegDaily;
-															latestdata.owto19RFIDaily = owto19RfiSub;
-															latestdata.owto19WalkersDaily = owto19WalkersDailySub;
-															((latestdata.owto192dayDaily = owTo192dayDailySub),
-																(latestdata.owto19NightWalkersDaily = owTo19NightWalkersDailySub),
-																(latestdata.owto1925kmWalkersDaily = owTo1925kmWalkersDailySub),
-																(latestdata.owto1940kmWalkersDaily = owTo1940kmWalkersDailySub),
-																(latestdata.owto19CrewsDaily = owto19CrewsDailySub));
-															latestdata.owto19VRDaily = owto19VirtualDailySub;
-
-															// -- 2018
-															latestdata.owto18DonDaily = newOwToDonDaily;
-															latestdata.owto18RegDaily = newOwToRegDaily;
-															latestdata.owto18RFIDaily = owto18RfiSub;
-															latestdata.owto18WalkersDaily = owto18WalkersDailySub;
-															((latestdata.owto182dayDaily = owTo182dayDailySub),
-																(latestdata.owto18NightWalkersDaily = owTo18NightWalkersDailySub),
-																(latestdata.owto1815kmWalkersDaily = owTo1815kmWalkersDailySub),
-																(latestdata.owto1825kmWalkersDaily = owTo1825kmWalkersDailySub),
-																(latestdata.owto1840kmWalkersDaily = owTo1840kmWalkersDailySub),
-																(latestdata.owto18CrewsDaily = owto18CrewsDailySub));
-
-															// -- 2017
-															latestdata.owto17DonDaily = newOwTo17DonDaily;
-
-															// DAILY - ONEDAY - Melbourne
-															// -- 2018
-															latestdata.ml18DonDaily = newMlDonDaily;
-															latestdata.ml18RegDaily = newMlRegDaily;
-															latestdata.ml18RidersDaily = ml18RiderSub;
-															latestdata.ml18WalkersDaily = ml18RiderSub;
-
-															// -- 2017
-															latestdata.ml17DonDaily = newMl17DonDaily;
-
-															// DAILY - ONEDAY - Brisbane
-															// -- 2018
-															latestdata.br18DonDaily = newBrDonDaily;
-															latestdata.br18RegDaily = newBrRegDaily;
-															latestdata.br18RidersDaily = br18RiderSub;
-															latestdata.br18WalkersDaily = br18WalkerSub;
-
-															// latestdata.br17DonDaily = newBr17DonDaily;
-
-															latestdata.save(function (err) {
-																if (err) return handleError(err);
-																console.log('Data saved to MongoDB!');
-															});
-														} else {
-														}
-													});
-											}
-											if (err) {
-												console.log("There was an error getting theoneday.org.au's data: ");
-												console.log(err);
-											} else {
-											}
-										});
-									}
-									if (err) {
-										console.log("There was an error getting conquercancer.org.au's data: ");
-										console.log(err);
-									} else {
-									}
-								});
-							}
-							if (err) {
-								console.log("There was an error getting onewalk.ca's data: ");
-								console.log(err);
-							} else {
-							}
-						});
-					}
-					if (err) {
-						console.log("There was an error getting conquercancer.ca's data: ");
-						console.log(err);
-					} else {
-					}
-				});
-			} else {
-				console.log("Sorry there was an error getting yesterday's data: ");
-				console.log(err);
-				// console.log(data);
-			}
+			// Add similar mappings for other locales
 		});
-
-	data
-		.findOne()
-		.sort({ _id: -1 })
-		.exec(function (err, data) {
-			if (err) {
-				console.log('Error getting data..');
-			}
-			if (data) {
-				// console.log(data);
-				res.json(data);
-			} else {
-				console.log('No data found!');
-			}
-		});
+		
+		console.log('Returning filtered data for locale:', locale);
+		res.json(filteredResponse);
+	} catch (err) {
+		console.log('Error getting filtered data:');
+		console.log(err);
+		res.status(500).json({ error: 'Error fetching filtered data' });
+	}
 });
 
 module.exports = router;
