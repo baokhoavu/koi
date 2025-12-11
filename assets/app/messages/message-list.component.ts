@@ -9,7 +9,8 @@ import { MessageService } from './message.service';
 		<div class="col-md-8 col-md-offset-2">
 			<app-message [message]="message" *ngFor="let message of messages"></app-message>
 		</div>
-	`
+	`,
+	standalone: false
 })
 export class MessageListComponent implements OnInit {
 	messages: Message[];
@@ -22,3 +23,4 @@ export class MessageListComponent implements OnInit {
 		});
 	}
 }
+

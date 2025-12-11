@@ -10,6 +10,8 @@ import { Component } from '@angular/core';
 		<div class="row">
 			<app-message-list></app-message-list>
 		</div>
-	`
+	`,
+	standalone: false
 })
 export class MessagesComponent {}
+

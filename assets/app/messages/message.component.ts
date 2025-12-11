@@ -21,7 +21,8 @@ import { MessageService } from './message.service';
 				width: 19%;
 			}
 		`
-	]
+	],
+	standalone: false
 })
 export class MessageComponent {
 	@Input() message: Message;
@@ -40,3 +41,4 @@ export class MessageComponent {
 		return localStorage.getItem('userId') == this.message.userId;
 	}
 }
+

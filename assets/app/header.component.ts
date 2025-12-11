@@ -13,7 +13,8 @@ import * as $ from 'jquery';
 	selector: 'app-header',
 	templateUrl: './header.component.html',
 	styleUrls: ['./header.component.scss'],
-	animations: [SlideInOutAnimation]
+	animations: [SlideInOutAnimation],
+	standalone: false
 })
 export class HeaderComponent {
 	allTable: boolean = false;
@@ -22,7 +23,7 @@ export class HeaderComponent {
 	constructor(
 		private authService: AuthService,
 		private router: Router,
-		private dataService: DataService
+		public dataService: DataService
 	) {
 		$(document).ready(function () {
 			$('.btn').on('click', function () {
@@ -192,3 +193,4 @@ export class HeaderComponent {
 		}
 	}
 }
+

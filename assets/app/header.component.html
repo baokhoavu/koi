@@ -2,8 +2,8 @@
 	<div class="row justify-content-md-center">
 		<nav class="col col-md-8">
 			<ul class="nav nav-pills">
-				<a *ngIf="!isLoggedIn()" class="navbar-brand" href="/"><img src="/img/koi_logo_v2.svg" alt="Koi Logo"></a>
-				<a *ngIf="isLoggedIn()" class="navbar-brand" href="/alltables"><img src="/img/koi_logo_v2.svg" alt="Koi Logo"></a>
+				<a *ngIf="!isLoggedIn()" class="navbar-brand" href="/"><img src="../img/koi_logo_v2.svg" alt="Koi Logo"></a>
+				<a *ngIf="isLoggedIn()" class="navbar-brand" href="/alltables"><img src="../img/koi_logo_v2.svg" alt="Koi Logo"></a>
 				<p class="navbar-brand"> version: 1.01</p>
 	<!--             <li routerLinkActive="active" *ngIf="!isLoggedIn()"><a [routerLink]="['/auth']">Sign Up / Sign In</a></li> -->
 				<li routerLinkActive="active" *ngIf="!isLoggedIn()"><button mat-raised-button color="primary" [routerLink]="['/signin']">Sign In</button></li>

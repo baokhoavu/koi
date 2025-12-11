@@ -6,7 +6,8 @@ import { Message } from './message.model';
 
 @Component({
 	selector: 'app-message-input',
-	templateUrl: './message-input.component.html'
+	templateUrl: './message-input.component.html',
+	standalone: false
 })
 export class MessageInputComponent implements OnInit {
 	message: Message;
@@ -39,3 +40,4 @@ export class MessageInputComponent implements OnInit {
 		this.messageService.messageIsEdit.subscribe((message: Message) => (this.message = message));
 	}
 }
+

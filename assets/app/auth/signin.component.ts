@@ -1,20 +1,15 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule } from '@angular/material';
-import { MatSnackBar } from '@angular/material';
-import { MatButtonModule } from '@angular/material';
-import { MatButtonToggleModule } from '@angular/material';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from './user.model';
 import { AuthService } from './auth.service';
 
 @Component({
 	selector: 'app-signin',
 	templateUrl: './signin.component.html',
-	styleUrls: ['./signin.component.scss']
+	styleUrls: ['./signin.component.scss'],
+	standalone: false
 })
 export class SigninComponent {
 	myForm: FormGroup;
@@ -60,3 +55,4 @@ export class SigninComponent {
 		});
 	}
 }
+

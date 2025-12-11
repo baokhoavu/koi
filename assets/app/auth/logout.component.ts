@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule } from '@angular/material';
-import { MatSnackBar } from '@angular/material';
-import { MatButtonModule } from '@angular/material';
-import { MatButtonToggleModule } from '@angular/material';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -16,7 +10,8 @@ import { AuthService } from './auth.service';
 			<button mat-raised-button color="warn" (click)="onLogout()">Logout</button>
 		</div>
 	`,
-	styleUrls: ['./logout.component.scss']
+	styleUrls: ['./logout.component.scss'],
+	standalone: false
 })
 export class LogoutComponent {
 	constructor(
@@ -34,3 +29,4 @@ export class LogoutComponent {
 		});
 	}
 }
+
