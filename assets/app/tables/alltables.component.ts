@@ -1,78 +1,80 @@
-import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
-import { AuthService } from "../auth/auth.service";
+import { AuthService } from '../auth/auth.service';
 import { DataService } from '../data.service';
 
 import { HttpClient } from '@angular/common/http';
 
 import { MatSidenavModule } from '@angular/material';
 
-import { Observable } from "rxjs/Observable";
-import { Observer } from "rxjs/Observer";
-import { Subscription } from "rxjs/Subscription";
-import { Subject } from "rxjs/Subject";
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
+import { Subscription } from 'rxjs/Subscription';
+import { Subject } from 'rxjs/Subject';
 
 import { SlideInOutAnimation } from '../animation';
 
 import * as $ from 'jquery';
 
 @Component({
-    selector: 'all-tables',
-    templateUrl: './alltables.component.html',
-    styleUrls: ['./alltables.component.scss'],
-    animations: [SlideInOutAnimation]
+	selector: 'all-tables',
+	templateUrl: './alltables.component.html',
+	styleUrls: ['./alltables.component.scss'],
+	animations: [SlideInOutAnimation]
 })
 export class AllTablesComponent implements OnInit {
-    animationState = 'out';
-    myForm: FormGroup;
-    data: any;
-    private apiUrl = '/api/data';
+	animationState = 'out';
+	myForm: FormGroup;
+	data: any;
+	private apiUrl = '/api/data';
 
-    interval: any;
+	interval: any;
 
-    _postsArray: any = {};
+	_postsArray: any = {};
 
-    constructor(private router: Router, private http: HttpClient, private authService: AuthService, private dataService: DataService) {
+	constructor(
+		private router: Router,
+		private http: HttpClient,
+		private authService: AuthService,
+		private dataService: DataService
+	) {
+		// this.getData('/api/data');
 
-        // this.getData('/api/data');
+		$(document).ready(function () {
+			$('.btn-view').on('click', function () {
+				$('.all-buttons-row').slideToggle();
+				$(this).toggleClass('view-hide');
+				if ($(this).hasClass('view-hide')) {
+					$(this).text('Hide Table Menu');
+					$('.all-buttons-row').css('display', 'flex');
+				} else {
+					$(this).text('View Table Menu');
+				}
+			});
+		});
+		// if (window.location.href.indexOf('alltables') == -1) {
+		//      location.reload(true);
+		// }
+	}
 
-        $(document).ready(function(){
-            $('.btn-view').on('click', function() {
-                $('.all-buttons-row').slideToggle();
-                $(this).toggleClass('view-hide');
-                if ($(this).hasClass('view-hide')) {
-                    $(this).text('Hide Table Menu');
-                    $('.all-buttons-row').css('display', 'flex');
-                } else {
-                    $(this).text('View Table Menu');
-                }
-            });
-        });
-        // if (window.location.href.indexOf('alltables') == -1) {
-        //      location.reload(true);
-        // }
-    }
+	ngOnInit(): void {
+		this.dataService.fetchData();
+		// this.interval = setInterval(() => {
+		//           this.dataService.fetchData();
+		//       }, 5000);
+	}
 
-    ngOnInit(): void {
-        this.dataService.fetchData();
-        // this.interval = setInterval(() => {
-        //           this.dataService.fetchData();
-        //       }, 5000);
+	isLoggedIn() {
+		return this.authService.isLoggedIn();
+	}
 
-
-    }
-
-    isLoggedIn() {
-        return this.authService.isLoggedIn();
-    }
-
-    toggleShowDiv(divName: string) {
-        if (divName === 'ab-table') {
-            console.log(this.animationState);
-            this.animationState = this.animationState === 'out' ? 'in' : 'out';
-            console.log(this.animationState);
-        }
-    }
+	toggleShowDiv(divName: string) {
+		if (divName === 'ab-table') {
+			console.log(this.animationState);
+			this.animationState = this.animationState === 'out' ? 'in' : 'out';
+			console.log(this.animationState);
+		}
+	}
 }

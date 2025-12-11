@@ -1,36 +1,38 @@
-import { Injectable } from "@angular/core";
-import { Http, Headers, Response } from "@angular/http";
-import { HttpClient } from "@angular/common/http";
-import 'rxjs/Rx';
-import { Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
-import { User } from "./user.model";
+import { User } from './user.model';
+import { environment } from '../environment';
 
 @Injectable()
 export class AuthService {
-    constructor(private http: Http) {}
+	constructor(private http: HttpClient) {}
 
-    signup(user: User) {
-        const body = JSON.stringify(user);
-        const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post('https://cfkoi.herokuapp.com/user', body, {headers: headers})
-            .map((response: Response) => response.json())
-            .catch((error: Response) => Observable.throw(error.json()));
-    }
+	signup(user: User) {
+		const body = JSON.stringify(user);
+		const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+		return this.http.post<any>(environment.apiUrl + '/user', body, { headers: headers }).pipe(
+			map(response => response),
+			catchError(error => throwError(() => error))
+		);
+	}
 
-    signin(user: User) {
-        const body = JSON.stringify(user);
-        const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post('https://cfkoi.herokuapp.com/user/signin', body, {headers: headers})
-            .map((response: Response) => response.json())
-            .catch((error: Response) => Observable.throw(error.json()));
-    }
+	signin(user: User) {
+		const body = JSON.stringify(user);
+		const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+		return this.http.post<any>(environment.apiUrl + '/user/signin', body, { headers: headers }).pipe(
+			map(response => response),
+			catchError(error => throwError(() => error))
+		);
+	}
 
-    logout() {
-        localStorage.clear();
-    }
+	logout() {
+		localStorage.clear();
+	}
 
-    isLoggedIn() {
-        return localStorage.getItem('token') !== null;
-    }
+	isLoggedIn() {
+		return localStorage.getItem('token') !== null;
+	}
 }
