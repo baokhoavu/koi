@@ -29,7 +29,6 @@ export class VancouverComponent {
 	// Function for listener event in the DOM to check for change in the date picker, to format that date so it can be retrieved from the database properly.
 	dateChange() {
 		this.dataService.myDate = moment(this.datePicker.nativeElement.value).format('L');
-		console.log(this.dataService.myDate);
 		this.dataService.fetchAllData();
 		this.datePickerSelected = true;
 	}

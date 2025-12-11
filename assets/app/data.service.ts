@@ -48,25 +48,15 @@ export class DataService implements OnInit {
 	// }
 
 	fetchData() {
-		console.log('🔄 Fetching data from /api/data...');
 		this.http.get<any>('/api/data').subscribe(
 			(data) => {
-				console.log('✅ Data received:', data);
-				console.log('🔍 Data type:', typeof data);
-				console.log('📋 Data keys count:', Object.keys(data || {}).length);
-
 				// Ensure we're setting the data object properly
 				if (data && typeof data === 'object') {
 					this.data = { ...data };
-					console.log('📊 dataService.data set to:', this.data);
-					console.log('🔍 Sample values - to20RFIDaily:', this.data.to20RFIDaily);
-					console.log('🔍 Sample values - to20Donations:', this.data.to20Donations);
-				} else {
-					console.log('⚠️ Data is not an object:', data);
 				}
 			},
 			(error) => {
-				console.log('❌ There was an error getting the data:', error);
+				console.error('Error fetching data:', error);
 			}
 		);
 	}
@@ -76,21 +66,19 @@ export class DataService implements OnInit {
 		this.http.get(`${environment.apiUrl}/api/data-by-date?date=${this.myDate}`).subscribe(
 			(data) => {
 				this.allData = data ?? [];
-				console.log(this.allData);
 
 				const dataLength = this.allData?.length ?? 0;
 				this.noData = dataLength === 0;
 				this.brisbaneData = dataLength > 0 || !this.allData?.br18Riders;
 			},
 			(error) => {
-				console.log('There was an error while getting all of the data.', error);
+				console.error('Error fetching all data:', error);
 			}
 		);
 	}
 
 	setData(data: any = null) {
 		this.apiData.next(data ?? null);
-		console.log('Setting data...');
 	}
 
 	toggleState() {
