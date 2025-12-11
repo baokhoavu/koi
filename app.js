@@ -43,7 +43,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
+// Serve static files from dist (Vite build output) in production
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static(path.join(__dirname, 'dist')));
+} else {
+	// In development, public folder for any static assets
+	app.use(express.static(path.join(__dirname, 'public')));
+}
 
 app.use(function (req, res, next) {
 	res.setHeader('Access-Control-Allow-Origin', '*');
@@ -55,11 +62,21 @@ app.use(function (req, res, next) {
 app.use('/message', messageRoutes);
 app.use('/user', userRoutes);
 app.use('/api', apiRoutes);
-app.use('/', appRoutes);
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-	return res.render('index');
-});
+// For production: serve the built Angular app
+// For development: Vite dev server handles this on port 3000
+if (process.env.NODE_ENV === 'production') {
+	app.get('*', function (req, res) {
+		res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+	});
+} else {
+	// In development, fall back to appRoutes which renders the view
+	app.use('/', appRoutes);
+	
+	// catch 404 and forward to error handler
+	app.use(function (req, res, next) {
+		return res.render('index');
+	});
+}
 
 module.exports = app;
