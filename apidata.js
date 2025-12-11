@@ -431,30 +431,24 @@ promise.then((_db) => {
 	request(apiURL, (err, response, body) => {
 		if (!err && response.statusCode === 200) {
 			var locals = JSON.parse(body);
-			console.log('Got ConquerCancer Data...');
 
 			var apiOneWalk = 'http://secure.weekendtoconquercancer.ca/site/PageServer?pagename=api_data&pgwrap=n';
 			request(apiOneWalk, (err, response, body) => {
 				if (!err && response.statusCode === 200) {
 					var locals2 = JSON.parse(body);
-					console.log('Got OneWalk Data...');
 
 					var apiRidePerth = 'http://www.conquercancer.org.au/site/PageServer?pagename=api_data&pgwrap=n';
 					request(apiRidePerth, (err, response, body) => {
 						if (!err && response.statusCode === 200) {
 							var locals3 = JSON.parse(body);
-							console.log('Got ConquerCancer AU Data...');
 
 							var apiOneDay =
 								'http://participate.theoneday.org.au/site/PageServer?pagename=api_data&pgwrap=n';
 							request(apiOneDay, (err, response, body) => {
 								if (!err && response.statusCode === 200) {
 									var locals4 = JSON.parse(body);
-									console.log('Got TheOneDay Data..');
 
 									ApiData.findOne((_err, data) => {
-										console.log('In the scheduler getting nightly data...');
-
 										// Set Variables for Real Time vs Static Event Data
 
 										// Ride Toronto
