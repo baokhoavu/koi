@@ -7,7 +7,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 
 import { SlideInOutAnimation } from './animation';
 
-import * as $ from 'jquery';
+import $ from 'jquery';
 
 @Component({
 	selector: 'app-header',

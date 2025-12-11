@@ -13,7 +13,7 @@ import { Subject } from 'rxjs/Subject';
 
 import { SlideInOutAnimation } from '../animation';
 
-import * as $ from 'jquery';
+import $ from 'jquery';
 
 @Component({
 	selector: 'all-tables',
