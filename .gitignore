@@ -8,15 +8,23 @@
 # dependencies
 /node_modules
 
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
 # IDEs and editors
 /.idea
 .project
 .classpath
 .c9/
-*.md
 *.launch
 .settings/
 *.sublime-workspace
+.prettierrc
 
 # IDE - VSCode
 .vscode/*
@@ -30,11 +38,18 @@
 /connect.lock
 /coverage
 /libpeerconnection.log
-npm-debug.log
+*.log
+npm-debug.log*
 testem.log
 /typings
-package-lock.json
 
+# Vite
+.vite
+vite.config.ts.timestamp-*
+
+# Legacy build tools (no longer used)
+webpack.config.*.js
+tsconfig.aot.json
 
 # e2e
 /e2e/*.js
@@ -44,5 +59,5 @@ package-lock.json
 .DS_Store
 Thumbs.db
 
-#editor files
-.vscode
+# Git artifacts
+.git/refs/original/
