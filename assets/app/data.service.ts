@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 // import { HttpClient, Http, Response, Headers, RequestOptions } from "@angular/http";
-import { Observable } from 'rxjs/Rx';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { HttpClient, HttpRequest, HttpEvent, HttpEventType } from '@angular/common/http';
 import { environment } from './environment';
 
@@ -51,14 +51,25 @@ export class DataService implements OnInit {
 	// }
 
 	fetchData() {
-		this.http.get('/api/data').subscribe(
+		console.log('🔄 Fetching data from /api/data...');
+		this.http.get<any>('/api/data').subscribe(
 			data => {
-				// console.log('Fetching data...');
-				this.data = data ?? {};
-				// console.log(this.data);
+				console.log('✅ Data received:', data);
+				console.log('🔍 Data type:', typeof data);
+				console.log('📋 Data keys count:', Object.keys(data || {}).length);
+				
+				// Ensure we're setting the data object properly
+				if (data && typeof data === 'object') {
+					this.data = { ...data };
+					console.log('📊 dataService.data set to:', this.data);
+					console.log('🔍 Sample values - to20RFIDaily:', this.data.to20RFIDaily);
+					console.log('🔍 Sample values - to20Donations:', this.data.to20Donations);
+				} else {
+					console.log('⚠️ Data is not an object:', data);
+				}
 			},
 			error => {
-				console.log('There was an error getting the data.', error);
+				console.log('❌ There was an error getting the data:', error);
 			}
 		);
 	}
