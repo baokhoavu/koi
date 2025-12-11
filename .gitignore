@@ -13,6 +13,7 @@
 .project
 .classpath
 .c9/
+*.md
 *.launch
 .settings/
 *.sublime-workspace
@@ -32,6 +33,7 @@
 npm-debug.log
 testem.log
 /typings
+package-lock.json
 
 
 # e2e
