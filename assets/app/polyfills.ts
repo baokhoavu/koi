@@ -4,4 +4,4 @@ import 'hammerjs/hammer';
 import 'zone.js';
 
 // Development mode - enable long stack traces for debugging
-Error['stackTraceLimit'] = Infinity;
+Error.stackTraceLimit = Infinity;

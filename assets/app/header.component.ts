@@ -1,20 +1,16 @@
 import { Component } from '@angular/core';
-import { AuthService } from './auth/auth.service';
-import { Router } from '@angular/router';
-import { DataService } from './data.service';
-
-import { trigger, state, style, animate, transition } from '@angular/animations';
-
-import { SlideInOutAnimation } from './animation';
-
+import type { Router } from '@angular/router';
 import $ from 'jquery';
+import { SlideInOutAnimation } from './animation';
+import type { AuthService } from './auth/auth.service';
+import type { DataService } from './data.service';
 
 @Component({
 	selector: 'app-header',
 	templateUrl: './header.component.html',
 	styleUrls: ['./header.component.scss'],
 	animations: [SlideInOutAnimation],
-	standalone: false
+	standalone: false,
 })
 export class HeaderComponent {
 	allTable: boolean = false;
@@ -25,7 +21,7 @@ export class HeaderComponent {
 		private router: Router,
 		public dataService: DataService
 	) {
-		$(document).ready(function () {
+		$(document).ready(() => {
 			$('.btn').on('click', function () {
 				if ($(this).hasClass('alberta-btn')) {
 					$('.all-buttons-row').slideUp();
@@ -193,4 +189,3 @@ export class HeaderComponent {
 		}
 	}
 }
-

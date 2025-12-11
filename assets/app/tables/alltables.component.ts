@@ -1,32 +1,23 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-
-import { AuthService } from '../auth/auth.service';
-import { DataService } from '../data.service';
-
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
-import { Subscription } from 'rxjs/Subscription';
-import { Subject } from 'rxjs/Subject';
-
-import { SlideInOutAnimation } from '../animation';
-
+import type { HttpClient } from '@angular/common/http';
+import { type ChangeDetectorRef, Component, type OnDestroy, type OnInit } from '@angular/core';
+import type { FormGroup } from '@angular/forms';
+import type { Router } from '@angular/router';
 import $ from 'jquery';
+import { SlideInOutAnimation } from '../animation';
+import type { AuthService } from '../auth/auth.service';
+import type { DataService } from '../data.service';
 
 @Component({
 	selector: 'all-tables',
 	templateUrl: './alltables.component.html',
 	styleUrls: ['./alltables.component.scss'],
 	animations: [SlideInOutAnimation],
-	standalone: false
+	standalone: false,
 })
 export class AllTablesComponent implements OnInit, OnDestroy {
 	animationState = 'out';
 	myForm: FormGroup;
 	data: any;
-	private apiUrl = '/api/data';
 	isLoading: boolean = true;
 
 	interval: any;
@@ -34,15 +25,15 @@ export class AllTablesComponent implements OnInit, OnDestroy {
 	_postsArray: any = {};
 
 	constructor(
-		private router: Router,
-		private http: HttpClient,
+		_router: Router,
+		_http: HttpClient,
 		private authService: AuthService,
 		public dataService: DataService,
 		private cdr: ChangeDetectorRef
 	) {
 		// this.getData('/api/data');
 
-		$(document).ready(function () {
+		$(document).ready(() => {
 			$('.btn-view').on('click', function () {
 				$('.all-buttons-row').slideToggle();
 				$(this).toggleClass('view-hide');
@@ -63,7 +54,7 @@ export class AllTablesComponent implements OnInit, OnDestroy {
 		console.log('📋 AllTables component initialized');
 		console.log('🎯 allTable flag:', this.dataService.allTable);
 		console.log('📦 Initial dataService.data:', this.dataService.data);
-		
+
 		// Check if data already exists (pre-fetched at app level)
 		if (this.dataService.data && Object.keys(this.dataService.data).length > 0) {
 			console.log('✨ Data already available!');
@@ -72,14 +63,14 @@ export class AllTablesComponent implements OnInit, OnDestroy {
 		} else {
 			// Fetch data if not already available
 			this.dataService.fetchData();
-			
+
 			// Hide loading state once data arrives
 			setTimeout(() => {
 				this.isLoading = false;
 				this.cdr.detectChanges();
 			}, 1000);
 		}
-		
+
 		// Set up auto-refresh every 5 seconds to keep data updated
 		this.interval = setInterval(() => {
 			this.dataService.fetchData();
@@ -106,4 +97,3 @@ export class AllTablesComponent implements OnInit, OnDestroy {
 		}
 	}
 }
-

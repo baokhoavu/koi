@@ -1,15 +1,15 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
-
+import { type AfterViewInit, Component, type ElementRef, type OnInit, ViewChild } from '@angular/core';
 // MomentJS for date formatting
 import * as _moment from 'moment';
+import type { DataService } from '../data.service';
+
 const moment = _moment;
 
 @Component({
 	selector: 'app-alberta',
 	templateUrl: './alberta.component.html',
 	styleUrls: ['./alberta.component.scss'],
-	standalone: false
+	standalone: false,
 })
 export class AlbertaComponent implements OnInit, AfterViewInit {
 	@ViewChild('datePicker') datePicker: ElementRef;
@@ -43,4 +43,3 @@ export class AlbertaComponent implements OnInit, AfterViewInit {
 		this.datePickerSelected = true;
 	}
 }
-

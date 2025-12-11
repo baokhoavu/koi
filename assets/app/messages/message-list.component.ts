@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, type OnInit } from '@angular/core';
 
-import { Message } from './message.model';
-import { MessageService } from './message.service';
+import type { Message } from './message.model';
+import type { MessageService } from './message.service';
 
 @Component({
 	selector: 'app-message-list',
@@ -10,7 +10,7 @@ import { MessageService } from './message.service';
 			<app-message [message]="message" *ngFor="let message of messages"></app-message>
 		</div>
 	`,
-	standalone: false
+	standalone: false,
 })
 export class MessageListComponent implements OnInit {
 	messages: Message[];
@@ -23,4 +23,3 @@ export class MessageListComponent implements OnInit {
 		});
 	}
 }
-

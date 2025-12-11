@@ -3,7 +3,7 @@
 require('dotenv').config();
 var mongoose = require('mongoose');
 const moment = require('moment');
-const axios = require('axios');
+const _axios = require('axios');
 var ApiData = require('./models/apidata');
 
 // mongoose.set('useCreateIndex', true); // Deprecated in Mongoose 6+
@@ -13,16 +13,16 @@ const mongodbUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/koi';
 
 var promise = mongoose.connect(mongodbUri, {
 	// useMongoClient: true,
-	useNewUrlParser: true
+	useNewUrlParser: true,
 	/* other options */
 });
 
-promise.then(function (db) {
+promise.then((_db) => {
 	console.log('inside promise db');
 
 	var Schema = mongoose.Schema;
 
-	var dataSchema = new Schema(
+	var _dataSchema = new Schema(
 		{
 			updated: String,
 			nightly: String,
@@ -141,8 +141,6 @@ promise.then(function (db) {
 			va19OneDay2: String,
 			va19VR: String,
 			va19TotalParticipants: String,
-
-			va18VR: String,
 			va18Donations: String,
 			va18RegFee: String,
 			va18Crews: String,
@@ -422,7 +420,7 @@ promise.then(function (db) {
 			ml18RidersDaily: String,
 			ml18WalkersDaily: String,
 
-			ml17DonDaily: String
+			ml17DonDaily: String,
 		},
 		{ versionKey: false, timestamps: { createdAt: 'created_at' } }
 	);
@@ -430,30 +428,31 @@ promise.then(function (db) {
 	// var ApiData = mongoose.model("ApiData", dataSchema);
 
 	var apiURL = 'http://www.conquercancer.ca/site/PageServer?pagename=2018_api_data&pgwrap=n';
-	request(apiURL, function (err, response, body) {
-		if (!err && response.statusCode == 200) {
+	request(apiURL, (err, response, body) => {
+		if (!err && response.statusCode === 200) {
 			var locals = JSON.parse(body);
 			console.log('Got ConquerCancer Data...');
 
 			var apiOneWalk = 'http://secure.weekendtoconquercancer.ca/site/PageServer?pagename=api_data&pgwrap=n';
-			request(apiOneWalk, function (err, response, body) {
-				if (!err && response.statusCode == 200) {
+			request(apiOneWalk, (err, response, body) => {
+				if (!err && response.statusCode === 200) {
 					var locals2 = JSON.parse(body);
 					console.log('Got OneWalk Data...');
 
 					var apiRidePerth = 'http://www.conquercancer.org.au/site/PageServer?pagename=api_data&pgwrap=n';
-					request(apiRidePerth, function (err, response, body) {
-						if (!err && response.statusCode == 200) {
+					request(apiRidePerth, (err, response, body) => {
+						if (!err && response.statusCode === 200) {
 							var locals3 = JSON.parse(body);
 							console.log('Got ConquerCancer AU Data...');
 
-							var apiOneDay = 'http://participate.theoneday.org.au/site/PageServer?pagename=api_data&pgwrap=n';
-							request(apiOneDay, function (err, response, body) {
-								if (!err && response.statusCode == 200) {
+							var apiOneDay =
+								'http://participate.theoneday.org.au/site/PageServer?pagename=api_data&pgwrap=n';
+							request(apiOneDay, (err, response, body) => {
+								if (!err && response.statusCode === 200) {
 									var locals4 = JSON.parse(body);
 									console.log('Got TheOneDay Data..');
 
-									ApiData.findOne((err, data) => {
+									ApiData.findOne((_err, data) => {
 										console.log('In the scheduler getting nightly data...');
 
 										// Set Variables for Real Time vs Static Event Data
@@ -542,15 +541,15 @@ promise.then(function (db) {
 
 										var removeDollarPr17v1 = locals3.getEventTotal.perth.pr17.totalDonation;
 										var removeDollarPr17v2 = data.pr17Donations;
-										var removeRegPr17v1 = locals3.getEventTotal.perth.pr17.regFee;
-										var removeRegPr17v2 = data.pr17RegFee;
+										var _removeRegPr17v1 = locals3.getEventTotal.perth.pr17.regFee;
+										var _removeRegPr17v2 = data.pr17RegFee;
 
 										// OneWalk Toronto
 										var removeDollarOwTo20v1 = locals2.getEventTotal.toronto.to20.totalDonation;
 										var removeDollarOwTo20v2 = data.owTo20Donations;
 										var removeRegOwTo20v1 = locals2.getEventTotal.toronto.to20.regFee;
 										var removeRegOwTo20v2 = data.owTo20RegFee;
-										var owTo20Virtual = locals2.getEventTotal.toronto.to20.virtual;
+										var _owTo20Virtual = locals2.getEventTotal.toronto.to20.virtual;
 										var owTo2025kmWalkers = locals2.getEventTotal.toronto.to20.Wlkr25km;
 										var owTo2040kmWalkers = locals2.getEventTotal.toronto.to20.Wlkr40km;
 										var owTo20NightWalkers = locals2.getEventTotal.toronto.to20.nightWlk;
@@ -560,7 +559,7 @@ promise.then(function (db) {
 										var removeDollarOwTo19v2 = data.owTo19Donations;
 										var removeRegOwTo19v1 = locals2.getEventTotal.toronto.to19.regFee;
 										var removeRegOwTo19v2 = data.owTo19RegFee;
-										var owTo19Virtual = locals2.getEventTotal.toronto.to19.virtual;
+										var _owTo19Virtual = locals2.getEventTotal.toronto.to19.virtual;
 										var owTo1925kmWalkers = locals2.getEventTotal.toronto.to19.Wlkr25km;
 										var owTo1940kmWalkers = locals2.getEventTotal.toronto.to19.Wlkr40km;
 										var owTo19NightWalkers = locals2.getEventTotal.toronto.to19.nightWlk;
@@ -598,99 +597,99 @@ promise.then(function (db) {
 										var removeDollarMl17v2 = data.ml17Donations;
 
 										// Remove Dollar Sign from Data Brought In
-										var numberTo20v1 = Number(removeDollarTo20v1.replace(/[^0-9\.-]+/g, ''));
-										var numberTo20v2 = Number(removeDollarTo20v2.replace(/[^0-9\.-]+/g, ''));
-										var numberRegTo20v1 = Number(removeRegTo20v1.replace(/[^0-9\.-]+/g, ''));
-										var numberRegTo20v2 = Number(removeRegTo20v2.replace(/[^0-9\.-]+/g, ''));
-										var numberTo19v1 = Number(removeDollarTo19v1.replace(/[^0-9\.-]+/g, ''));
-										var numberTo19v2 = Number(removeDollarTo19v2.replace(/[^0-9\.-]+/g, ''));
-										var numberRegTo19v1 = Number(removeRegTo19v1.replace(/[^0-9\.-]+/g, ''));
-										var numberRegTo19v2 = Number(removeRegTo19v2.replace(/[^0-9\.-]+/g, ''));
-										var numberTo18v1 = Number(removeDollarTo18v1.replace(/[^0-9\.-]+/g, ''));
-										var numberTo18v2 = Number(removeDollarTo18v2.replace(/[^0-9\.-]+/g, ''));
-										var numberTo17v1 = Number(removeDollarTo17v1.replace(/[^0-9\.-]+/g, ''));
-										var numberTo17v2 = Number(removeDollarTo17v2.replace(/[^0-9\.-]+/g, ''));
-										var numberRegTo18v1 = Number(removeRegTo18v1.replace(/[^0-9\.-]+/g, ''));
-										var numberRegTo18v2 = Number(removeRegTo18v2.replace(/[^0-9\.-]+/g, ''));
+										var numberTo20v1 = Number(removeDollarTo20v1.replace(/[^0-9.-]+/g, ''));
+										var numberTo20v2 = Number(removeDollarTo20v2.replace(/[^0-9.-]+/g, ''));
+										var numberRegTo20v1 = Number(removeRegTo20v1.replace(/[^0-9.-]+/g, ''));
+										var numberRegTo20v2 = Number(removeRegTo20v2.replace(/[^0-9.-]+/g, ''));
+										var numberTo19v1 = Number(removeDollarTo19v1.replace(/[^0-9.-]+/g, ''));
+										var numberTo19v2 = Number(removeDollarTo19v2.replace(/[^0-9.-]+/g, ''));
+										var numberRegTo19v1 = Number(removeRegTo19v1.replace(/[^0-9.-]+/g, ''));
+										var numberRegTo19v2 = Number(removeRegTo19v2.replace(/[^0-9.-]+/g, ''));
+										var numberTo18v1 = Number(removeDollarTo18v1.replace(/[^0-9.-]+/g, ''));
+										var numberTo18v2 = Number(removeDollarTo18v2.replace(/[^0-9.-]+/g, ''));
+										var numberTo17v1 = Number(removeDollarTo17v1.replace(/[^0-9.-]+/g, ''));
+										var numberTo17v2 = Number(removeDollarTo17v2.replace(/[^0-9.-]+/g, ''));
+										var numberRegTo18v1 = Number(removeRegTo18v1.replace(/[^0-9.-]+/g, ''));
+										var numberRegTo18v2 = Number(removeRegTo18v2.replace(/[^0-9.-]+/g, ''));
 
-										var numberPr18v1 = Number(removeDollarPr18v1.replace(/[^0-9\.-]+/g, ''));
-										var numberPr18v2 = Number(removeDollarPr18v2.replace(/[^0-9\.-]+/g, ''));
-										var numberPr17v1 = Number(removeDollarPr17v1.replace(/[^0-9\.-]+/g, ''));
-										var numberPr17v2 = Number(removeDollarPr17v2.replace(/[^0-9\.-]+/g, ''));
-										var numberRegPr18v1 = Number(removeRegPr18v1.replace(/[^0-9\.-]+/g, ''));
-										var numberRegPr18v2 = Number(removeRegPr18v2.replace(/[^0-9\.-]+/g, ''));
+										var numberPr18v1 = Number(removeDollarPr18v1.replace(/[^0-9.-]+/g, ''));
+										var numberPr18v2 = Number(removeDollarPr18v2.replace(/[^0-9.-]+/g, ''));
+										var numberPr17v1 = Number(removeDollarPr17v1.replace(/[^0-9.-]+/g, ''));
+										var numberPr17v2 = Number(removeDollarPr17v2.replace(/[^0-9.-]+/g, ''));
+										var numberRegPr18v1 = Number(removeRegPr18v1.replace(/[^0-9.-]+/g, ''));
+										var numberRegPr18v2 = Number(removeRegPr18v2.replace(/[^0-9.-]+/g, ''));
 
-										var numberMo20v1 = Number(removeDollarMo20v1.replace(/[^0-9\.-]+/g, ''));
-										var numberMo20v2 = Number(removeDollarMo20v2.replace(/[^0-9\.-]+/g, ''));
-										var numberRegMo20v1 = Number(removeRegMo20v1.replace(/[^0-9\.-]+/g, ''));
-										var numberRegMo20v2 = Number(removeRegMo20v2.replace(/[^0-9\.-]+/g, ''));
-										var numberMo19v1 = Number(removeDollarMo19v1.replace(/[^0-9\.-]+/g, ''));
-										var numberMo19v2 = Number(removeDollarMo19v2.replace(/[^0-9\.-]+/g, ''));
-										var numberRegMo19v1 = Number(removeRegMo19v1.replace(/[^0-9\.-]+/g, ''));
-										var numberRegMo19v2 = Number(removeRegMo19v2.replace(/[^0-9\.-]+/g, ''));
-										var numberMo18v1 = Number(removeDollarMo18v1.replace(/[^0-9\.-]+/g, ''));
-										var numberMo18v2 = Number(removeDollarMo18v2.replace(/[^0-9\.-]+/g, ''));
-										var numberMo17v1 = Number(removeDollarMo17v1.replace(/[^0-9\.-]+/g, ''));
-										var numberMo17v2 = Number(removeDollarMo17v2.replace(/[^0-9\.-]+/g, ''));
-										var numberRegMo18v1 = Number(removeRegMo18v1.replace(/[^0-9\.-]+/g, ''));
-										var numberRegMo18v2 = Number(removeRegMo18v2.replace(/[^0-9\.-]+/g, ''));
+										var numberMo20v1 = Number(removeDollarMo20v1.replace(/[^0-9.-]+/g, ''));
+										var numberMo20v2 = Number(removeDollarMo20v2.replace(/[^0-9.-]+/g, ''));
+										var numberRegMo20v1 = Number(removeRegMo20v1.replace(/[^0-9.-]+/g, ''));
+										var numberRegMo20v2 = Number(removeRegMo20v2.replace(/[^0-9.-]+/g, ''));
+										var numberMo19v1 = Number(removeDollarMo19v1.replace(/[^0-9.-]+/g, ''));
+										var numberMo19v2 = Number(removeDollarMo19v2.replace(/[^0-9.-]+/g, ''));
+										var numberRegMo19v1 = Number(removeRegMo19v1.replace(/[^0-9.-]+/g, ''));
+										var numberRegMo19v2 = Number(removeRegMo19v2.replace(/[^0-9.-]+/g, ''));
+										var numberMo18v1 = Number(removeDollarMo18v1.replace(/[^0-9.-]+/g, ''));
+										var numberMo18v2 = Number(removeDollarMo18v2.replace(/[^0-9.-]+/g, ''));
+										var numberMo17v1 = Number(removeDollarMo17v1.replace(/[^0-9.-]+/g, ''));
+										var numberMo17v2 = Number(removeDollarMo17v2.replace(/[^0-9.-]+/g, ''));
+										var numberRegMo18v1 = Number(removeRegMo18v1.replace(/[^0-9.-]+/g, ''));
+										var numberRegMo18v2 = Number(removeRegMo18v2.replace(/[^0-9.-]+/g, ''));
 
-										var numberAb20v1 = Number(removeDollarAb20v1.replace(/[^0-9\.-]+/g, ''));
-										var numberAb20v2 = Number(removeDollarAb20v2.replace(/[^0-9\.-]+/g, ''));
-										var numberRegAb20v1 = Number(removeRegAb20v1.replace(/[^0-9\.-]+/g, ''));
-										var numberRegAb20v2 = Number(removeRegAb20v2.replace(/[^0-9\.-]+/g, ''));
-										var numberAb19v1 = Number(removeDollarAb19v1.replace(/[^0-9\.-]+/g, ''));
-										var numberAb19v2 = Number(removeDollarAb19v2.replace(/[^0-9\.-]+/g, ''));
-										var numberRegAb19v1 = Number(removeRegAb19v1.replace(/[^0-9\.-]+/g, ''));
-										var numberRegAb19v2 = Number(removeRegAb19v2.replace(/[^0-9\.-]+/g, ''));
-										var numberAb18v1 = Number(removeDollarAb18v1.replace(/[^0-9\.-]+/g, ''));
-										var numberAb18v2 = Number(removeDollarAb18v2.replace(/[^0-9\.-]+/g, ''));
-										var numberAb17v1 = Number(removeDollarAb17v1.replace(/[^0-9\.-]+/g, ''));
-										var numberAb17v2 = Number(removeDollarAb17v2.replace(/[^0-9\.-]+/g, ''));
-										var numberRegAb18v1 = Number(removeRegAb18v1.replace(/[^0-9\.-]+/g, ''));
-										var numberRegAb18v2 = Number(removeRegAb18v2.replace(/[^0-9\.-]+/g, ''));
+										var numberAb20v1 = Number(removeDollarAb20v1.replace(/[^0-9.-]+/g, ''));
+										var numberAb20v2 = Number(removeDollarAb20v2.replace(/[^0-9.-]+/g, ''));
+										var numberRegAb20v1 = Number(removeRegAb20v1.replace(/[^0-9.-]+/g, ''));
+										var numberRegAb20v2 = Number(removeRegAb20v2.replace(/[^0-9.-]+/g, ''));
+										var numberAb19v1 = Number(removeDollarAb19v1.replace(/[^0-9.-]+/g, ''));
+										var numberAb19v2 = Number(removeDollarAb19v2.replace(/[^0-9.-]+/g, ''));
+										var numberRegAb19v1 = Number(removeRegAb19v1.replace(/[^0-9.-]+/g, ''));
+										var numberRegAb19v2 = Number(removeRegAb19v2.replace(/[^0-9.-]+/g, ''));
+										var numberAb18v1 = Number(removeDollarAb18v1.replace(/[^0-9.-]+/g, ''));
+										var numberAb18v2 = Number(removeDollarAb18v2.replace(/[^0-9.-]+/g, ''));
+										var numberAb17v1 = Number(removeDollarAb17v1.replace(/[^0-9.-]+/g, ''));
+										var numberAb17v2 = Number(removeDollarAb17v2.replace(/[^0-9.-]+/g, ''));
+										var numberRegAb18v1 = Number(removeRegAb18v1.replace(/[^0-9.-]+/g, ''));
+										var numberRegAb18v2 = Number(removeRegAb18v2.replace(/[^0-9.-]+/g, ''));
 
-										var numberVa20v1 = Number(removeDollarVa20v1.replace(/[^0-9\.-]+/g, ''));
-										var numberVa20v2 = Number(removeDollarVa20v2.replace(/[^0-9\.-]+/g, ''));
-										var numberRegVa20v1 = Number(removeRegVa20v1.replace(/[^0-9\.-]+/g, ''));
-										var numberRegVa20v2 = Number(removeRegVa20v2.replace(/[^0-9\.-]+/g, ''));
-										var numberVa19v1 = Number(removeDollarVa19v1.replace(/[^0-9\.-]+/g, ''));
-										var numberVa19v2 = Number(removeDollarVa19v2.replace(/[^0-9\.-]+/g, ''));
-										var numberRegVa19v1 = Number(removeRegVa19v1.replace(/[^0-9\.-]+/g, ''));
-										var numberRegVa19v2 = Number(removeRegVa19v2.replace(/[^0-9\.-]+/g, ''));
-										var numberVa18v1 = Number(removeDollarVa18v1.replace(/[^0-9\.-]+/g, ''));
-										var numberVa18v2 = Number(removeDollarVa18v2.replace(/[^0-9\.-]+/g, ''));
-										var numberVa17v1 = Number(removeDollarVa17v1.replace(/[^0-9\.-]+/g, ''));
-										var numberVa17v2 = Number(removeDollarVa17v2.replace(/[^0-9\.-]+/g, ''));
-										var numberRegVa18v1 = Number(removeRegVa18v1.replace(/[^0-9\.-]+/g, ''));
-										var numberRegVa18v2 = Number(removeRegVa18v2.replace(/[^0-9\.-]+/g, ''));
+										var numberVa20v1 = Number(removeDollarVa20v1.replace(/[^0-9.-]+/g, ''));
+										var numberVa20v2 = Number(removeDollarVa20v2.replace(/[^0-9.-]+/g, ''));
+										var numberRegVa20v1 = Number(removeRegVa20v1.replace(/[^0-9.-]+/g, ''));
+										var numberRegVa20v2 = Number(removeRegVa20v2.replace(/[^0-9.-]+/g, ''));
+										var numberVa19v1 = Number(removeDollarVa19v1.replace(/[^0-9.-]+/g, ''));
+										var numberVa19v2 = Number(removeDollarVa19v2.replace(/[^0-9.-]+/g, ''));
+										var numberRegVa19v1 = Number(removeRegVa19v1.replace(/[^0-9.-]+/g, ''));
+										var numberRegVa19v2 = Number(removeRegVa19v2.replace(/[^0-9.-]+/g, ''));
+										var numberVa18v1 = Number(removeDollarVa18v1.replace(/[^0-9.-]+/g, ''));
+										var numberVa18v2 = Number(removeDollarVa18v2.replace(/[^0-9.-]+/g, ''));
+										var numberVa17v1 = Number(removeDollarVa17v1.replace(/[^0-9.-]+/g, ''));
+										var numberVa17v2 = Number(removeDollarVa17v2.replace(/[^0-9.-]+/g, ''));
+										var numberRegVa18v1 = Number(removeRegVa18v1.replace(/[^0-9.-]+/g, ''));
+										var numberRegVa18v2 = Number(removeRegVa18v2.replace(/[^0-9.-]+/g, ''));
 
-										var numberOwTo20v1 = Number(removeDollarOwTo20v1.replace(/[^0-9\.-]+/g, ''));
-										var numberOwTo20v2 = Number(removeDollarOwTo20v2.replace(/[^0-9\.-]+/g, ''));
-										var numberOwTo19v1 = Number(removeDollarOwTo19v1.replace(/[^0-9\.-]+/g, ''));
-										var numberOwTo19v2 = Number(removeDollarOwTo19v2.replace(/[^0-9\.-]+/g, ''));
-										var numberOwTo18v1 = Number(removeDollarOwTo18v1.replace(/[^0-9\.-]+/g, ''));
-										var numberOwTo18v2 = Number(removeDollarOwTo18v2.replace(/[^0-9\.-]+/g, ''));
-										var numberOwTo17v1 = Number(removeDollarOwTo17v1.replace(/[^0-9\.-]+/g, ''));
-										var numberOwTo17v2 = Number(removeDollarOwTo17v2.replace(/[^0-9\.-]+/g, ''));
-										var numberRegOwTo20v1 = Number(removeRegOwTo20v1.replace(/[^0-9\.-]+/g, ''));
-										var numberRegOwTo20v2 = Number(removeRegOwTo20v2.replace(/[^0-9\.-]+/g, ''));
-										var numberRegOwTo19v1 = Number(removeRegOwTo19v1.replace(/[^0-9\.-]+/g, ''));
-										var numberRegOwTo19v2 = Number(removeRegOwTo19v2.replace(/[^0-9\.-]+/g, ''));
-										var numberRegOwTo18v1 = Number(removeRegOwTo18v1.replace(/[^0-9\.-]+/g, ''));
-										var numberRegOwTo18v2 = Number(removeRegOwTo18v2.replace(/[^0-9\.-]+/g, ''));
+										var numberOwTo20v1 = Number(removeDollarOwTo20v1.replace(/[^0-9.-]+/g, ''));
+										var numberOwTo20v2 = Number(removeDollarOwTo20v2.replace(/[^0-9.-]+/g, ''));
+										var numberOwTo19v1 = Number(removeDollarOwTo19v1.replace(/[^0-9.-]+/g, ''));
+										var numberOwTo19v2 = Number(removeDollarOwTo19v2.replace(/[^0-9.-]+/g, ''));
+										var numberOwTo18v1 = Number(removeDollarOwTo18v1.replace(/[^0-9.-]+/g, ''));
+										var numberOwTo18v2 = Number(removeDollarOwTo18v2.replace(/[^0-9.-]+/g, ''));
+										var numberOwTo17v1 = Number(removeDollarOwTo17v1.replace(/[^0-9.-]+/g, ''));
+										var numberOwTo17v2 = Number(removeDollarOwTo17v2.replace(/[^0-9.-]+/g, ''));
+										var numberRegOwTo20v1 = Number(removeRegOwTo20v1.replace(/[^0-9.-]+/g, ''));
+										var numberRegOwTo20v2 = Number(removeRegOwTo20v2.replace(/[^0-9.-]+/g, ''));
+										var numberRegOwTo19v1 = Number(removeRegOwTo19v1.replace(/[^0-9.-]+/g, ''));
+										var numberRegOwTo19v2 = Number(removeRegOwTo19v2.replace(/[^0-9.-]+/g, ''));
+										var numberRegOwTo18v1 = Number(removeRegOwTo18v1.replace(/[^0-9.-]+/g, ''));
+										var numberRegOwTo18v2 = Number(removeRegOwTo18v2.replace(/[^0-9.-]+/g, ''));
 
-										var numberBr18v1 = Number(removeDollarBr18v1.replace(/[^0-9\.-]+/g, ''));
-										var numberBr18v2 = Number(removeDollarBr18v2.replace(/[^0-9\.-]+/g, ''));
-										var numberBr18v1 = Number(removeRegBr18v1.replace(/[^0-9\.-]+/g, ''));
-										var numberBr18v2 = Number(removeRegBr18v2.replace(/[^0-9\.-]+/g, ''));
+										var _numberBr18v1 = Number(removeDollarBr18v1.replace(/[^0-9.-]+/g, ''));
+										var _numberBr18v2 = Number(removeDollarBr18v2.replace(/[^0-9.-]+/g, ''));
+										var numberBr18v1 = Number(removeRegBr18v1.replace(/[^0-9.-]+/g, ''));
+										var numberBr18v2 = Number(removeRegBr18v2.replace(/[^0-9.-]+/g, ''));
 
-										var numberMl18v1 = Number(removeDollarMl18v1.replace(/[^0-9\.-]+/g, ''));
-										var numberMl18v2 = Number(removeDollarMl18v2.replace(/[^0-9\.-]+/g, ''));
-										var numberMl17v1 = Number(removeDollarMl17v1.replace(/[^0-9\.-]+/g, ''));
-										var numberMl17v2 = Number(removeDollarMl17v2.replace(/[^0-9\.-]+/g, ''));
-										var numberMl18v1 = Number(removeRegMl18v1.replace(/[^0-9\.-]+/g, ''));
-										var numberMl18v2 = Number(removeRegMl18v2.replace(/[^0-9\.-]+/g, ''));
+										var _numberMl18v1 = Number(removeDollarMl18v1.replace(/[^0-9.-]+/g, ''));
+										var _numberMl18v2 = Number(removeDollarMl18v2.replace(/[^0-9.-]+/g, ''));
+										var numberMl17v1 = Number(removeDollarMl17v1.replace(/[^0-9.-]+/g, ''));
+										var numberMl17v2 = Number(removeDollarMl17v2.replace(/[^0-9.-]+/g, ''));
+										var numberMl18v1 = Number(removeRegMl18v1.replace(/[^0-9.-]+/g, ''));
+										var numberMl18v2 = Number(removeRegMl18v2.replace(/[^0-9.-]+/g, ''));
 
 										// Subtract Real Time Data vs Static Data
 
@@ -700,10 +699,14 @@ promise.then(function (db) {
 										var to20CrewSub = locals.getEventTotal.toronto.to20.crews - data.to20Crews;
 										var to20RegSub = numberRegTo20v1 - numberRegTo20v2;
 										var to20VRDailySub = locals.getEventTotal.toronto.to20.virtual - data.to20VR;
-										var to20Riders2Daily = locals.getEventTotal.toronto.to20.riders2 - data.to20Riders2;
-										var to20OneDayDaily = locals.getEventTotal.toronto.to20.oneday - data.to20OneDay;
-										var to20OneDayDaily2 = locals.getEventTotal.toronto.to20.oneday2 - data.to20OneDay2;
-										var to20theHammerDaily = locals.getEventTotal.toronto.to20.theHammer - data.to20theHammer;
+										var to20Riders2Daily =
+											locals.getEventTotal.toronto.to20.riders2 - data.to20Riders2;
+										var to20OneDayDaily =
+											locals.getEventTotal.toronto.to20.oneday - data.to20OneDay;
+										var to20OneDayDaily2 =
+											locals.getEventTotal.toronto.to20.oneday2 - data.to20OneDay2;
+										var to20theHammerDaily =
+											locals.getEventTotal.toronto.to20.theHammer - data.to20theHammer;
 										var to20TotalParticipants =
 											parseFloat(locals.getEventTotal.toronto.to20.riders) +
 											parseFloat(locals.getEventTotal.toronto.to20.riders2) +
@@ -717,11 +720,16 @@ promise.then(function (db) {
 										var to19CrewSub = locals.getEventTotal.toronto.to19.crews - data.to19Crews;
 										var to19RegSub = numberRegTo19v1 - numberRegTo19v2;
 										var to19VRDailySub = locals.getEventTotal.toronto.to19.virtual - data.to19VR;
-										var to19Riders2Daily = locals.getEventTotal.toronto.to19.riders2 - data.to19Riders2;
-										var to19OneDayDaily = locals.getEventTotal.toronto.to19.oneday - data.to19OneDay;
-										var to19OneDayDaily2 = locals.getEventTotal.toronto.to19.oneday2 - data.to19OneDay2;
-										var to19theHammerDaily = locals.getEventTotal.toronto.to19.theHammer - data.to19theHammer;
-										var to19hammer260Daily = locals.getEventTotal.toronto.to19.hammer260 - data.to19hammer260;
+										var to19Riders2Daily =
+											locals.getEventTotal.toronto.to19.riders2 - data.to19Riders2;
+										var to19OneDayDaily =
+											locals.getEventTotal.toronto.to19.oneday - data.to19OneDay;
+										var to19OneDayDaily2 =
+											locals.getEventTotal.toronto.to19.oneday2 - data.to19OneDay2;
+										var to19theHammerDaily =
+											locals.getEventTotal.toronto.to19.theHammer - data.to19theHammer;
+										var to19hammer260Daily =
+											locals.getEventTotal.toronto.to19.hammer260 - data.to19hammer260;
 										var to19TotalParticipants =
 											parseFloat(locals.getEventTotal.toronto.to19.riders) +
 											parseFloat(locals.getEventTotal.toronto.to19.riders2) +
@@ -736,9 +744,12 @@ promise.then(function (db) {
 										var to18CrewSub = locals.getEventTotal.toronto.to18.crews - data.to18Crews;
 										var to18RegSub = numberRegTo18v1 - numberRegTo18v2;
 										var to18VRDailySub = locals.getEventTotal.toronto.to18.virtual - data.to18VR;
-										var to18Riders2Daily = locals.getEventTotal.toronto.to18.riders2 - data.to18Riders2;
-										var to18OneDayDaily = locals.getEventTotal.toronto.to18.oneday - data.to18OneDay;
-										var to18OneDayDaily2 = locals.getEventTotal.toronto.to18.oneday2 - data.to18OneDay2;
+										var to18Riders2Daily =
+											locals.getEventTotal.toronto.to18.riders2 - data.to18Riders2;
+										var to18OneDayDaily =
+											locals.getEventTotal.toronto.to18.oneday - data.to18OneDay;
+										var to18OneDayDaily2 =
+											locals.getEventTotal.toronto.to18.oneday2 - data.to18OneDay2;
 										var to18TotalParticipants =
 											parseFloat(locals.getEventTotal.toronto.to18.riders) +
 											parseFloat(locals.getEventTotal.toronto.to18.riders2) +
@@ -792,7 +803,8 @@ promise.then(function (db) {
 										var ab20RiderSub = locals.getEventTotal.alberta.ab20.riders - data.ab20Riders;
 										var ab20VRDailySub = locals.getEventTotal.alberta.ab20.virtual - data.ab20VR;
 										var ab20TotalParticipants =
-											parseFloat(locals.getEventTotal.alberta.ab20.riders) + parseFloat(locals.getEventTotal.alberta.ab20.riders2);
+											parseFloat(locals.getEventTotal.alberta.ab20.riders) +
+											parseFloat(locals.getEventTotal.alberta.ab20.riders2);
 
 										var ab19DonationSub = numberAb19v1 - numberAb19v2;
 										var ab19RfiSub = locals.getEventTotal.alberta.ab19.rfi - data.ab19RFI;
@@ -801,7 +813,8 @@ promise.then(function (db) {
 										var ab19RiderSub = locals.getEventTotal.alberta.ab19.riders - data.ab19Riders;
 										var ab19VRDailySub = locals.getEventTotal.alberta.ab19.virtual - data.ab19VR;
 										var ab19TotalParticipants =
-											parseFloat(locals.getEventTotal.alberta.ab19.riders) + parseFloat(locals.getEventTotal.alberta.ab19.riders2);
+											parseFloat(locals.getEventTotal.alberta.ab19.riders) +
+											parseFloat(locals.getEventTotal.alberta.ab19.riders2);
 
 										var ab18DonationSub = numberAb18v1 - numberAb18v2;
 										var ab17DonationSub = numberAb17v1 - numberAb17v2;
@@ -846,14 +859,21 @@ promise.then(function (db) {
 										var owto20RfiSub = locals2.getEventTotal.toronto.to20.rfi;
 										var owto20CrewsDailySub = locals2.getEventTotal.toronto.to20.crews;
 										var owto20TotalWalkers =
-											parseFloat(owTo20NightWalkers) + parseFloat(owTo2025kmWalkers) + parseFloat(owTo202day);
-										var owto20VRDailySub = locals2.getEventTotal.toronto.to20.virtual - data.owTo20VR;
+											parseFloat(owTo20NightWalkers) +
+											parseFloat(owTo2025kmWalkers) +
+											parseFloat(owTo202day);
+										var owto20VRDailySub =
+											locals2.getEventTotal.toronto.to20.virtual - data.owTo20VR;
 										var owto20WalkersDailySub = owto20TotalWalkers - data.owTo20Walkers;
-										var owTo2025kmWalkersDaily = locals2.getEventTotal.toronto.to20.Wlkr25km - data.owTo2025kmWalkers;
-										var owTo2040kmWalkersDaily = locals2.getEventTotal.toronto.to20.Wlkr40km - data.owTo2040kmWalkers;
-										var owTo20NightWalkersDaily = locals2.getEventTotal.toronto.to20.nightWlk - data.owTo20NightWalkers;
-										var owTo202dayDaily = locals2.getEventTotal.toronto.to20.twoDayWlk - data.owTo202day;
-										var owTo20rfiTotal =
+										var owTo2025kmWalkersDaily =
+											locals2.getEventTotal.toronto.to20.Wlkr25km - data.owTo2025kmWalkers;
+										var owTo2040kmWalkersDaily =
+											locals2.getEventTotal.toronto.to20.Wlkr40km - data.owTo2040kmWalkers;
+										var owTo20NightWalkersDaily =
+											locals2.getEventTotal.toronto.to20.nightWlk - data.owTo20NightWalkers;
+										var owTo202dayDaily =
+											locals2.getEventTotal.toronto.to20.twoDayWlk - data.owTo202day;
+										var _owTo20rfiTotal =
 											parseFloat(locals2.getEventTotal.toronto.to20.rfi) +
 											parseFloat(locals2.getEventTotal.toronto.to20.rfinight) +
 											parseFloat(locals2.getEventTotal.toronto.to20.rfinightfb) +
@@ -865,13 +885,20 @@ promise.then(function (db) {
 										var owto19RfiSub = locals2.getEventTotal.toronto.to19.rfi;
 										var owto19CrewsDailySub = locals2.getEventTotal.toronto.to19.crews;
 										var owto19TotalWalkers =
-											parseFloat(owTo19NightWalkers) + parseFloat(owTo1925kmWalkers) + parseFloat(owTo192day);
-										var owto19VRDailySub = locals2.getEventTotal.toronto.to19.virtual - data.owTo19VR;
+											parseFloat(owTo19NightWalkers) +
+											parseFloat(owTo1925kmWalkers) +
+											parseFloat(owTo192day);
+										var owto19VRDailySub =
+											locals2.getEventTotal.toronto.to19.virtual - data.owTo19VR;
 										var owto19WalkersDailySub = owto19TotalWalkers - data.owTo19Walkers;
-										var owTo1925kmWalkersDaily = locals2.getEventTotal.toronto.to19.Wlkr25km - data.owTo1925kmWalkers;
-										var owTo1940kmWalkersDaily = locals2.getEventTotal.toronto.to19.Wlkr40km - data.owTo1940kmWalkers;
-										var owTo19NightWalkersDaily = locals2.getEventTotal.toronto.to19.nightWlk - data.owTo19NightWalkers;
-										var owTo192dayDaily = locals2.getEventTotal.toronto.to19.twoDayWlk - data.owTo192day;
+										var owTo1925kmWalkersDaily =
+											locals2.getEventTotal.toronto.to19.Wlkr25km - data.owTo1925kmWalkers;
+										var owTo1940kmWalkersDaily =
+											locals2.getEventTotal.toronto.to19.Wlkr40km - data.owTo1940kmWalkers;
+										var owTo19NightWalkersDaily =
+											locals2.getEventTotal.toronto.to19.nightWlk - data.owTo19NightWalkers;
+										var owTo192dayDaily =
+											locals2.getEventTotal.toronto.to19.twoDayWlk - data.owTo192day;
 										var owTo19rfiTotal =
 											parseFloat(locals2.getEventTotal.toronto.to19.rfi) +
 											parseFloat(locals2.getEventTotal.toronto.to19.rfinight) +
@@ -883,84 +910,101 @@ promise.then(function (db) {
 										var owto17DonationSub = numberOwTo17v1 - numberOwTo17v2;
 										var owto18RfiSub = locals2.getEventTotal.toronto.to18.rfi - data.owTo18RFI;
 										var owto18RegSub = numberRegOwTo18v1 - numberRegOwTo18v2;
-										var owTo182dayDaily = locals2.getEventTotal.toronto.to18.Wlkr15km - data.owTo182day;
-										var owTo1815kmWalkersDaily = locals2.getEventTotal.toronto.to18.Wlkr15km - data.owTo1815kmWalkers;
-										var owTo1825kmWalkersDaily = locals2.getEventTotal.toronto.to18.Wlkr25km - data.owTo1825kmWalkers;
-										var owTo1840kmWalkersDaily = locals2.getEventTotal.toronto.to18.Wlkr40km - data.owTo1840kmWalkers;
-										var owTo18NightWalkersDaily = locals2.getEventTotal.toronto.to18.nightWlk - data.owTo18NightWalkers;
+										var owTo182dayDaily =
+											locals2.getEventTotal.toronto.to18.Wlkr15km - data.owTo182day;
+										var owTo1815kmWalkersDaily =
+											locals2.getEventTotal.toronto.to18.Wlkr15km - data.owTo1815kmWalkers;
+										var owTo1825kmWalkersDaily =
+											locals2.getEventTotal.toronto.to18.Wlkr25km - data.owTo1825kmWalkers;
+										var owTo1840kmWalkersDaily =
+											locals2.getEventTotal.toronto.to18.Wlkr40km - data.owTo1840kmWalkers;
+										var owTo18NightWalkersDaily =
+											locals2.getEventTotal.toronto.to18.nightWlk - data.owTo18NightWalkers;
 										var owto18TotalWalkers =
 											parseFloat(owTo18NightWalkers) +
 											parseFloat(owTo1815kmWalkers) +
 											parseFloat(owTo1825kmWalkers) +
 											parseFloat(owTo1840kmWalkers) +
 											parseFloat(owTo182day);
-										var owto18CrewsDailySub = locals2.getEventTotal.toronto.to18.crews - data.owTo18Crews;
+										var owto18CrewsDailySub =
+											locals2.getEventTotal.toronto.to18.crews - data.owTo18Crews;
 										var owto18WalkersDailySub = owto18TotalWalkers - data.owTo18Walkers;
 
 										// Brisbane
 										var br18DonationSub = numberBr18v1 - numberBr18v2;
 										var br18RegSub = numberBr18v1 - numberBr18v2;
 										var br18RiderSub = locals4.getEventTotal.brisbane.br18.riders - data.br18Riders;
-										var br18WalkerSub = locals4.getEventTotal.brisbane.br18.walkers - data.br18Walkers;
+										var br18WalkerSub =
+											locals4.getEventTotal.brisbane.br18.walkers - data.br18Walkers;
 
 										// Melbourne
 										var ml18DonationSub = numberMl18v1 - numberMl18v2;
 										var ml17DonationSub = numberMl17v1 - numberMl17v2;
 										var ml18RegSub = numberMl18v1 - numberMl18v2;
-										var ml18RiderSub = locals4.getEventTotal.melbourne.ml18.riders - data.ml18Riders;
-										var ml18WalkerSub = locals4.getEventTotal.melbourne.ml18.walkers - data.ml18Walkers;
+										var ml18RiderSub =
+											locals4.getEventTotal.melbourne.ml18.riders - data.ml18Riders;
+										var ml18WalkerSub =
+											locals4.getEventTotal.melbourne.ml18.walkers - data.ml18Walkers;
 
 										// Add Dollar Sign back into Data
-										var newTo20DonDaily = '$' + to20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newTo20RegDaily = '$' + to20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newTo19DonDaily = '$' + to19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newTo19RegDaily = '$' + to19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newToDonDaily = '$' + to18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newTo17DonDaily = '$' + to17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newToRegDaily = '$' + to18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+										var newTo20DonDaily = `$${to20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newTo20RegDaily = `$${to20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newTo19DonDaily = `$${to19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newTo19RegDaily = `$${to19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newToDonDaily = `$${to18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newTo17DonDaily = `$${to17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newToRegDaily = `$${to18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
 
-										var newPrDonDaily = '$' + pr18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newPr17DonDaily = '$' + pr17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newPrRegDaily = '$' + pr18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+										var newPrDonDaily = `$${pr18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newPr17DonDaily = `$${pr17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newPrRegDaily = `$${pr18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
 
-										var newMo20DonDaily = '$' + mo20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newMo20RegDaily = '$' + mo20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newMo19DonDaily = '$' + mo19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newMo19RegDaily = '$' + mo19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newMo18DonDaily = '$' + mo18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newMo17DonDaily = '$' + mo17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newMoRegDaily = '$' + mo18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+										var newMo20DonDaily = `$${mo20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newMo20RegDaily = `$${mo20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newMo19DonDaily = `$${mo19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newMo19RegDaily = `$${mo19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newMo18DonDaily = `$${mo18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newMo17DonDaily = `$${mo17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newMoRegDaily = `$${mo18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
 
-										var newAb20DonDaily = '$' + ab20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newAb20RegDaily = '$' + ab20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newAb19DonDaily = '$' + ab19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newAb19RegDaily = '$' + ab19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newAbDonDaily = '$' + ab18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newAb17DonDaily = '$' + ab17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newAbRegDaily = '$' + ab18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+										var newAb20DonDaily = `$${ab20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newAb20RegDaily = `$${ab20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newAb19DonDaily = `$${ab19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newAb19RegDaily = `$${ab19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newAbDonDaily = `$${ab18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newAb17DonDaily = `$${ab17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newAbRegDaily = `$${ab18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
 
-										var newVa20DonDaily = '$' + va20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newVa20RegDaily = '$' + va20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newVa19DonDaily = '$' + va19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newVa19RegDaily = '$' + va19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newVaDonDaily = '$' + va18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newVa17DonDaily = '$' + va17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newVaRegDaily = '$' + va18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+										var newVa20DonDaily = `$${va20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newVa20RegDaily = `$${va20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newVa19DonDaily = `$${va19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newVa19RegDaily = `$${va19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newVaDonDaily = `$${va18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newVa17DonDaily = `$${va17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newVaRegDaily = `$${va18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
 
-										var newOwTo20DonDaily = '$' + owto20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newOwTo20RegDaily = '$' + owto20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newOwTo19DonDaily = '$' + owto19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newOwTo19RegDaily = '$' + owto19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newOwToDonDaily = '$' + owto18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newOwTo17DonDaily = '$' + owto17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newOwToRegDaily = '$' + owto18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+										var newOwTo20DonDaily =
+											'$' +
+											owto20DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+										var newOwTo20RegDaily = `$${owto20RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newOwTo19DonDaily =
+											'$' +
+											owto19DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+										var newOwTo19RegDaily = `$${owto19RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newOwToDonDaily =
+											'$' +
+											owto18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+										var newOwTo17DonDaily =
+											'$' +
+											owto17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+										var newOwToRegDaily = `$${owto18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
 
-										var newBrDonDaily = '$' + br18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newBrRegDaily = '$' + br18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+										var newBrDonDaily = `$${br18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newBrRegDaily = `$${br18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
 
-										var newMlDonDaily = '$' + ml18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newMl17DonDaily = '$' + ml17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-										var newMlRegDaily = '$' + ml18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+										var newMlDonDaily = `$${ml18DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newMl17DonDaily = `$${ml17DonationSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
+										var newMlRegDaily = `$${ml18RegSub.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')}`;
 
 										var allData = new ApiData({
 											updated: moment().format('L'),
@@ -1399,9 +1443,9 @@ promise.then(function (db) {
 											ml18WalkersDaily: ml18WalkerSub,
 
 											// Melbourne 2017 Daily
-											ml17DonDaily: newMl17DonDaily
+											ml17DonDaily: newMl17DonDaily,
 										});
-										allData.save(function (error) {
+										allData.save((error) => {
 											console.log('Data has been saved to MongoDB!');
 											process.exit();
 											if (error) {

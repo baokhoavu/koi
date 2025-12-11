@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+var _mongoose = require('mongoose');
 var express = require('express');
 var router = express.Router();
 
@@ -6,9 +6,9 @@ var router = express.Router();
 
 // var db = mongoose.connection;
 
-router.get('/', function (req, res, next) {
+router.get('/', (_req, res, _next) => {
 	res.render('index', {
-		test: 'Hi I am a test!!!!'
+		test: 'Hi I am a test!!!!',
 	});
 });
 

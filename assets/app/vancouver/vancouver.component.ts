@@ -1,14 +1,15 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { DataService } from '../data.service';
+import { Component, type ElementRef, ViewChild } from '@angular/core';
 // MomentJS for date formatting
 import * as _moment from 'moment';
+import type { DataService } from '../data.service';
+
 const moment = _moment;
 
 @Component({
 	selector: 'app-vancouver',
 	templateUrl: './vancouver.component.html',
 	styleUrls: ['./vancouver.component.scss'],
-	standalone: false
+	standalone: false,
 })
 export class VancouverComponent {
 	// Date picker variables
@@ -33,4 +34,3 @@ export class VancouverComponent {
 		this.datePickerSelected = true;
 	}
 }
-

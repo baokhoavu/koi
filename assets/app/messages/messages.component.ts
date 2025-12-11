@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 			<app-message-list></app-message-list>
 		</div>
 	`,
-	standalone: false
+	standalone: false,
 })
 export class MessagesComponent {}
-

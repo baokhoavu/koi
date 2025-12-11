@@ -5,11 +5,11 @@ var User = require('./user');
 
 var schema = new Schema({
 	content: { type: String, required: true },
-	user: { type: Schema.Types.ObjectId, ref: 'User' }
+	user: { type: Schema.Types.ObjectId, ref: 'User' },
 });
 
-schema.post('remove', function (message) {
-	User.findById(message.user, function (err, user) {
+schema.post('remove', (message) => {
+	User.findById(message.user, (_err, user) => {
 		user.messages.pull(message);
 		user.save();
 	});

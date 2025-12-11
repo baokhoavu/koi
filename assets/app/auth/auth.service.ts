@@ -1,10 +1,9 @@
+import { type HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
-
-import { User } from './user.model';
+import { throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { environment } from '../environment';
+import type { User } from './user.model';
 
 @Injectable()
 export class AuthService {
@@ -13,18 +12,18 @@ export class AuthService {
 	signup(user: User) {
 		const body = JSON.stringify(user);
 		const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-		return this.http.post<any>(environment.apiUrl + '/user', body, { headers: headers }).pipe(
-			map(response => response),
-			catchError(error => throwError(() => error))
+		return this.http.post<any>(`${environment.apiUrl}/user`, body, { headers: headers }).pipe(
+			map((response) => response),
+			catchError((error) => throwError(() => error))
 		);
 	}
 
 	signin(user: User) {
 		const body = JSON.stringify(user);
 		const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-		return this.http.post<any>(environment.apiUrl + '/user/signin', body, { headers: headers }).pipe(
-			map(response => response),
-			catchError(error => throwError(() => error))
+		return this.http.post<any>(`${environment.apiUrl}/user/signin`, body, { headers: headers }).pipe(
+			map((response) => response),
+			catchError((error) => throwError(() => error))
 		);
 	}
 

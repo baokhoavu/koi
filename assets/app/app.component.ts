@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, type OnInit } from '@angular/core';
 
-import { AuthService } from './auth/auth.service';
-import { DataService } from './data.service';
+import type { AuthService } from './auth/auth.service';
+import type { DataService } from './data.service';
 
 @Component({
 	selector: 'my-app',
 	templateUrl: './app.component.html',
-	standalone: false
+	standalone: false,
 })
 export class AppComponent implements OnInit {
 	constructor(

@@ -6,5 +6,5 @@ export const environment = {
 	production: false,
 	apiUrl: 'http://localhost:3000',
 	mlabApiUrl: 'https://api.mlab.com/api/1/databases/heroku_q1rgmlhw/collections/apidatas',
-	mlabApiKey: 'DqLhKCxvsNwutqc_kQEYhHPsY5J4gWZ5'
+	mlabApiKey: 'DqLhKCxvsNwutqc_kQEYhHPsY5J4gWZ5',
 };

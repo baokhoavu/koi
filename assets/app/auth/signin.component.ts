@@ -1,15 +1,15 @@
-import { Component, Inject } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import type { MatSnackBar } from '@angular/material/snack-bar';
+import type { Router } from '@angular/router';
+import type { AuthService } from './auth.service';
 import { User } from './user.model';
-import { AuthService } from './auth.service';
 
 @Component({
 	selector: 'app-signin',
 	templateUrl: './signin.component.html',
 	styleUrls: ['./signin.component.scss'],
-	standalone: false
+	standalone: false,
 })
 export class SigninComponent {
 	myForm: FormGroup;
@@ -23,18 +23,18 @@ export class SigninComponent {
 	onSubmit() {
 		const user = new User(this.myForm.value.email, this.myForm.value.password);
 		this.authService.signin(user).subscribe(
-			data => {
+			(data) => {
 				localStorage.setItem('token', data.token);
 				localStorage.setItem('userId', data.userId);
 				this.snackBar.open('Welcome to the KOI Web App! You are logged in.', 'Close', {
 					duration: 3500,
-					extraClasses: ['logged-in']
+					extraClasses: ['logged-in'],
 				});
 				// this.snackBar.dismiss();
 				this.router.navigateByUrl('/alltables');
 				console.log(data.userId);
 			},
-			error => console.error(error)
+			(error) => console.error(error)
 		);
 		this.myForm.reset();
 	}
@@ -48,11 +48,10 @@ export class SigninComponent {
 			email: new FormControl(null, [
 				Validators.required,
 				Validators.pattern(
-					"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
-				)
+					"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+				),
 			]),
-			password: new FormControl(null, Validators.required)
+			password: new FormControl(null, Validators.required),
 		});
 	}
 }
-

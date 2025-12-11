@@ -1,12 +1,12 @@
-var webpack = require('webpack');
+var _webpack = require('webpack');
 
 module.exports = {
 	entry: {
-		app: './assets/app/main.ts'
+		app: './assets/app/main.ts',
 	},
 
 	resolve: {
-		extensions: ['.js', '.ts']
+		extensions: ['.js', '.ts'],
 	},
 
 	module: {
@@ -17,11 +17,11 @@ module.exports = {
 					{
 						loader: 'raw-loader',
 						options: {
-							esModule: false
-						}
-					}
+							esModule: false,
+						},
+					},
 				],
-				exclude: /index\.html$/
+				exclude: /index\.html$/,
 			},
 			{
 				test: /\.css$/,
@@ -29,10 +29,10 @@ module.exports = {
 					{
 						loader: 'raw-loader',
 						options: {
-							esModule: false
-						}
-					}
-				]
+							esModule: false,
+						},
+					},
+				],
 			},
 			{
 				test: /\.scss$/,
@@ -41,11 +41,11 @@ module.exports = {
 					{
 						loader: 'raw-loader',
 						options: {
-							esModule: false
-						}
+							esModule: false,
+						},
 					},
-					'sass-loader'
-				]
+					'sass-loader',
+				],
 			},
 			{
 				test: /\.(svg|png|jpe?g|gif)$/i,
@@ -54,12 +54,12 @@ module.exports = {
 						loader: 'url-loader',
 						options: {
 							limit: 10000,
-							name: '[name].[hash].[ext]'
-						}
-					}
-				]
-			}
+							name: '[name].[hash].[ext]',
+						},
+					},
+				],
+			},
 		],
-		exprContextCritical: false
-	}
+		exprContextCritical: false,
+	},
 };

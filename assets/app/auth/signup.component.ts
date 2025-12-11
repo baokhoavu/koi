@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, type OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { AuthService } from './auth.service';
+import type { AuthService } from './auth.service';
 import { User } from './user.model';
 
 @Component({
 	selector: 'app-signup',
 	templateUrl: './signup.component.html',
 	styleUrls: ['./signup.component.scss'],
-	standalone: false
+	standalone: false,
 })
 export class SignupComponent implements OnInit {
 	myForm: FormGroup;
@@ -23,8 +23,8 @@ export class SignupComponent implements OnInit {
 			this.myForm.value.lastName
 		);
 		this.authService.signup(user).subscribe(
-			data => console.log(data),
-			error => console.error(error)
+			(data) => console.log(data),
+			(error) => console.error(error)
 		);
 		this.myForm.reset();
 	}
@@ -40,11 +40,10 @@ export class SignupComponent implements OnInit {
 			email: new FormControl(null, [
 				Validators.required,
 				Validators.pattern(
-					"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
-				)
+					"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+				),
 			]),
-			password: new FormControl(null, Validators.required)
+			password: new FormControl(null, Validators.required),
 		});
 	}
 }
-

@@ -1,7 +1,7 @@
 require('dotenv').config();
 var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
+var path = require('node:path');
+var _favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -52,7 +52,7 @@ if (process.env.NODE_ENV === 'production') {
 	app.use(express.static(path.join(__dirname, 'public')));
 }
 
-app.use(function (req, res, next) {
+app.use((_req, res, next) => {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 	res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
@@ -66,17 +66,15 @@ app.use('/api', apiRoutes);
 // For production: serve the built Angular app
 // For development: Vite dev server handles this on port 3000
 if (process.env.NODE_ENV === 'production') {
-	app.get('*', function (req, res) {
+	app.get('*', (_req, res) => {
 		res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 	});
 } else {
 	// In development, fall back to appRoutes which renders the view
 	app.use('/', appRoutes);
-	
+
 	// catch 404 and forward to error handler
-	app.use(function (req, res, next) {
-		return res.render('index');
-	});
+	app.use((_req, res, _next) => res.render('index'));
 }
 
 module.exports = app;

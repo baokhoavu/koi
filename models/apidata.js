@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var moment = require('moment');
+var _moment = require('moment');
 var Schema = mongoose.Schema;
 
 var dataSchema = new Schema(
@@ -285,13 +285,6 @@ var dataSchema = new Schema(
 		ab18CrewDaily: String,
 		ab18RidersDaily: String,
 		ab18VRDaily: String,
-		ab18DonDaily: String,
-		ab17DonDaily: String,
-		ab18RegFeeDaily: String,
-		ab18RFIDaily: String,
-		ab18CrewDaily: String,
-		ab18RidersDaily: String,
-		ab18VRDaily: String,
 		va20DonDaily: String,
 		va20CrewDaily: String,
 		va20RidersDaily: String,
@@ -352,7 +345,7 @@ var dataSchema = new Schema(
 		ml17DonDaily: String,
 		ml18RegDaily: String,
 		ml18RidersDaily: String,
-		ml18WalkersDaily: String
+		ml18WalkersDaily: String,
 	},
 	{ versionKey: false, timestamps: { createdAt: 'created_at' } }
 );

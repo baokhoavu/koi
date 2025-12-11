@@ -1,10 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Injectable } from '@angular/core';
+import type { HttpClient } from '@angular/common/http';
+import { Injectable, type OnInit } from '@angular/core';
 // import { HttpClient, Http, Response, Headers, RequestOptions } from "@angular/http";
-import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { HttpClient, HttpRequest, HttpEvent, HttpEventType } from '@angular/common/http';
 import { environment } from './environment';
 
 @Injectable()
@@ -53,11 +50,11 @@ export class DataService implements OnInit {
 	fetchData() {
 		console.log('🔄 Fetching data from /api/data...');
 		this.http.get<any>('/api/data').subscribe(
-			data => {
+			(data) => {
 				console.log('✅ Data received:', data);
 				console.log('🔍 Data type:', typeof data);
 				console.log('📋 Data keys count:', Object.keys(data || {}).length);
-				
+
 				// Ensure we're setting the data object properly
 				if (data && typeof data === 'object') {
 					this.data = { ...data };
@@ -68,7 +65,7 @@ export class DataService implements OnInit {
 					console.log('⚠️ Data is not an object:', data);
 				}
 			},
-			error => {
+			(error) => {
 				console.log('❌ There was an error getting the data:', error);
 			}
 		);
@@ -76,8 +73,8 @@ export class DataService implements OnInit {
 
 	fetchAllData() {
 		// Note: mLab is deprecated, consider migrating to MongoDB Atlas
-		this.http.get(environment.apiUrl + '/api/data-by-date?date=' + this.myDate).subscribe(
-			data => {
+		this.http.get(`${environment.apiUrl}/api/data-by-date?date=${this.myDate}`).subscribe(
+			(data) => {
 				this.allData = data ?? [];
 				console.log(this.allData);
 
@@ -85,7 +82,7 @@ export class DataService implements OnInit {
 				this.noData = dataLength === 0;
 				this.brisbaneData = dataLength > 0 || !this.allData?.br18Riders;
 			},
-			error => {
+			(error) => {
 				console.log('There was an error while getting all of the data.', error);
 			}
 		);

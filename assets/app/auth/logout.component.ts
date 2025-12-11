@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { AuthService } from './auth.service';
+import type { MatSnackBar } from '@angular/material/snack-bar';
+import type { Router } from '@angular/router';
+import type { AuthService } from './auth.service';
 
 @Component({
 	selector: 'app-logout',
@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 		</div>
 	`,
 	styleUrls: ['./logout.component.scss'],
-	standalone: false
+	standalone: false,
 })
 export class LogoutComponent {
 	constructor(
@@ -25,8 +25,7 @@ export class LogoutComponent {
 		this.router.navigate(['/auth', 'signin']);
 		this.snackBar.open('Logged Out. See you later!', 'Close', {
 			duration: 2500,
-			extraClasses: ['logged-out']
+			extraClasses: ['logged-out'],
 		});
 	}
 }
-

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { AuthService } from './auth.service';
+import type { AuthService } from './auth.service';
 
 @Component({
 	selector: 'app-authentication',
 	templateUrl: './authentication.component.html',
 	styleUrls: ['./authentication.component.scss'],
-	standalone: false
+	standalone: false,
 })
 export class AuthenticationComponent {
 	constructor(private authService: AuthService) {}
@@ -14,4 +14,3 @@ export class AuthenticationComponent {
 		return this.authService.isLoggedIn();
 	}
 }
-
