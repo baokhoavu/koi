@@ -4,7 +4,9 @@ var webpack = require('webpack');
 var webpackMerge = require('webpack-merge');
 var commonConfig = require('./webpack.config.common.js');
 
-module.exports = webpackMerge.smart(commonConfig, {
+module.exports = webpackMerge.merge(commonConfig, {
+	mode: 'production',
+
 	entry: {
 		app: './assets/app/main.aot.ts'
 	},
@@ -25,9 +27,7 @@ module.exports = webpackMerge.smart(commonConfig, {
 		]
 	},
 
-	plugins: [
-		new webpack.optimize.UglifyJsPlugin({
-			sourceMap: false
-		})
-	]
+	optimization: {
+		minimize: true
+	}
 });

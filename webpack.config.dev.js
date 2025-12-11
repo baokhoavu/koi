@@ -4,7 +4,9 @@ var webpackMerge = require('webpack-merge');
 var commonConfig = require('./webpack.config.common.js');
 
 module.exports = webpackMerge(commonConfig, {
-	devtool: 'cheap-module-eval-source-map',
+	mode: 'development',
+
+	devtool: 'eval-cheap-module-source-map',
 
 	output: {
 		path: path.resolve(__dirname + '/public/js/app'),
@@ -18,7 +20,7 @@ module.exports = webpackMerge(commonConfig, {
 				test: /\.ts$/,
 				use: [
 					{
-						loader: 'awesome-typescript-loader',
+						loader: 'ts-loader',
 						options: {
 							transpileOnly: true
 						}

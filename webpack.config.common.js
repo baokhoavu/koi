@@ -13,16 +13,51 @@ module.exports = {
 		rules: [
 			{
 				test: /\.html$/,
-				use: [{ loader: 'html-loader' }]
+				use: [
+					{
+						loader: 'raw-loader',
+						options: {
+							esModule: false
+						}
+					}
+				],
+				exclude: /index\.html$/
 			},
 			{
 				test: /\.css$/,
-				use: [{ loader: 'raw-loader' }]
+				use: [
+					{
+						loader: 'raw-loader',
+						options: {
+							esModule: false
+						}
+					}
+				]
 			},
 			{
 				test: /\.scss$/,
 				exclude: /node_modules/,
-				loaders: ['raw-loader', 'sass-loader'] // sass-loader not scss-loader
+				use: [
+					{
+						loader: 'raw-loader',
+						options: {
+							esModule: false
+						}
+					},
+					'sass-loader'
+				]
+			},
+			{
+				test: /\.(svg|png|jpe?g|gif)$/i,
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							limit: 10000,
+							name: '[name].[hash].[ext]'
+						}
+					}
+				]
 			}
 		],
 		exprContextCritical: false
