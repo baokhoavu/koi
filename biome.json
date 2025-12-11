@@ -1,0 +1,90 @@
+{
+    "$schema": "https://biomejs.dev/schemas/2.3.8/schema.json",
+    "vcs": {
+        "enabled": true,
+        "clientKind": "git",
+        "useIgnoreFile": true,
+        "defaultBranch": "master"
+    },
+    "files": {
+        "includes": ["assets/**/*.ts", "assets/**/*.js", "routes/**/*.js", "models/**/*.js", "*.ts", "*.js"],
+        "ignoreUnknown": true
+    },
+    "formatter": {
+        "enabled": true,
+        "formatWithErrors": false,
+        "indentStyle": "tab",
+        "indentWidth": 4,
+        "lineWidth": 120,
+        "lineEnding": "lf"
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "complexity": {
+                "noExcessiveCognitiveComplexity": "off",
+                "noForEach": "off",
+                "noCommaOperator": "off",
+                "useFlatMap": "warn"
+            },
+            "correctness": {
+                "noUnusedVariables": "warn",
+                "noInnerDeclarations": "off",
+                "useHookAtTopLevel": "error"
+            },
+            "style": {
+                "noNegationElse": "off",
+                "useConst": "warn",
+                "useTemplate": "warn"
+            },
+            "suspicious": {
+                "noExplicitAny": "warn",
+                "noArrayIndexKey": "warn",
+                "noAssignInExpressions": "off"
+            },
+            "performance": {
+                "noDelete": "warn"
+            }
+        }
+    },
+    "javascript": {
+        "formatter": {
+            "quoteStyle": "single",
+            "jsxQuoteStyle": "double",
+            "quoteProperties": "asNeeded",
+            "trailingCommas": "es5",
+            "semicolons": "always",
+            "arrowParentheses": "always",
+            "bracketSpacing": true,
+            "bracketSameLine": false
+        }
+    },
+    "assist": {
+        "enabled": true,
+        "actions": {
+            "source": {
+                "organizeImports": "on"
+            }
+        }
+    },
+    "json": {
+        "formatter": {
+            "enabled": true,
+            "indentStyle": "space",
+            "indentWidth": 4
+        }
+    },
+    "overrides": [
+        {
+            "includes": ["assets/app/**/*.ts"],
+            "linter": {
+                "rules": {
+                    "suspicious": {
+                        "noExplicitAny": "off"
+                    }
+                }
+            }
+        }
+    ]
+}
