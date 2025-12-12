@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
 	selector: 'app-footer',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
 	styleUrls: ['./footer.component.scss'],
 	standalone: false,
 })
-export class FooterComponent {}
+export class FooterComponent {
+	constructor(public auth: AuthService) {}
+}
