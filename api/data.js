@@ -172,6 +172,27 @@ function getCurrentDynamicData() {
 		onewalk: {
 			getEventTotal: {
 				toronto: {
+					owTo20: {
+						donations: '$680,000.00',
+						regfee: '$55,000.00',
+						rfi: 350,
+						crews: 48,
+						walkers: 302
+					},
+					owTo19: {
+						donations: '$620,000.00',
+						regfee: '$50,000.00',
+						rfi: 320,
+						crews: 42,
+						walkers: 278
+					},
+					owTo18: {
+						donations: '$550,000.00',
+						regfee: '$42,000.00',
+						rfi: 280,
+						crews: 36,
+						walkers: 244
+					},
 					owTo17: {
 						donations: '$450,000.00',
 						regfee: '$35,000.00',
@@ -288,6 +309,25 @@ function getDailyIncrements() {
 		br19WalkersDaily: Math.floor(Math.random() * 3) + 1,
 		br19DonDaily: '$' + (Math.floor(Math.random() * 10000) + 2000).toLocaleString() + '.00',
 		br19RegDaily: '$' + (Math.floor(Math.random() * 1000) + 200).toLocaleString() + '.00',
+		
+		// OneWalk Toronto Daily Increments
+		owTo20RFIDaily: Math.floor(Math.random() * 6) + 2,
+		owTo20CrewsDaily: Math.floor(Math.random() * 3) + 1,
+		owTo20WalkersDaily: Math.floor(Math.random() * 8) + 3,
+		owTo20DonDaily: '$' + (Math.floor(Math.random() * 18000) + 4000).toLocaleString() + '.00',
+		owTo20RegFeeDaily: '$' + (Math.floor(Math.random() * 1800) + 400).toLocaleString() + '.00',
+		
+		owTo19RFIDaily: Math.floor(Math.random() * 5) + 2,
+		owTo19CrewsDaily: Math.floor(Math.random() * 2) + 1,
+		owTo19WalkersDaily: Math.floor(Math.random() * 7) + 2,
+		owTo19DonDaily: '$' + (Math.floor(Math.random() * 15000) + 3500).toLocaleString() + '.00',
+		owTo19RegFeeDaily: '$' + (Math.floor(Math.random() * 1500) + 350).toLocaleString() + '.00',
+		
+		owTo18RFIDaily: Math.floor(Math.random() * 5) + 1,
+		owTo18CrewsDaily: Math.floor(Math.random() * 2) + 1,
+		owTo18WalkersDaily: Math.floor(Math.random() * 6) + 2,
+		owTo18DonDaily: '$' + (Math.floor(Math.random() * 13000) + 3000).toLocaleString() + '.00',
+		owTo18RegFeeDaily: '$' + (Math.floor(Math.random() * 1300) + 300).toLocaleString() + '.00',
 		
 		owTo17RFIDaily: Math.floor(Math.random() * 4) + 1,
 		owTo17CrewsDaily: Math.floor(Math.random() * 2) + 1,
@@ -778,6 +818,45 @@ module.exports = (req, res) => {
 			br17WalkersDaily: dailyIncrements.br17WalkersDaily,
 			br17DonDaily: dailyIncrements.br17DonDaily,
 
+			// OneWalk Toronto 2020
+			owTo20Donations: locals2.getEventTotal.toronto.owTo20.donations,
+			owTo20RegFee: locals2.getEventTotal.toronto.owTo20.regfee,
+			owTo20RFI: locals2.getEventTotal.toronto.owTo20.rfi,
+			owTo20Crews: locals2.getEventTotal.toronto.owTo20.crews,
+			owTo20Walkers: locals2.getEventTotal.toronto.owTo20.walkers,
+			owTo20TotalParticipants: locals2.getEventTotal.toronto.owTo20.walkers + locals2.getEventTotal.toronto.owTo20.crews,
+			owTo20RFIDaily: dailyIncrements.owTo20RFIDaily,
+			owTo20CrewsDaily: dailyIncrements.owTo20CrewsDaily,
+			owTo20WalkersDaily: dailyIncrements.owTo20WalkersDaily,
+			owTo20DonDaily: dailyIncrements.owTo20DonDaily,
+			owTo20RegFeeDaily: dailyIncrements.owTo20RegFeeDaily,
+			
+			// OneWalk Toronto 2019
+			owTo19Donations: locals2.getEventTotal.toronto.owTo19.donations,
+			owTo19RegFee: locals2.getEventTotal.toronto.owTo19.regfee,
+			owTo19RFI: locals2.getEventTotal.toronto.owTo19.rfi,
+			owTo19Crews: locals2.getEventTotal.toronto.owTo19.crews,
+			owTo19Walkers: locals2.getEventTotal.toronto.owTo19.walkers,
+			owTo19TotalParticipants: locals2.getEventTotal.toronto.owTo19.walkers + locals2.getEventTotal.toronto.owTo19.crews,
+			owTo19RFIDaily: dailyIncrements.owTo19RFIDaily,
+			owTo19CrewsDaily: dailyIncrements.owTo19CrewsDaily,
+			owTo19WalkersDaily: dailyIncrements.owTo19WalkersDaily,
+			owTo19DonDaily: dailyIncrements.owTo19DonDaily,
+			owTo19RegFeeDaily: dailyIncrements.owTo19RegFeeDaily,
+			
+			// OneWalk Toronto 2018
+			owTo18Donations: locals2.getEventTotal.toronto.owTo18.donations,
+			owTo18RegFee: locals2.getEventTotal.toronto.owTo18.regfee,
+			owTo18RFI: locals2.getEventTotal.toronto.owTo18.rfi,
+			owTo18Crews: locals2.getEventTotal.toronto.owTo18.crews,
+			owTo18Walkers: locals2.getEventTotal.toronto.owTo18.walkers,
+			owTo18TotalParticipants: locals2.getEventTotal.toronto.owTo18.walkers + locals2.getEventTotal.toronto.owTo18.crews,
+			owTo18RFIDaily: dailyIncrements.owTo18RFIDaily,
+			owTo18CrewsDaily: dailyIncrements.owTo18CrewsDaily,
+			owTo18WalkersDaily: dailyIncrements.owTo18WalkersDaily,
+			owTo18DonDaily: dailyIncrements.owTo18DonDaily,
+			owTo18RegFeeDaily: dailyIncrements.owTo18RegFeeDaily,
+			
 			// OneWalk Toronto 2017
 			owTo17Donations: locals2.getEventTotal.toronto.owTo17.donations,
 			owTo17RegFee: locals2.getEventTotal.toronto.owTo17.regfee,
