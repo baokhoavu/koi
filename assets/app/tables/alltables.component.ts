@@ -1,7 +1,5 @@
-import type { HttpClient } from '@angular/common/http';
 import { type ChangeDetectorRef, Component, type OnDestroy, type OnInit } from '@angular/core';
 import type { FormGroup } from '@angular/forms';
-import type { Router } from '@angular/router';
 import $ from 'jquery';
 import { SlideInOutAnimation } from '../animation';
 import type { AuthService } from '../auth/auth.service';
@@ -25,8 +23,6 @@ export class AllTablesComponent implements OnInit, OnDestroy {
 	_postsArray: any = {};
 
 	constructor(
-		_router: Router,
-		_http: HttpClient,
 		private authService: AuthService,
 		public dataService: DataService,
 		private cdr: ChangeDetectorRef

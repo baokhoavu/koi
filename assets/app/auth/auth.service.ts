@@ -1,4 +1,3 @@
-import type { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of, throwError } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
@@ -13,7 +12,6 @@ export class AuthService {
 	private readonly MOCK_PASSWORD = 'koi2025';
 
 	constructor(
-		_http: HttpClient,
 		private rateLimitService: RateLimitService,
 		private sanitizationService: SanitizationService
 	) {}
