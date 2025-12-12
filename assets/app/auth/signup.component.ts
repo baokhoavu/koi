@@ -1,7 +1,7 @@
 import { Component, type OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import type { MatSnackBar } from '@angular/material/snack-bar';
-import type { SanitizationService } from '../core/sanitization.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SanitizationService } from '../core/sanitization.service';
 import { AuthService } from './auth.service';
 import { User } from './user.model';
 

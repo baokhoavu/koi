@@ -1,8 +1,8 @@
 import { Component, type OnInit } from '@angular/core';
 import type { NgForm } from '@angular/forms';
-import type { SanitizationService } from '../core/sanitization.service';
+import { SanitizationService } from '../core/sanitization.service';
 import { Message } from './message.model';
-import type { MessageService } from './message.service';
+import { MessageService } from './message.service';
 
 @Component({
 	selector: 'app-message-input',

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import type { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer, type SafeHtml } from '@angular/platform-browser';
 
 @Injectable({
 	providedIn: 'root',
