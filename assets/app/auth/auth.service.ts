@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { of, throwError } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
-import type { RateLimitService } from '../core/rate-limit.service';
-import type { SanitizationService } from '../core/sanitization.service';
+import { RateLimitService } from '../core/rate-limit.service';
+import { SanitizationService } from '../core/sanitization.service';
 import type { User } from './user.model';
 
 @Injectable()
