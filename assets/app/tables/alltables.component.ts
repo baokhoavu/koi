@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { type ChangeDetectorRef, Component, type OnDestroy, type OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, type OnDestroy, type OnInit } from '@angular/core';
 import type { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import $ from 'jquery';
