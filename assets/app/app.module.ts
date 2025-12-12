@@ -44,6 +44,7 @@ import { AlbertaComponent } from './alberta/alberta.component';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 // Services
+import { AuthGuard } from './auth/auth.guard';
 import { AuthService } from './auth/auth.service';
 import { AuthenticationComponent } from './auth/authentication.component';
 // Login/Logout/Signup Components
@@ -139,7 +140,7 @@ export class AngularMaterialModule {}
 		BrowserAnimationsModule,
 		AngularMaterialModule,
 	],
-	providers: [AuthService, DataService],
+	providers: [AuthService, AuthGuard, DataService],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

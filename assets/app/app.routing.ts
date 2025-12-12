@@ -1,4 +1,5 @@
 import { RouterModule, type Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 import { AUTH_ROUTES } from './auth/auth.routes';
 import { AuthenticationComponent } from './auth/authentication.component';
 import { SigninComponent } from './auth/signin.component';
@@ -7,8 +8,8 @@ import { AllTablesComponent } from './tables/alltables.component';
 
 const APP_ROUTES: Routes = [
 	{ path: '', redirectTo: '/signin', pathMatch: 'full' },
-	{ path: 'messages', component: MessagesComponent },
-	{ path: 'alltables', component: AllTablesComponent },
+	{ path: 'messages', component: MessagesComponent, canActivate: [AuthGuard] },
+	{ path: 'alltables', component: AllTablesComponent, canActivate: [AuthGuard] },
 	{ path: 'auth', component: AuthenticationComponent, children: AUTH_ROUTES },
 	{ path: 'signin', component: SigninComponent },
 ];
