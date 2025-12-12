@@ -1,6 +1,6 @@
 import { Component, type OnInit } from '@angular/core';
 
-import type { AuthService } from './auth/auth.service';
+import { AuthService } from './auth/auth.service';
 import type { DataService } from './data.service';
 
 @Component({

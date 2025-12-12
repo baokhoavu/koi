@@ -2,7 +2,7 @@ import { Component, type OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import type { MatSnackBar } from '@angular/material/snack-bar';
 import type { SanitizationService } from '../core/sanitization.service';
-import type { AuthService } from './auth.service';
+import { AuthService } from './auth.service';
 import { User } from './user.model';
 
 @Component({

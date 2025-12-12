@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import type { Router } from '@angular/router';
 import $ from 'jquery';
 import { SlideInOutAnimation } from './animation';
-import type { AuthService } from './auth/auth.service';
+import { AuthService } from './auth/auth.service';
 import type { DataService } from './data.service';
 
 @Component({
