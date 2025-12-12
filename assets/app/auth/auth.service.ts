@@ -9,7 +9,7 @@ import type { User } from './user.model';
 export class AuthService {
 	// Mock credentials from .env
 	private readonly MOCK_EMAIL = 'admin@koi.com';
-	private readonly MOCK_PASSWORD = 'koi2025';
+	private readonly MOCK_PASSWORD = 'koi2025!';
 
 	constructor(
 		private rateLimitService: RateLimitService,
