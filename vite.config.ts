@@ -21,6 +21,7 @@ export default defineConfig(({ mode }) => {
 			angular({
 				tsconfig: './tsconfig.json',
 				inlineStylesExtension: 'scss',
+				jit: true, // Enable JIT compilation for production
 			}),
 		],
 
