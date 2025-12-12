@@ -3,7 +3,7 @@ import type { FormGroup } from '@angular/forms';
 import $ from 'jquery';
 import { SlideInOutAnimation } from '../animation';
 import { AuthService } from '../auth/auth.service';
-import type { DataService } from '../data.service';
+import { DataService } from '../data.service';
 
 @Component({
 	selector: 'all-tables',
