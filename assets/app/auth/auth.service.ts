@@ -7,16 +7,23 @@ import type { User } from './user.model';
 
 @Injectable()
 export class AuthService {
-	// Mock credentials from .env
-	private readonly MOCK_EMAIL = 'admin@koi.com';
-	private readonly MOCK_PASSWORD = 'koi2025!';
-
 	constructor(
 		private rateLimitService: RateLimitService,
 		private sanitizationService: SanitizationService
 	) {}
 
 	signup(user: User) {
+		// DEMO_MODE: Bypass validation for static deployment
+		// Production logic preserved below (commented)
+		console.log('AUTH_DEBUG: Demo signup bypass active');
+
+		return of({
+			message: 'Signup successful (Demo Mode)',
+			obj: { email: user.email, firstName: 'Demo', lastName: 'User', _id: `demo-user-${Date.now()}` },
+		});
+
+		// PRODUCTION_AUTH: Uncomment to enable validation
+		/*
 		// Sanitize inputs
 		const sanitizedEmail = this.sanitizationService.sanitizeEmail(user.email);
 		const passwordValidation = this.sanitizationService.sanitizePassword(user.password);
@@ -40,9 +47,27 @@ export class AuthService {
 			message: 'Mock signup successful',
 			obj: { email: sanitizedEmail, firstName: 'Koi', lastName: 'Admin', _id: 'mock-user-12345' },
 		});
+		*/
 	}
 
 	signin(user: User) {
+		// DEMO_MODE: Bypass authentication for static deployment
+		// Production logic preserved below (commented)
+		console.log('AUTH_DEBUG: Demo signin bypass active');
+
+		return of(null).pipe(
+			delay(500), // Simulated network delay for realistic UX
+			map(() => {
+				return {
+					token: `mock-jwt-token-${Date.now()}`,
+					userId: 'demo-user-12345',
+					message: 'Successfully logged in (Demo Mode)',
+				};
+			})
+		);
+
+		// PRODUCTION_AUTH: Uncomment to enable full authentication
+		/*
 		// Sanitize inputs
 		const sanitizedEmail = this.sanitizationService.sanitizeEmail(user.email);
 		const passwordValidation = this.sanitizationService.sanitizePassword(user.password);
@@ -102,6 +127,7 @@ export class AuthService {
 				}
 			})
 		);
+		*/
 	}
 
 	logout() {
