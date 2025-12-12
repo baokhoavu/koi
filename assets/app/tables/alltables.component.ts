@@ -1,9 +1,9 @@
-import { type ChangeDetectorRef, Component, type OnDestroy, type OnInit } from '@angular/core';
-import type { FormGroup } from '@angular/forms';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import $ from 'jquery';
 import { SlideInOutAnimation } from '../animation';
-import type { AuthService } from '../auth/auth.service';
-import type { DataService } from '../data.service';
+import { AuthService } from '../auth/auth.service';
+import { DataService } from '../data.service';
 
 @Component({
 	selector: 'all-tables',

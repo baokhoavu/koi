@@ -36,7 +36,8 @@
             "style": {
                 "noNegationElse": "off",
                 "useConst": "warn",
-                "useTemplate": "warn"
+                "useTemplate": "warn",
+                "useImportType": "off"
             },
             "suspicious": {
                 "noExplicitAny": "warn",

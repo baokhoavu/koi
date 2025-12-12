@@ -1,7 +1,7 @@
-import { Component, type OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import type { AuthService } from './auth/auth.service';
-import type { DataService } from './data.service';
+import { AuthService } from './auth/auth.service';
+import { DataService } from './data.service';
 
 @Component({
 	selector: 'my-app',
