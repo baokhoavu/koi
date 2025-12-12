@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, type OnDestroy, type OnInit } from '@angular/core';
+import type { HttpClient } from '@angular/common/http';
+import { type ChangeDetectorRef, Component, type OnDestroy, type OnInit } from '@angular/core';
 import type { FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import type { Router } from '@angular/router';
 import $ from 'jquery';
 import { SlideInOutAnimation } from '../animation';
-import { AuthService } from '../auth/auth.service';
-import { DataService } from '../data.service';
+import type { AuthService } from '../auth/auth.service';
+import type { DataService } from '../data.service';
 
 @Component({
 	selector: 'all-tables',

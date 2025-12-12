@@ -1,7 +1,7 @@
 import { Component, type ElementRef, ViewChild } from '@angular/core';
 // MomentJS for date formatting
 import * as _moment from 'moment';
-import { DataService } from '../data.service';
+import type { DataService } from '../data.service';
 
 const moment = _moment;
 

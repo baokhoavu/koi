@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import type { HttpClient } from '@angular/common/http';
 import { Injectable, type OnInit } from '@angular/core';
 // import { HttpClient, Http, Response, Headers, RequestOptions } from "@angular/http";
 import { BehaviorSubject } from 'rxjs';

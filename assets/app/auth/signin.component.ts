@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-import { AuthService } from './auth.service';
+import type { MatSnackBar } from '@angular/material/snack-bar';
+import type { Router } from '@angular/router';
+import type { AuthService } from './auth.service';
 import { User } from './user.model';
 
 @Component({
@@ -30,10 +30,16 @@ export class SigninComponent {
 					duration: 3500,
 					extraClasses: ['logged-in'],
 				});
-				// this.snackBar.dismiss();
 				this.router.navigateByUrl('/alltables');
 			},
-			(error) => console.error('Signin error:', error)
+			(error) => {
+				console.error('Signin error:', error);
+				// Show error message to user
+				this.snackBar.open(error.message || 'Login failed. Please try again.', 'Close', {
+					duration: 5000,
+					panelClass: ['error-snackbar'],
+				});
+			}
 		);
 		this.myForm.reset();
 	}
@@ -44,13 +50,8 @@ export class SigninComponent {
 
 	ngOnInit() {
 		this.myForm = new FormGroup({
-			email: new FormControl(null, [
-				Validators.required,
-				Validators.pattern(
-					"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
-				),
-			]),
-			password: new FormControl(null, Validators.required),
+			email: new FormControl(null, [Validators.required, Validators.email, Validators.maxLength(254)]),
+			password: new FormControl(null, [Validators.required, Validators.minLength(8), Validators.maxLength(128)]),
 		});
 	}
 }
