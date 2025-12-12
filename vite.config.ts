@@ -9,6 +9,10 @@ export default defineConfig(({ mode }) => {
 		root: '.',
 		publicDir: 'public',
 
+		define: {
+			ngDevMode: isDev,
+		},
+
 		resolve: {
 			extensions: ['.ts', '.js', '.html', '.css', '.scss'],
 		},
