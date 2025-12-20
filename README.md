@@ -1,39 +1,34 @@
-# 🎏 KOI - Ride to Conquer Cancer Data Platform
+# KOI - Ride to Conquer Cancer Data Platform
 
-> A modern web application built for tracking and visualizing participant data for "The Ride to Conquer Cancer" charitable events across multiple cities.
+The KOI is a web app that tracks and visualizes participant data for "The Ride to Conquer Cancer" events. We're talking charitable cycling across multiple cities - basically helping cancer research while crushing it in the data game.
 
-[![Angular](https://img.shields.io/badge/Angular-21.0-dd0031?logo=angular)](https://angular.io/)
-[![Vite](https://img.shields.io/badge/Vite-7.2-646cff?logo=vite)](https://vitejs.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?logo=typescript)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-Express-339933?logo=node.js)](https://nodejs.org/)
+## Features
 
-## ✨ Features
+- Lightning-fast development with Vite - we're talking 10-100x faster hot reloads, no more waiting like LA traffic
+- Multi-locale data tracking for 8+ cities across Canada and Australia - global domination mode activated
+- Material Design UI with Angular Material components - sleek and smooth like a fresh Civic
+- Secure authentication with JWT tokens - locked down tighter than my gaming PC
+- Responsive design optimized for desktop and mobile - looks good on your rig or your phone
+- Real-time data filtering and table visualizations - sort, filter, conquer
+- International support for Toronto, Montreal, Vancouver, Alberta, Perth, Melbourne, Brisbane - world tour unlocked
 
-- 🚀 **Lightning-fast development** with Vite (10-100x faster HMR)
-- 📊 **Multi-locale data tracking** for 8+ cities across Canada and Australia
-- 🎨 **Material Design UI** with Angular Material components
-- 🔐 **Secure authentication** with JWT tokens
-- 📱 **Responsive design** optimized for desktop and mobile
-- 🎯 **Real-time data filtering** and table visualizations
-- 🌍 **International support** for Toronto, Montreal, Vancouver, Alberta, Perth, Melbourne, Brisbane
-
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
-- Node.js 18+ 
-- npm 9+
+- Node.js 18+ - get that runtime ready
+- npm 9+ - package manager on point
 
 ### Installation
 
 ```bash
-# Install dependencies
+# Grab those dependencies
 npm install
 
-# Start development servers (Vite + Express)
+# Fire up the dev servers (Vite + Express)
 npm run start:dev
 
-# Or run separately:
+# Or run 'em separate:
 npm run dev      # Vite dev server (port 3000)
 npm start        # Express API server (port 4200)
 ```
@@ -41,17 +36,17 @@ npm start        # Express API server (port 4200)
 ### Build for Production
 
 ```bash
-# Create optimized production build
+# Cook up that optimized production build
 npm run build
 
-# Preview production build locally
+# Test it locally
 npm run preview
 
 # Deploy with Express
 NODE_ENV=production npm start
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 koi/
@@ -67,62 +62,62 @@ koi/
 └── vite.config.ts      # Vite configuration
 ```
 
-## 🔧 Tech Stack
+## Tech Stack
 
 ### Frontend
-- **Angular 21** - Modern TypeScript framework
-- **Angular Material** - Material Design components
-- **RxJS** - Reactive programming
-- **SCSS** - Styled with modern CSS preprocessor
+- Angular 21 - Modern TypeScript framework, keeping it typed and tight
+- Angular Material - Material Design components, clean UI vibes
+- RxJS - Reactive programming, streams like a boss
+- SCSS - Styled with modern CSS preprocessor, flexing that style
 
 ### Build & Development
-- **Vite 7.2** - Ultra-fast bundler and dev server
-- **TypeScript 5.9** - Type-safe JavaScript
-- **@analogjs/vite-plugin-angular** - Vite integration for Angular
+- Vite 7.2 - Ultra-fast bundler and dev server, speed demon
+- TypeScript 5.9 - Type-safe JavaScript, no runtime surprises
+- @analogjs/vite-plugin-angular - Vite integration for Angular, smooth sailing
 
 ### Backend
-- **Node.js + Express** - RESTful API server
-- **MongoDB + Mongoose** - Database and ODM
-- **JWT** - Secure authentication
-- **Axios** - HTTP client
+- Node.js + Express - RESTful API server, reliable as my daily commute
+- MongoDB + Mongoose - Database and ODM, storing data like a pro
+- JWT - Secure authentication, tokens locked and loaded
+- Axios - HTTP client, fetching data with style
 
-## 🔐 Authentication & Data Access
+## Authentication & Data Access
 
-The application uses JWT-based authentication with secure credential management.
+We're using JWT-based authentication with secure credential management - enterprise level security, no cap.
 
-⚠️ **Note:** Authentication credentials and API endpoints are configured via environment variables. Contact the repository owner for access.
+Note: Authentication credentials and API endpoints are configured via environment variables. Hit up the repo owner for access, keep it secure fam.
 
 ### Supported Event Locales
 
 Multi-region support for charitable cycling events:
-- 🇨🇦 Canada (Toronto, Montreal, Vancouver, Alberta)
-- 🇦🇺 Australia (Perth, Melbourne, Brisbane)
-- 🚶 Walking Events (OneWalk Toronto)
+- Canada (Toronto, Montreal, Vancouver, Alberta)
+- Australia (Perth, Melbourne, Brisbane)
+- Walking Events (OneWalk Toronto)
 
-## 📊 Data Visualization
+## Data Visualization
 
-Authenticated users can access:
+Once you're authenticated, dive into:
 
-- **Interactive data tables** with sorting and filtering
-- **Locale-specific views** for different cities
-- **Aggregated statistics** across multiple events
-- **Responsive charts** and visualizations
+- Interactive data tables with sorting and filtering - click, sort, filter like a data ninja
+- Locale-specific views for different cities - zoom into your city
+- Aggregated statistics across multiple events - see the big picture
+- Responsive charts and visualizations - charts that adapt, mobile ready
 
-## 🎯 Performance
+## Performance
 
 ### Build Metrics
 
 | Metric | Webpack (Old) | Vite (Current) | Improvement |
 |--------|---------------|----------------|-------------|
-| Cold Start | 30-60s | 1-2s | **30-60x faster** ⚡ |
-| HMR | 2-5s | 50-200ms | **10-25x faster** 🔥 |
-| Production Build | 45s | 18s | **2.5x faster** 🚀 |
+| Cold Start | 30-60s | 1-2s | 30-60x faster |
+| HMR | 2-5s | 50-200ms | 10-25x faster |
+| Production Build | 45s | 18s | 2.5x faster |
 
 ### Bundle Size
 
-Optimized production build with smart code splitting and tree-shaking.
+Optimized production build with smart code splitting and tree-shaking - lean and mean, no bloat.
 
-## 🛠️ Available Scripts
+## Available Scripts
 
 ```bash
 npm run dev          # Start Vite dev server (port 3000)
@@ -134,25 +129,66 @@ npm run format       # Format code with Prettier
 npm run format:check # Check code formatting
 ```
 
-## 📚 Documentation
+## Contributing
 
-- [Vite Migration Guide](./VITE_MIGRATION.md) - Complete migration details
-- [Angular Documentation](https://angular.io/docs)
-- [Vite Documentation](https://vitejs.dev/)
+Wanna jump in and level up this project? Here's how:
 
-Originally developed for [CauseForce](http://www.causeforce.com/) to support [The Ride to Conquer Cancer](http://www.conquercancer.ca) participants but modernized further testing.
+1. Fork the repo
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-- **Moe Quraishi**
-- **Christian Solis**
-- **Kevin Tian**
-- **Baokhoa Vu**
+Keep it clean, test your code, and let's build something epic together.
 
-## 👨‍💻 Developer
+## Testing
 
-## 📝 License
+We run tests to make sure everything's solid:
 
-Private project - All rights reserved.
+```bash
+npm run test          # Run unit tests
+npm run test:e2e      # Run end-to-end tests
+npm run test:coverage # Check test coverage
+```
 
----
+Aim for high coverage - we're not shipping bugs on this ride.
 
-**Built with ❤️ for cancer research fundraising events**
+## Deployment
+
+For production deployment:
+
+1. Build the app: `npm run build`
+2. Set environment variables in your server
+3. Deploy the `dist/` folder to your hosting platform
+4. Configure MongoDB connection
+5. Start the Express server: `NODE_ENV=production npm start`
+
+We use Vercel for hosting, but it's flexible for other platforms.
+
+## Troubleshooting
+
+Running into issues? Common fixes:
+
+- **Build fails**: Clear node_modules and reinstall: `rm -rf node_modules && npm install`
+- **Port conflicts**: Change ports in vite.config.ts or package.json scripts
+- **Auth issues**: Double-check your .env variables
+- **Performance**: Enable production mode and check bundle size
+
+If you're stuck, check the issues tab or hit me up.
+
+## Architecture Decisions
+
+- **Vite over Webpack**: Speed and DX improvements were game-changing
+- **Angular + Express**: Full-stack TypeScript consistency
+- **MongoDB**: Flexible schema for event data across locales
+- **JWT Auth**: Stateless authentication for scalability
+
+## Roadmap
+
+Future plans:
+- Add more visualization types (charts, maps)
+- Implement real-time updates with WebSockets
+- Expand to more international locales
+- Mobile app companion
+
+Stay tuned for updates!
