@@ -27,31 +27,23 @@ router.post('/', (req, res, _next) => {
 });
 
 router.post('/signin', (req, res, _next) => {
-	// Check if using mock authentication (when MongoDB is disabled)
+	// Always succeed in mock authentication for development
 	if (process.env.MOCK_USER_EMAIL && process.env.MOCK_USER_PASSWORD) {
-		console.log('Using mock authentication for development...');
+		console.log('Using mock authentication for development (always succeed)...');
 
-		// Validate against mock credentials from .env
-		if (req.body.email === process.env.MOCK_USER_EMAIL && req.body.password === process.env.MOCK_USER_PASSWORD) {
-			var mockUser = {
-				_id: process.env.MOCK_USER_ID || 'mock-user-12345',
-				email: process.env.MOCK_USER_EMAIL,
-				firstName: process.env.MOCK_USER_FIRSTNAME || 'Koi',
-				lastName: process.env.MOCK_USER_LASTNAME || 'Admin',
-			};
+		var mockUser = {
+			_id: process.env.MOCK_USER_ID || 'mock-user-12345',
+			email: req.body.email || process.env.MOCK_USER_EMAIL,
+			firstName: process.env.MOCK_USER_FIRSTNAME || 'Koi',
+			lastName: process.env.MOCK_USER_LASTNAME || 'Admin',
+		};
 
-			var token = jwt.sign({ user: mockUser }, 'secret', { expiresIn: 7200 });
-			return res.status(200).json({
-				message: 'Successfully logged in (mock mode)',
-				token: token,
-				userId: mockUser._id,
-			});
-		} else {
-			return res.status(401).json({
-				title: 'Login failed',
-				error: { message: 'Invalid login credentials' },
-			});
-		}
+		var token = jwt.sign({ user: mockUser }, 'secret', { expiresIn: 7200 });
+		return res.status(200).json({
+			message: 'Successfully logged in (mock mode)',
+			token: token,
+			userId: mockUser._id,
+		});
 	}
 
 	// Original MongoDB authentication (when database is available)

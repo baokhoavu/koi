@@ -48,15 +48,23 @@ export class DataService implements OnInit {
 	// }
 
 	fetchData() {
+		console.log('🔄 DataService: Starting fetchData...');
 		this.http.get<any>('/api/data').subscribe(
 			(data) => {
+				console.log('✅ DataService: Received data:', !!data);
+				console.log('📊 DataService: owto20Walkers:', data?.owto20Walkers);
+				console.log('📊 DataService: owto19Walkers:', data?.owto19Walkers);
+				console.log('📊 DataService: owto18Walkers:', data?.owto18Walkers);
 				// Ensure we're setting the data object properly
 				if (data && typeof data === 'object') {
 					this.data = { ...data };
+					console.log('💾 DataService: Data set successfully, total fields:', Object.keys(this.data).length);
+				} else {
+					console.error('❌ DataService: Invalid data received:', data);
 				}
 			},
 			(error) => {
-				console.error('Error fetching data:', error);
+				console.error('❌ DataService: Error fetching data:', error);
 			}
 		);
 	}

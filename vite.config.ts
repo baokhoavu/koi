@@ -108,22 +108,22 @@ export default defineConfig(({ mode }) => {
 		},
 
 		server: {
-			port: 3000,
+			port: 4200,
 			open: false,
 			proxy: {
 				// Proxy API requests to Express backend
 				'/api': {
-					target: 'http://localhost:4200',
+					target: 'http://localhost:3000',
 					changeOrigin: true,
 					secure: false,
 				},
 				'/message': {
-					target: 'http://localhost:4200',
+					target: 'http://localhost:3000',
 					changeOrigin: true,
 					secure: false,
 				},
 				'/user': {
-					target: 'http://localhost:4200',
+					target: 'http://localhost:3000',
 					changeOrigin: true,
 					secure: false,
 				},

@@ -54,14 +54,22 @@ export class AllTablesComponent implements OnInit, OnDestroy {
 		// Check if data already exists (pre-fetched at app level)
 		if (this.dataService.data && Object.keys(this.dataService.data).length > 0) {
 			console.log('✨ Data already available!');
+			console.log('🔍 owto20Walkers:', this.dataService.data.owto20Walkers);
+			console.log('🔍 owto19Walkers:', this.dataService.data.owto19Walkers);
+			console.log('🔍 owto18Walkers:', this.dataService.data.owto18Walkers);
 			this.isLoading = false;
 			this.cdr.detectChanges();
 		} else {
+			console.log('⏳ Data not available, fetching...');
 			// Fetch data if not already available
 			this.dataService.fetchData();
 
 			// Hide loading state once data arrives
 			setTimeout(() => {
+				console.log('⏰ Timeout reached, checking data:', !!this.dataService.data);
+				console.log('🔍 owto20Walkers:', this.dataService.data?.owto20Walkers);
+				console.log('🔍 owto19Walkers:', this.dataService.data?.owto19Walkers);
+				console.log('🔍 owto18Walkers:', this.dataService.data?.owto18Walkers);
 				this.isLoading = false;
 				this.cdr.detectChanges();
 			}, 1000);

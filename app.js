@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 var express = require('express');
 var path = require('node:path');
 var _favicon = require('serve-favicon');
@@ -24,14 +24,15 @@ mongoose.Promise = require('bluebird');
 
 // MongoDB connection temporarily disabled - using mock data for development
 // To re-enable: uncomment below and ensure MONGODB_URI is set in .env
-// var mongodbUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/koi';
-// mongoose.connect(mongodbUri)
-// 	.then(function (db) {
-// 		console.log('MongoDB connected successfully');
-// 	})
-// 	.catch(function (err) {
-// 		console.error('MongoDB connection error:', err);
-// 	});
+var mongodbUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/koi';
+mongoose
+	.connect(mongodbUri, { dbName: 'koi' })
+	.then((db) => {
+		console.log('MongoDB connected successfully to database:', mongoose.connection.db.databaseName);
+	})
+	.catch((err) => {
+		console.error('MongoDB connection error:', err);
+	});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

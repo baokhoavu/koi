@@ -480,10 +480,56 @@ const dailyIncrements = {
 		va17: { rfi: 0, riders: 0, virtual: 0, crews: 0, donations: 0, regfee: 0 },
 	},
 	onewalk: {
-		owto20: { rfi: 0, walkers: 0, virtual: 0, crews: 0, donations: 0, regfee: 0 },
-		owto19: { rfi: 0, walkers: 0, virtual: 0, crews: 0, donations: 0, regfee: 0 },
-		owto18: { rfi: 0, walkers: 0, virtual: 0, crews: 0, donations: 0, regfee: 0 },
-		owto17: { rfi: 0, walkers: 0, virtual: 0, crews: 0, donations: 0, regfee: 0 },
+		owto20: {
+			rfi: 0,
+			walkers: 0,
+			walkers2day: 0,
+			walkersNight: 0,
+			walkers25km: 0,
+			walkers40km: 0,
+			virtual: 0,
+			crews: 0,
+			donations: 0,
+			regfee: 0,
+		},
+		owto19: {
+			rfi: 0,
+			walkers: 0,
+			walkers2day: 0,
+			walkersNight: 0,
+			walkers25km: 0,
+			walkers40km: 0,
+			virtual: 0,
+			crews: 0,
+			donations: 0,
+			regfee: 0,
+		},
+		owto18: {
+			rfi: 0,
+			walkers: 0,
+			walkers2day: 0,
+			walkersNight: 0,
+			walkers15km: 0,
+			walkers25km: 0,
+			walkers40km: 0,
+			virtual: 0,
+			crews: 0,
+			donations: 0,
+			regfee: 0,
+		},
+		owto17: {
+			rfi: 0,
+			walkers: 0,
+			walkers2day: 0,
+			walkersNight: 0,
+			walkers15km: 0,
+			walkers25km: 0,
+			walkers40km: 0,
+			virtual: 0,
+			crews: 0,
+			donations: 0,
+			regfee: 0,
+		},
 	},
 	perth: {
 		pr18: { rfi: 0, riders: 0, virtual: 0, crews: 0, donations: 0, regfee: 0 },
@@ -623,6 +669,23 @@ function getDailyIncrements() {
 			formatted[`${prefix}CrewDaily`] = daily.crews;
 			formatted[`${prefix}DonDaily`] = formatCurrency(daily.donations);
 			formatted[`${prefix}RegFeeDaily`] = formatCurrency(daily.regfee);
+
+			// Add specific OneWalk walker type fields
+			if (daily.walkers2day !== undefined) {
+				formatted[`${prefix}Walkers2dayDaily`] = daily.walkers2day;
+			}
+			if (daily.walkersNight !== undefined) {
+				formatted[`${prefix}WalkersNightDaily`] = daily.walkersNight;
+			}
+			if (daily.walkers15km !== undefined) {
+				formatted[`${prefix}Walkers15kmDaily`] = daily.walkers15km;
+			}
+			if (daily.walkers25km !== undefined) {
+				formatted[`${prefix}Walkers25kmDaily`] = daily.walkers25km;
+			}
+			if (daily.walkers40km !== undefined) {
+				formatted[`${prefix}Walkers40kmDaily`] = daily.walkers40km;
+			}
 		});
 	});
 
